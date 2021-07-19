@@ -18,6 +18,8 @@ exports.init = function(req, res, db) {
 					<td>${query[i].num}</td>
 					<td>${query[i].received}</td>
 					<td><button class="checkBtn" onclick="location.href='${query[i].picture}'">확인</button></td>
+					<td><button class="checkBtn" onclick="location.href='editItem'">수정</button></td>
+					<td><button class="checkBtn" onclick="location.href='deleteItem'">삭제</button></td>
 				</tr>
 			  `;
 			}
