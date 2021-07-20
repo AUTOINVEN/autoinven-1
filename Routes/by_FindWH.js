@@ -115,13 +115,13 @@ exports.RequestWH = function(req,res,app,db){
                 "logComment":`${req.body.buyerID}가${req.body.warehouseID}를 창고공유요청함`
             }
             connection.query('INSERT INTO Log SET ?' , logitem, function (error, results, fields) {
-              if (error) {
-                console.log("error ocurred", error);
-                res.send(false);
-              }
-              else{
-                res.send(true);
-              }
+                if (error) {
+                    console.log("error ocurred", error);
+                    res.send(false);
+                }
+                else{
+                    res.send(true);
+                }
             });
           }
       });

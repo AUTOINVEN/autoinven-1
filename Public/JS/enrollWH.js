@@ -72,81 +72,78 @@
                     processData : false,
                     contentType: false,
                     success: function (data) {
-                        if (data == "errortype1") {
+                        if (data == "errortype2") {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Fail',
-                                text:  '창고번호 8자리를 입력해주십시오.',
-                            }).then(() => {
-                            })
-                        } else if (data == "errortype2") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'fail',
-                                text:  'landArea 항목에는 숫자만 입력해주십시오.',
+                                text:  'Please enter only numbers in the landArea field.',
                             }).then(() => {
                             })
                         } else if (data == "errortype3") {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'fail',
-                                text:  'floorArea 항목에는 숫자만 입력해주십시오.',
+                                title: 'Fail',
+                                text:  'Please enter only numbers in the floorArea field.',
                             }).then(() => {
                             })
                         } else if (data == "errortype4") {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'fail',
-                                text:  'price 항목에는 숫자만 입력해주십시오.',
+                                title: 'Fail',
+                                text:  'Please enter only numbers in the price field.',
                             }).then(() => {
                             })
                         } else if (data == "errortype5") {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'fail',
-                                text:  '오류가 발생했습니다',
+                                title: 'Fail',
+                                text:  'An error was occurred.',
                             }).then(() => {
                             })
                         } else if (data == "errortype6") {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'fail',
-                                text:  'Warehouse Name, infoComment, etcComment를 영어 및 숫자로 입력해주세요.',
+                                title: 'Fail',
+                                text:  'Please enter the Warehouse Name, infoComment, etcComment in English or number.',
                             }).then(() => {
                             })
                         } else if (data == "errortype7") {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'fail',
-                                text:  '중복된 Warehouse ID가 존재합니다.',
+                                title: 'Fail',
+                                text:  'Duplicate Warehouse IDs exist.',
                             }).then(() => {
                             })
                         } else if (data == "errortype8") {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'fail',
-                                text:  '로그인 후 진행해주세요.',
+                                title: 'Fail',
+                                text:  'Please log in.',
                             }).then(() => {
                             })
                         } else if (data == "errortype0") {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'success',
-                                text:  '창고등록을 성공적으로 완료하였습니다.',
+                                title: 'Success',
+                                text:  'Successfully completed warehouse enrollment.',
                             }).then(() => {
                                 location.href = "/";
                             })
                         } else {
                             Swal.fire({
                                 icon: 'error',
-                                title : 'fail',
-                                text: '알수없는 오류가 발생하였습니다',
+                                title : 'Fail',
+                                text: 'An error was occurred.',
                             }).then(() => {
                             }
                             )}
                     },
                     error: function (request, status, error) {
-                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        Swal.fire({
+                            title: 'Error',
+                            html: `code: ${request.status}<br>message: ${request.responseText}<br>error: ${error}`,
+                            icon: 'error'
+                        });
                     }
                 })
             }

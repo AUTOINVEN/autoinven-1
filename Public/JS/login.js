@@ -69,7 +69,11 @@
                             )}
                     },
                     error: function (request, status, error) {
-                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        Swal.fire({
+                            title: 'Error',
+                            html: `code: ${request.status}<br>message: ${request.responseText}<br>error: ${error}`,
+                            icon: 'error'
+                        });
                     }
                 })
             }
