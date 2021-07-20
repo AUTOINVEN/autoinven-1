@@ -108,10 +108,7 @@
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                //var roadAddr = data.roadAddress;
-
-                var roadAddr = "600+Amphitheatre+Parkway,+Mountain+View,+CA"
-
+                var roadAddr = data.roadAddress;
                 // document.getElementById("address").value = roadAddr;
                 document.getElementById("address").value = data.roadAddressEnglish;
                 var baseAPIUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
