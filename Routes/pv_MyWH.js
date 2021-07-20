@@ -120,7 +120,7 @@ exports.ReqEnrollAns = function(req,res,app,db){
   var mysql = require('mysql');
   var connection = mysql.createConnection(require('../Module/db').info);
   connection.connect();
-  if(answer="Confirm"){
+  if(answer=="Confirm"){
     connection.query(`DELETE FROM RequestForEnroll WHERE reqID =${reqID}`,function (error, results, fields) {
       if(error){
         console.log(error);
@@ -133,7 +133,7 @@ exports.ReqEnrollAns = function(req,res,app,db){
       }
     });
   }
-    else if(answer="Cancel"){
+    else if(answer=="Cancel"){
       connection.query(`DELETE FROM RequestForEnroll WHERE reqID =${reqID}`,function (error, results, fields) {
         if(error){
           console.log(error);
