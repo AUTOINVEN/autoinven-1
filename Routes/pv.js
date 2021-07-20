@@ -22,25 +22,7 @@ module.exports = function(app,db){
     });
 
     router.post('/EnrollWH',function(req,res,next){
-        if (!req.session['memberID']) {
-            console.log('errortype8');
-            res.send("errortype8");
-        } else {
-            let upLoadFile = req.files;
-            let fileName = req.files.profile_img.name;
-            var fileExt = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
-            fileName = new Date().getTime().toString() + fileExt;
-            upLoadFile.profile_img.mv(
-                `./Public/Upload/${fileName}`,
-                function(err){
-                    if(err){
-                        res.send(err);
-                        console.log('file mv error' + err);
-                    }
-                    pv_EnrollWH.EnrollWH(req,res,app,db,fileName);
-                }
-            )
-        }
+        pv_EnrollWH.EnrollWH(req,res,app,db);
     });
 
     router.post('/MyWarehouse/Buy/Ans',function(req,res,next){
