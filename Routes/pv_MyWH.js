@@ -45,9 +45,6 @@ exports.RequestForBuy = function (req, res,app,db) {
               "\"email\" :\""+ results[step].email+"\","+
               "\"contractNumber\" :\""+ results[step].contractNumber+"\","+
               "\"national\" :\""+ results[step].national+"\","+
-              "\"CA\" :\""+ results[step].CA+"\","+
-              "\"CN\" :\""+ results[step].CN+"\","+
-              "\"CCN\" :\""+ results[step].CCN+"\","+
               "\"area\" :"+ results[step].area+
           "}";
           items+=obj;

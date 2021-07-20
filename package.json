@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ubermen5che/autoinven"
+    "url": "git+https://github.com/AUTOINVEN/autoinven"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ubermen5che/autoinven/issues"
+    "url": "https://github.com/AUTOINVEN/autoinven/issues"
   },
-  "homepage": "https://github.com/ubermen5che/autoinven#readme",
+  "homepage": "https://github.com/AUTOINVEN/autoinven#readme",
   "dependencies": {
     "apollo-server-express": "^2.25.0",
     "chartjs": "^0.3.24",
@@ -33,9 +33,9 @@
     "http-errors": "^1.6.3",
     "http-proxy": "^1.18.1",
     "mysql": "^2.18.1",
+    "nodemailer": "^6.6.3",
     "paypal-rest-sdk": "^1.8.1",
     "pickle": "^0.2.0",
-    "serve-favicon": "^2.5.0",
     "sync-mysql": "^3.0.1",
     "underscore": "^1.13.1"
   }

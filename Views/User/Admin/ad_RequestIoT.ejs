@@ -35,7 +35,6 @@
               <p id = "reqType<%=i%>" style="display: none"><%= items['item'+i].reqType %></p>
               <p id = "memberID<%=i%>" style="display: none"><%= items['item'+i].memberID%></p>
               <p id = "national<%=i%>" style="display: none"><%= items['item'+i].national%></p>
-              <p id = "CN<%=i%>" style="display: none"><%= items['item'+i].CN%></p>
               <p id = "name<%=i%>" style="display: none"><%= items['item'+i].name%></p>
               <p id = "address<%=i%>" style="display: none"><%= items['item'+i].address%></p> 
               
@@ -50,7 +49,6 @@
                     <th class="col-2">이름</th>
                     <th class="col-3">창고 주소</th>
                     <th class="col-1">국적</th>
-                    <th class="col-1">회사 이름</th>
                     <th class="col-1"></th>
                   </tr>
                 </thead>
@@ -64,7 +62,6 @@
                         <td class="col-2"><%= items['item'+i].name %></td>
                         <td class="col-3"><%= items['item'+i].address %></td>
                         <td class="col-1"><%= items['item'+i].national %></td>
-                        <td class="col-1"><%= items['item'+i].CN %></td>
                         <td class="col-1" style="float:right; padding:0px 10px 0px 0px;">
                           <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 1)">Approval</button>
                           <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 0)">Cancel</button>
