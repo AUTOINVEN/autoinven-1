@@ -170,10 +170,18 @@
               data: {'email': email},
                 success: function(result){
                   if(result == false) {
-                    alert('send error');
+                    Swal.fire({
+                      title: 'Error',
+                      text: 'Email send error',
+                      icon: 'error'
+                    });
                   }
                   else{
-                    alert('send email');
+                    Swal.fire({
+                      title: 'Success',
+                      text: 'Email is sended',
+                      icon: 'success'
+                    });
                   }
               }
               }); 

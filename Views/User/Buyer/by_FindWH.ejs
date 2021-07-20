@@ -146,7 +146,11 @@
         console.log('창고 대여 시작일' + sDate);
         console.log('창고 대여 종료일' + eDate);
         if(useableArea>wantArea){
-          alert("사용공유면적보다 큰 면적을 신청하였습니다. 다시 신청해 주세요!");
+          Swal.fire({
+            title: 'Error',
+            text: 'You have submitted for an area larger than the shared shared area. Please submit again!',
+            icon: 'error'
+          })
           return;
         }
         $.ajax({
@@ -161,13 +165,18 @@
               },
               success:function(data){
             if(data==true){
-              alert("창고공유를 신청하였습니다.");
-              window.location.href = "/Buyer/MyWarehouse";
+              Swal.fire({
+                title: 'Success',
+                text: 'Your warehouse sharing is submitted.',
+                icon: 'success'
+              }).then(() => location.href = "/Buyer/MyWarehouse");
             }
             else{
-              console.log(startDate);
-              alert("에러가 발생했습니다.");
-              window.location.href = "/Buyer/FindWH";
+              Swal.fire({
+                title: 'Error',
+                text: 'An error has occurred.',
+                icon: 'error'
+              }).then(() => location.href = "/Buyer/FindWH");
             }
           }
         });

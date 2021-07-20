@@ -91,12 +91,17 @@
               },
               success:function(data){
               if(data==true){
-                alert("승인하였습니다.");
-                window.location.href = "/Admin/RequestBuy";
+                Swal.fire({
+                  title: 'Accepted',
+                  icon: 'success'
+                }).then(() => location.href = "/Admin/RequestBuy");
               }
               else{
-                alert("에러가 발생했습니다.");
-                window.location.href = "/Admin/RequestBuy";
+                Swal.fire({
+                  title: 'Error',
+                  text: 'An error has occurred.',
+                  icon: 'error'
+                }).then(() => location.href = "/Admin/RequestBuy");
               }
             }
           });
@@ -114,12 +119,17 @@
               },
               success:function(data){
                 if(data==true){
-                  alert("거절하였습니다.");
-                  window.location.href = "/Admin/RequestBuy";
+                  Swal.fire({
+                    title: 'Rejected',
+                    icon: 'warning'
+                  }).then(() => location.href = "/Admin/RequestBuy");
                 }
                 else{
-                  alert("에러가 발생했습니다.");
-                  window.location.href = "/Admin/RequestBuy";
+                  Swal.fire({
+                    title: 'Error',
+                    text: 'An error has occurred.',
+                    icon: 'error'
+                  }).then(() => location.href = "/Admin/RequestBuy");
                 }
               }
           });

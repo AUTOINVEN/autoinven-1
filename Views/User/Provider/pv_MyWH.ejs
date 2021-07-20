@@ -228,12 +228,17 @@
           },
           success:function(data){
             if(data==true){
-              alert("신청하였습니다.");
-              window.location.href = "/Provider/MyWarehouse";
+              Swal.fire({
+                title: 'Submitted',
+                icon: 'success'
+              }).then(() => location.href = "/Provider/MyWarehouse");
             }
             else{
-              alert("에러가 발생했습니다.");
-              window.location.href = "/Provider/MyWarehouse";
+              Swal.fire({
+                title: 'Error',
+                text: 'An error has occurred.',
+                icon: 'error'
+              }).then(() => location.href = "/Provider/MyWarehouse");
             }
           }
       });
@@ -262,12 +267,17 @@
                 },
                 success:function(data){
                   if(data==true){
-                    alert("취소하였습니다.");
-                    window.location.href = "/Provider/MyWarehouse";
+                    Swal.fire({
+                      title: 'Canceled',
+                      icon: 'warning'
+                    }).then(() => location.href = "/Provider/MyWarehouse");
                   }
                   else{
-                    alert("에러가 발생했습니다.");
-                    window.location.href = "/Provider/MyWarehouse";
+                    Swal.fire({
+                      title: 'Error',
+                      text: 'An error has occurred.',
+                      icon: 'error'
+                    }).then(() => location.href = "/Provider/MyWarehouse");
                   }
               }
           });
@@ -287,12 +297,17 @@
                 },
                 success:function(data){
                 if(data==true){
-                  alert("승인하였습니다.");
-                  window.location.href = "/Provider/MyWarehouse";
+                  Swal.fire({
+                    title: 'Accepted',
+                    icon: 'success'
+                  }).then(() => location.href = "/Provider/MyWarehouse");
                 }
                 else{
-                  alert("에러가 발생했습니다.");
-                  window.location.href = "/Provider/MyWarehouse";
+                  Swal.fire({
+                    title: 'Error',
+                    text: 'An error has occurred.',
+                    icon: 'error'
+                  }).then(() => location.href = "/Provider/MyWarehouse");
                 }
               }
           });
@@ -312,12 +327,17 @@
                 },
                 success:function(data){
                 if(data==true){
-                  alert("확인하였습니다.");
-                  window.location.href = "/Provider/MyWarehouse";
+                  Swal.fire({
+                    title: 'Confirmed',
+                    icon: 'success'
+                  }).then(() => location.href = "/Provider/MyWarehouse");
                 }
                 else{
-                  alert("에러가 발생했습니다.");
-                  window.location.href = "/Provider/MyWarehouse";
+                  Swal.fire({
+                    title: 'Error',
+                    text: 'An error has occurred.',
+                    icon: 'error'
+                  }).then(() => location.href = "/Provider/MyWarehouse");
                 }
               }
           });
