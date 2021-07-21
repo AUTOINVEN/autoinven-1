@@ -13,7 +13,7 @@ module.exports = function(app,db){
 		var wid = req.session['warehouseID'];
 		var hostIndex = (req.protocol + '://' + req.get('host')).length;
 		var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
-		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics'];
+		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem'];
 
 		if (!id) res.render('Alert/needLogin');
 		else if (req.path === '/' && req.method === 'POST') return next();
@@ -37,6 +37,9 @@ module.exports = function(app,db){
 
 	router.get('/registerItem', (req, res, next) => { res.render('Iot/registerItem') });
 	router.post('/registerItem', (req, res, next) => { iot_warehousing.registerItem(req, res, db) });
+
+	router.get('/editItem', (req, res, next) => { res.render('Iot/editItem') });
+	router.post('/editItem', (req, res, next) => { iot_warehousing.editItem(req, res, db) });
 
 	return router;
 };

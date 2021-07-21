@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <%- include('../head') %>
+  <meta charset="utf-8">
+  <title>물품 수정</title>
+  <link rel="stylesheet" href="/CSS/iot.css" />
+</head>
+
+<body>
+  <div id="content">
+    <%- include('nav') %>
+    <div class="container">
+      <div class="container mb-3">
+        <h2 class="mb-3">물품 수정</h2>
+      </div>
+
+      <form action="editItem" method="POST">
+        <div class="table-responsive">
+          <table class="board-table table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Info List</th>
+                <th>Product Info</th>
+              </tr>
+            </thead>
+            <tbody class="table-bg">
+            <tr>
+              <th>RFID</th>
+              <td><input type="text" name="rfid" id="edititem_rfid" class="box" readonly></td>
+            </tr>
+            <tr>
+              <th>Product Name</th>
+              <td><input type="text" name="name" id="edititem_name" class="box" ></td>
+            </tr>
+            <tr>
+              <th>Product Quantity</th>
+              <td><input type="number" name="num" id="edititem_num" class="box" ></td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+        <button class="btn btn-primary two_btn">수정</button>
+      </form>
+      <button class="btn btn-primary two_btn" onclick="location.href='warehousing'">취소</button>
+    </div>
+
+  </div>
+</body>
+</html>

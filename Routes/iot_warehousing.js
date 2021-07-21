@@ -18,8 +18,8 @@ exports.init = function(req, res, db) {
 					<td>${query[i].num}</td>
 					<td>${query[i].received}</td>
 					<td><button class="checkBtn" onclick="location.href='${query[i].picture}'">확인</button></td>
-					<td><button class="checkBtn" onclick="location.href='editItem'">수정</button></td>
-					<td><button class="checkBtn" onclick="location.href='deleteItem'">삭제</button></td>
+					<td><button class="btn btn-primary" id="editBtn" onclick="location.href='/iot/editItem'">수정</button></td>
+					<td><button class="btn btn-primary" onclick="deleteItem(${query[i].rfid})">삭제</button></td>
 				</tr>
 			  `;
 			}
@@ -47,7 +47,6 @@ exports.init = function(req, res, db) {
 	}
 }
 
-
 exports.registerItem = function(req, res, db) {
 	var rfid = req.body.rfid.toUpperCase();
 	var name = req.body.name;
@@ -62,6 +61,18 @@ exports.registerItem = function(req, res, db) {
 	else res.redirect('warehousing');
 }
 
+exports.editItem = function(req, res, db) {
+	//var rfid = req.body.rfid.toUpperCase();
+	//var rfid = req.body.rfid.toUpperCase();
+	
+	var name = req.body.name;
+	var num = req.body.num;
+
+	var editSQL=`UPDATE iot SET name=?,num=? WHERE rfid='${req.body.rfid}'`
+	var row = db.query(editSQL,[name, num]);
+	if (!row) console.log('err: registerItem');
+	else res.redirect('warehousing');
+}
 
 exports.randomTest = function(req, res, db) {
 	var types = ['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg'];
