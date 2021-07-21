@@ -3,12 +3,8 @@ exports.edit = function (req, res,app,db) {
     var contactNumber = req.body.contactNumber;
     var address = req.body.address;
     var national = req.body.national;
-    var CN = req.body.CN;
-    var CA = req.body.CA;
-    var CCN = req.body.CCN;
-    var SQL = `UPDATE Member SET email=?,contactNumber=?,
-    address=?,national=?,CN=?,CA=?,CCN=? WHERE memberID='${req.session.memberID}'`
-    var check = db.query(SQL,[email,contactNumber,address,national,CN,CA,CCN]);
+    var SQL = `UPDATE Member SET email=?,contactNumber=?,address=?,national=? WHERE memberID='${req.session.memberID}'`
+    var check = db.query(SQL,[email,contactNumber,address,national]);
     if (!check) {
         console.log("error ocurred", error);
         res.redirect('/User/Edit');

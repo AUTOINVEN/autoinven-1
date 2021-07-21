@@ -30,10 +30,7 @@
               <p id = "startDate<%=i%>" style="display: none"><%= items['item'+i].startDate%></p>
               <p id = "endDate<%=i%>" style="display: none"><%= items['item'+i].endDate%></p>
               <p id = "national<%=i%>" style="display: none"><%= items['item'+i].national%></p>
-              <p id = "CN<%=i%>" style="display: none"><%= items['item'+i].CN%></p>
-              <p id = "CCN<%=i%>" style="display: none"><%= items['item'+i].CCN%></p>
               <p id = "name<%=i%>" style="display: none"><%= items['item'+i].name%></p>
-              <p id = "CA<%=i%>" style="display: none"><%= items['item'+i].CA%></p>
               <p id = "email<%=i%>" style="display: none"><%= items['item'+i].email%></p>
             <%}%>
           <div class="table-responsive">
@@ -50,8 +47,6 @@
                   <th class="col-2">email</th>
                   <th class="col-3">주소</th>
                   <th class="col-1">국적</th>
-                  <th class="col-1">회사 이름</th>
-                  <th class="col-3">회사 주소</th>
                   <th></th>
                 </tr>
               </thead>
@@ -68,8 +63,6 @@
                        <td class="col-2"><%= items['item'+i].email%></td>
                        <td class="col-3"><%= items['item'+i].address%></td>
                        <td class="col-1"><%= items['item'+i].national%></td>
-                       <td class="col-1"><%= items['item'+i].CN%></td>
-                       <td class="col-3"><%= items['item'+i].CA%></td>
                        <td></td>
                      </tr>
                 <% } %>

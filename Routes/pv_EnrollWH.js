@@ -1,4 +1,4 @@
-exports.EnrollWH = function (req, res, app, db, fileName) {
+exports.EnrollWH = function (req, res, app, db) {
 	var mysql = require('mysql');
 	var connection = mysql.createConnection(require('../Module/db').info);
 	connection.connect();
@@ -46,31 +46,41 @@ exports.EnrollWH = function (req, res, app, db, fileName) {
 						console.log("error ocurred LAST_INSERT_ID() error", error);
 						res.redirect('/Provider/EnrollWH');
 					} else {
-						warehouseID = results[0].wid;
-						var fileInfo = {
-							"warehouseID": warehouseID,
-							"filename": fileName
-						};
-						connection.query('INSERT INTO FileInfo SET ?', fileInfo, function (error, results, fields) {
-							if (error) {
-								console.log("error ocurred FileInfo error", error);
-								res.redirect('/Provider/EnrollWH');
+						let upLoadFile = req.files;
+						let fileName = req.files.profile_img.name;
+						let username = req.session.username;
+						console.log(JSON.stringify(req.session));
+						var fileExt = fileName.substring(fileName.lastIndexOf('.'), fileName.length).toLowerCase();
+						fileName = new Date().getTime().toString() + fileExt;
+						upLoadFile.profile_img.mv(`./Public/Upload/${username}_${fileName}`, err => {
+							if (err) {
+								res.send(err);
+								console.log('file mv error' + err);
 							} else {
-								var reqItem = {
-									"reqID": reqno,
-									"reqDate": new Date(),
-									"reqType": "ReqEnrollPV",
-									"providerID": req.session['memberID'],
-									"warehouseID": warehouseID,
-									"logID": logno
-								};
-								connection.query('INSERT INTO RequestForEnroll SET ?', reqItem, function (error, results, fields) {
+								warehouseID = results[0].wid;
+								var fileInfo = { "warehouseID": warehouseID, "filename": `${username}_${fileName}` };
+								connection.query('INSERT INTO FileInfo SET ?', fileInfo, function (error, results, fields) {
 									if (error) {
-										console.log("error ocurred RequsetForEnroll error", error);
-										res.send("errortype5");
+										console.log("error ocurred FileInfo error", error);
+										res.redirect('/Provider/EnrollWH');
 									} else {
-										console.log('errortype0');
-										res.send("errortype0");
+										var reqItem = {
+											"reqID": reqno,
+											"reqDate": new Date(),
+											"reqType": "ReqEnrollPV",
+											"providerID": req.session['memberID'],
+											"warehouseID": warehouseID,
+											"logID": logno
+										};
+										connection.query('INSERT INTO RequestForEnroll SET ?', reqItem, function (error, results, fields) {
+											if (error) {
+												console.log("error ocurred RequsetForEnroll error", error);
+												res.send("errortype5");
+											} else {
+												console.log('errortype0');
+												res.send("errortype0");
+											}
+										});
 									}
 								});
 							}

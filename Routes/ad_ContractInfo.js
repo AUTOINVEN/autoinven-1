@@ -16,9 +16,6 @@ exports.showContarctInfo = function (req, res,app,db) {
                 "\"endDate\" :\""+ results[step].endDate.substring(0,10) +"\","+
                 "\"national\" :\""+ results[step].national +"\","+
                 "\"contractNumber\" :\""+ results[step].contractNumber +"\","+
-                "\"CA\" :\""+ results[step].CA +"\","+
-                "\"CN\" :\""+ results[step].CN +"\","+
-                "\"CCN\" :\""+ results[step].CCN +"\","+
                 "\"address\" :\""+ results[step].address +"\","+
                 "\"email\" :\""+ results[step].email +"\","+
                 "\"name\" :\""+ results[step].name +"\","+

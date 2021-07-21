@@ -7,19 +7,15 @@ exports.delete = function (req, res,app,db) {
     var contactNumber = req.session.contactNumber;
     var address = req.session.address;
     var national = req.session.national;
-    var CN = req.session.CN;
-    var CA = req.session.CA;
-    var CCN = req.session.CCN;
     var deletedDate = new Date();
 
     console.log('user_Delete: ' + req.body.memberID);
     console.log('user_Delete: ' + req.body.session.memberID);
-    var insertSQL = `INSERT INTO Deletedmember SET memberID=?, type=?, password=?, email=?, contactNumber=?, address=?, nationa=?, CN=?, CA=?,
-    CCN=?, DeletedDate=?`;
+    var insertSQL = `INSERT INTO Deletedmember SET memberID=?, type=?, password=?, email=?, contactNumber=?, address=?, nationa=?, DeletedDate=?`;
 
     var deleteSQL = `DELETE FROM Member WHERE memberID='${req.session.memberID}'`;
-    
-    var check = db.query(insertSQL,[memberID,memberType,name,email,contactNumber,address,national,CN,CA,CCN,deletedDate]);
+
+    var check = db.query(insertSQL,[memberID,memberType,name,email,contactNumber,address,national,deletedDate]);
 
     if (!check) {
         console.log("insertSQL : error ocurred", error);

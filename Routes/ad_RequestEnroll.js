@@ -13,9 +13,6 @@ exports.RequestForEnroll = function (req, res,app,db) {
               "\"warehouseID\" :"+ results[step].warehouseID+","+
               "\"providerID\" :\""+ results[step].providerID+"\","+
               "\"national\" :\""+ results[step].national +"\","+
-              "\"CA\" :\""+ results[step].CA +"\","+
-              "\"CN\" :\""+ results[step].CN +"\","+
-              "\"CCN\" :\""+ results[step].CCN +"\","+
               "\"address\" :\""+ results[step].address +"\","+
               "\"name\" :\""+ results[step].name +"\","+
               "\"floorArea\" :"+ results[step].floorArea+

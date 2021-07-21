@@ -37,12 +37,9 @@
               <p id = "providerID<%=i%>" style="display: none"><%= items['item'+i].providerID%></p>
               <p id = "floorArea<%=i%>" style="display: none"><%= items['item'+i].floorArea%></p>
               <p id = "national<%=i%>" style="display: none"><%= items['item'+i].national%></p>
-              <p id = "CN<%=i%>" style="display: none"><%= items['item'+i].CN%></p>
-              <p id = "CCN<%=i%>" style="display: none"><%= items['item'+i].CCN%></p>
               <p id = "name<%=i%>" style="display: none"><%= items['item'+i].name%></p>
-              <p id = "CA<%=i%>" style="display: none"><%= items['item'+i].CA%></p>
-              <p id = "address<%=i%>" style="display: none"><%= items['item'+i].address%></p> 
-              
+              <p id = "address<%=i%>" style="display: none"><%= items['item'+i].address%></p>
+
             <%}%>
             <div class="table-responsive">
               <table class="board-table table ">
@@ -55,8 +52,6 @@
                     <th class="col-2">이름</th>
                     <th class="col-3">창고 주소</th>
                     <th class="col-1">국적</th>
-                    <th class="col-1">회사 이름</th>
-                    <th class="col-3">회사 주소</th>
                     <th class="col-1"></th>
                   </tr>
                 </thead>
@@ -71,8 +66,6 @@
                         <td class="col-2"><%= items['item'+i].name %></td>
                         <td class="col-3"><%= items['item'+i].address %></td>
                         <td class="col-1"><%= items['item'+i].national %></td>
-                        <td class="col-1"><%= items['item'+i].CN %></td>
-                        <td class="col-3"><%= items['item'+i].CA %></td>
                         <td class="col-1" style="float:right; padding:0px 10px 0px 0px;">
                           <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 1)">Approval</button>
                           <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 0)">Cancel</button>

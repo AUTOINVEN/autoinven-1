@@ -102,47 +102,6 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label for="address" class="col-sm-3 col-form-label">Address</label>
-          <div class="col-sm-9">
-            <input type="text" id="address" name="address" value="<%=session.address%>" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-
-        <div class="form-group row">
-          <label for="CN" class="col-sm-3 col-form-label">Company name</label>
-          <div class="col-sm-9">
-            <input type="text" id="CN" name="CN" value="<%=session.CN%>" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="CA" class="col-sm-3 col-form-label">Company-address</label>
-          <div class="col-sm-9">
-            <input type="text" id="CA" name="CA" value="<%=session.CA%>" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="CCN" class="col-sm-3 col-form-label">CEompany-contract-number</label>
-          <div class="col-sm-9">
-            <input type="text" id="CCN" name="CCN" value="<%=session.CCN%>" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
         <div class="form-group">
             <button type="submit" class="btn btn-primary two_btn">Save</button>
         </div>
