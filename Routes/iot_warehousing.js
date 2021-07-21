@@ -67,16 +67,18 @@ exports.registerItem = function(req, res, db) {
 }
 
 exports.editItem = function(req, res, db) {
-	//var rfid = req.body.rfid.toUpperCase();
-	//var rfid = req.body.rfid.toUpperCase();
-	
-	var name = req.body.name;
-	var num = req.body.num;
+	var rfid = req.body.edititem_rfid;
+    var name = req.body.edititem_name;
+    var num = req.body.edititem_num;
 
-	var editSQL=`UPDATE iot SET name=?,num=? WHERE rfid='${req.body.rfid}'`
-	var row = db.query(editSQL,[name, num]);
-	if (!row) console.log('err: registerItem');
-	else res.redirect('warehousing');
+	var editSQL=`UPDATE iot SET name='${name}',num='${num}' WHERE rfid='${rfid}'`
+	var check = db.query(editSQL);
+	if (!check) {
+        console.log("error ocurred", error);
+        res.redirect('warehousing');
+    } else {
+        res.redirect('warehousing');    
+    }
 }
 
 exports.randomTest = function(req, res, db) {

@@ -13,7 +13,7 @@ module.exports = function(app,db){
 		var wid = req.session['warehouseID'];
 		var hostIndex = (req.protocol + '://' + req.get('host')).length;
 		var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
-		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem'];
+		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem', '/iot/editsave'];
 
 		if (!id) res.render('Alert/needLogin');
 		else if (req.path === '/' && req.method === 'POST') return next();
@@ -24,13 +24,13 @@ module.exports = function(app,db){
 	router.use(check);
 
 	router.get('/', (req, res, next) => { res.render('Iot/monitoring') });
+
 	router.post('/', (req, res, next) => { iot_mypage.sessionCheck(req, res, db) });
+
 	router.get('/monitoring', (req, res, next) => { res.render('Iot/monitoring') });
 
 	router.get('/warehousing', (req, res, next) => {
-		var itemlist = iot_warehousing.initWarehouse(req,res,db);
-		
-		console.log("itemlist\n" + JSON.stringify(itemlist));
+		var itemlist = iot_warehousing.initWarehouse(req,res,db);		
 		itemlist = JSON.parse(itemlist);
 		res.render('Iot/warehousing',{'itemlist':itemlist});
 	});
@@ -42,10 +42,18 @@ module.exports = function(app,db){
 	router.get('/randomTest', (req, res, next) => { iot_warehousing.randomTest(req, res, db) });
 
 	router.get('/registerItem', (req, res, next) => { res.render('Iot/registerItem') });
+	
 	router.post('/registerItem', (req, res, next) => { iot_warehousing.registerItem(req, res, db) });
 
-	router.get('/editItem', (req, res, next) => { res.render('Iot/editItem') });
-	router.post('/editItem', (req, res, next) => { iot_warehousing.editItem(req, res, db) });
+	router.get('/editItem', (req, res, next) => {res.render('Iot/editItem') });
+
+	router.post('/editItem', (req, res, next) => {
+		res.render('Iot/editItem', {'rfid':req.body.itemEdit});
+	});
+
+	router.post('/editSave', (req, res, next) => {
+		iot_warehousing.editItem(req, res, db)
+	});
 
 	return router;
 };

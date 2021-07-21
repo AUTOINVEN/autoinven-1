@@ -40,18 +40,30 @@
           <tbody>
             <% for(var i=0; i < Object.keys(itemlist).length; i++) { %>
             <tr>
-              <td><%= itemlist['item'+i].rfid %></td>
-              <td><%= itemlist['item'+i].name %></td>
-              <td><%= itemlist['item'+i].num %></td>
-              <td><%= itemlist['item'+i].received %></td>
+              <td id = "rfid"><%= itemlist['item'+i].rfid %></td>
+              <td id = "name"><%= itemlist['item'+i].name %></td>
+              <td id = "num"><%= itemlist['item'+i].num %></td>
+              <td id = "received"><%= itemlist['item'+i].received %></td>
               <td>
                 <form action="/iot" method="POST">
                   <input type="hidden" id="itemImg" name="itemImg" value="<%= itemlist['item'+i].picture %>">
                   <button class="checkBtn">확인</button>
                 </form>
               </td>
-              <td><button class="btn btn-primary" id="editBtn" onclick="location.href='/iot/editItem'">수정</button></td>
-              <td><button class="btn btn-primary">삭제</button></td>
+              <td>
+                <form action="/iot/editItem" method="POST">
+                  <input type="hidden" id="itemEdit" name="itemEdit" value="<%= itemlist['item'+i].rfid %>">
+                  <button class="checkBtn">수정</button>
+                </form>
+              </td>
+              <td>
+                <form action="/iot/deleteItem" method="POST">
+                  <input type="hidden" id="itemDel" name="itemDel" value="<%= itemlist['item'+i].rfid %>">
+                  <button class="checkBtn">삭제</button>
+                </form>
+              </td>
+              <!-- <td><button class="btn btn-primary" onclick="editItem(<%=i%>, <%= itemlist['item' + i].rfid %>)">수정</button></td> -->
+              <!-- <td><button class="btn btn-primary" onclick="deleteItem(<%=i%>, <%= itemlist['item' + i].rfid %>)">삭제</button></td> -->
             </tr>
             <% } %>
           </tbody>
@@ -60,4 +72,31 @@
     </div>
   </div>
 </body>
+<script>
+  function deleteItem(i, WID) {
+    $.ajax({
+        url: '/iot/deleteItem',
+        dataType: 'json',
+        type: 'POST',
+        data: {
+          warehouseID: parseInt(WID)
+        },
+        success:function(data){
+          if(data==true){
+            Swal.fire({
+              title: 'Submitted',
+              icon: 'success'
+            }).then(() => location.href = "/Iot/warehousing");
+          }
+          else{
+            Swal.fire({
+              title: 'Error',
+              text: 'An error has occurred.',
+              icon: 'error'
+            }).then(() => location.href = "/Iot/warehousing");
+          }
+        }
+    });
+  }
+</script>
 </html>
