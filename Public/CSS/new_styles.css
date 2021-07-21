@@ -277,3 +277,13 @@ html {
 .mx-1 {
   margin-left: 0rem !important;
 }
+
+#pop{
+  width: 1200px;
+  display:block;
+  top: 500px;
+  margin: 0 auto;
+  text-align: center;
+  color: black;
+  border: 2px solid beige;
+}

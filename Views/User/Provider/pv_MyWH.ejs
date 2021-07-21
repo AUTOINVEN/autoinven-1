@@ -21,25 +21,26 @@
 
   <div class="container mb-3">
     <h2 class="mb-3">My Warehouse</h2>
-    <table class="board-table table ">
+    <table class="board-table table " id="myWH">
       <thead class="thead-dark">
         <tr>
           <th>WarehouseID</th>
           <th>WarehouseName</th>
-          <th></th>
-          <th></th>
+          <th>IOT</th>
+          <th>INFO</th>
         </tr>
       </thead>
       <tbody>
         <% for(var i=0; i < Object.keys(wList).length; i++) { %>
-        <tr class="table-striped">
+        <tr class="table-striped" id="row<%=i%>">
           <td><%= wList['item'+i].warehouseID %></td>
           <td><%= wList['item'+i].warehouseName %></td>
+
           <% if (wList['item'+i].iotStat == "Y"){ %>
-          <td style="float:right; padding:0px 10px 0px 0px;">
+          <td style="padding:6px 10px 0px 0px;">
             <form action="/iot" method="POST">
               <input type="hidden" id="wid" name="wid" value="<%= wList['item' + i].warehouseID %>">
-              <button class="btn btn-primary" style="margin: 0; padding: 10px 15px;">IoT</button>
+              <button class="btn btn-primary" style="margin: 0; padding: 10px 15px;">IoT Page</button>
             </form>
           </td>
           <% } else if (wList['item'+i].iotStat == "W"){%>
@@ -48,103 +49,11 @@
           <td><button type="button" class="btn btn-sm" style="margin: 0; padding: 10px 15px;"
               onclick="reqClick(<%=i%>, <%= wList['item' + i].warehouseID %>)">Request Service</button></td>
           <% } %>
-          <td style="float:right; padding:0px 10px 0px 0px;">
-            <button class="btn btn-sm" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>">View</button>
+
+          <td style="padding:0px 10px 0px 0px;">
+            <!--<button class="btn btn-sm" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>">View</button>-->
+            <button type="button" class="btn btn-sm" id="viewbtn<%=i%>" onclick="viewClick(<%=i%>)">Views</button>
           </td>
-        </tr>
-        <tr >
-          <td colspan="3">
-          <div id="accordion" >
-            <% for(var i=0; i < Object.keys(wList).length; i++) { %>
-            <div class="card">
-              <div class="card-header" style="display: none;" >
-                <a class="collapsed card-link" data-toggle="collapse" href="#collapse<%=i%>">
-                  <%= wList['item'+i].warehouseName %>
-                </a>
-              </div>
-              <div id="collapse<%=i%>" class="collapse" data-parent="#accordion">
-                <div class="card-body">
-                  <table class="board-table table ">
-                    <a style="font-size:24px">창고 정보</a>
-                    <thead class="thead-dark">
-                      <tr>
-                        <th>주소</th>
-                        <th>창고 번호</th>
-                        <th>총 면적</th>
-                        <th>사용 가능 면적</th>
-                        <th>IoT Service</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td style="padding-top: 20px;"><%= wList['item'+i].address %></td>
-                        <td style="padding-top: 20px;"><%= wList['item'+i].warehouseID %></td>
-                        <td style="padding-top: 20px;"><%= wList['item'+i].floorArea %></td>
-                        <td style="padding-top: 20px;"><%= wList['item'+i].useableArea %></td>
-                        <% if (wList['item'+i].iotStat == "Y"){ %>
-                        <td>
-                          <form action="/iot" method="POST">
-                            <input type="hidden" id="wid" name="wid" value="<%= wList['item' + i].warehouseID %>">
-                            <button class="btn btn-primary" style="margin: 0; padding: 10px 15px;">IoT</button>
-                          </form>
-                        </td>
-                        <% } else if (wList['item'+i].iotStat == "W"){%>
-                        <td style="padding-top: 20px;">waiting for approval</td>
-                        <% } else if (wList['item'+i].iotStat == "N"){%>
-                        <td><button type="button" class="btn btn-sm" style="margin: 0; padding: 10px 15px;"
-                            onclick="reqClick(<%=i%>, <%= wList['item' + i].warehouseID %>)">Request Service</button></td>
-                        <% } %>
-                      </tr>
-                    </tbody>
-                  </table>
-    
-                  <div class="table-responsive">
-                    <table class="table table-striped ">
-                      <a style="font-size:24px">거래 내역</a>
-                      <thead class="thead-dark">
-                        <tr class="d-flex">
-                          <th class="col-2">창고번호</th>
-                          <th class="col-1">거래금액($)</th>
-                          <th class="col-3">대여기간</th>
-                          <th class="col-1">대여한 총면적(m^2)</th>
-                          <th class="col-1">이름</th>
-                          <th class="col-2">email</th>
-                          <th class="col-1">국적</th>
-                          <th class="col-1">회사 이름</th>
-                          <th class="col-1">우편번호</th>
-                          <th class="col-3">회사 주소</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      <tbody>
-                        <% for(var j=0; j < Object.keys(requestItems).length; j++) { %>
-                        <%if(requestItems['item'+j].reqType == 'ReqPayAcpt' && wList['item'+i].warehouseID == requestItems['item'+j].warehouseID) { %>
-                        <tr class="d-flex">
-                          <td class="col-2"><%= requestItems['item'+j].warehouseID %></td>
-                          <td class="col-1"><%= requestItems['item'+j].amounts%></td>
-                          <td class="col-3"><%= requestItems['item'+j].startDate%> ~ <%= requestItems['item'+j].endDate%>
-                          </td>
-                          <td class="col-1"><%= requestItems['item'+j].area%></td>
-                          <td class="col-1"><%= requestItems['item'+j].name%></td>
-                          <td class="col-2"><%= requestItems['item'+j].email%></td>
-                          <td class="col-1"><%= requestItems['item'+j].national%></td>
-                          <td class="col-1"><%= requestItems['item'+j].CN%></td>
-                          <td class="col-1"><%= requestItems['item'+j].CZ%></td>
-                          <td class="col-3"><%= requestItems['item'+j].CA%></td>
-                        </tr>
-                        <% } %>
-                        <% } %>
-                      </tbody>
-                      </tbody>
-                    </table>
-                  </div>
-                </div> <!-- card body-->
-              </div> <!-- collapse-->
-            </div> <!-- class card-->
-            <% } %>
-          </div>
-        </td>
         </tr>
         <% } %>
       </tbody>
@@ -357,6 +266,23 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
+
+  function viewClick(i) {
+    $('#viewbtn'+i).click( function() {
+      if( $('#viewbtn'+i).html() == 'Views' ) {
+        var row = '<tr style="height: 500px;">';
+          row += '<td colspan="4"><div>나를 제발 내버려둬</div></td>';
+        $('#row'+i).after(row);
+        
+        $('#viewbtn'+i).html('Close');
+      }
+      else {
+        $('#row'+i).after(row);
+        $('#viewbtn'+i).html('Views');
+      }
+    });
+  };
+
   function reqClick(i, WID) {
     $.ajax({
       url: '/Provider/MyWarehouse/IoT/Ans',
@@ -375,10 +301,6 @@
         }
       }
     });
-  }
-
-  function viewClick(i) {
-    
   }
 
   function pvClick(where, i, flag) {
