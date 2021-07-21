@@ -1,4 +1,3 @@
-
 * {
   padding: 0;
   margin: 0;
@@ -13,7 +12,7 @@ body {
   /*font-family: Dotum, '돋움', Helvetica, sans-serif;*/
 }
 
-.header{
+.header {
   border-bottom: #1a1a1b;
   margin-top: 20px;
   margin-left: 20px;
@@ -169,39 +168,42 @@ tr {
   color: black;
 }
 
-.whRegBtn{
-     border-top-left-radius: 5px;
-     border-bottom-left-radius: 5px;
-     font-size:24px;
-     margin-left: 20px;
-     margin-right: 3px;
-     margin-bottom: 5px;
-     float: left;
- }
- .whRegTestBtn{
-     border-top-right-radius: 5px;
-     border-bottom-right-radius: 5px;
-     font-size:24px;
-     margin-bottom: 5px;
-     position: relative;
-     float: left; 
- }
- .RegBtn{
-     border-top-left-radius: 5px;
-     border-bottom-left-radius: 5px;
-     font-size:24px;
-     margin-top: 10px;
-     margin-left: 20px;
-     margin-right: 3px;
-     float: left;
- }
- .CanBtn{
-     border-top-right-radius: 5px;
-     border-bottom-right-radius: 5px;
-     font-size:24px;
-     margin-top: -6px;
-     float: left; 
- }
+.whRegBtn {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-size: 24px;
+  margin-left: 20px;
+  margin-right: 3px;
+  margin-bottom: 5px;
+  float: left;
+}
+
+.whRegTestBtn {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 24px;
+  margin-bottom: 5px;
+  position: relative;
+  float: left;
+}
+
+.RegBtn {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-size: 24px;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 3px;
+  float: left;
+}
+
+.CanBtn {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 24px;
+  margin-top: -6px;
+  float: left;
+}
 
 /* monitoring page css*/
 .sensor {
@@ -229,10 +231,6 @@ tr {
   border-radius: 10px 10px 10px 10px;
   background-color: white;
   text-align: center;
-}
-
-img {
-  width: 120px;
 }
 
 h2 {
