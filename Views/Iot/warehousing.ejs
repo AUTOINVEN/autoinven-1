@@ -37,7 +37,24 @@
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody><%- table_data %> </tbody>
+          <tbody>
+            <% for(var i=0; i < Object.keys(itemlist).length; i++) { %>
+            <tr>
+              <td><%= itemlist['item'+i].rfid %></td>
+              <td><%= itemlist['item'+i].name %></td>
+              <td><%= itemlist['item'+i].num %></td>
+              <td><%= itemlist['item'+i].received %></td>
+              <td>
+                <form action="/iot" method="POST">
+                  <input type="hidden" id="itemImg" name="itemImg" value="<%= itemlist['item'+i].picture %>">
+                  <button class="checkBtn">확인</button>
+                </form>
+              </td>
+              <td><button class="btn btn-primary" id="editBtn" onclick="location.href='/iot/editItem'">수정</button></td>
+              <td><button class="btn btn-primary">삭제</button></td>
+            </tr>
+            <% } %>
+          </tbody>
         </table>
       </div>
     </div>

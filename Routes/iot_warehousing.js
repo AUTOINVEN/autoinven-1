@@ -1,50 +1,55 @@
-exports.init = function(req, res, db) {
+exports.initWarehouse = function(req, res, db) {
+	var items="{";
 	var id = req.session['memberID'];
 	var wid = req.session['warehouseID'];
 	var row = db.query(`SELECT memberID FROM Provider WHERE warehouseID=?;`, [wid]);
-	console.log(row[0].memberID + ", " + id);
+
 	if (!row) console.log('err: check user');
-	else if (row[0].memberID == id) {		
-		var query = db.query("SELECT * FROM iot WHERE warehouseID=?;", [wid]);
-		if (!query) console.log('err: warehousing init');
+	else if (row[0].memberID == id) {	//Provider인 경우. 이후 admin 처리 할 때 여기에 추가하면 됨
+		var results = db.query("SELECT * FROM iot WHERE warehouseID=?;", [wid]);
+		if (!results) console.log('err: warehousing init');
 		else {
-			var items = '';
-			for (var i = 0; i < query.length; i++) {
-				query[i].received = query[i].received ? '입고완료' : '미입고';
-				items += `
-				<tr>
-					<td>${query[i].rfid}</td>
-					<td>${query[i].name}</td>
-					<td>${query[i].num}</td>
-					<td>${query[i].received}</td>
-					<td><button class="checkBtn" onclick="location.href='${query[i].picture}'">확인</button></td>
-					<td><button class="btn btn-primary" id="editBtn" onclick="location.href='/iot/editItem'">수정</button></td>
-					<td><button class="btn btn-primary" onclick="deleteItem(${query[i].rfid})">삭제</button></td>
-				</tr>
-			  `;
+			if(results.length > 0) {
+				var step;
+				for(step = 0; step < results.length; step++){
+					results[step].received = results[step].received ? '입고완료' : '미입고';
+					items+= ("\"item"+step+"\":");
+					var obj="{"+
+						"\"rfid\" :\""+ results[step].rfid +"\","+
+						"\"name\" :\"" + results[step].name +"\","+
+						"\"num\" :"+ results[step].num +","+
+						"\"received\" :\"" + results[step].received +"\","+
+						"\"picture\" :\""+ results[step].picture +"\""+
+					"}";
+					items += obj;
+					if(step + 1 < results.length) items+=","
+				}
 			}
-			res.render('Iot/warehousing', {table_data: items});
 		}
 	} else {
-		var query = db.query("SELECT * FROM iot WHERE id=? and warehouseID=?;", [id, wid]);
-		if (!query) console.log('err: warehousing init');
+		var results = db.query("SELECT * FROM iot WHERE id=? and warehouseID=?;", [id, wid]);
+		if (!results) console.log('err: warehousing init');
 		else {
-			var items = '';
-			for (var i = 0; i < query.length; i++) {
-				query[i].received = query[i].received ? '입고완료' : '미입고';
-				items += `
-				<tr>
-					<td>${query[i].rfid}</td>
-					<td>${query[i].name}</td>
-					<td>${query[i].num}</td>
-					<td>${query[i].received}</td>
-					<td><button class="checkBtn" onclick="location.href='${query[i].picture}'">확인</button></td>
-				</tr>
-			`;
+			if(results.length > 0) {
+				var step;
+				for(step = 0;step < results.length; step++){
+					results[step].received = results[step].received ? '입고완료' : '미입고';
+					items+= ("\"item"+step+"\":");
+					var obj="{"+
+						"\"rfid\" :\""+ results[step].rfid +"\","+
+						"\"name\" :\"" + results[step].name +"\","+
+						"\"num\" :"+ results[step].num +","+
+						"\"received\" :\"" + results[step].received +"\","+
+						"\"picture\" :\""+ results[step].picture +"\""+
+					"}";
+					items += obj;
+					if(step + 1 < results.length) items+=","
+				}
 			}
-			res.render('Iot/warehousing', {table_data: items});
 		}
 	}
+	items +="}";
+	return items;
 }
 
 exports.registerItem = function(req, res, db) {

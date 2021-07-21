@@ -27,7 +27,13 @@ module.exports = function(app,db){
 	router.post('/', (req, res, next) => { iot_mypage.sessionCheck(req, res, db) });
 	router.get('/monitoring', (req, res, next) => { res.render('Iot/monitoring') });
 
-	router.get('/warehousing', (req, res, next) => { iot_warehousing.init(req, res, db) });
+	router.get('/warehousing', (req, res, next) => {
+		var itemlist = iot_warehousing.initWarehouse(req,res,db);
+		
+		console.log("itemlist\n" + JSON.stringify(itemlist));
+		itemlist = JSON.parse(itemlist);
+		res.render('Iot/warehousing',{'itemlist':itemlist});
+	});
 
 	router.get('/statistics', (req, res, next) => { iot_statistics.init(req, res, db) });
 
