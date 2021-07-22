@@ -52,35 +52,6 @@ exports.initWarehouse = function(req, res, db) {
 	return items;
 }
 
-exports.registerItem = function(req, res, db) {
-	var rfid = req.body.rfid.toUpperCase();
-	var name = req.body.name;
-	var num = req.body.num;
-	var received = 0;
-	var picture = `./${rfid}.jpg`;
-	var id = req.session['memberID'];
-	var wid = req.session['warehouseID'];
-
-	var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}',${wid});`);
-	if (!row) console.log('err: registerItem');
-	else res.redirect('warehousing');
-}
-
-exports.editItem = function(req, res, db) {
-	var rfid = req.body.edititem_rfid;
-    var name = req.body.edititem_name;
-    var num = req.body.edititem_num;
-
-	var editSQL=`UPDATE iot SET name='${name}',num='${num}' WHERE rfid='${rfid}'`
-	var check = db.query(editSQL);
-	if (!check) {
-        console.log("error ocurred", error);
-        res.redirect('warehousing');
-    } else {
-        res.redirect('warehousing');    
-    }
-}
-
 exports.delItem = function(req, res, db) {
 	var rfid = req.body.itemDel;
 	

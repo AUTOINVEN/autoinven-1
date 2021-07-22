@@ -4,7 +4,8 @@ module.exports = function(app,db){
 	const router = express.Router();
 
 	const iot_warehousing = require('./iot_warehousing');
-	const iot_statistics = require('./iot_statistics');
+	const iot_registerItem = require('./iot_registerItem');
+	const iot_editItem = require('./iot_editItem');
 	const iot_help = require('./iot_help');
 	const iot_mypage = require('./iot_mypage');
 
@@ -43,7 +44,7 @@ module.exports = function(app,db){
 
 	router.get('/registerItem', (req, res, next) => { res.render('Iot/registerItem') });
 	
-	router.post('/registerItem', (req, res, next) => { iot_warehousing.registerItem(req, res, db) });
+	router.post('/registerItem', (req, res, next) => { iot_registerItem.registerItem(req, res, db) });
 
 	router.get('/editItem', (req, res, next) => {res.render('Iot/editItem') });
 
@@ -52,7 +53,7 @@ module.exports = function(app,db){
 	});
 
 	router.post('/editSave', (req, res, next) => {
-		iot_warehousing.editItem(req, res, db)
+		iot_editItem.editItem(req, res, db)
 	});
 
 	router.post('/deleteItem', (req, res, next) => {
