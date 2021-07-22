@@ -13,16 +13,16 @@
     </style>
   </head>
   <body>
-    <div id="content">
-        <%- include('../../nav_Bar') %>
-        <div class="page-header page-header-small">
-          <div class="page-header-image" data-parallax="true" style="background-image: url('../../../Image/about_WH.jpg');"></div>
-          <div class="content-center">
-            <div class="container">
-              <h1 class="title">This is our great company.</h1>
-            </div>
+    <%- include('../../nav_Bar') %>
+      <div class="page-header page-header-small">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('../../../Image/about_WH.jpg');"></div>
+        <div class="content-center">
+          <div class="container">
+            <h1 class="title">This is our great company.</h1>
           </div>
         </div>
+      </div>
+     <div>
         <div class="container">
           <div class="jumbotron" style = "text-align : center">
             <h1>RequestBuy list</h1>
@@ -91,12 +91,17 @@
               },
               success:function(data){
               if(data==true){
-                alert("승인하였습니다.");
-                window.location.href = "/Admin/RequestBuy";
+                Swal.fire({
+                  title: 'Accepted',
+                  icon: 'success'
+                }).then(() => location.href = "/Admin/RequestBuy");
               }
               else{
-                alert("에러가 발생했습니다.");
-                window.location.href = "/Admin/RequestBuy";
+                Swal.fire({
+                  title: 'Error',
+                  text: 'An error has occurred.',
+                  icon: 'error'
+                }).then(() => location.href = "/Admin/RequestBuy");
               }
             }
           });
@@ -114,12 +119,17 @@
               },
               success:function(data){
                 if(data==true){
-                  alert("거절하였습니다.");
-                  window.location.href = "/Admin/RequestBuy";
+                  Swal.fire({
+                    title: 'Rejected',
+                    icon: 'warning'
+                  }).then(() => location.href = "/Admin/RequestBuy");
                 }
                 else{
-                  alert("에러가 발생했습니다.");
-                  window.location.href = "/Admin/RequestBuy";
+                  Swal.fire({
+                    title: 'Error',
+                    text: 'An error has occurred.',
+                    icon: 'error'
+                  }).then(() => location.href = "/Admin/RequestBuy");
                 }
               }
           });

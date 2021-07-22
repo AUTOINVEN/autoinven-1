@@ -17,10 +17,6 @@ exports.register = function (req, res,app,db) {
         "zipcode": req.body.zipcode,
         "address": req.body.address,
         "national":req.body.national,
-        "CN": req.body.CN,
-        "CZ": req.body.CZ,
-        "CA" :req.body.CA,
-        "CCN": req.body.CCN
     }
 
     connection.query('INSERT INTO Member SET ?' , user, function (error, results, fields) {
@@ -37,10 +33,6 @@ exports.register = function (req, res,app,db) {
             req.session['zipcode'] = user.zipcode;
             req.session['address'] = user.address;
             req.session['national'] = user.national;
-            req.session['CN'] = user.CN;
-            req.session['CCN'] = user.CCN;
-            req.session['CZ'] = user.CZ;
-            req.session['CA'] = user.CA;
             res.send(true);
         }
         connection.end()

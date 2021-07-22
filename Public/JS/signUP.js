@@ -212,9 +212,6 @@
             var email = $("#email").val();
             var address = $("#address").val();
             var national =$("#national").val();
-            var CN = $("#CN").val();
-            var CA = $("#CA").val();
-            var CCN = $("#CCN").val();
             var type = $("#type").val();
             //check id is not null
             if (!id) {
@@ -276,27 +273,6 @@
                     text: 'You have to insert your country'
                 })
             }
-            else if (!CN) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your company name'
-                })
-            }
-            else if (!CA) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your company address'
-                })
-            }
-            else if (!CCN) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your company contact number'
-                })
-            }
             //finish all test
             else {
                 var formData = $("#regForm").serialize();
@@ -316,7 +292,11 @@
                         })
                     },
                     error: function (request, status, error) {
-                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        Swal.fire({
+                            title: 'Error',
+                            html: `code: ${request.status}<br>message: ${request.responseText}<br>error: ${error}`,
+                            icon: 'error'
+                        });
                     }
                 })
             }

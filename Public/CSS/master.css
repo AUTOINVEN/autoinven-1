@@ -29,18 +29,19 @@
 .two_btn {
   float: left;
 }
+
 .two_btn_r {
   float: right;
 }
 
 #content {
-    width: 100%;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 90px;
+  width: 100%;
+  min-height: 100vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 90px;
 }
 
 #sidebar {
@@ -835,7 +836,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   text-align: center;
 }
 
-.table-bg{
+.table-bg {
   background-color: #ffffff;
 }
 
@@ -2781,7 +2782,8 @@ h1,
 .h1 {
   font-size: 3.5em;
   line-height: 1.15;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 h1 small,
@@ -7227,4 +7229,23 @@ img {
 
 .upload-btn-hidden {
   display: none;
+}
+
+.jumbotron {
+  padding: 2rem 1rem;
+  margin: 1rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+
+@media (min-width: 576px) {
+  .jumbotron {
+    padding: 2rem 1rem;
+  }
+}
+
+.jumbotron-fluid {
+  padding-right: 0;
+  padding-left: 0;
+  border-radius: 0;
 }

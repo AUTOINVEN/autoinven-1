@@ -11,7 +11,6 @@ exports.RequestForIoT = function (req, res,app,db) {
               "\"reqType\" :\"" + "ReqEnrollIoT"+"\","+
               "\"memberID\" :\""+ results[step].memberID+"\","+
               "\"national\" :\""+ results[step].national +"\","+
-              "\"CN\" :\""+ results[step].CN +"\","+
               "\"address\" :\""+ results[step].address +"\","+
               "\"name\" :\""+ results[step].name +"\""+
           "}";

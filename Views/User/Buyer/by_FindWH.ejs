@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <%- include('../../head')%>
+    <%- include('../../head')  %>
     <title></title>
   </head>
   <body>
-    <div id="content">
       <%- include('../../nav_Bar') %>
       <div class="page-header page-header-small">
         <div class="page-header-image" data-parallax="true" style="background-image: url('../../../Image/about_WH.jpg');"></div>
@@ -15,6 +14,7 @@
           </div>
         </div>
       </div>
+     <div>
         <div class="container pt-3 mb-3">
           <div class="container pt-3 mb-3" style= "width : 50%; float: left;">
             <div id="map" style="width:100%; height: 70vh;"></div>
@@ -76,7 +76,7 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary" id="bu">submit</button>                
+                <button type="submit" class="btn btn-primary" id="bu">submit</button>
             </div>
           </div>
         </div>
@@ -146,7 +146,11 @@
         console.log('창고 대여 시작일' + sDate);
         console.log('창고 대여 종료일' + eDate);
         if(useableArea>wantArea){
-          alert("사용공유면적보다 큰 면적을 신청하였습니다. 다시 신청해 주세요!");
+          Swal.fire({
+            title: 'Error',
+            text: 'You have submitted for an area larger than the shared shared area. Please submit again!',
+            icon: 'error'
+          })
           return;
         }
         $.ajax({
@@ -161,20 +165,25 @@
               },
               success:function(data){
             if(data==true){
-              alert("창고공유를 신청하였습니다.");
-              window.location.href = "/Buyer/MyWarehouse";
+              Swal.fire({
+                title: 'Success',
+                text: 'Your warehouse sharing is submitted.',
+                icon: 'success'
+              }).then(() => location.href = "/Buyer/MyWarehouse");
             }
             else{
-              console.log(startDate);
-              alert("에러가 발생했습니다.");
-              window.location.href = "/Buyer/FindWH";
+              Swal.fire({
+                title: 'Error',
+                text: 'An error has occurred.',
+                icon: 'error'
+              }).then(() => location.href = "/Buyer/FindWH");
             }
           }
         });
     });
   </script>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css"/>

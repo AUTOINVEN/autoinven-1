@@ -19,9 +19,6 @@ exports.login = function (req, res,app,db) {
             req.session['contactNumber'] = results[0].contactNumber;
             req.session['address'] = results[0].address;
             req.session['national'] = results[0].national;
-            req.session['CN'] = results[0].CN;
-            req.session['CA'] = results[0].CA;
-            req.session['CCN'] = results[0].CCN;
             res.send('loginSuccess');
         } else {
             res.send('loginError02'); //PW가 틀릴 시
