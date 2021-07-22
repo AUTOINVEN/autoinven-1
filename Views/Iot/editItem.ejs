@@ -16,7 +16,7 @@
         <h2 class="mb-3">물품 수정</h2>
       </div>
 
-      <form action="editItem" method="POST">
+      <form action="/iot/editSave" method="POST">
         <div class="table-responsive">
           <table class="board-table table">
             <thead class="thead-dark">
@@ -28,24 +28,23 @@
             <tbody class="table-bg">
             <tr>
               <th>RFID</th>
-              <td><input type="text" name="rfid" id="edititem_rfid" class="box" readonly></td>
+              <td><input type="text" name="edititem_rfid" id="edititem_rfid" class="box" value="<%= rfid %>" readonly></td>
             </tr>
             <tr>
               <th>Product Name</th>
-              <td><input type="text" name="name" id="edititem_name" class="box" ></td>
+              <td><input type="text" name="edititem_name" id="edititem_name" class="box" ></td>
             </tr>
             <tr>
               <th>Product Quantity</th>
-              <td><input type="number" name="num" id="edititem_num" class="box" ></td>
+              <td><input type="number" name="edititem_num" id="edititem_num" class="box" ></td>
             </tr>
           </tbody>
           </table>
         </div>
-        <button class="btn btn-primary two_btn">수정</button>
+        <button type="submit" class="btn btn-primary two_btn">Save</button>
       </form>
       <button class="btn btn-primary two_btn" onclick="location.href='warehousing'">취소</button>
     </div>
-
   </div>
   <script src="/JS/navShrink.js"></script>
 </body>
