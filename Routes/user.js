@@ -72,6 +72,10 @@ module.exports = function(app,db){
         res.render('User/user_Show',{'app':app,'session':req.session,'db':db});
     });
 
+    router.get('/Help',function(req,res,next){
+        res.render('User/user_Help',{'app':app,'session':req.session,'db':db});
+    });
+    
     router.post('/Delete',function(req,res,next){
         console.log('user.js : ' + req.body.session.session.memberID);
         del.delete(req,res,app,db);
