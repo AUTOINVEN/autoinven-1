@@ -55,5 +55,9 @@ module.exports = function(app,db){
 		iot_warehousing.editItem(req, res, db)
 	});
 
+	router.post('/deleteItem', (req, res, next) => {
+		iot_warehousing.delItem(req, res, db)
+	});
+
 	return router;
 };

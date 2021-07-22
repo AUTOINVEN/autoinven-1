@@ -81,6 +81,19 @@ exports.editItem = function(req, res, db) {
     }
 }
 
+exports.delItem = function(req, res, db) {
+	var rfid = req.body.itemDel;
+	
+	var delSQL=`DELETE FROM iot WHERE rfid='${rfid}';`
+	var check = db.query(delSQL);
+	if (!check) {
+        console.log("error ocurred", error);
+        res.redirect('warehousing');
+    } else {
+        res.redirect('warehousing');    
+    }
+}
+
 exports.randomTest = function(req, res, db) {
 	var types = ['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg'];
 	var rfid = Math.random().toString(16).substr(2,8).toUpperCase();
