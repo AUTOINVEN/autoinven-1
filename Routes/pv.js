@@ -43,7 +43,6 @@ module.exports = function(app,db){
         enrollItems = JSON.parse(enrollItems);
         requestItems = JSON.parse(requestItems);
         wList = JSON.parse(wList);
-        console.log(JSON.stringify(requestItems));
         res.render('User/Provider/pv_MyWH',{'app':app,'session':req.session,'db':db,'enrollItems':enrollItems,'requestItems':requestItems,'wList':wList});
     });
 

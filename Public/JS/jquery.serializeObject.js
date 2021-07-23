@@ -35,7 +35,6 @@
 		};
 
 		$.each(this.serializeArray(), extend);
-		console.log('resut :' + result);
 		return result;
 	};
 })(jQuery);

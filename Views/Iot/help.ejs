@@ -1,61 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <title>도움말</title>
-    <link rel="icon" type="image/x-icon" href="/Image/autoin_icon.ico" />
-    <link rel="stylesheet" href="public/stylesheets/iot.css">
-    <link rel="stylesheet" href="public/stylesheets/help.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="utf-8">
+  <title>도움말</title>
+  <link rel="icon" type="image/x-icon" href="/Image/autoin_icon.ico"/>
+  <link rel="stylesheet" href="/CSS/iot.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <%- include('nav') %>
-    <div class="div-help">
-        <ul class="list-feature">
-            <li>
-                <div class="text">
-                    <span class="num">00</span>
-                    <h3>소개</h3>
-                    <h4>서비스 구성도</h4>
-                    <img src="/public/images/help.png"  width="500px" height="auto">
-                </div>
-            </li>
-            <li>
-                <div class="text">
-                    <span class="num">01</span>
-                    <h3>물류 등록 하기</h3>
-                    <h4>물류 등록 화면</h4>
-                    <p>RFID라벨 부착 후 태그 이름을 입력하고, 물류명, 물품 수량 선택한 후에 등록 버튼을 누른다.<br>
-                        물품이 입고되면 입고 상태가 '입고 완료' 상태로 바뀌며, 입고된 물품의 사진을 확인할 수 있다.<br>
-                        등록 버튼을 누르면 물품이 등록되며 취소 버튼을 누르면 물품 등록이 취소된다.</p>
-                    <img src="/public/images/register.png"  width="300px" height="auto">
-                </div>
-            </li>
-            <li>
-                <div class="text">
-                    <span class="num">02</span>
-                    <h3>실시간 창고 확인 - 1</h3>
-                    <h4>온도/습도</h4>
-                    <p>현재 창고에서 센서로 인식된 온도/습도를 실시간으로 나타내준다.<br>
-                        사용자가 설정한 임계값을 넘기면 알람이 발생한다.</p>
-                    <img src="/public/images/h1.png"  width="200px" height="auto">
-                    <img src="/public/images/h2.png"  width="200px" height="auto">
-                </div>
-            </li>
-            <li>
-                <div class="text">
-                    <span class="num">03</span>
-                    <h3>실시간 창고 확인 - 2</h3>
-                    <h4>화재/가스</h4>
-                    <p>현재 창고에서 화재/연기가 발생했는지 실시간으로 나타내준다.<br>
-                        불꽃이나 연기를 감지하면 빨간색으로 바뀌면서 알람이 발생한다.</p>
-                    <img src="/public/images/h3.png"  width="200px" height="auto">
-                    <img src="/public/images/h4.png"  width="200px" height="auto">
-                </div>
-            </li>
-
-        </ul>
-    </div>
-    <script src="/JS/navShrink.js"></script>
+  <%- include('nav') %>
+  <div class="div-help">
+    <ul class="list-feature">
+      <li>
+        <div class="text">
+          <span class="num">00</span>
+          <h3>소개</h3>
+          <h4>서비스 구성도</h4>
+          <img src="/Image/help.png" width="500px" height="auto">
+        </div>
+      </li>
+      <li>
+        <div class="text">
+          <span class="num">01</span>
+          <h3>물류 등록 하기</h3>
+          <h4>물류 등록 화면</h4>
+          <p>RFID라벨 부착 후 태그 이름을 입력하고, 물류명, 물품 수량 선택한 후에 등록 버튼을 누른다.<br>
+            물품이 입고되면 입고 상태가 '입고 완료' 상태로 바뀌며, 입고된 물품의 사진을 확인할 수 있다.<br>
+            등록 버튼을 누르면 물품이 등록되며 취소 버튼을 누르면 물품 등록이 취소된다.</p>
+          <img src="/Image/register.png" width="300px" height="auto">
+        </div>
+      </li>
+      <li>
+        <div class="text">
+          <span class="num">02</span>
+          <h3>실시간 창고 확인 - 1</h3>
+          <h4>온도/습도</h4>
+          <p>현재 창고에서 센서로 인식된 온도/습도를 실시간으로 나타내준다.<br>
+            사용자가 설정한 임계값을 넘기면 알람이 발생한다.</p>
+          <img src="/Image/h1.png" width="200px" height="auto">
+          <img src="/Image/h2.png" width="200px" height="auto">
+        </div>
+      </li>
+      <li>
+        <div class="text">
+          <span class="num">03</span>
+          <h3>실시간 창고 확인 - 2</h3>
+          <h4>화재/가스</h4>
+          <p>현재 창고에서 화재/연기가 발생했는지 실시간으로 나타내준다.<br>
+            불꽃이나 연기를 감지하면 빨간색으로 바뀌면서 알람이 발생한다.</p>
+          <img src="/Image/h3.png" width="200px" height="auto">
+          <img src="Image/h4.png" width="200px" height="auto">
+        </div>
+      </li>
+    </ul>
+  </div>
 </body>
 </html>

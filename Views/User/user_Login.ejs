@@ -1,57 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('../head') %>
-  </head>
-    <body class="login-page">
-      <div id="content">
-      <%- include('../nav_Bar') %>
-        <div class="page-header clear-filter" filter-color="orange">
-          <div class="page-header-image" style="background-image:url(../Image/main_home.jpg)"></div>
-          <div class="content">
-            <div class="container">
-              <div class="col-md-5 ml-auto mr-auto">
-                <div class="card card-login card-plain">
-                  <form class="form" id="form1" action="/User/Login" method="post" onsubmit="return false;">
-                    <div class="card-header text-center">
-                      <div class="logo-container">
-                        <img src="../Image/now-logo.png"></i>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="input-group no-border input-lg">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="far fa-id-badge"></i></span>
-                        </div>
-                        <input type="text" name="memberID" id="memberID" class="form-control" placeholder="ID">
-                      </div>
-                      <div class="input-group no-border input-lg">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <input type="password" name="password" id="password" placeholder="Password" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="card-footer text-center">
-                      <button type="submit" id="loginFormBtn"class="tn btn-primary btn-round btn-lg btn-block" style="border: none;">SIGN IN</button>
-                      <!-- <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">SIGN IN</a> -->
-                      <div class="pull-left">
-                        <h6><a href="Register" class="link">Create Account</a></h6>
-                      </div>
-                      <div class="pull-right">
-                        <h6><a href="#pablo" class="link">Need Help?</a></h6>
-                      </div>
-                    </div>
-                  </form>
+<head>
+  <%- include('../head') %>
+  <script src="/JS/login.js"></script>
+</head>
+
+<body class="login-page">
+  <div id="content">
+    <%- include('../nav_Bar') %>
+    <div class="page-header clear-filter" filter-color="orange">
+      <div class="page-header-image" style="background-image:url(/Image/main_home.jpg)"></div>
+      <div class="content">
+        <div class="container">
+          <div class="col-md-5 ml-auto mr-auto">
+            <div class="card card-login card-plain">
+              <form class="form" id="form1" action="/User/Login" method="post" onsubmit="return false;">
+                <div class="card-header text-center">
+                  <div class="logo-container">
+                    <img src="/Image/now-logo.png"></i>
                   </div>
                 </div>
-              </div>
+                <div class="card-body">
+                  <div class="input-group no-border input-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-id-badge"></i></span>
+                    </div>
+                    <input type="text" name="memberID" id="memberID" class="form-control" placeholder="ID">
+                  </div>
+                  <div class="input-group no-border input-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
+                  </div>
+                </div>
+                <div class="card-footer text-center">
+                  <button type="submit" id="loginFormBtn" class="tn btn-primary btn-round btn-lg btn-block" style="border: none;">SIGN IN</button>
+                  <!-- <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">SIGN IN</a> -->
+                  <div class="pull-left">
+                    <h6><a href="Register" class="link">Create Account</a></h6>
+                  </div>
+                  <div class="pull-right">
+                    <h6><a href="#pablo" class="link">Need Help?</a></h6>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
+      </div>
     </div>
-    <div class="overlay"></div>
-    <script src="../JS/login.js"></script>
-    <script src="/JS/navShrink.js"></script>
-  </body>
+  </div>
+  <div class="overlay"></div>
+</body>
 </html>

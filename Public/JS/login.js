@@ -36,13 +36,11 @@
             else {
                 var formData = $("#form1").serialize();
 
-                console.log('serializedForm :' + formData);
                 $.ajax({
                     url: '/User/Login',
                     type: 'POST',
                     data: formData,
                     success: function (data) {
-                        console.log(data);
                         if (data == "loginError01") {
                             Swal.fire({
                                 icon: 'error',

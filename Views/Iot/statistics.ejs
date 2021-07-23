@@ -1,34 +1,33 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="/CSS/iot.css">
-        <title>AUTOINVEN: 통계</title>
-    </head>
-    <body>
-        <div class="header">
-            <p style="border-bottom: 3px solid #5f4ebd; padding: 0.1em; font-size: 25"><b>토옹계</b></p>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/CSS/iot.css">
+  <title>AUTOINVEN: 통계</title>
+</head>
+<body>
+  <div class="header">
+    <p style="border-bottom: 3px solid #5f4ebd; padding: 0.1em; font-size: 25"><b>토옹계</b></p>
+  </div>
 
-        <div class="container">
-            <form action="registerItem" method="POST">
-                <table width="500" class="outline">
-                    <tr>
-                        <th>RFID</th>
-                        <td><input type="text" name="rfid" class="box"></td>
-                    </tr>
-                    <tr>
-                        <th>물품명</th>
-                        <td><input type="text" name="name" class="box"></td>
-                    </tr>
-                    <tr>
-                        <th>물품수량</th>
-                        <td><input type="number" name="num" class="box"></td>
-                    </tr>
-                </table>
-                <button class = "RegBtn">등록</button>
-            </form>
-            <button class = "CanBtn" onclick="location.href='warehousing'">취소</button>
-        </div>
-        <script src="/JS/navShrink.js"></script>
-    </body>
+  <div class="container">
+    <form action="registerItem" method="POST">
+      <table width="500" class="outline">
+        <tr>
+          <th>RFID</th>
+          <td><input type="text" name="rfid" class="box"></td>
+        </tr>
+        <tr>
+          <th>물품명</th>
+          <td><input type="text" name="name" class="box"></td>
+        </tr>
+        <tr>
+          <th>물품수량</th>
+          <td><input type="number" name="num" class="box"></td>
+        </tr>
+      </table>
+      <button class="RegBtn">등록</button>
+    </form>
+    <button class="CanBtn" onclick="location.href='warehousing'">취소</button>
+  </div>
+</body>
 </html>

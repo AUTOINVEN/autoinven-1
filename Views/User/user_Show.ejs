@@ -1,194 +1,181 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include('../head')  %>
-    <title></title>
-  </head>
-  <body>
-      <%- include('../nav_Bar') %>
-      <div class="page-header page-header-small">
-        <div class="page-header-image" data-parallax="true" style="background-image: url('../../Image/about_WH.jpg');"></div>
-        <div class="content-center">
-          <div class="container">
-            <h1 class="title">This is our great company.</h1>
-          </div>
-        </div>
+<head>
+  <%- include('../head') %>
+</head>
+
+<body>
+  <%- include('../nav_Bar') %>
+  <div class="page-header page-header-small">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+    <div class="content-center">
+      <div class="container">
+        <h1 class="title">This is our great company.</h1>
       </div>
-     <div>
-      <div class="container mb-3">
-
-      <h2 class="contentBoxTop mb-3">My Info</h2>
-        <div class="form-group row">
-          <label for="memberID" class="col-sm-3 col-form-label">ID</label>
-          <div class="col-sm-9">
-            <input type="text" id="memberID" name="memberID" value= "<%=session.memberID%>" disabled="disabled" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-            <!-- <div class="form-group">
-              <button type="submit" class="btn btn-primary" id = "idCheckButton" name="idCheckButton">id check</button>
-            </div> -->
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="password" class="col-sm-3 col-form-label">password</label>
-          <div class="col-sm-9">
-            <input type="password" id="password" name="password" value="<%=session.password%>"disabled="disabled" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="type" class="col-sm-3 col-form-label">type</label>
-          <div class="col-sm-9">
-            <input type="text" id="type" name="type" value="<%=session.type%>"disabled="disabled" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">name</label>
-          <div class="col-sm-9">
-            <input type="text" id="name" name="name" value="<%=session.username%>" disabled="disabled"class="form-control">
-             <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="national" class="col-sm-3 col-form-label">national</label>
-          <div class="col-sm-9">
-            <input type="text" id="national" name="national" value="<%=session.national%>" disabled="disabled"class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="email" class="col-sm-3 col-form-label">Email</label>
-          <div class="col-sm-9">
-            <input type="text" id="email" name="email" value="<%=session.email%>"disabled="disabled" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="contactNumber" class="col-sm-3 col-form-label">contact-number</label>
-          <div class="col-sm-9">
-            <input type="text" id="contactNumber" name="contactNumber" value="<%=session.contactNumber%>"disabled="disabled" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="address" class="col-sm-3 col-form-label">address</label>
-          <div class="col-sm-9">
-            <input type="text" id="address" name="address" value="<%=session.address%>"disabled="disabled" class="form-control">
-            <% if(locals.err){ %>
-              <span class="invalid-feedback"><%= locals.err %></span>
-            <% } %>
-          </div>
-        </div>
-
-
-        <div class="form-group row">
-            <form action="/User/Edit" method="get">
-              <button type="EDIT" class="btn btn-primary two_btn">Edit</button>
-            </form>
-            <form action="/" method="get">
-              <button type="BACK" class="btn btn-primary two_btn" onclick=location.href="/">BACK</button>
-            </form>
-            <!--
-            <form action="/User/Delete" method="post" onsubmit="return false;">
-              <input type="submit" id="deleteBtn" class="btn btn-primary" value = "Delete">
-            </form>
-          -->
-        </div>
+    </div>
+  </div>
+  <div class="container mb-3">
+    <h2 class="contentBoxTop mb-3">My Info</h2>
+    <div class="form-group row">
+      <label for="memberID" class="col-sm-3 col-form-label">ID</label>
+      <div class="col-sm-9">
+        <input type="text" id="memberID" name="memberID" value="<%= session.memberID %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+        <!-- <div class="form-group">
+          <button type="submit" class="btn btn-primary" id = "idCheckButton" name="idCheckButton">id check</button>
+        </div> -->
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="password" class="col-sm-3 col-form-label">password</label>
+      <div class="col-sm-9">
+        <input type="password" id="password" name="password" value="<%= session.password %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+      </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="/JS/navShrink.js"></script>
+    <div class="form-group row">
+      <label for="type" class="col-sm-3 col-form-label">type</label>
+      <div class="col-sm-9">
+        <input type="text" id="type" name="type" value="<%= session.type %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="name" class="col-sm-3 col-form-label">name</label>
+      <div class="col-sm-9">
+        <input type="text" id="name" name="name" value="<%= session.username %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="national" class="col-sm-3 col-form-label">national</label>
+      <div class="col-sm-9">
+        <input type="text" id="national" name="national" value="<%= session.national %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="email" class="col-sm-3 col-form-label">Email</label>
+      <div class="col-sm-9">
+        <input type="text" id="email" name="email" value="<%= session.email %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="contactNumber" class="col-sm-3 col-form-label">contact-number</label>
+      <div class="col-sm-9">
+        <input type="text" id="contactNumber" name="contactNumber" value="<%= session.contactNumber %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="address" class="col-sm-3 col-form-label">address</label>
+      <div class="col-sm-9">
+        <input type="text" id="address" name="address" value="<%= session.address %>" disabled="disabled" class="form-control">
+        <% if(locals.err){ %>
+          <span class="invalid-feedback"><%= locals.err %></span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <form action="/User/Edit" method="get">
+        <button type="EDIT" class="btn btn-primary two_btn">Edit</button>
+      </form>
+      <form action="/" method="get">
+        <button type="BACK" class="btn btn-primary two_btn" onclick=location.href="/">BACK</button>
+      </form>
+      <!--
+      <form action="/User/Delete" method="post" onsubmit="return false;">
+        <input type="submit" id="deleteBtn" class="btn btn-primary" value = "Delete">
+      </form>
+    -->
+    </div>
+
     <script>
-      $(document).ready(function(){
-        $('#deleteBtn').click(function(){
-            var session = '<%-session %>';
-
-            $.ajax({
-              url: '/User/Delete',
-              type: 'POST',
-              data: {'session': session},
-              success: function(result){
-                console.log('delete result: ' + result);
-              }
-            })
-
+      $(document).ready(function () {
+        $('#deleteBtn').click(function () {
+          var session = '<%- session %>';
+          $.ajax({
+            url: '/User/Delete',
+            type: 'POST',
+            data: {'session': session},
+            success: function (result) {
+            }
+          })
         });
-        $('#idCheckButton').click(function(){
+        $('#idCheckButton').click(function () {
           var memberID = $('#memberID').val();
-          if(memberID!=''){
-              $.ajax({
+          if (memberID != '') {
+            $.ajax({
               url: '/User/Register/MemberID',
               type: 'POST',
               data: {'memberID': memberID},
-                success: function(result){
-                  if(result == false) {
-                    Swal.fire({
-                      title: 'Error',
-                      text: 'Overlapped ID',
-                      icon: 'error'
-                    });
-                  }
-                  else{
-                    Swal.fire({
-                      title: 'Success',
-                      text: 'You can use!',
-                      icon: 'success'
-                    });
-                  }
+              success: function (result) {
+                if (result == false) {
+                  Swal.fire({
+                    title: 'Error',
+                    text: 'Overlapped ID',
+                    icon: 'error'
+                  });
+                } else {
+                  Swal.fire({
+                    title: 'Success',
+                    text: 'You can use!',
+                    icon: 'success'
+                  });
+                }
               }
-              }); 
+            });
           }
         });
-        $('#emailCheckButton').click(function(){
-          var email =  $('#email').val();
-          console.log(email);
-          if(email!=''){
-              $.ajax({
+        $('#emailCheckButton').click(function () {
+          var email = $('#email').val();
+          if (email != '') {
+            $.ajax({
               url: '/User/Register/EmailIDF',
               type: 'POST',
               data: {'email': email},
-                success: function(result){
-                  if(result == false) {
-                    Swal.fire({
-                      title: 'Error',
-                      text: 'Email send error',
-                      icon: 'error'
-                    });
-                  }
-                  else{
-                    Swal.fire({
-                      title: 'Success',
-                      text: 'Email is sended',
-                      icon: 'success'
-                    });
-                  }
+              success: function (result) {
+                if (result == false) {
+                  Swal.fire({
+                    title: 'Error',
+                    text: 'Email send error',
+                    icon: 'error'
+                  });
+                } else {
+                  Swal.fire({
+                    title: 'Success',
+                    text: 'Email is sended',
+                    icon: 'success'
+                  });
+                }
               }
-              }); 
+            });
           }
         });
-
       })
     </script>
-  </body>
+  </div>
+</body>
 </html>

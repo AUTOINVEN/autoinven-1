@@ -1,4 +1,4 @@
-exports.delete = function (req, res,app,db) {
+exports.delete = function (req, res, app, db) {
 
     var memberID = req.session.memberID;
     var memberType = req.session.type;
@@ -9,13 +9,9 @@ exports.delete = function (req, res,app,db) {
     var national = req.session.national;
     var deletedDate = new Date();
 
-    console.log('user_Delete: ' + req.body.memberID);
-    console.log('user_Delete: ' + req.body.session.memberID);
     var insertSQL = `INSERT INTO Deletedmember SET memberID=?, type=?, password=?, email=?, contactNumber=?, address=?, nationa=?, DeletedDate=?`;
-
     var deleteSQL = `DELETE FROM Member WHERE memberID='${req.session.memberID}'`;
-
-    var check = db.query(insertSQL,[memberID,memberType,name,email,contactNumber,address,national,deletedDate]);
+    var check = db.query(insertSQL, [memberID, memberType, name, email, contactNumber, address, national, deletedDate]);
 
     if (!check) {
         console.log("insertSQL : error ocurred", error);
@@ -23,10 +19,9 @@ exports.delete = function (req, res,app,db) {
     } else {
         var deletionCheck = db.query(deleteSQL);
 
-        if(!deletionCheck){
+        if (!deletionCheck) {
             console.log("deleteSQL : error ocurred", error);
-        }
-        else{
+        } else {
             req.session.destroy();
             res.redirect('/');
         }

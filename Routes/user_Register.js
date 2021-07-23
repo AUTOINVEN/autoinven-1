@@ -1,25 +1,23 @@
-
 // ȸ������ �ڵ鷯
-exports.register = function (req, res,app,db) {
+exports.register = function (req, res, app, db) {
     var mysql = require('mysql');
     const crypto = require('crypto');
-    
-    console.log('req.body.memberID :' + req.body.memberID);
+
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     var user = {
-        "memberID": req.body.memberID,
-        "type": req.body.type,
-        "name": req.body.name,
-        "password": crypto.createHash('sha512').update(req.body.password).digest('base64'),         //레인보우 테이블을 이용한 공격방어를 위해 추후 더 나은 보안기법 필요함.
-        "email": req.body.email,
-        "contactNumber": req.body.contactNumber1+'-'+req.body.contactNumber2+'-'+req.body.contactNumber3,
-        "zipcode": req.body.zipcode,
-        "address": req.body.address,
-        "national":req.body.national,
+        memberID: req.body.memberID,
+        type: req.body.type,
+        name: req.body.name,
+        password: crypto.createHash('sha512').update(req.body.password).digest('base64'),         //레인보우 테이블을 이용한 공격방어를 위해 추후 더 나은 보안기법 필요함.
+        email: req.body.email,
+        contactNumber: req.body.contactNumber1 + '-' + req.body.contactNumber2 + '-' + req.body.contactNumber3,
+        zipcode: req.body.zipcode,
+        address: req.body.address,
+        national: req.body.national
     }
 
-    connection.query('INSERT INTO Member SET ?' , user, function (error, results, fields) {
+    connection.query('INSERT INTO Member SET ?', user, function (error, results, fields) {
         if (error) {
             console.log("error ocurred", error);
             res.send(false);
@@ -40,24 +38,21 @@ exports.register = function (req, res,app,db) {
 }
 
 
-exports.checkID = function(req,res,app,db){
+exports.checkID = function (req, res, app, db) {
     var memberID = req.body.memberID;
-    console.log(memberID);
-    var b = false;
     var results = db.query(`SELECT * FROM Member WHERE memberID='${memberID}'`);
-    if(!results.length)res.send(true);
+    if (!results.length) res.send(true);
     else res.send(false);
 }
 
-exports.checkPW = function(req,res,app,db){
+exports.checkPW = function (req, res, app, db) {
     var attr = req.body;
-    console.log(attr)
     var id = attr.id;
     var pw = attr.pw;
     var c_p = attr.c_p;
     var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     var koreancheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-    
+
     if (false === reg.test(pw)) {
         //error all
         res.send("errortype1");

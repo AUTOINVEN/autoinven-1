@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('head')  %>
-  </head>
-  <body class="index-page">
-     <%- include('nav_Bar') %>
-      <%
-         var sess = session;
-      %>
-      <div class="wrapper">
-        <div class="page-header" > 
-          <div class="page-header-image" data-parallax="true" style="background-image:url('./Image/main_home.jpg');"></div>
-          <div class="container">
-            <div class="content-center brand">
-              <a>&nbsp;</a>
-              <h1 class="h1-seo">Autoinven.</h1>
-              <h3>Connect to the Global Automotive Industry.</h3>
-            </div>
-          </div>
+<head>
+  <%- include('head') %>
+</head>
+
+<body class="index-page">
+  <%- include('nav_Bar') %>
+  <%
+  var sess = session;
+  %>
+  <div class="wrapper">
+    <div class="page-header">
+      <div class="page-header-image" data-parallax="true" style="background-image:url('/Image/main_home.jpg');"></div>
+      <div class="container">
+        <div class="content-center brand">
+          <a>&nbsp;</a>
+          <h1 class="h1-seo">Autoinven.</h1>
+          <h3>Connect to the Global Automotive Industry.</h3>
         </div>
       </div>
-      <script src="/JS/navShrink.js"></script>
-  </body>
+    </div>
+  </div>
+</body>
 </html>
