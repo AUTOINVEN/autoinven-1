@@ -108,7 +108,7 @@
   border-bottom: 1px solid #47748b;
 }
 
-#sidebar ul p {
+/*#sidebar ul p {
   color: #fff;
   padding: 10px;
 }
@@ -128,7 +128,7 @@
 a[aria-expanded="true"] {
   color: #fff;
   background: #000000;
-}
+}*/
 
 a[data-toggle="collapse"] {
   position: relative;
@@ -648,10 +648,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   position: absolute;
   color: #999;
 }
-
-/* Values;
-*
-*/
 
 .noUi-value {
   position: absolute;
@@ -7248,4 +7244,61 @@ img {
   padding-right: 0;
   padding-left: 0;
   border-radius: 0;
+}
+
+/*help page*/
+#help {
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+#help #help-list {
+  padding: 0;
+  list-style: none;
+}
+
+#help #help-list li {
+  border-bottom: 1px solid #ebebeb;
+}
+
+#help #help-list a {
+  padding: 22px 0;
+  display: block;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 400;
+  padding-right: 20px;
+}
+
+#help #help-list i {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+#help #help-list p {
+  margin-bottom: 20px;
+}
+
+#help #help-list a.collapsed {
+  color: #1bb1dc;
+}
+
+#help #help-list a.collapsed {
+  color: #000;
+}
+
+#help #help-list a.collapsed i::before {
+  content: "+" !important;
+}
+
+.ion-android-remove:before {
+  content: "-";
+}
+
+.ion-android-remove-circle:before {
+  content: "+";
 }
