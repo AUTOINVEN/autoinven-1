@@ -83,20 +83,19 @@
       </div>
 
       <div class="form-group row">
-        <label for="RN" class="col-sm-3 col-form-label">Resident-number</label>
+        <label for="contactNumber" class="col-sm-3 col-form-label">Contact-number</label>
         <div class="col-sm-9">
-          <input type="text" id="RN" name="RN" value="<%= session.RN %>" class="form-control">
+          <input type="text" id="contactNumber" name="contactNumber" value="<%= session.contactNumber %>" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
           <% } %>
         </div>
       </div>
 
-
       <div class="form-group row">
-        <label for="contactNumber" class="col-sm-3 col-form-label">Contact-number</label>
+        <label for="address" class="col-sm-3 col-form-label">Address</label>
         <div class="col-sm-9">
-          <input type="text" id="contactNumber" name="contactNumber" value="<%= session.contactNumber %>" class="form-control">
+          <input type="text" id="address" name="address" value="<%=session.address%>" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
           <% } %>
