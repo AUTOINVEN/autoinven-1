@@ -48,7 +48,7 @@
               <th class="col-2">이름</th>
               <th class="col-3">창고 주소</th>
               <th class="col-1">국적</th>
-              <th class="col-1"></th>
+              <th class="col-2"></th>
             </tr>
             </thead>
             <tbody>
@@ -61,7 +61,7 @@
                   <td class="col-2"><%= items['item' + i].name %></td>
                   <td class="col-3"><%= items['item' + i].address %></td>
                   <td class="col-1"><%= items['item' + i].national %></td>
-                  <td class="col-1" style="float:right; padding:0px 10px 0px 0px;">
+                  <td class="col-2" style="float:right; padding:0px 10px 0px 0px;">
                     <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approval</button>
                     <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
                   </td>
@@ -76,7 +76,6 @@
   </div>
   <div class="overlay"></div>
 </body>
-
 <script>
   function adClick(i, flag) {
     if (flag) { // flag == 1 -> Approve
