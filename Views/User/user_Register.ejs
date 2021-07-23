@@ -1,150 +1,173 @@
 <!DOCTYPE html>
+<html>
 <head>
   <%- include('../head') %>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <!-- Third party plugin JS-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-</head>
-<body class="login-page">
   <style>
-    input:focus{}
-                  outline : none;
-                  box-shadow: 0 0 0 1.2px#ff8400;
-            
-                }
-    select:focus{
-                  outline : none;
-                  box-shadow: 0 0 0 1px #ff8400;
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 0 1.2px #ff8400;
     }
-    input{
-        border  : 1px solid #d4d4d4; 
-        height : 35px;
-        border-radius : 20px;
-        margin-bottom: 20px;
-        padding: 5px 15px;
+
+    select:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px #ff8400;
     }
-    select{
-      border-radius : 20px; 
-      border : 1px solid #d4d4d4; 
-      width : 100%; 
-      height : 35px;
+
+    input {
+      border: 1px solid #d4d4d4;
+      height: 35px;
+      border-radius: 20px;
       margin-bottom: 20px;
       padding: 5px 15px;
     }
-    
+
+    select {
+      border-radius: 20px;
+      border: 1px solid #d4d4d4;
+      width: 100%;
+      height: 35px;
+      margin-bottom: 20px;
+      padding: 5px 15px;
+    }
   </style>
+  <script src="/JS/jquery.serializeObject.js"></script>
+  <script src="/JS/signUP.js"></script>
+</head>
+
+<body class="login-page">
   <div id="content" style="margin: 30px">
     <div class="page-header clear-filter" filter-color="orange">
-      <div class="page-header-image" style="background-image:url(/Image/about_WH.jpg)"></div>
+      <div class="page-header-image" style="background-image:url(/Image/about_WH.jpg)">
+      </div>
       <div class="JP_Nav">
-        <%- include('../nav_Bar') %>
+        <%- include('../nav_bar') %>
       </div>
       <div class="top-content">
         <div class="inner-bg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 text">
-                <form role="form" id="regForm" class="registration-form" onsubmit="return false;"> <!--jquery와 함께 이중 post를 방지하기위한 return false 처리-->
-                <h1><strong>AUTOINVEN</strong> Registration</h1>
-                <div style = "width : 100%;">ID:</div>
-                <div>
-                  <input type="text" id="memberID" name="memberID" placeholder="ID" style = "width : 70%;"/>
-                  <input type ="button" class="btn btn-primary" name="idCheckButton" id="idCheckButton" value ="ID Check" style ="width : 28%; height : auto;">
-                  <% if(locals.err){ %>
+                <form role="form" id="regForm" class="registration-form" onsubmit="return false;">
+                  <!--jquery와 함께 이중 post를 방지하기위한 return false 처리-->
+                  <h1><strong>AUTOINVEN</strong> Registration</h1>
+                  <div style="width: 100%;">
+                    ID:
+                  </div>
+                  <div>
+                    <input type="text" id="memberID" name="memberID" placeholder="ID" style="width : 70%;"/>
+                    <input type="button" class="btn btn-primary" name="idCheckButton" id="idCheckButton" value="ID Check" style="width : 28%; height : auto;">
+                    <% if(locals.err) { %>
                     <span class="invalid-feedback"><%= locals.err %></span>
                     <% } %>
-                </div>
-                <div>
-                  <div>Type:</div>
-                          <select name = "type" id="type">
-                              <option value = "provider">provider</option>
-                              <option value = "buyer">buyer</option>
-                          </select>
                   </div>
-                
                   <div>
-                    <div>Name:</div>
-                    <input type="text" placeholder="Name" id="name" name="name" style = "width : 100%;">
+                    <div>
+                      Type:
+                    </div>
+                    <select name="type" id="type">
+                      <option value="provider">provider</option>
+                      <option value="buyer">buyer</option>
+                    </select>
                   </div>
-                  
                   <div>
-                    <div>Password:</div>
-                    <input type="password" placeholder="Password" id="password" name="password" style = "width : 100%;">
+                    <div>
+                      Name:
+                    </div>
+                    <input type="text" placeholder="Name" id="name" name="name" style="width : 100%;">
                   </div>
-                  
                   <div>
-                    <div>Password Confirmation:</div>
-                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password Confirm" style = "width : 70%;">
-                    <input type ="button" class="btn btn-primary" id="passwordCheckButton" name="passwordCheckButton" value ="PW Check" style ="width : 28%; height : auto;">
+                    <div>
+                      Password:
+                    </div>
+                    <input type="password" placeholder="Password" id="password" name="password" style="width : 100%;">
                   </div>
-                  
                   <div>
-                    <div>Email:</div>
-                      <input type="text" name="email" id="email" placeholder="Email" name="email"style = "width : 70%;">
-                      <input type ="button" class="btn btn-primary" id="sendAuthCode" value ="send auth code" style = "width :28%;">
-                      <input type="text" placeholder="auth code" id="authCode" style = "width : 70%;">
-                      <input type ="button" class="btn btn-primary" id="codeCheck" value ="check" style = "width :28%;">
+                    <div>
+                      Password Confirmation:
+                    </div>
+                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password Confirm" style="width : 70%;">
+                    <input type="button" class="btn btn-primary" id="passwordCheckButton" name="passwordCheckButton" value="PW Check" style="width : 28%; height : auto;">
                   </div>
+                  <div>
+                    <div>
+                      Email:
+                    </div>
+                    <input type="text" name="email" id="email" placeholder="Email" style="width : 70%;">
+                    <input type="button" class="btn btn-primary" id="sendAuthCode" value="send auth code" style="width :28%;">
+                    <input type="text" placeholder="auth code" id="authCode" style="width : 70%;">
+                    <input type="button" class="btn btn-primary" id="codeCheck" value="check" style="width :28%;">
+                  </div>
+                </form>
               </div>
-            
-            
-        <div class="col-sm-6 form-box">
-          <div class="form-top">
-            <div class="form-top-left"><h3>Sign up!</h3><p>Fill in the form below to get instant access:</p></div>
-            <div class="form-top-right"><i class="fa fa-pencil"></i></div>
-          </div>
-          <div class="form-group col-lg-12">
-          
-            <div>
-              <div>National:</div>
-              <input type="text"placeholder="national" id="national" name="national" style = "width : 100%;">
+              <div class="col-sm-6 form-box">
+                <div class="form-top">
+                  <div class="form-top-left">
+                    <h3>Sign up!</h3>
+                    <p>
+                      Fill in the form below to get instant access:
+                    </p>
+                  </div>
+                  <div class="form-top-right">
+                    <i class="fa fa-pencil"></i>
+                  </div>
+                </div>
+                <div class="form-group col-lg-12">
+                  <div>
+                    <div>
+                      National:
+                    </div>
+                    <input type="text" placeholder="national" id="national" name="national" style="width : 100%;">
+                  </div>
+                  <div>
+                    <div>
+                      Phone:
+                    </div>
+                    <input type="text" name="contactNumber1" style="width : 32%; float : left;">
+                    <div style="float : left;">
+                      -
+                    </div>
+                    <input type="text" name="contactNumber2" style="width : 32%; float : left;">
+                    <div style="float : left;">
+                      -
+                    </div>
+                    <input type="text" name="contactNumber3" style="width : 32%; float : left;">
+                  </div>
+                  <div>
+                    <div>
+                      Address:
+                    </div>
+                    <input type="text" id="address" name="address" placeholder="Address" style="width : 70%; ">
+                    <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style="width : 28%">
+                  </div>
+                  <div>
+                    <button type="submit" id="regFormBtn" class="btn btn-primary">Sign Up</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
             </div>
-            <div>
-              <div>Phone:</div>
-              
-              <input type="text" name="contactNumber1" style = "width : 32%; float : left;">            
-              <div style ="float : left;">-</div>
-              <input type="text" name="contactNumber2" style = "width : 32%; float : left;">
-              <div style ="float : left;">-</div>
-              <input type="text" name="contactNumber3" style = "width : 32%; float : left;" >
-            
-            </div>
-            <div>
-              <div>Address:</div>
-              <input type="text" id="address" name="address" placeholder="Address" style = "width : 70%; ">
-              <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style = "width : 28%">
-            </div>
-            <div>
-              <button type="submit" id="regFormBtn" class="btn btn-primary">Sign Up</button>
-            </div>
-          </form>
           </div>
         </div>
       </div>
-        </div>
-      </div>
-    </div>
-    <div class="overlay"></div> <!--이미지 위에 글자가 표시되게하기 위한 class -->
-      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-      <script src="../JS/jquery.serializeObject.js"></script>
-      <script src="../JS/signUP.js"></script>
+      <div class="overlay"></div>
+
+      <!--이미지 위에 글자가 표시되게하기 위한 class -->
       <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-      <script src="/JS/navShrink.js"></script>
       <script>
         function sample4_execDaumPostcode(flag) {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    var roadAddr = data.roadAddress;
-
-                    if(flag == 0){
-                      document.getElementById("address").value = data.roadAddressEnglish;
-                    }
-                    else{
-                      document.getElementById("CA").value = data.roadAddressEnglish;
-                    }
-                }
-            }).open();
+          new daum.Postcode({
+            oncomplete: function (data) {
+              var roadAddr = data.roadAddress;
+              if (flag == 0) {
+                document.getElementById("address").value = data.roadAddressEnglish;
+              } else {
+                document.getElementById("CA").value = data.roadAddressEnglish;
+              }
+            }
+          }).open();
         }
       </script>
-    </body>
+    </div>
+  </div>
+</body>
 </html>

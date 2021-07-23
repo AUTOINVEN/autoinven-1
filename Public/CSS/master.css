@@ -425,9 +425,9 @@ a.article:hover {
 /*! nouislider - 13.1.4 */
 
 /* Functional styling;
- * These styles are required for noUiSlider to function.
- * You don't need to change these rules to apply your design.
- */
+* These styles are required for noUiSlider to function.
+* You don't need to change these rules to apply your design.
+*/
 
 .noUi-target,
 .noUi-target * {
@@ -457,7 +457,7 @@ a.article:hover {
 }
 
 /* Wrapper for all connect elements.
- */
+*/
 
 .noUi-connects {
   overflow: hidden;
@@ -479,7 +479,7 @@ a.article:hover {
 }
 
 /* Offset direction
- */
+*/
 
 html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   left: auto;
@@ -487,8 +487,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 
 /* Give origins 0 height/width so they don't interfere with clicking the
- * connect elements.
- */
+* connect elements.
+*/
 
 .noUi-vertical .noUi-origin {
   width: 0;
@@ -513,7 +513,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 
 /* Slider size and handle placement;
- */
+*/
 
 .noUi-horizontal {
   height: 1px;
@@ -547,8 +547,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Styling;
- * Giving the connect element a border radius causes issues with using transform: scale
- */
+* Giving the connect element a border radius causes issues with using transform: scale
+*/
 
 .noUi-target {
   background-color: rgba(182, 182, 182, 0.3);
@@ -567,7 +567,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Handles and cursors;
- */
+*/
 
 .noUi-draggable {
   cursor: ew-resize;
@@ -598,7 +598,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Handle stripes;
- */
+*/
 
 .noUi-handle:before,
 .noUi-handle:after {
@@ -622,7 +622,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Disabled state;
- */
+*/
 
 [disabled] .noUi-connect {
   background: #B8B8B8;
@@ -635,8 +635,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Base;
- *
- */
+*
+*/
 
 .noUi-pips,
 .noUi-pips * {
@@ -650,8 +650,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Values;
- *
- */
+*
+*/
 
 .noUi-value {
   position: absolute;
@@ -665,8 +665,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Markings;
- *
- */
+*
+*/
 
 .noUi-marker {
   position: absolute;
@@ -682,8 +682,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Horizontal layout;
- *
- */
+*
+*/
 
 .noUi-pips-horizontal {
   padding: 10px 0;
@@ -718,8 +718,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 /* Vertical layout;
- *
- */
+*
+*/
 
 .noUi-pips-vertical {
   padding: 0 10px;
@@ -3166,7 +3166,7 @@ Created using IcoMoon - icomoon.io
 }
 
 /*------------------------
-	base class definition
+  base class definition
 -------------------------*/
 
 .now-ui-icons {
@@ -3181,11 +3181,11 @@ Created using IcoMoon - icomoon.io
 }
 
 /*------------------------
-  change icon size
+change icon size
 -------------------------*/
 
 /*----------------------------------
-  add a square/circle background
+add a square/circle background
 -----------------------------------*/
 
 .now-ui-icons.circle {
@@ -3199,7 +3199,7 @@ Created using IcoMoon - icomoon.io
 }
 
 /*------------------------
-  list icons
+list icons
 -------------------------*/
 
 .nc-icon-ul {
@@ -3225,7 +3225,7 @@ Created using IcoMoon - icomoon.io
 }
 
 /*------------------------
-  spinning icons
+spinning icons
 -------------------------*/
 
 .now-ui-icons.spin {
@@ -3273,11 +3273,11 @@ Created using IcoMoon - icomoon.io
 }
 
 /*------------------------
-  rotated/flipped icons
+rotated/flipped icons
 -------------------------*/
 
 /*------------------------
-	font icons
+  font icons
 -------------------------*/
 
 .now-ui-icons.ui-1_check:before {
@@ -6963,20 +6963,20 @@ img {
 }
 
 /*.separator{
-    content: "Separator";
-    color: #FFFFFF;
-    display: block;
-    width: 100%;
-    padding: 20px;
+  content: "Separator";
+  color: #FFFFFF;
+  display: block;
+  width: 100%;
+  padding: 20px;
 }
 .separator-line{
-    background-color: #EEE;
-    height: 1px;
-    width: 100%;
-    display: block;
+  background-color: #EEE;
+  height: 1px;
+  width: 100%;
+  display: block;
 }
 .separator.separator-gray{
-    background-color: #EEEEEE;
+  background-color: #EEEEEE;
 }*/
 
 .social-buttons-demo .btn {

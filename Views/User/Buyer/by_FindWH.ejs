@@ -1,233 +1,224 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include('../../head')  %>
-    <title></title>
-  </head>
-  <body>
-      <%- include('../../nav_Bar') %>
-      <div class="page-header page-header-small">
-        <div class="page-header-image" data-parallax="true" style="background-image: url('../../../Image/about_WH.jpg');"></div>
-        <div class="content-center">
-          <div class="container">
-            <h1 class="title">This is our great company.</h1>
-          </div>
-        </div>
-      </div>
-     <div>
-        <div class="container pt-3 mb-3">
-          <div class="container pt-3 mb-3" style= "width : 50%; float: left;">
-            <div id="map" style="width:100%; height: 70vh;"></div>
-          </div>
-          <div class="container pt-3 mb-3" style= "width : 50%; height: 80vh;float:right;">
-            <table class = "table table-bordered">
-              <div  id = "image_container">
-              </div>
-              <!-- <div class="jumbotron text-center">
-                <h2>Warehouse details</h2>
-              </div> -->
-              <tbody>
-                <tr>
-                  <th style = "width : 20%">Name</th>
-                  <td id ="whName"></td>
-                </tr>
-                <tr>
-                  <th>Address</th>
-                  <td id = "whAddress"></td>
-                </tr>
-                <tr>
-                  <th>Floor area</th>
-                  <td id = "whFloorArea"> m<sup>2</sup></td>
-                </tr>
-                <tr>
-                  <th>Useable area</th>
-                  <td id = "whUseableArea"> m<sup>2</sup></td>
-                </tr>
-                <tr>
-                  <th>Price per area</th>
-                  <td id = "whPrice"></td>
-                </tr>
-                <tr>
-                  <th>Comment</th>
-                  <td id = whInfoComment></td>
-                  <td id = "whID" style="display: none"></td>
-                </tr>
-              </tbody>
-            </table>
-            <button class="btn btn-warning btn-lg btn-block" data-toggle="collapse" data-target="#inquire">Inquire</button>
-            <div id="inquire" class="collapse">
-              사용할 면적 <input type ="text" id="area"/>
+<head>
+  <%- include('../../head') %>
+</head>
 
-                <div class="form-group">
-                  <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                    <input id="sDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="01/11/2021">
-                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                      <div class="input-group-text">
-                        <i class="fa fa-calendar"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                    <input id = "eDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="01/15/2021">
-                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                      <div class="input-group-text">
-                        <i class="fa fa-calendar"></i>
-                      </div>
-                    </div>
-                  </div>
+<body>
+  <%- include('../../nav_Bar') %>
+  <div class="page-header page-header-small">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+    <div class="content-center">
+      <div class="container">
+        <h1 class="title">This is our great company.</h1>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container pt-3 mb-3">
+      <div class="container pt-3 mb-3" style="width : 50%; float: left;">
+        <div id="map" style="width:100%; height: 70vh;"></div>
+      </div>
+      <div class="container pt-3 mb-3" style="width : 50%; height: 80vh;float:right;">
+        <table class="table table-bordered">
+          <div id="image_container">
+          </div>
+          <!-- <div class="jumbotron text-center">
+            <h2>Warehouse details</h2>
+          </div> -->
+          <tbody>
+          <tr>
+            <th style="width : 20%">Name</th>
+            <td id="whName"></td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td id="whAddress"></td>
+          </tr>
+          <tr>
+            <th>Floor area</th>
+            <td id="whFloorArea"> m<sup>2</sup></td>
+          </tr>
+          <tr>
+            <th>Useable area</th>
+            <td id="whUseableArea"> m<sup>2</sup></td>
+          </tr>
+          <tr>
+            <th>Price per area</th>
+            <td id="whPrice"></td>
+          </tr>
+          <tr>
+            <th>Comment</th>
+            <td id=whInfoComment></td>
+            <td id="whID" style="display: none"></td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-warning btn-lg btn-block" data-toggle="collapse" data-target="#inquire">Inquire</button>
+        <div id="inquire" class="collapse">
+          사용할 면적 <input type="text" id="area"/>
+
+          <div class="form-group">
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+              <input id="sDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="01/11/2021">
+              <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                <div class="input-group-text">
+                  <i class="fa fa-calendar"></i>
                 </div>
-                <button type="submit" class="btn btn-primary" id="bu">submit</button>
+              </div>
+            </div>
+            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+              <input id="eDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="01/15/2021">
+              <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                <div class="input-group-text">
+                  <i class="fa fa-calendar"></i>
+                </div>
+              </div>
             </div>
           </div>
+          <button type="submit" class="btn btn-primary" id="bu">submit</button>
         </div>
-      <p id = "items" style="display: none"><%=items%></p>
-      <p id = "startDate" style="display: none"></p>
-      <p id = "endDate" style="display: none"></p>
+      </div>
     </div>
-    <div class="overlay"></div>
-    <script src="/JS/navShrink.js"></script>
-  </body>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIi10uF1LmXxxNyYIc6OkVFt_G0vO-Cz8&callback=initMap"></script>
-  <script>
-    var map;
-    var i = 0;
-    var markers = [];
-    function createImage(objImageInfo){
-      var strDOM = "";
-     for( image in objImageInfo){
-        strDOM+=`<div class  = "image_panel">`;
-        strDOM+=`<img src="${objImageInfo[image]["url"]}">`;
-        strDOM+=`</div>`
-      }
-      document.getElementById("image_container").innerHTML = strDOM;
+    <p id="items" style="display: none"><%= items %></p>
+    <p id="startDate" style="display: none"></p>
+    <p id="endDate" style="display: none"></p>
+  </div>
+  <div class="overlay"></div>
+</body>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIi10uF1LmXxxNyYIc6OkVFt_G0vO-Cz8&callback=initMap"></script>
+<script>
+  var map;
+  var i = 0;
+  var markers = [];
+
+  function createImage(objImageInfo) {
+    var strDOM = "";
+    for (image in objImageInfo) {
+      strDOM += `<div class  = "image_panel">`;
+      strDOM += `<img src="${objImageInfo[image]["url"]}">`;
+      strDOM += `</div>`
     }
-    function initMap() {
-      var daegu = { lat: 35.87222 ,lng: 128.60250 };
-      var items = JSON.parse(document.getElementById("items").innerText);
-      map = new google.maps.Map(
-        document.getElementById('map'), {
-          zoom: 12,
-          center: daegu
+    document.getElementById("image_container").innerHTML = strDOM;
+  }
+
+  function initMap() {
+    var daegu = {lat: 35.87222, lng: 128.60250};
+    var items = JSON.parse(document.getElementById("items").innerText);
+    map = new google.maps.Map(
+      document.getElementById('map'), {
+        zoom: 12,
+        center: daegu
       });
-      for(key in items){
-          markers[i] = new google.maps.Marker({
-          position: {lat : items[key].latitude, lng: items[key].longitude},
-          map: map,
-        });
-        markers[i].addListener('click', function(){
-          var k = 'item'+markers.indexOf(this);
-          $.ajax({
-              url: '/Buyer/FindWH/FindImage',
-              type: 'POST',
-              data:{'warehouseID':items[k].warehouseID},
-              dataType : 'json',
-              success : function(data){
-                  createImage(data)
-              }
-          })
-          map.setCenter(this.getPosition());
-          $("#whID").html(items[k]['warehouseID']);
-          $("#whName").html(items[k]['warehouseName']);
-          $("#whAddress").html(items[k]['address']);
-          $("#whFloorArea").html(items[k]['floorArea']);
-          $("#whUseableArea").html(items[k]['useableArea']);
-          $("#whPrice").html(items[k]['price']);
-          $("#whInfoComment").html(items[k]['infoComment']);
-        });
-        i++;
-      }
+    for (key in items) {
+      markers[i] = new google.maps.Marker({
+        position: {lat: items[key].latitude, lng: items[key].longitude},
+        map: map,
+      });
+      markers[i].addListener('click', function () {
+        var k = 'item' + markers.indexOf(this);
+        $.ajax({
+          url: '/Buyer/FindWH/FindImage',
+          type: 'POST',
+          data: {'warehouseID': items[k].warehouseID},
+          dataType: 'json',
+          success: function (data) {
+            createImage(data)
+          }
+        })
+        map.setCenter(this.getPosition());
+        $("#whID").html(items[k]['warehouseID']);
+        $("#whName").html(items[k]['warehouseName']);
+        $("#whAddress").html(items[k]['address']);
+        $("#whFloorArea").html(items[k]['floorArea']);
+        $("#whUseableArea").html(items[k]['useableArea']);
+        $("#whPrice").html(items[k]['price']);
+        $("#whInfoComment").html(items[k]['infoComment']);
+      });
+      i++;
     }
+  }
 
-    $('#bu').click(function() {
-        console.log(document.getElementById("whID").innerText);
-        let useableArea = $('#whUseableArea').val()
-        let wantArea = $('#area').val()
-
-        console.log('창고 대여 시작일' + sDate);
-        console.log('창고 대여 종료일' + eDate);
-        if(useableArea>wantArea){
+  $('#bu').click(function () {
+    let useableArea = $('#whUseableArea').val()
+    let wantArea = $('#area').val()
+    if (useableArea > wantArea) {
+      Swal.fire({
+        title: 'Error',
+        text: 'You have submitted for an area larger than the shared shared area. Please submit again!',
+        icon: 'error'
+      })
+      return;
+    }
+    $.ajax({
+      url: '/Buyer/FindWH/Inquire',
+      dataType: 'json',
+      type: 'POST',
+      data: {
+        warehouseID: document.getElementById("whID").innerText,
+        area: $('#area').val(),
+        startDate: document.getElementById("startDate").innerText,
+        endDate: document.getElementById("endDate").innerText
+      },
+      success: function (data) {
+        if (data == true) {
+          Swal.fire({
+            title: 'Success',
+            text: 'Your warehouse sharing is submitted.',
+            icon: 'success'
+          }).then(() => location.href = "/Buyer/MyWarehouse");
+        } else {
           Swal.fire({
             title: 'Error',
-            text: 'You have submitted for an area larger than the shared shared area. Please submit again!',
+            text: 'An error has occurred.',
             icon: 'error'
-          })
-          return;
+          }).then(() => location.href = "/Buyer/FindWH");
         }
-        $.ajax({
-              url: '/Buyer/FindWH/Inquire',
-              dataType: 'json',
-              type: 'POST',
-              data: {
-                warehouseID: document.getElementById("whID").innerText,
-                area: $('#area').val(),
-                startDate : document.getElementById("startDate").innerText,
-                endDate : document.getElementById("endDate").innerText
-              },
-              success:function(data){
-            if(data==true){
-              Swal.fire({
-                title: 'Success',
-                text: 'Your warehouse sharing is submitted.',
-                icon: 'success'
-              }).then(() => location.href = "/Buyer/MyWarehouse");
-            }
-            else{
-              Swal.fire({
-                title: 'Error',
-                text: 'An error has occurred.',
-                icon: 'error'
-              }).then(() => location.href = "/Buyer/FindWH");
-            }
-          }
-        });
+      }
     });
-  </script>
+  });
+</script>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css"/>
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
-
-  <script type = "text/javascript">
-    (function($){
-      var temp = '';
-      var year;
-      var temp2 = '';
-      var newdate;
-      $(document).ready(function() {
-        $("#datetimepicker1").datetimepicker({
-            format: 'L'
-        });
-        $('#datetimepicker2').datetimepicker({
-            format: 'L',
-            useCurrent: false
-        });
-        $("#datetimepicker1").on("change.datetimepicker", function(e) {
-            $('#datetimepicker2').datetimepicker('minDate', e.date);
-            temp = document.getElementById('sDate').value; //01/22/2020
-            newdate = temp.split("/").reverse().join("-"); //2020-22-01
-            year = newdate.substring(0,5);
-            temp2 = newdate.substring(5,10);  // 22-01
-            temp = temp2.split("-").reverse().join("-"); //01-22
-            newdate = year + temp;
-            //newdate = newdate.split("/").reverse().join("-");
-            document.getElementById('startDate').innerText = newdate;
-        });
-        $("#datetimepicker2").on("change.datetimepicker", function(e) {
-            $('#datetimepicker1').datetimepicker('maxDate', e.date);
-            temp = document.getElementById('eDate').value;
-            newdate = temp.split("/").reverse().join("-"); //2020-22-01
-            year = newdate.substring(0,5);
-            temp2 = newdate.substring(5,10);  // 22-01
-            temp = temp2.split("-").reverse().join("-"); //01-22
-            newdate = year + temp;
-            //newdate = newdate.split("/").reverse().join("-");
-            document.getElementById('endDate').innerText = newdate;
-        });
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<script type="text/javascript">
+  (function ($) {
+    var temp = '';
+    var year;
+    var temp2 = '';
+    var newdate;
+    $(document).ready(function () {
+      $("#datetimepicker1").datetimepicker({
+        format: 'L'
       });
-      $
+      $('#datetimepicker2').datetimepicker({
+        format: 'L',
+        useCurrent: false
+      });
+      $("#datetimepicker1").on("change.datetimepicker", function (e) {
+        $('#datetimepicker2').datetimepicker('minDate', e.date);
+        temp = document.getElementById('sDate').value; //01/22/2020
+        newdate = temp.split("/").reverse().join("-"); //2020-22-01
+        year = newdate.substring(0, 5);
+        temp2 = newdate.substring(5, 10);  // 22-01
+        temp = temp2.split("-").reverse().join("-"); //01-22
+        newdate = year + temp;
+        //newdate = newdate.split("/").reverse().join("-");
+        document.getElementById('startDate').innerText = newdate;
+      });
+      $("#datetimepicker2").on("change.datetimepicker", function (e) {
+        $('#datetimepicker1').datetimepicker('maxDate', e.date);
+        temp = document.getElementById('eDate').value;
+        newdate = temp.split("/").reverse().join("-"); //2020-22-01
+        year = newdate.substring(0, 5);
+        temp2 = newdate.substring(5, 10);  // 22-01
+        temp = temp2.split("-").reverse().join("-"); //01-22
+        newdate = year + temp;
+        //newdate = newdate.split("/").reverse().join("-");
+        document.getElementById('endDate').innerText = newdate;
+      });
+    });
   })(jQuery);
-  </script>
-  <script></script>
+</script>
 </html>

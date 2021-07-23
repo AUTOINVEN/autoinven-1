@@ -1,17 +1,13 @@
-exports.login = function (req, res,app,db) {
+exports.login = function (req, res, app, db) {
     const crypto = require('crypto');
-    console.log('req.body.memberID :' + req.body.memberID);
-    console.log('req.body.password :' + req.body.password);
     var memberID = req.body.memberID;
     var password = req.body.password;
     let results = db.query('SELECT * FROM Member WHERE memberID = ?', [memberID]);
-    //console.log(results[0].password);
-    console.log(crypto.createHash('sha512').update(password).digest('base64'));
-    if(results.length > 0) {
-        if(results[0].password == crypto.createHash('sha512').update(password).digest('base64')) {
-            console.log('match password');
+
+    if (results.length > 0) {
+        if (results[0].password == crypto.createHash('sha512').update(password).digest('base64')) {
             req.session['memberID'] = results[0].memberID;
-            req.session['type'] =  results[0].type;
+            req.session['type'] = results[0].type;
             req.session['username'] = results[0].name;
             req.session['password'] = results[0].password;
             req.session['RN'] = results[0].RN;

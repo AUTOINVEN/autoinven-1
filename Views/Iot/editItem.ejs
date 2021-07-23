@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <%- include('../head') %>
   <meta charset="utf-8">
   <title>물품 수정</title>
-  <link rel="stylesheet" href="/CSS/iot.css" />
+  <link rel="stylesheet" href="/CSS/iot.css"/>
 </head>
 
 <body>
@@ -20,10 +19,10 @@
         <div class="table-responsive">
           <table class="board-table table">
             <thead class="thead-dark">
-              <tr>
-                <th>Info List</th>
-                <th>Product Info</th>
-              </tr>
+            <tr>
+              <th>Info List</th>
+              <th>Product Info</th>
+            </tr>
             </thead>
             <tbody class="table-bg">
             <tr>
@@ -32,13 +31,13 @@
             </tr>
             <tr>
               <th>Product Name</th>
-              <td><input type="text" name="edititem_name" id="edititem_name" class="box" ></td>
+              <td><input type="text" name="edititem_name" id="edititem_name" class="box"></td>
             </tr>
             <tr>
               <th>Product Quantity</th>
-              <td><input type="number" name="edititem_num" id="edititem_num" class="box" ></td>
+              <td><input type="number" name="edititem_num" id="edititem_num" class="box"></td>
             </tr>
-          </tbody>
+            </tbody>
           </table>
         </div>
         <button type="submit" class="btn btn-primary two_btn">Save</button>
@@ -46,6 +45,5 @@
       <button class="btn btn-primary two_btn" onclick="location.href='warehousing'">취소</button>
     </div>
   </div>
-  <script src="/JS/navShrink.js"></script>
 </body>
 </html>

@@ -1,139 +1,134 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include('../../head')  %>
-    <title></title>
-    <style media="screen">
-      .card-header {
-        font-size : 25px
-      }
-      .page-link {
-        font-size : 20px !important
-      }
-    </style>
-  </head>
-  <body>
-    <%- include('../../nav_Bar') %>
-      <div class="page-header page-header-small">
-        <div class="page-header-image" data-parallax="true" style="background-image: url('../../../Image/about_WH.jpg');"></div>
-        <div class="content-center">
-          <div class="container">
-            <h1 class="title">This is our great company.</h1>
-          </div>
+<head>
+  <%- include('../../head') %>
+  <title></title>
+  <style media="screen">
+    .card-header {
+      font-size: 25px
+    }
+    .page-link {
+      font-size: 20px !important
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('../../nav_Bar') %>
+  <div class="page-header page-header-small">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+    <div class="content-center">
+      <div class="container">
+        <h1 class="title">This is our great company.</h1>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container">
+      <div class="jumbotron" style="text-align : center">
+        <h1>Request IoT list</h1>
+      </div>
+      <div class="container mb-3">
+        <h2 class="mb-3">Submit lists</h2>
+        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+          <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
+          <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
+          <p id="memberID<%= i %>" style="display: none"><%= items['item' + i].memberID %></p>
+          <p id="national<%= i %>" style="display: none"><%= items['item' + i].national %></p>
+          <p id="name<%= i %>" style="display: none"><%= items['item' + i].name %></p>
+          <p id="address<%= i %>" style="display: none"><%= items['item' + i].address %></p>
+        <% } %>
+        <div class="table-responsive">
+          <table class="board-table table ">
+            <thead class="thead-dark">
+            <tr class="d-flex">
+              <th class="col-1">창고 번호</th>
+              <th class="col-1">상태</th>
+              <th class="col-2">ID</th>
+              <th class="col-2">이름</th>
+              <th class="col-3">창고 주소</th>
+              <th class="col-1">국적</th>
+              <th class="col-2"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+              <% if(items['item' + i].reqType == "ReqEnrollIoT"){ %>
+                <tr class="table-warning d-flex">
+                  <td class="col-1"><%= items['item' + i].warehouseID %></td>
+                  <td class="col-1">승인대기</td>
+                  <td class="col-2"><%= items['item' + i].memberID %></td>
+                  <td class="col-2"><%= items['item' + i].name %></td>
+                  <td class="col-3"><%= items['item' + i].address %></td>
+                  <td class="col-1"><%= items['item' + i].national %></td>
+                  <td class="col-2" style="float:right; padding:0px 10px 0px 0px;">
+                    <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approval</button>
+                    <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+            </tbody>
+          </table>
         </div>
       </div>
-     <div>
-        <div class="container">
-          <div class="jumbotron" style = "text-align : center">
-            <h1>Request IoT list</h1>
-          </div>
-          <div class="container mb-3">
-
-            <h2 class="mb-3">Submit lists</h2>
-            <% for(var i=0; i < Object.keys(items).length; i++) { %>
-              <p id = "whID<%=i%>" style="display: none"><%= items['item'+i].warehouseID %></p>              
-              <p id = "reqType<%=i%>" style="display: none"><%= items['item'+i].reqType %></p>
-              <p id = "memberID<%=i%>" style="display: none"><%= items['item'+i].memberID%></p>
-              <p id = "national<%=i%>" style="display: none"><%= items['item'+i].national%></p>
-              <p id = "name<%=i%>" style="display: none"><%= items['item'+i].name%></p>
-              <p id = "address<%=i%>" style="display: none"><%= items['item'+i].address%></p> 
-              
-            <%}%>
-            <div class="table-responsive">
-              <table class="board-table table ">
-                <thead class="thead-dark">
-                  <tr class="d-flex">
-                    <th class="col-1">창고 번호</th>                    
-                    <th class="col-1">상태</th>
-                    <th class="col-2">ID</th>
-                    <th class="col-2">이름</th>
-                    <th class="col-3">창고 주소</th>
-                    <th class="col-1">국적</th>
-                    <th class="col-2"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for(var i=0; i < Object.keys(items).length; i++) { %>
-                    <% if(items['item'+i].reqType == "ReqEnrollIoT"){ %>
-                      <tr class="table-warning d-flex">
-                        <td class="col-1"><%= items['item'+i].warehouseID %></td>
-                        <td class="col-1">승인대기</td>
-                        <td class="col-2"><%= items['item'+i].memberID %></td>
-                        <td class="col-2"><%= items['item'+i].name %></td>
-                        <td class="col-3"><%= items['item'+i].address %></td>
-                        <td class="col-1"><%= items['item'+i].national %></td>
-                        <td class="col-2" style="float:right; padding:0px 10px 0px 0px;">
-                          <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 1)">Approval</button>
-                          <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 0)">Cancel</button>
-                        </td>
-                      </tr>
-                    <% } %>
-                  <% } %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-     </div>
-    <div class="overlay"></div>
-  </body>
-  <script src="/JS/navShrink.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <script>
-    function adClick(i, flag) {
-      if(flag){ // flag == 1 -> Approve
-        $.ajax({
-              url: '/Admin/RequestIoT',
-              dataType: 'json',
-              type: 'POST',
-              data: {
-                answer: "Approve",
-                reqType: document.getElementById('reqType'+i).innerText,
-                warehouseID: parseInt(document.getElementById('whID'+i).innerText)
-              },
-              success:function(data){
-                if(data==true){
-                  Swal.fire({
-                    title: 'Accepted',
-                    icon: 'success'
-                  }).then(() => location.href = "/Admin/RequestIoT");
-                }
-                else{
-                  Swal.fire({
-                    title: 'Error',
-                    text: 'An error has occurred.',
-                    icon: 'error'
-                  }).then(() => location.href = "/Admin/RequestIoT");
-                }
-              }
-          });
-      }else { // flag == 0 -> Reject
-        $.ajax({
-              url: '/Admin/RequestIoT',
-              dataType: 'json',
-              type: 'POST',
-              data: {
-                answer: "Reject",
-                reqType: document.getElementById('reqType'+i).innerText,
-                warehouseID: parseInt(document.getElementById('whID'+i).innerText),
-              },
-              success:function(data){
-                if(data==true){
-                  Swal.fire({
-                    title: 'Rejected',
-                    icon: 'warning'
-                  }).then(() => location.href = "/Admin/RequestIoT");
-                }
-                else{
-                  Swal.fire({
-                    title: 'Error',
-                    text: 'An error has occurred.',
-                    icon: 'error'
-                  }).then(() => location.href = "/Admin/RequestIoT");
-                }
-              }
-          });
-      }
+    </div>
+  </div>
+  <div class="overlay"></div>
+</body>
+<script>
+  function adClick(i, flag) {
+    if (flag) { // flag == 1 -> Approve
+      $.ajax({
+        url: '/Admin/RequestIoT',
+        dataType: 'json',
+        type: 'POST',
+        data: {
+          answer: "Approve",
+          reqType: document.getElementById('reqType' + i).innerText,
+          warehouseID: parseInt(document.getElementById('whID' + i).innerText)
+        },
+        success: function (data) {
+          if (data == true) {
+            Swal.fire({
+              title: 'Accepted',
+              icon: 'success'
+            }).then(() => location.href = "/Admin/RequestIoT");
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: 'An error has occurred.',
+              icon: 'error'
+            }).then(() => location.href = "/Admin/RequestIoT");
+          }
+        }
+      });
+    } else { // flag == 0 -> Reject
+      $.ajax({
+        url: '/Admin/RequestIoT',
+        dataType: 'json',
+        type: 'POST',
+        data: {
+          answer: "Reject",
+          reqType: document.getElementById('reqType' + i).innerText,
+          warehouseID: parseInt(document.getElementById('whID' + i).innerText),
+        },
+        success: function (data) {
+          if (data == true) {
+            Swal.fire({
+              title: 'Rejected',
+              icon: 'warning'
+            }).then(() => location.href = "/Admin/RequestIoT");
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: 'An error has occurred.',
+              icon: 'error'
+            }).then(() => location.href = "/Admin/RequestIoT");
+          }
+        }
+      });
     }
-  </script>
+  }
+</script>
 </html>
