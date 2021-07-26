@@ -35,7 +35,7 @@
 </head>
 
 <body class="login-page">
-  <div id="content" style="margin: 30px">
+  <div id="content">
     <div class="page-header clear-filter" filter-color="orange">
       <div class="page-header-image" style="background-image:url(/Image/about_WH.jpg)">
       </div>
@@ -46,104 +46,56 @@
         <div class="inner-bg">
           <div class="container">
             <div class="row">
-              <div class="col-sm-6 text">
+              <div class="container mb-3">
                 <form role="form" id="regForm" class="registration-form" onsubmit="return false;">
-                  <!--jquery와 함께 이중 post를 방지하기위한 return false 처리-->
-                  <h1><strong>AUTOINVEN</strong> Registration</h1>
-                  <div style="width: 100%;">
-                    ID:
-                  </div>
+                  <h1>Sign up!</h1>
+                  <h3>Fill in the form below to get instant access:</h3>
+
                   <div>
-                    <input type="text" id="memberID" name="memberID" placeholder="ID" style="width : 70%;"/>
-                    <input type="button" class="btn btn-primary" name="idCheckButton" id="idCheckButton" value="ID Check" style="width : 28%; height : auto;">
+                    <input type="text" id="memberID" name="memberID" placeholder="ID" style="width : 35%;"/>
+                    <input type="button" class="btn btn-primary" name="idCheckButton" id="idCheckButton" value="ID Check" style="width : 14%; height : auto;">
                     <% if(locals.err) { %>
                     <span class="invalid-feedback"><%= locals.err %></span>
                     <% } %>
                   </div>
                   <div>
-                    <div>
-                      Type:
-                    </div>
-                    <select name="type" id="type">
+                    <select name="type" id="type" style="width : 50%;">
                       <option value="provider">provider</option>
                       <option value="buyer">buyer</option>
                     </select>
                   </div>
                   <div>
-                    <div>
-                      Name:
-                    </div>
-                    <input type="text" placeholder="Name" id="name" name="name" style="width : 100%;">
+                    <input type="text" placeholder="User Name" id="name" name="name" style="width : 50%;">
                   </div>
                   <div>
-                    <div>
-                      Password:
-                    </div>
-                    <input type="password" placeholder="Password" id="password" name="password" style="width : 100%;">
+                    <input type="password" placeholder="Password" id="password" name="password" style="width : 50%;">
                   </div>
                   <div>
-                    <div>
-                      Password Confirmation:
-                    </div>
-                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password Confirm" style="width : 70%;">
-                    <input type="button" class="btn btn-primary" id="passwordCheckButton" name="passwordCheckButton" value="PW Check" style="width : 28%; height : auto;">
+                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password Confirm" style="width : 35%;">
+                    <input type="button" class="btn btn-primary" id="passwordCheckButton" name="passwordCheckButton" value="PW Check" style="width : 14%; height : auto;">
                   </div>
                   <div>
-                    <div>
-                      Email:
-                    </div>
-                    <input type="text" name="email" id="email" placeholder="Email" style="width : 70%;">
-                    <input type="button" class="btn btn-primary" id="sendAuthCode" value="send auth code" style="width :28%;">
-                    <input type="text" placeholder="auth code" id="authCode" style="width : 70%;">
-                    <input type="button" class="btn btn-primary" id="codeCheck" value="check" style="width :28%;">
-                  </div>
-                </form>
-              </div>
-              <div class="col-sm-6 form-box">
-                <div class="form-top">
-                  <div class="form-top-left">
-                    <h3>Sign up!</h3>
-                    <p>
-                      Fill in the form below to get instant access:
-                    </p>
-                  </div>
-                  <div class="form-top-right">
-                    <i class="fa fa-pencil"></i>
-                  </div>
-                </div>
-                <div class="form-group col-lg-12">
-                  <div>
-                    <div>
-                      National:
-                    </div>
-                    <input type="text" placeholder="national" id="national" name="national" style="width : 100%;">
+                    <input type="text" name="email" id="email" placeholder="Email" style="width : 35%;">
+                    <input type="button" class="btn btn-primary" id="sendAuthCode" value="send auth code" style="width :14%;"><br>
+                    <input type="text" placeholder="auth code" id="authCode" style="width : 35%;">
+                    <input type="button" class="btn btn-primary" id="codeCheck" value="check" style="width :14%;">
                   </div>
                   <div>
-                    <div>
-                      Phone:
-                    </div>
-                    <input type="text" name="contactNumber1" style="width : 32%; float : left;">
-                    <div style="float : left;">
-                      -
-                    </div>
-                    <input type="text" name="contactNumber2" style="width : 32%; float : left;">
-                    <div style="float : left;">
-                      -
-                    </div>
-                    <input type="text" name="contactNumber3" style="width : 32%; float : left;">
+                    <input type="text" placeholder="national" id="national" name="national" style="width :50%;">
                   </div>
                   <div>
-                    <div>
-                      Address:
-                    </div>
-                    <input type="text" id="address" name="address" placeholder="Address" style="width : 70%; ">
-                    <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style="width : 28%">
+                    <input type="text" id="address" name="address" placeholder="Address" style="width : 35%; ">
+                    <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style="width : 15%">
+                  </div>
+                  <div>
+                    <input type="text" name="contactNumber1" placeholder="Phone" style="width : 16.5%;">
+                    <input type="text" name="contactNumber2" style="width : 16.5%;">
+                    <input type="text" name="contactNumber3" style="width : 16.5%;">
                   </div>
                   <div>
                     <button type="submit" id="regFormBtn" class="btn btn-primary">Sign Up</button>
                   </div>
-                  </form>
-                </div>
+                </form>
               </div>
             </div>
           </div>
