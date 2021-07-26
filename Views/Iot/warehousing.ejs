@@ -13,16 +13,16 @@
     <%- include('nav') %>
 
     <div class="container">
-      <button class="btn btn-primary two_btn_r" onclick="location.href='registerItem'">물품 등록</button>
+      <button class="btn btn-primary two_btn_r" onclick="location.href='registerItem'">Register Item</button>
       <!-- 물품 등록 연결되면 삭제 -->
       <form action="randomTest" method="GET">
-        <button class="btn btn-primary two_btn_r">랜덤 등록 테스트</button>
+        <button class="btn btn-primary two_btn_r">Random Register</button>
       </form>
     </div>
 
     <div class="container">
       <div class="container mb-3">
-        <h2 class="mb-3">물품 입고 확인</h2>
+        <h2 class="mb-3">Item Register Confirmation</h2>
       </div>
       <div class="table-responsive">
         <table class="board-table table">
@@ -47,19 +47,19 @@
               <td>
                 <form action="/iot" method="POST">
                   <input type="hidden" id="itemImg" name="itemImg" value="<%= itemlist['item' + i].picture %>">
-                  <button class="checkBtn">확인</button>
+                  <button class="checkBtn">Show</button>
                 </form>
               </td>
               <td>
                 <form action="/iot/editItem" method="POST">
                   <input type="hidden" id="itemEdit" name="itemEdit" value="<%= itemlist['item' + i].rfid %>">
-                  <button class="checkBtn">수정</button>
+                  <button class="checkBtn">Edit</button>
                 </form>
               </td>
               <td>
                 <form action="/iot/deleteItem" method="POST">
                   <input type="hidden" id="itemDel" name="itemDel" value="<%= itemlist['item' + i].rfid %>">
-                  <button class="checkBtn">삭제</button>
+                  <button class="checkBtn">Delete</button>
                 </form>
               </td>
               <!-- <td><button class="btn btn-primary" onclick="editItem(<%= i %>, <%= itemlist['item' + i].rfid %>)">수정</button></td> -->

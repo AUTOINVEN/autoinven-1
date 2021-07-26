@@ -19,18 +19,18 @@
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
     <div class="content-center">
       <div class="container">
-        <h1 class="title">This is our great company.</h1>
+        <h1 class="title">This is our great company</h1>
       </div>
     </div>
   </div>
   <div>
     <div class="container">
       <div class="jumbotron" style="text-align : center">
-        <h1>RequestEnroll list</h1>
+        <h1>RequestEnroll List</h1>
       </div>
       <div class="container mb-3">
 
-        <h2 class="mb-3">Submit lists</h2>
+        <h2 class="mb-3">Submit Lists</h2>
         <% for(var i = 0; i < Object.keys(items).length; i++) { %>
           <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
           <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
@@ -46,13 +46,13 @@
           <table class="board-table table ">
             <thead class="thead-dark">
             <tr class="d-flex">
-              <th class="col-1">창고 번호</th>
-              <th class="col-1">상태</th>
-              <th class="col-1">창고 면적</th>
+              <th class="col-1">Warehouse ID</th>
+              <th class="col-1">State</th>
+              <th class="col-1">Warehouse Area</th>
               <th class="col-2">ID</th>
-              <th class="col-2">이름</th>
-              <th class="col-3">창고 주소</th>
-              <th class="col-1">국적</th>
+              <th class="col-2">Warehouse Name</th>
+              <th class="col-3">Warehouse Address</th>
+              <th class="col-1">National</th>
               <th class="col-1"></th>
             </tr>
             </thead>
@@ -61,7 +61,7 @@
               <% if(items['item' + i].reqType == "ReqEnrollPV"){ %>
                 <tr class="table-warning d-flex">
                   <td class="col-1"><%= items['item' + i].warehouseID %></td>
-                  <td class="col-1">승인대기</td>
+                  <td class="col-1">Pending Approval</td>
                   <td class="col-1"><%= items['item' + i].floorArea %></td>
                   <td class="col-2"><%= items['item' + i].providerID %></td>
                   <td class="col-2"><%= items['item' + i].name %></td>

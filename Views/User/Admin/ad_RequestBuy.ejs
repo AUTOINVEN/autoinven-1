@@ -45,10 +45,10 @@
         <table class="board-table table ">
           <thead class="thead-dark">
           <tr>
-            <th>창고번호</th>
-            <th>상태</th>
-            <th>거래금액($)</th>
-            <th>대여기간</th>
+            <th>Warehouse ID</th>
+            <th>State</th>
+            <th>Rental Fee($)</th>
+            <th>Rental Period</th>
             <th></th>
           </tr>
           </thead>
@@ -57,7 +57,7 @@
             <% if(items['item' + i].reqType == "ReqByBuyer"){ %>
               <tr class="table-warning">
                 <td><%= items['item' + i].warehouseID %></td>
-                <td>Pending approval</td>
+                <td>Pending Approval</td>
                 <td><%= items['item' + i].amounts %></td>
                 <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
                 <td style="float:right; padding:0px 10px 0px 0px;">

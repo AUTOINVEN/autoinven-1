@@ -10,12 +10,12 @@
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
     <div class="content-center">
       <div class="container">
-        <h1 class="title">This is our great company.</h1>
+        <h1 class="title">This is our great company</h1>
       </div>
     </div>
   </div>
   <div class="container mb-3">
-    <h2 class="contentBoxTop mb-3">My Info</h2>
+    <h2 class="contentBoxTop mb-3">MY INFO</h2>
     <div class="form-group row">
       <label for="memberID" class="col-sm-3 col-form-label">ID</label>
       <div class="col-sm-9">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="password" class="col-sm-3 col-form-label">password</label>
+      <label for="password" class="col-sm-3 col-form-label">Password</label>
       <div class="col-sm-9">
         <input type="password" id="password" name="password" value="..................." disabled="disabled" class="form-control">
         <% if(locals.err){ %>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="type" class="col-sm-3 col-form-label">type</label>
+      <label for="type" class="col-sm-3 col-form-label">Type</label>
       <div class="col-sm-9">
         <input type="text" id="type" name="type" value="<%= session.type %>" disabled="disabled" class="form-control">
         <% if(locals.err){ %>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label">name</label>
+      <label for="name" class="col-sm-3 col-form-label">Name</label>
       <div class="col-sm-9">
         <input type="text" id="name" name="name" value="<%= session.username %>" disabled="disabled" class="form-control">
         <% if(locals.err){ %>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="national" class="col-sm-3 col-form-label">national</label>
+      <label for="national" class="col-sm-3 col-form-label">National</label>
       <div class="col-sm-9">
         <input type="text" id="national" name="national" value="<%= session.national %>" disabled="disabled" class="form-control">
         <% if(locals.err){ %>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="contactNumber" class="col-sm-3 col-form-label">contact-number</label>
+      <label for="contactNumber" class="col-sm-3 col-form-label">Contact-Number</label>
       <div class="col-sm-9">
         <input type="text" id="contactNumber" name="contactNumber" value="<%= session.contactNumber %>" disabled="disabled" class="form-control">
         <% if(locals.err){ %>
@@ -89,7 +89,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="address" class="col-sm-3 col-form-label">address</label>
+      <label for="address" class="col-sm-3 col-form-label">Address</label>
       <div class="col-sm-9">
         <input type="text" id="address" name="address" value="<%= session.address %>" disabled="disabled" class="form-control">
         <% if(locals.err){ %>
@@ -103,7 +103,7 @@
         <button type="EDIT" class="btn btn-primary two_btn">Edit</button>
       </form>
       <form action="/" method="get">
-        <button type="BACK" class="btn btn-primary two_btn" onclick=location.href="/">BACK</button>
+        <button type="BACK" class="btn btn-primary two_btn" onclick=location.href="/">Back</button>
       </form>
       <!--
       <form action="/User/Delete" method="post" onsubmit="return false;">
