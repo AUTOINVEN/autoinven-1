@@ -2,10 +2,11 @@ exports.initWarehouse = function (req, res, db) {
     var items = {};
     var id = req.session['memberID'];
     var wid = req.session['warehouseID'];
-    var row = db.query(`SELECT memberID FROM Provider WHERE warehouseID=?;`, [wid]);
+    var isProvider = db.query(`SELECT memberID FROM Provider WHERE warehouseID=?;`, [wid]);
+    var isAdmin = db.query(`SELECT type FROM Member WHERE memberID=?;`, [id]);
 
-    if (!row) console.log('err: check user');
-    else if (row[0].memberID == id) {	//Provider인 경우. 이후 admin 처리 할 때 여기에 추가하면 됨
+    if (!isProvider) console.log('err: check user');
+    else if (isProvider[0].memberID == id || isAdmin[0] == "admin") {	//Provider인 경우. 이후 admin 처리 할 때 여기에 추가하면 됨
         var results = db.query("SELECT * FROM iot WHERE warehouseID=?;", [wid]);
         if (!results) console.log('err: warehousing init');
         else {
