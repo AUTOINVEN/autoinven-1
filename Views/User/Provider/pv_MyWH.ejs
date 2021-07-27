@@ -10,7 +10,7 @@
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
     <div class="content-center">
       <div class="container">
-        <h1 class="title">This is our great company.</h1>
+        <h1 class="title">This is our great company</h1>
       </div>
     </div>
   </div>
@@ -20,10 +20,10 @@
       <table class="board-table table " id="myWH">
         <thead class="thead-dark">
         <tr>
-          <th>WarehouseID</th>
-          <th>WarehouseName</th>
-          <th>IOT</th>
-          <th>INFO</th>
+          <th>Warehouse ID</th>
+          <th>Warehouse Name</th>
+          <th>IoT</th>
+          <th>Warehouse Info</th>
         </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@
                 </form>
               </td>
             <% } else if (wList['item' + i].iotStat == "W"){ %>
-              <td style="padding-top: 20px;">waiting for approval</td>
+              <td style="padding-top: 20px;">Pending Approval</td>
             <% } else if (wList['item' + i].iotStat == "N"){ %>
               <td>
                 <button class="btn btn-sm" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>)" style="margin: 0; padding: 10px 15px;" type="button">Request Service
@@ -48,7 +48,7 @@
             <% } %>
             <td style="padding:6px 0;">
               <form action="/info" method="POST">
-                <button class="btn btn-sm" id="viewbtn<%= i %>" style="margin: 0; padding: 8px 12px;">Info</button>
+                <button class="btn btn-sm" id="viewbtn<%= i %>" style="margin: 0; padding: 8px 12px;">INFO</button>
               </form>
             </td>
           </tr>
@@ -58,7 +58,7 @@
     </div>
   </div>
   <div class="container mb-3">
-    <h2 class="mb-3">Warehouse Enroll lists</h2>
+    <h2 class="mb-3">Warehouse Enroll Lists</h2>
     <% for(var i = 0; i < Object.keys(enrollItems).length; i++) { %>
       <p id="whID0<%= i %>" style="display: none"><%= enrollItems['item' + i].warehouseID %></p>
       <p id="reqID0<%= i %>" style="display: none"><%= enrollItems['item' + i].reqID %></p>
@@ -68,7 +68,7 @@
     <table class="board-table table ">
       <thead class="thead-dark">
       <tr>
-        <th>Title</th>
+        <th>Warehouse ID</th>
         <th>State</th>
         <th></th>
       </tr>
@@ -78,7 +78,7 @@
         <% if(enrollItems['item' + i].reqType == "ReqEnrollPV"){ %>
           <tr class="table-warning">
             <td><%= enrollItems['item' + i].warehouseID %></td>
-            <td>Pending approval</td>
+            <td>Pending Approval</td>
             <td style="float:right; padding:0 10px 0px 0px;">
               <button class="btn btn-sm" onclick="pvClick(0,<%= i %>, 0)" type="button">Cancel</button>
             </td>
@@ -99,7 +99,7 @@
   </div>
 
   <div class="container mb-4">
-    <h2 class="mb-3">Buy Request lists</h2>
+    <h2 class="mb-3">Buy Request Lists</h2>
     <% for(var i = 0; i < Object.keys(requestItems).length; i++) { %>
       <p id="whID1<%= i %>" style="display: none"><%= requestItems['item' + i].warehouseID %></p>
       <p id="reqID1<%= i %>" style="display: none"><%= requestItems['item' + i].reqID %></p>
@@ -110,7 +110,7 @@
     <table class="board-table table ">
       <thead class="thead-dark">
       <tr>
-        <th>Title</th>
+        <th>Warehouse ID</th>
         <th>State</th>
         <th></th>
       </tr>
@@ -120,7 +120,7 @@
         <% if(requestItems['item' + i].reqType == "ReqByAdmin"){ %>
           <tr class="table-warning">
             <td><%= requestItems['item' + i].warehouseID %></td>
-            <td>Pending approval</td>
+            <td>Pending Approval</td>
             <td style="float:right; padding:0px 10px 0px 0px;">
               <button class="btn btn-sm" onclick="pvClick(1, <%= i %>, 1)" type="button">Approve</button>
               <button class="btn btn-sm" onclick="pvClick(1, <%= i %>, 0)" type="button">Cancel</button>
@@ -130,7 +130,7 @@
         <% if(requestItems['item' + i].reqType == "ReqPayByBuyer"){ %>
           <tr class="table-primary">
             <td><%= requestItems['item' + i].warehouseID %></td>
-            <td>Waiting for payment</td>
+            <td>Waiting for Payment</td>
             <td style="float:right; padding:0px 10px 0px 0px;">
               <button class="btn btn-sm" onclick="pvClick(1, <%= i %>, 0)" type="button">Cancel</button>
             </td>

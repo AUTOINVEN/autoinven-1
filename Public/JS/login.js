@@ -61,7 +61,7 @@
                             Swal.fire({
                                 icon: 'error',
                                 title : 'fail',
-                                text: '알수없는 오류가 발생하였습니다',
+                                text: 'Undefined Error',
                             }).then(() => {
                             }
                             )}

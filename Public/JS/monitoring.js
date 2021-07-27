@@ -12,7 +12,7 @@ $(function () {
         data: {
             labels: ['', '', '', '', '', '', ''],
             datasets: [{
-                label: '온도',
+                label: 'Temperature',
                 data: [0, 0, 0, 0, 0, 0, 0],
                 fill: false,
                 borderColor: 'orange',
@@ -32,7 +32,7 @@ $(function () {
                 },
                 title: {
                     display: true,
-                    text: '온도',
+                    text: 'Temperature',
                     font: {
                         size: 25
                     }
@@ -46,7 +46,7 @@ $(function () {
         data: {
             labels: ['', '', '', '', '', '', ''],
             datasets: [{
-                label: '습도',
+                label: 'Humidity',
                 data: [0, 0, 0, 0, 0, 0, 0],
                 fill: false,
                 borderColor: 'blue',
@@ -66,7 +66,7 @@ $(function () {
                 },
                 title: {
                     display: true,
-                    text: '습도',
+                    text: 'Humidity',
                     font: {
                         size: 25
                     }
@@ -95,7 +95,7 @@ $(function () {
                 },
                 title: {
                     display: true,
-                    text: '화재',
+                    text: 'Fire',
                     font: {
                         size: 25
                     }
@@ -124,7 +124,7 @@ $(function () {
                 },
                 title: {
                     display: true,
-                    text: '가스',
+                    text: 'Gas',
                     font: {
                         size: 25
                     }
