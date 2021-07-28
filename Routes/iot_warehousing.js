@@ -10,8 +10,9 @@ exports.initWarehouse = function (req, res, db) {
         else {
             if (results.length > 0) {
                 for (var step = 0; step < results.length; step++) {
-                    results[step].received = results[step].received ? '입고완료' : '미입고';
+                    results[step].received = results[step].received ? 'Arrived' : 'Not arrived';
                     items[`item${step}`] = {
+                        id: results[step].id,
                         rfid: results[step].rfid,
                         name: results[step].name,
                         num: results[step].num,
@@ -27,8 +28,9 @@ exports.initWarehouse = function (req, res, db) {
         else {
             if (results.length > 0) {
                 for (var step = 0; step < results.length; step++) {
-                    results[step].received = results[step].received ? '입고완료' : '미입고';
+                    results[step].received = results[step].received ? 'Arrived' : 'Not arrived';
                     items[`item${step}`] = {
+                        id: results[step].id,
                         rfid: results[step].rfid,
                         name: results[step].name,
                         num: results[step].num,
