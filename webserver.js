@@ -10,8 +10,8 @@ const mySQL = require('./Module/db');
 const ejs = require('ejs');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
-const paypal = require("paypal-rest-sdk");
-const nodePickle = require('pickle');
+// const paypal = require("paypal-rest-sdk");
+// const nodePickle = require('pickle');
 // const bcsock = require('./Module/bcsocket');
 var apolloServer = require('./apollo');
 var http = require('http');
@@ -71,55 +71,6 @@ app.get('/Public/Upload/:filename', function (req, res) {
         if (err) throw err;
         res.write(data);
     })
-});
-
-
-app.post('/RFID', function (req, res) {
-    var rfid = req.body.param;
-    var url = "select * from jpdatabase.Order where idRFID='" + rfid + "'";
-    let orders = dbConnection.query(url);
-    var items = [];
-    var data = {"info": items};
-    if (orders.length > 0) {
-        for (var i = 0; i < orders.length; ++i) {
-            var obj = {};
-            obj['oid'] = orders[i].oid;
-            obj['orderer'] = orders[i].orderer;
-            obj['destination'] = orders[i].destination;
-            obj['status'] = orders[i].status;
-            obj['orderinfo'] = [];
-            url = "select * from OrderInfo where oid=" + orders[i].oid;
-            let orderInfos = dbConnection.query(url);
-            for (var t = 0; t < orderInfos.length; ++t) {
-                var packet = {};
-                packet['partname'] = orderInfos[t].partname;
-                packet['cnt'] = orderInfos[t].cnt;
-                obj['orderinfo'].push(packet);
-            }
-            data["info"].push(obj);
-        }
-    }
-    res.json(data);
-});
-
-
-app.post('/RFID/Update', function (req, res) {
-    var mysql = require('mysql');
-    var oid = req.body.oid;
-    var connection = mysql.createConnection(require('./Module/db').info);
-    connection.connect();
-    var url = `update jpdatabase.Order set jpdatabase.Order.status='complete' where oid=${oid} and jpdatabase.Order.status='ready'`;
-    connection.query(url, function (error, results, fields) {
-        if (error)
-            res.send({
-                "success": false,
-                "reason": "unknown error!"
-            });
-        else
-            res.send({
-                "success": true
-            });
-    });
 });
 
 // 없는 페이지 alert 띄우기
