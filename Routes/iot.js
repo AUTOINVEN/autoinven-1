@@ -32,8 +32,9 @@ module.exports = function (app, db) {
 
     router.get('/warehousing', (req, res, next) => {
         var itemlist = iot_warehousing.initWarehouse(req, res, db);
+        var userType = req.session['type'];
         itemlist = JSON.parse(itemlist);
-        res.render('Iot/warehousing', {'itemlist': itemlist});
+        res.render('Iot/warehousing', {'itemlist': itemlist, 'userType': userType});
     });
 
     router.get('/statistics', (req, res, next) => { iot_statistics.init(req, res, db) });

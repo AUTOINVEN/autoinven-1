@@ -13,7 +13,9 @@
     <%- include('nav') %>
 
     <div class="container">
-      <button class="btn btn-primary two_btn_r" onclick="location.href='registerItem'">Register Product</button>
+      <% if (userType != "provider"){ %>
+        <button class="btn btn-primary two_btn_r" onclick="location.href='registerItem'">Register Product</button>
+      <% } %>
       <!-- 물품 등록 연결되면 삭제 -->
       <form action="randomTest" method="GET">
         <button class="btn btn-primary two_btn_r">Random Register</button>
@@ -28,42 +30,43 @@
         <table class="board-table table">
           <thead class="thead-dark">
           <tr>
+            <% if (userType != "buyer"){ %>
+              <th>Buyer ID</th>
+            <% } %>
             <th>RFID</th>
             <th>Product Name</th>
-            <th>Product Quantity</th>
-            <th>Shipping State</th>
-            <th>Image</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Quantity</th>
+            <th>State</th>
+            <% if (userType != "provider"){ %>
+              <th>Edit</th>
+              <th>Delete</th>
+            <% } %>
           </tr>
           </thead>
           <tbody>
           <% for(var i = 0; i < Object.keys(itemlist).length; i++) { %>
             <tr>
+              <% if (userType != "buyer"){ %>
+                <td id="id"><%= itemlist['item' + i].id %></td>
+              <% } %>
               <td id="rfid"><%= itemlist['item' + i].rfid %></td>
               <td id="name"><%= itemlist['item' + i].name %></td>
               <td id="num"><%= itemlist['item' + i].num %></td>
               <td id="received"><%= itemlist['item' + i].received %></td>
-              <td>
-                <form action="/iot" method="POST">
-                  <input type="hidden" id="itemImg" name="itemImg" value="<%= itemlist['item' + i].picture %>">
-                  <button class="checkBtn">Show</button>
-                </form>
-              </td>
-              <td>
-                <form action="/iot/editItem" method="POST">
-                  <input type="hidden" id="itemEdit" name="itemEdit" value="<%= itemlist['item' + i].rfid %>">
-                  <button class="checkBtn">Edit</button>
-                </form>
-              </td>
-              <td>
-                <form action="/iot/deleteItem" method="POST">
-                  <input type="hidden" id="itemDel" name="itemDel" value="<%= itemlist['item' + i].rfid %>">
-                  <button class="checkBtn">Delete</button>
-                </form>
-              </td>
-              <!-- <td><button class="btn btn-primary" onclick="editItem(<%= i %>, <%= itemlist['item' + i].rfid %>)">수정</button></td> -->
-              <!-- <td><button class="btn btn-primary" onclick="deleteItem(<%= i %>, <%= itemlist['item' + i].rfid %>)">삭제</button></td> -->
+              <% if (userType != "provider"){ %>
+                <td>
+                  <form action="/iot/editItem" method="POST">
+                    <input type="hidden" id="itemEdit" name="itemEdit" value="<%= itemlist['item' + i].rfid %>">
+                    <button class="checkBtn">Edit</button>
+                  </form>
+                </td>
+                <td>
+                  <form action="/iot/deleteItem" method="POST">
+                    <input type="hidden" id="itemDel" name="itemDel" value="<%= itemlist['item' + i].rfid %>">
+                    <button class="checkBtn">Delete</button>
+                  </form>
+                </td>
+              <% } %>
             </tr>
           <% } %>
           </tbody>
