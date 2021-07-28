@@ -48,17 +48,11 @@ module.exports = function (app, db) {
 
     router.get('/editItem', (req, res, next) => {res.render('Iot/editItem') });
 
-    router.post('/editItem', (req, res, next) => {
-        res.render('Iot/editItem', {'rfid': req.body.itemEdit});
-    });
+    router.post('/editItem', (req, res, next) => {res.render('Iot/editItem', {'rfid': req.body.itemEdit}); });
 
-    router.post('/editSave', (req, res, next) => {
-        iot_editItem.editItem(req, res, db)
-    });
+    router.post('/editSave', (req, res, next) => {iot_editItem.editItem(req, res, db)});
 
-    router.post('/deleteItem', (req, res, next) => {
-        iot_warehousing.delItem(req, res, db)
-    });
+    router.post('/deleteItem', (req, res, next) => {iot_warehousing.delItem(req, res, db) });
 
     return router;
 };

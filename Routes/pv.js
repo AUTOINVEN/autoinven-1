@@ -36,6 +36,15 @@ module.exports = function(app,db){
     router.post('/MyWarehouse/IoT/Ans',function(req,res,next){
         pv_myWH.ReqIoTAns(req,res,app,db);
     });
+
+    router.get('/WHinfo',function(req,res,next){
+        res.render('User/Provider/pv_WHinfo',{'app':app,'session':req.session,'db':db});
+    });
+
+    router.post('/WHinfo',function(req,res,next){
+        pv_WHinfo.WHinfo(req,res,app,db);
+    });
+
     router.get('/MyWarehouse',function(req,res,next){
         var enrollItems = pv_myWH.RequestForEnroll(req,res,app,db);
         var requestItems = pv_myWH.RequestForBuy(req,res,app,db);
