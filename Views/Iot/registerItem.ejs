@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en" dir="ltr">
 
 <head>
   <%- include('../head') %>
   <meta charset="utf-8">
-  <title>물품 등록</title>
+  <title>Product Registration</title>
   <link rel="stylesheet" href="/CSS/iot.css"/>
 </head>
 
@@ -13,7 +13,7 @@
     <%- include('nav') %>
     <div class="container">
       <div class="container mb-3">
-        <h2 class="mb-3">입고 물품</h2>
+        <h2 class="mb-3">Register Product</h2>
       </div>
       <form action="registerItem" method="POST">
         <div class="table-responsive">
@@ -40,9 +40,9 @@
             </tbody>
           </table>
         </div>
-        <button class="btn btn-primary two_btn">등록</button>
+        <button class="btn btn-primary two_btn">Save</button>
       </form>
-      <button class="btn btn-primary two_btn" onclick="location.href='warehousing'">취소</button>
+      <button class="btn btn-primary two_btn" onclick="location.href='warehousing'">Back</button>
     </div>
   </div>
 </body>

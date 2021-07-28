@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en" dir="ltr">
 
 <head>
   <%- include('../head') %>
   <meta charset="utf-8">
-  <title>물품 입고 확인 및 등록</title>
+  <title>Product Register & Confirmation</title>
   <link rel="stylesheet" href="/CSS/iot.css"/>
 </head>
 
@@ -14,17 +14,17 @@
 
     <div class="container">
       <% if (userType != "provider"){ %>
-        <button class="btn btn-primary two_btn_r" onclick="location.href='registerItem'">물품 등록</button>
+        <button class="btn btn-primary two_btn_r" onclick="location.href='registerItem'">Register Product</button>
       <% } %>
       <!-- 물품 등록 연결되면 삭제 -->
       <form action="randomTest" method="GET">
-        <button class="btn btn-primary two_btn_r">랜덤 등록 테스트</button>
+        <button class="btn btn-primary two_btn_r">Random Register</button>
       </form>
     </div>
 
     <div class="container">
       <div class="container mb-3">
-        <h2 class="mb-3">물품 입고 확인</h2>
+        <h2 class="mb-3">Product Register Confirmation</h2>
       </div>
       <div class="table-responsive">
         <table class="board-table table">
@@ -57,13 +57,13 @@
                 <td>
                   <form action="/iot/editItem" method="POST">
                     <input type="hidden" id="itemEdit" name="itemEdit" value="<%= itemlist['item' + i].rfid %>">
-                    <button class="checkBtn">수정</button>
+                    <button class="checkBtn">Edit</button>
                   </form>
                 </td>
                 <td>
                   <form action="/iot/deleteItem" method="POST">
                     <input type="hidden" id="itemDel" name="itemDel" value="<%= itemlist['item' + i].rfid %>">
-                    <button class="checkBtn">삭제</button>
+                    <button class="checkBtn">Delete</button>
                   </form>
                 </td>
               <% } %>

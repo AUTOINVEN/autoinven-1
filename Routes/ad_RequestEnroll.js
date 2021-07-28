@@ -46,9 +46,9 @@ exports.withAnswer = function (req, res, app, db) {
                             res.send(false);
                             connection.end();
                         } else {
-                            connection.query('INSERT INTO EnrolledWarehouse SET ?', {'warehouseID': info.warehouseID, 'logID': 11111111}, function (error, results, fields) {
+                            connection.query('UPDATE Warehouse SET enroll=? WHERE warehouseID=?', ['Y', info.warehouseID], function (error, results, fields) {
                                 if (error) {
-                                    console.log('Error at Insert EnrollWarehouse' + error);
+                                    console.log('Error at Update Warehouse' + error);
                                     res.send(false);
                                     connection.end();
                                 } else {

@@ -69,6 +69,7 @@ exports.Mywarehouse = function (req, res, app, db) {
                 infoComment: results[step].infoComment,
                 etcComment: results[step].etcComment,
                 iotStat: results[step].iotStat,
+                enroll: results[step].enroll,
                 memberList: idList
             };
         }

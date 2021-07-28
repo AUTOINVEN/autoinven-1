@@ -8,11 +8,6 @@
   <%- include('../../nav_Bar') %>
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
-    <div class="content-center">
-      <div class="container">
-        <h1 class="title">This is our great company.</h1>
-      </div>
-    </div>
   </div>
   <div>
     <div class="container mb-3">
@@ -31,10 +26,10 @@
         <p style="font-size:30px">Submit Lists</p>
         <thead class="thead-dark">
         <tr>
-          <th>warehouseID</th>
-          <th>Status</th>
-          <th>Total amount($)</th>
-          <th>period</th>
+          <th>WarehouseID</th>
+          <th>State</th>
+          <th>Total Fee($)</th>
+          <th>Rental Period</th>
           <th></th>
         </tr>
         </thead>
@@ -43,7 +38,7 @@
           <% if(items['item' + i].reqType == "ReqByBuyer" || items['item' + i].reqType == "ReqByAdmin"){ %>
             <tr class="table-warning">
               <td><%= items['item' + i].warehouseID %></td>
-              <td>Pending approval</td>
+              <td>Pending Approval</td>
               <td><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td style="float:right; padding:0px 10px 0px 0px;">
@@ -84,11 +79,11 @@
         <p style="font-size:30px">Payment Lists</p>
         <thead class="thead-dark">
         <tr>
-          <th>Check list</th>
-          <th>warehouseID</th>
-          <th>status</th>
-          <th>Total amounts</th>
-          <th>period</th>
+          <th>Check List</th>
+          <th>Warehouse ID</th>
+          <th>State</th>
+          <th>Total Amount</th>
+          <th>Period</th>
           <th></th>
         </tr>
         </thead>
@@ -105,7 +100,7 @@
                 <input type="checkbox" name="paymentCheck" value="<%= items['item' + i].amounts %>" onclick='getCheckboxValue(event)'/>
               </td>
               <td><%= items['item' + i].warehouseID %></td>
-              <td>Waiting for payment</td>
+              <td>Waiting for Payment</td>
               <td id="amounts<%= i %>"><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td style="float:right; padding:0px 7px 0px 0px;">

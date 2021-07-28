@@ -1,6 +1,6 @@
 exports.findWH = function (req, res, app, db) {
     var items = {};
-    let results = db.query('SELECT * from Warehouse where warehouseID IN (SELECT warehouseID from EnrolledWarehouse)');
+    let results = db.query(`SELECT * from Warehouse where enroll='Y'`);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
@@ -17,7 +17,8 @@ exports.findWH = function (req, res, app, db) {
                 infoComment: results[step].infoComment,
                 etcComment: results[step].etcComment,
                 zipcode: results[step].zipcode,
-                iotStat: results[step].iotStat
+                iotStat: results[step].iotStat,
+                enroll: results[step].enroll
             };
         }
     }
@@ -53,7 +54,6 @@ exports.inquireWH = function (req, res, app, db) {
         buyerID: req.session['memberID'],
         warehouseID: parseInt(req.body.warehouseID),
         area: parseInt(req.body.area),
-        logID: 1,
         startDate: req.body.startDate,
         endDate: req.body.endDate
     };
@@ -74,13 +74,9 @@ exports.RequestWH = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     let reqResult = db.query('SELECT * from RequestForBuy ORDER BY reqID DESC');
-    let logResult = db.query('SELECT * from Log ORDER BY logID DESC')
     var reqno = 1;
-    var logno = 1;
     if (reqResult.length > 0)
         reqno = reqResult[0].reqID + 1;
-    if (logResult.length > 0)
-        logno = logResult[0].logID + 1;
 
     var reqBuy = {
         reqID: reqno,
@@ -89,7 +85,6 @@ exports.RequestWH = function (req, res, app, db) {
         warehouseID: req.body.warehouseID,
         buyerID: req.body.buyerID,
         area: req.body.area,
-        logID: logno
     };
     connection.query('INSERT INTO RequestForBuy SET ?', reqBuy, function (error, results, fields) {
         if (error) {
@@ -97,7 +92,6 @@ exports.RequestWH = function (req, res, app, db) {
             res.send(false);
         } else {
             var logitem = {
-                logID: logno,
                 logType: "RequestBuy_byBuyer",
                 logDate: CURRENT_TIMESTAMP(),
                 logComment: `${req.body.buyerID}가 ${req.body.warehouseID}를 창고공유요청함`
