@@ -1,18 +1,18 @@
 exports.initWarehouse = function (req, res, db) {
     var items = {};
-    var id = req.session['memberID'];
-    var wid = req.session['warehouseID'];
-    var row = db.query(`SELECT memberID FROM Provider WHERE warehouseID=?;`, [wid]);
+    var type = req.session['type']
+    var wid = req.session['warehouseID']
+    var id = req.session['memberID']
 
-    if (!row) console.log('err: check user');
-    else if (row[0].memberID == id) {	//Provider인 경우. 이후 admin 처리 할 때 여기에 추가하면 됨
+    if (type == "provider" || type == "admin") {
         var results = db.query("SELECT * FROM iot WHERE warehouseID=?;", [wid]);
         if (!results) console.log('err: warehousing init');
         else {
             if (results.length > 0) {
                 for (var step = 0; step < results.length; step++) {
-                    results[step].received = results[step].received ? '입고완료' : '미입고';
+                    results[step].received = results[step].received ? 'Arrived' : 'Not arrived';
                     items[`item${step}`] = {
+                        id: results[step].id,
                         rfid: results[step].rfid,
                         name: results[step].name,
                         num: results[step].num,
@@ -28,8 +28,9 @@ exports.initWarehouse = function (req, res, db) {
         else {
             if (results.length > 0) {
                 for (var step = 0; step < results.length; step++) {
-                    results[step].received = results[step].received ? '입고완료' : '미입고';
+                    results[step].received = results[step].received ? 'Arrived' : 'Not arrived';
                     items[`item${step}`] = {
+                        id: results[step].id,
                         rfid: results[step].rfid,
                         name: results[step].name,
                         num: results[step].num,
