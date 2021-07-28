@@ -17,7 +17,8 @@ exports.EnrollWH = function (req, res, app, db) {
         price: req.body.price,
         infoComment: req.body.infoComment,
         etcComment: req.body.etcComment,
-        iotStat: "N"
+        iotStat: "N",
+        enroll: "N"
     }
     //예외처리를 위한 정규식
     if (onlyNum.test(item.landArea) == false) {
@@ -34,7 +35,6 @@ exports.EnrollWH = function (req, res, app, db) {
     } else {
         let reqResult = db.query('SELECT * from RequestForEnroll ORDER BY reqID DESC');
         var reqno = 1;
-        var logno = 1;
         if (reqResult.length > 0) reqno = reqResult[0].reqID + 1;
         connection.query('INSERT INTO Warehouse SET ?', item, function (error, results, fields) {
             if (error) {
@@ -68,8 +68,7 @@ exports.EnrollWH = function (req, res, app, db) {
                                             "reqDate": new Date(),
                                             "reqType": "ReqEnrollPV",
                                             "providerID": req.session['memberID'],
-                                            "warehouseID": warehouseID,
-                                            "logID": logno
+                                            "warehouseID": warehouseID
                                         };
                                         connection.query('INSERT INTO RequestForEnroll SET ?', reqItem, function (error, results, fields) {
                                             if (error) {

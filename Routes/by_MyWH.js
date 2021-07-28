@@ -46,7 +46,8 @@ exports.Mywarehouse = function (req, res, app, db) {
                 infoComment: results[step].infoComment,
                 etcComment: results[step].etcComment,
                 zipcode: results[step].zipcode,
-                iotStat: results[step].iotStat
+                iotStat: results[step].iotStat,
+                enroll: results[step].enroll
             };
         }
     }
@@ -118,8 +119,7 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                                 startDate: req.body.startDate,
                                 endDate: req.body.endDate,
                                 area: info['area'],
-                                price: price[0].price * info['area'],  //추후 변경필요, 현재 8로 고정된 가격만 가능. -2020-12-19- 수정완료
-                                logID: 1
+                                price: price[0].price * info['area']  //추후 변경필요, 현재 8로 고정된 가격만 가능. -2020-12-19- 수정완료
                             };
                             connection.query(`INSERT INTO Contract SET ?`, contract, function (error, results, fields) {
                                 if (error) {
