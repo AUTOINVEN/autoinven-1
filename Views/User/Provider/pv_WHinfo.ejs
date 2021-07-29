@@ -15,7 +15,30 @@
     </div>
   </div>
   <div class="container mb-3">
-    <h2 class="mb-3">Warehouse Usag List</h2>
+    <h2 class="mb-3">Warehouse Name
+      <!--<form>-->
+        <button class="btn btn-primary">IoT</button>
+      <!--</form>-->
+    </h2>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Warehouse Address</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="address" name="address" placeholder="Address" readonly></div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">LandArea</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="landArea" name="landArea" placeholder="Numbers Only"></div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">FloorArea</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="floorArea" name="floorArea" placeholder="Numbers Only"></div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Price Per Area</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="price" name="price" placeholder="ex)(100$)"></div>
+      </div>
+  </div>
+  <div class="container mb-3">
+    <h2 class="mb-3">Usag List</h2>
     <table class="board-table table " id="myWH">
       <thead class="thead-dark">
       <tr>
