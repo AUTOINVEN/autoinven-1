@@ -2,6 +2,9 @@
 <html lang="en" dir="ltr">
 <head>
   <%- include('../../head') %>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIi10uF1LmXxxNyYIc6OkVFt_G0vO-Cz8&callback=initMap"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 </head>
 
 <body>
@@ -81,139 +84,5 @@
   </div>
   <div class="overlay"></div>
 </body>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIi10uF1LmXxxNyYIc6OkVFt_G0vO-Cz8&callback=initMap"></script>
-<script>
-  var map;
-  var i = 0;
-  var markers = [];
-
-  function createImage(objImageInfo) {
-    var strDOM = "";
-    for (image in objImageInfo) {
-      strDOM += `<div class  = "image_panel">`;
-      strDOM += `<img src="${objImageInfo[image]["url"]}">`;
-      strDOM += `</div>`
-    }
-    document.getElementById("image_container").innerHTML = strDOM;
-  }
-
-  function initMap() {
-    var daegu = {lat: 35.87222, lng: 128.60250};
-    var items = JSON.parse(document.getElementById("items").innerText);
-    map = new google.maps.Map(
-      document.getElementById('map'), {
-        zoom: 12,
-        center: daegu
-      });
-    for (key in items) {
-      markers[i] = new google.maps.Marker({
-        position: {lat: items[key].latitude, lng: items[key].longitude},
-        map: map,
-      });
-      markers[i].addListener('click', function () {
-        var k = 'item' + markers.indexOf(this);
-        $.ajax({
-          url: '/Buyer/FindWH/FindImage',
-          type: 'POST',
-          data: {'warehouseID': items[k].warehouseID},
-          dataType: 'json',
-          success: function (data) {
-            createImage(data)
-          }
-        })
-        map.setCenter(this.getPosition());
-        $("#whID").html(items[k]['warehouseID']);
-        $("#whName").html(items[k]['warehouseName']);
-        $("#whAddress").html(items[k]['address']);
-        $("#whFloorArea").html(items[k]['floorArea']);
-        $("#whUseableArea").html(items[k]['useableArea']);
-        $("#whPrice").html(items[k]['price']);
-        $("#whInfoComment").html(items[k]['infoComment']);
-      });
-      i++;
-    }
-  }
-
-  $('#bu').click(function () {
-    let useableArea = $('#whUseableArea').val()
-    let wantArea = $('#area').val()
-    if (useableArea > wantArea) {
-      Swal.fire({
-        title: 'Error',
-        text: 'You have submitted for an area larger than the shared shared area. Please submit again!',
-        icon: 'error'
-      })
-      return;
-    }
-    $.ajax({
-      url: '/Buyer/FindWH/Inquire',
-      dataType: 'json',
-      type: 'POST',
-      data: {
-        warehouseID: document.getElementById("whID").innerText,
-        area: $('#area').val(),
-        startDate: document.getElementById("startDate").innerText,
-        endDate: document.getElementById("endDate").innerText
-      },
-      success: function (data) {
-        if (data == true) {
-          Swal.fire({
-            title: 'Success',
-            text: 'Your warehouse sharing is submitted.',
-            icon: 'success'
-          }).then(() => location.href = "/Buyer/MyWarehouse");
-        } else {
-          Swal.fire({
-            title: 'Error',
-            text: 'An error has occurred.',
-            icon: 'error'
-          }).then(() => location.href = "/Buyer/FindWH");
-        }
-      }
-    });
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-<script type="text/javascript">
-  (function ($) {
-    var temp = '';
-    var year;
-    var temp2 = '';
-    var newdate;
-    $(document).ready(function () {
-      $("#datetimepicker1").datetimepicker({
-        format: 'L'
-      });
-      $('#datetimepicker2').datetimepicker({
-        format: 'L',
-        useCurrent: false
-      });
-      $("#datetimepicker1").on("change.datetimepicker", function (e) {
-        $('#datetimepicker2').datetimepicker('minDate', e.date);
-        temp = document.getElementById('sDate').value; //01/22/2020
-        newdate = temp.split("/").reverse().join("-"); //2020-22-01
-        year = newdate.substring(0, 5);
-        temp2 = newdate.substring(5, 10);  // 22-01
-        temp = temp2.split("-").reverse().join("-"); //01-22
-        newdate = year + temp;
-        //newdate = newdate.split("/").reverse().join("-");
-        document.getElementById('startDate').innerText = newdate;
-      });
-      $("#datetimepicker2").on("change.datetimepicker", function (e) {
-        $('#datetimepicker1').datetimepicker('maxDate', e.date);
-        temp = document.getElementById('eDate').value;
-        newdate = temp.split("/").reverse().join("-"); //2020-22-01
-        year = newdate.substring(0, 5);
-        temp2 = newdate.substring(5, 10);  // 22-01
-        temp = temp2.split("-").reverse().join("-"); //01-22
-        newdate = year + temp;
-        //newdate = newdate.split("/").reverse().join("-");
-        document.getElementById('endDate').innerText = newdate;
-      });
-    });
-  })(jQuery);
-</script>
+<script type="text/javascript" src="/JS/findWH.js"></script>
 </html>
