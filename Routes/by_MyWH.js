@@ -101,7 +101,6 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                         warehouseID: req.body.whID,
                         area: req.body.area
                     };
-                    connection.query(`UPDATE Warehouse SET useableArea=useableArea-${info.area} WHERE warehouseID=${info.warehouseID}`);
                     connection.query(`INSERT INTO Buyer SET ?`, info, function (error, results, fields) {
                         if (error) {
                             console.log(error);
