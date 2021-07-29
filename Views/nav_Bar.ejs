@@ -58,12 +58,25 @@
           <% } else { %>
             <% if(session.type == 'buyer' || session.type == 'provider') { %>
               <% if(session.type == 'buyer') { %>
-                <li class="nav-item"><a href="/Buyer/MyWarehouse" class="nav-link js-scroll-trigger">MyWarehouse</a></li>
+                <div class="x991">
+                  <li class="nav-item" id="resizemenu">
+                    <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:transparent;">My Warehouse</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="accountMenu">
+                        <a class="dropdown-item" href="/Buyer/UsageStatus" id="account_ctrl">Usage Status</a>
+                        <a class="dropdown-item" href="/Buyer/RequestStatus">Request Status</a>
+                      </div>
+                    </div>
+                  </li>
+                </div>
+                <div class="x990">
+                  <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Buyer/UsageStatus">Usage Status</a></li>
+                  <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Buyer/RequestStatus">Request Status</a></li>
+                </div>
               <% } %>
               <% if(session.type == 'provider') { %>
-                <li class="nav-item"><a href="/Provider/MyWarehouse" class="nav-link js-scroll-trigger">MyWarehouse</a></li>
+                <li class="nav-item"><a href="/Provider/MyWarehouse" class="nav-link js-scroll-trigger">My Warehouse</a></li>
               <% } %>
-              <li class="nav-item"><a href="/User/Show" class="nav-link js-scroll-trigger">MyInfo</a></li>
+              <li class="nav-item"><a href="/User/Show" class="nav-link js-scroll-trigger">My Info</a></li>
               <li class="nav-item"><a href="/User/Help" class="nav-link js-scroll-trigger">Help</a></li>
             <% } %>
             <li class="nav-item"><a href="/User/Logout" class="nav-link js-scroll-trigger">Logout</a></li>
