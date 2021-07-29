@@ -129,15 +129,6 @@
             </td>
           </tr>
         <% } %>
-        <% if(requestItems['item' + i].reqType == "ReqPayAcpt"){ %>
-          <tr class="table-success">
-            <td><%= requestItems['item' + i].warehouseID %></td>
-            <td>Approved</td>
-            <td style="float:right; padding:0px 10px 0px 0px;">
-<!--              <button class="btn btn-sm" onclick="pvClick(1, <%= i %>, 2)" type="button">Confirm</button>-->
-            </td>
-          </tr>
-        <% } %>
         <% if(requestItems['item' + i].reqType == "Rejected"){ %>
           <tr class="table-danger">
             <td><%= requestItems['item' + i].warehouseID %></td>

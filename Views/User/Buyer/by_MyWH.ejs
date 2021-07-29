@@ -46,17 +46,6 @@
               </td>
             </tr>
           <% } %>
-          <% if(items['item' + i].reqType == "ReqPayAcpt"){ %>
-        <tbody>
-        <tr class="table-success">
-          <td><%= items['item' + i].warehouseID %></td>
-          <td>Approved</td>
-          <td><%= items['item' + i].amounts %></td>
-          <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-          <td></td>
-        </tr>
-        </tbody>
-        <% } %>
         <% if(items['item' + i].reqType == "Rejected"){ %>
         <tbody>
         <tr class="table-danger">

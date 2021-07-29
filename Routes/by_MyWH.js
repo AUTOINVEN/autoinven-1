@@ -87,33 +87,27 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
         }
     } else if (answer === "Accept") {
         if (reqType === "ReqPayByBuyer") {
-            var sql = `SELECT price FROM Warehouse WHERE warehouseID='${req.body.whID}'`;
-            let price = db.query(sql);
-            connection.query(`UPDATE RequestForBuy SET reqType='ReqPayAcpt' WHERE reqID=${reqID}`, function (error, results, fields) {
+            let price = db.query(`SELECT price FROM Warehouse WHERE warehouseID='${req.body.whID}'`);
+            connection.query(`DELETE FROM RequestForBuy WHERE reqID=${reqID}`, function (error, results, fields) {
                 if (error) {
                     console.log(error);
                     res.send(false);
                     connection.end();
                 } else {
                     var info = {
-                        reqID: req.body.reqID,
+                        reqID: reqID,
                         memberID: req.session['memberID'],
                         warehouseID: req.body.whID,
                         area: req.body.area
                     };
-                    connection.query(`UPDATE Warehouse SET useableArea=useableArea-${info.area} WHERE warehouseID=${info.warehouseID}`);
                     connection.query(`INSERT INTO Buyer SET ?`, info, function (error, results, fields) {
                         if (error) {
                             console.log(error);
                             res.send(false);
                             connection.end()
                         } else {
-                            let result = db.query('select * from Contract ORDER BY contractID DESC');
-                            var conno = 1;
-                            if (result.length > 0)
-                                conno = result[0].contractID + 1;  //2020-12-29  거래ID 동적 처리.
                             var contract = {
-                                contractID: conno,
+                                reqID: reqID,
                                 buyerID: info['memberID'],
                                 warehouseID: info['warehouseID'],
                                 startDate: req.body.startDate,
