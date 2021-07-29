@@ -87,9 +87,8 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
         }
     } else if (answer === "Accept") {
         if (reqType === "ReqPayByBuyer") {
-            var sql = `SELECT price FROM Warehouse WHERE warehouseID='${req.body.whID}'`;
-            let price = db.query(sql);
-            connection.query(`UPDATE RequestForBuy SET reqType='ReqPayAcpt' WHERE reqID=${reqID}`, function (error, results, fields) {
+            let price = db.query(`SELECT price FROM Warehouse WHERE warehouseID='${req.body.whID}'`);
+            connection.query(`DELETE FROM RequestForBuy WHERE reqID=${reqID}`, function (error, results, fields) {
                 if (error) {
                     console.log(error);
                     res.send(false);

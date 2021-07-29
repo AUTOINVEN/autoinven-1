@@ -171,17 +171,5 @@ exports.ReqBuyAns = function (req, res, app, db) {
                 connection.end();
             }
         });
-    // } else if (answer == "Confirm") {
-    //     if (reqType == "ReqPayAcpt" || reqType == "RejByBuyer") {
-    //         connection.query(`DELETE FROM RequestForBuy WHERE reqID =${reqID}`, function (error, results, fields) {
-    //             if (error) {
-    //                 res.send(false);
-    //                 connection.end();
-    //             } else {
-    //                 res.send(true);
-    //                 connection.end();
-    //             }
-    //         });
-    //     }
     }
 }
