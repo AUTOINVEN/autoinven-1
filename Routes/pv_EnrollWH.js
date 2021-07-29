@@ -6,6 +6,8 @@ exports.EnrollWH = function (req, res, app, db) {
     var engishDigit = /^[a-zA-Z0-9]+$/;  // 영어 대소문자 및 숫자 받는 정규식
     var item = {
         warehouseName: req.body.warehouseName,
+        warehouseTEL: req.body.warehouseTel,
+        warehouseEmail: req.body.warehouseEmail,
         enrolledDate: new Date(),
         zipcode: req.body.zipcode,
         address: req.body.address,
