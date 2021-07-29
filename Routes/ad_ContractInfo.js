@@ -5,7 +5,7 @@ exports.showContarctInfo = function (req, res, app, db) {
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
-                contractID: results[step].contractID,
+                reqID: results[step].reqID,
                 buyerID: results[step].buyerID,
                 warehouseID: results[step].warehouseID,
                 amounts: results[step].price,

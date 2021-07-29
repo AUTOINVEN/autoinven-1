@@ -19,7 +19,7 @@
         <% for(var i = 0; i < Object.keys(items).length; i++) { %>
           <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
           <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
-          <p id="contractID<%= i %>" style="display: none"><%= items['item' + i].contractID %></p>
+          <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
           <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
           <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
           <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
@@ -32,8 +32,8 @@
           <table class="table table-striped ">
             <thead class="thead-dark">
             <tr class="d-flex">
+              <th class="col-1">Contract No</th>
               <th class="col-1">Warehouse ID</th>
-              <th class="col-1">Contract Num</th>
               <th class="col-1">Rental Fee($)</th>
               <th class="col-3">Rental Period</th>
               <th class="col-1">Rental Area(m^2)</th>
@@ -48,8 +48,8 @@
             <tbody>
             <% for(var i = 0; i < Object.keys(items).length; i++) { %>
               <tr class="d-flex">
+                <td class="col-1"><%= items['item' + i].reqID %></td>
                 <td class="col-1"><%= items['item' + i].warehouseID %></td>
-                <td class="col-1"><%= items['item' + i].contractID %></td>
                 <td class="col-1"><%= items['item' + i].amounts %></td>
                 <td class="col-3"><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
                 <td class="col-1"><%= items['item' + i].area %></td>

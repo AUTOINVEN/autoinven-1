@@ -96,7 +96,7 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                     connection.end();
                 } else {
                     var info = {
-                        reqID: req.body.reqID,
+                        reqID: reqID,
                         memberID: req.session['memberID'],
                         warehouseID: req.body.whID,
                         area: req.body.area
@@ -107,12 +107,8 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                             res.send(false);
                             connection.end()
                         } else {
-                            let result = db.query('select * from Contract ORDER BY contractID DESC');
-                            var conno = 1;
-                            if (result.length > 0)
-                                conno = result[0].contractID + 1;  //2020-12-29  거래ID 동적 처리.
                             var contract = {
-                                contractID: conno,
+                                reqID: reqID,
                                 buyerID: info['memberID'],
                                 warehouseID: info['warehouseID'],
                                 startDate: req.body.startDate,
