@@ -13,13 +13,15 @@
   <div class="container mb-3">
     <p id="totalMoney" style="display: none">0</p>
     <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-      <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
       <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
       <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
+      <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
+      <p id="whName<%= i %>" style="display: none"><%= items['item' + i].warehouseName %></p>
       <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
       <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
       <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
       <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
+      <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
     <% } %>
     <table id="t1" class="board-table table">
       <p style="font-size:30px">Warehouse Usage</p>
@@ -43,8 +45,8 @@
             <td><%= items['item' + i].warehouseID %></td>
             <td><%= items['item' + i].warehouseName %></td>
             <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+            <td><%= items['item' + i].area %></td>
             <td><%= items['item' + i].amounts %></td>
-            <td><%= items['item' + i].price %></td>
             <td>
               <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
             </td>

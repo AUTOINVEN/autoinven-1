@@ -118,7 +118,7 @@ $(function () {
                     Swal.fire({
                         title: 'Submitted',
                         icon: 'success'
-                    }).then(() => location.href = "/Buyer/MyWarehouse");
+                    }).then(() => location.href = "/Buyer/RequestStatus");
                 } else {
                     Swal.fire({
                         title: 'Error',

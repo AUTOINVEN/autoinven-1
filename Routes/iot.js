@@ -14,7 +14,7 @@ module.exports = function (app, db) {
         var wid = req.session['warehouseID'];
         var hostIndex = (req.protocol + '://' + req.get('host')).length;
         var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
-        const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem', '/iot/editsave'];
+        const refererPaths = ['/provider/mywarehouse', '/buyer/usagestatus', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem', '/iot/editsave'];
 
         if (!id) res.render('Alert/needLogin');
         else if (req.path === '/' && req.method === 'POST') return next();
