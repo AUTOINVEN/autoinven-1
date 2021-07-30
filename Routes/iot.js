@@ -3,6 +3,7 @@ module.exports = function (app, db) {
     const express = require('express');
     const router = express.Router();
 
+    const iot_monitoring = require('./iot_monitoring');
     const iot_warehousing = require('./iot_warehousing');
     const iot_registerItem = require('./iot_registerItem');
     const iot_editItem = require('./iot_editItem');
@@ -24,11 +25,11 @@ module.exports = function (app, db) {
     };
     router.use(check);
 
-    router.get('/', (req, res, next) => { res.render('Iot/monitoring') });
+    router.get('/', (req, res, next) => { iot_monitoring.init(req, res, db) });
 
     router.post('/', (req, res, next) => { iot_mypage.sessionCheck(req, res, db) });
 
-    router.get('/monitoring', (req, res, next) => { res.render('Iot/monitoring') });
+    router.get('/monitoring', (req, res, next) => { iot_monitoring.init(req, res, db) });
 
     router.get('/warehousing', (req, res, next) => {
         var itemlist = iot_warehousing.initWarehouse(req, res, db);
