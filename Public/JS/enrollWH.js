@@ -7,6 +7,8 @@
             evt.preventDefault();
 
             var whName = $("#warehouseName").val();
+            var whEmail = $("#warehouseEmail").val();
+            var whTel = $("#warehouseTel").val();
             var address = $("#address").val();
             var landArea = $("#landArea").val();
             var floorArea = $("#floorArea").val();
@@ -21,6 +23,22 @@
                     icon: 'error',
                     title: 'Fail',
                     text: 'You have to insert your warehouse name'
+                })
+            }
+            //check wemailis not null
+            else if (!whEmail) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Fail',
+                    text: 'You have to insert your warehouse contact email'
+                })
+            }
+            //check wphone is not null
+            else if (!whTel) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Fail',
+                    text: 'You have to insert your warehouse contact telephone number'
                 })
             }
             //check password is not null
@@ -115,6 +133,20 @@
                                 icon: 'error',
                                 title: 'Fail',
                                 text: 'Please log in.',
+                            }).then(() => {
+                            })
+                        } else if (data == "errortype9") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Fail',
+                                text: 'Please enter the email in the correct format.',
+                            }).then(() => {
+                            })
+                        } else if (data == "errortype10") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Fail',
+                                text: 'Please enter the telephone number in the correct format.',
                             }).then(() => {
                             })
                         } else if (data == "errortype0") {

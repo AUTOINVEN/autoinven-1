@@ -44,6 +44,8 @@ function initMap() {
             $("#whAddress").html(items[k]['address']);
             $("#whFloorArea").html(items[k]['floorArea']);
             $("#whUseableArea").html(items[k]['useableArea']);
+            $("#whEmail").html(items[k]['warehouseEmail']);
+            $("#whPhone").html(items[k]['warehouseTel']);
             $("#whPrice").html(items[k]['price']);
             $("#whInfoComment").html(items[k]['infoComment']);
         });

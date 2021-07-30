@@ -6,6 +6,8 @@ exports.findWH = function (req, res, app, db) {
             items[`item${step}`] = {
                 warehouseID: results[step].warehouseID,
                 warehouseName: results[step].warehouseName,
+                warehouseEmail: results[step].warehouseEmail,
+                warehouseTel: results[step].warehouseTEL,
                 enrolledDate: results[step].enrolledDate,
                 address: results[step].address,
                 latitude: results[step].latitude,
@@ -43,12 +45,7 @@ exports.inquireWH = function (req, res, app, db) {
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
-    let reqResult = db.query('SELECT * from RequestForBuy ORDER BY reqID DESC');
-    var reqno = 1;
-    if (reqResult.length > 0)
-        reqno = reqResult[0].reqID + 1;
     var reqItem = {
-        reqID: reqno,
         reqDate: new Date(),
         reqType: "ReqByBuyer",
         buyerID: req.session['memberID'],
@@ -67,44 +64,4 @@ exports.inquireWH = function (req, res, app, db) {
             connection.end();
         }
     })
-}
-
-exports.RequestWH = function (req, res, app, db) {
-    var mysql = require('mysql');
-    var connection = mysql.createConnection(require('../Module/db').info);
-    connection.connect();
-    let reqResult = db.query('SELECT * from RequestForBuy ORDER BY reqID DESC');
-    var reqno = 1;
-    if (reqResult.length > 0)
-        reqno = reqResult[0].reqID + 1;
-
-    var reqBuy = {
-        reqID: reqno,
-        reqDate: CURRENT_TIMESTAMP(),
-        reqType: "RequestBuy_byBuyer",
-        warehouseID: req.body.warehouseID,
-        buyerID: req.body.buyerID,
-        area: req.body.area,
-    };
-    connection.query('INSERT INTO RequestForBuy SET ?', reqBuy, function (error, results, fields) {
-        if (error) {
-            console.log("error ocurred", error);
-            res.send(false);
-        } else {
-            var logitem = {
-                logType: "RequestBuy_byBuyer",
-                logDate: CURRENT_TIMESTAMP(),
-                logComment: `${req.body.buyerID}가 ${req.body.warehouseID}를 창고공유요청함`
-            }
-            connection.query('INSERT INTO Log SET ?', logitem, function (error, results, fields) {
-                if (error) {
-                    console.log("error ocurred", error);
-                    res.send(false);
-                } else {
-                    res.send(true);
-                }
-            });
-        }
-    });
-    connection.end()
 }
