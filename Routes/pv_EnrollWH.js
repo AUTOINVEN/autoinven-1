@@ -5,7 +5,7 @@ exports.EnrollWH = function (req, res, app, db) {
     var onlyNum = /^[0-9]*$/; // 숫자만 받는 정규식
     var engishDigit = /^[a-zA-Z0-9]+$/; // 영어 대소문자 및 숫자 받는 정규식
     var emailReg = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
-    var phoneReg = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+    var phoneReg = /^(01(?:0|1|[6-9])|02|0[3-9]\d{1})-(?:\d{3}|\d{4})-\d{4}$/;
     var item = {
         warehouseName: req.body.warehouseName,
         warehouseTEL: req.body.warehouseTel,
