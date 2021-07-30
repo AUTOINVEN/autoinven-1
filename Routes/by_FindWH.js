@@ -6,6 +6,8 @@ exports.findWH = function (req, res, app, db) {
             items[`item${step}`] = {
                 warehouseID: results[step].warehouseID,
                 warehouseName: results[step].warehouseName,
+                warehouseEmail: results[step].warehouseEmail,
+                warehouseTel: results[step].warehouseTEL,
                 enrolledDate: results[step].enrolledDate,
                 address: results[step].address,
                 latitude: results[step].latitude,
