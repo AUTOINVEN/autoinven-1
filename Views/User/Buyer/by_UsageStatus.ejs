@@ -11,8 +11,59 @@
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
   <div class="container mb-3">
+    <h2 style="font-size:30px">Warehouse Usage</h2>
     <table id="t1" class="board-table table">
-      <p style="font-size:30px">Warehouse Usage</p>
+      <thead class="thead-dark">
+        <tr>
+          <th>Req ID</th>
+          <th>Warehouse ID</th>
+          <th>Warehouse Name</th>
+          <th>Rental Period</th>
+          <th>Area</th>
+          <th>Price</th>
+          <th>IoT</th>
+          <th>Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+        <tr class="table-warning">
+          <td id="reqID<%= i %>"><%= items['item' + i].reqID %></td>
+          <td id="warehouseID<%= i %>"><%= items['item' + i].warehouseID %></td>
+          <td id="warehouseName<%= i %>"><%= items['item' + i].warehouseName %></td>
+          <td id="Period<%= i %>"><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+          <td id="area<%= i %>"><%= items['item' + i].area %></td>
+          <td id="totalPrice<%= i %>"><%= items['item' + i].totalPrice %></td>
+          <% if (items['item' + i].iotStat == "Y"){ %>
+            <td style="padding:6px 0;">
+              <form action="/iot" method="POST">
+                <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+              </form>
+            </td>
+          <% } else if (items['item' + i].iotStat == "W"){ %>
+            <td style="padding-top: 20px;">Pending Approval</td>
+          <% } else if (items['item' + i].iotStat == "N"){ %>
+            <td style="padding-top: 20px;">Not Currently Used</td>
+          <% } %>
+            <td style="padding:6px 0;">
+              <form action="/Buyer/UsageStatus/INFO" method="POST">
+                <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+              </form>
+            </td>
+          </td>
+        </tr>
+        <% } %>
+    </table>
+  </div>
+
+  <div class="container mb-3">
+    
+    <h2 style="font-size:30px">Previous Warehouse Usage
+      <button id="btnView" class="btn btn-primary" style=" font-size:14px; margin-left: 10px; padding: 8px 12px;">View</button>
+    </h2>
+    <table id="t2" class="board-table table">
       <thead class="thead-dark">
         <tr>
           <th>Req ID</th>
@@ -58,4 +109,19 @@
     </table>
   </div>
 </body>
+<script>
+  $(document).ready(function(){
+    $("#t2").hide();
+    $("#btnView").click(function(){
+      if( $("#btnView").html() == 'View' ) {
+        $("#btnView").html('Close');
+        $("#t2").show();
+      }
+      else {
+        $(this).html('View');
+        $("#t2").hide();
+      }
+    });
+  });
+</script>
 </html>
