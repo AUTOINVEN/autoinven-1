@@ -17,7 +17,6 @@
       <thead class="thead-dark">
         <tr>
           <th>Req ID</th>
-          <th>Buyer ID</th>
           <th>Warehouse ID</th>
           <th>Warehouse Name</th>
           <th>Rental Period</th>
@@ -31,45 +30,52 @@
         <% for(var i = 0; i < Object.keys(items).length; i++) { %>
         <tr class="table-warning">
           <td id="reqID<%= i %>"><%= items['item' + i].reqID %></td>
-          <td id="buyerID<%= i %>"><%= items['item' + i].buyerID %></td>
           <td id="warehouseID<%= i %>"><%= items['item' + i].warehouseID %></td>
           <td id="warehouseName<%= i %>"><%= items['item' + i].warehouseName %></td>
           <td id="Period<%= i %>"><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
           <td id="area<%= i %>"><%= items['item' + i].area %></td>
-          <td id="price<%= i %>"><%= items['item' + i].price %></td>
-          <td>
-            <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
-          </td>
+          <td id="totalPrice<%= i %>"><%= items['item' + i].totalPrice %></td>
+          <% if (items['item' + i].iotStat == "Y"){ %>
+            <td style="padding:6px 0;">
+              <form action="/iot" method="POST">
+                <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+              </form>
+            </td>
+          <% } else if (items['item' + i].iotStat == "W"){ %>
+            <td style="padding-top: 20px;">Pending Approval</td>
+          <% } else if (items['item' + i].iotStat == "N"){ %>
+            <td style="padding-top: 20px;">Not Currently Used</td>
+          <% } %>
           <td>
             <button id="modal_btn" class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
             <div class="black_bg"></div>
             <div class="modal_wrap">
-              <div class="modal_close">
-                <button type="button" class="btn btn-sm">Close</button>
+              <div class="modal_body">
+                Modal 창 내용
+                <div class="modal_close">
+                  <button type="button" class="btn btn-sm">Close</button>
+                </div>
               </div>
-              <div>Modal 창 내용</div>
+              
             </div>
           </td>
         </tr>
         <% } %>
     </table>
   </div>
-
-  <script>
-    window.onload = function () {
-      function onClick() {
-        document.querySelector('.modal_wrap').style.display = 'block';
-        document.querySelector('.black_bg').style.display = 'block';
-      }
-
-      function offClick() {
-        document.querySelector('.modal_wrap').style.display = 'none';
-        document.querySelector('.black_bg').style.display = 'none';
-      }
-      document.getElementById('.modal_btn').addEventListener('click', onClick);
-      document.querySelector('.modal_close').addEventListener('click', offClick);
-    };
-  </script>
 </body>
+<script>
+  window.onload = function () {
+    function onClick() {
+      document.querySelector('.modal_wrap').style.display = 'block';
+    }
 
+    function offClick() {
+      document.querySelector('.modal_wrap').style.display = 'none';
+    }
+    document.querySelector('#modal_btn').addEventListener('click', onClick);
+    document.querySelector('.modal_close').addEventListener('click', offClick);
+  };
+</script>
 </html>

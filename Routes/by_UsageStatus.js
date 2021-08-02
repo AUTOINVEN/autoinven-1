@@ -13,7 +13,8 @@ exports.ContractInfo = function (req, res, app, db) {
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
                 area: results[step].area,
-                price: results[step].price
+                price: results[step].price,
+                iotStat: results[step].iotStat,
             };
         }
     }
