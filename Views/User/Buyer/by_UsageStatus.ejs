@@ -52,7 +52,88 @@
             <div class="black_bg"></div>
             <div class="modal_wrap">
               <div class="modal_body">
-                Modal 창 내용
+                <table class="table table-bordered">
+                  <label class="pvInfoLabel">Provider Info</label>
+                  <tbody>
+                  <tr>
+                    <th class="thead-dark-vertical">Provider ID</th>
+                    <td><%= items['item' + i].providerID %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Provider Name</th>
+                    <td><%= items['item' + i].name %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Email</th>
+                    <td><%= items['item' + i].email %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Contact Number</th>
+                    <td><%= items['item' + i].contactNumber %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">National</th>
+                    <td><%= items['item' + i].national %></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <table class="table table-bordered">
+                  <label class="pvInfoLabel">Warehouse Info</label>
+                  <tbody>
+                  <tr>
+                    <th class="thead-dark-vertical">Warehouse ID</th>
+                    <td><%= items['item' + i].warehouseID %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Warehouse Name</th>
+                    <td><%= items['item' + i].warehouseName %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Address</th>
+                    <td><%= items['item' + i].address %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Zipcode</th>
+                    <td><%= items['item' + i].zipcode %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Contact Email</th>
+                    <td><%= items['item' + i].warehouseEmail %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Contact Tel</th>
+                    <td><%= items['item' + i].warehouseTEL %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Enrolled Date</th>
+                    <td><%= items['item' + i].enrolledDate %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Land Area</th>
+                    <td><%= items['item' + i].landArea %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Floor Area</th>
+                    <td><%= items['item' + i].floorArea %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Usable Area</th>
+                    <td><%= items['item' + i].landArea %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Price Per Area</th>
+                    <td><%= items['item' + i].perprice %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">Info Comment</th>
+                    <td><%= items['item' + i].perprice %></td>
+                  </tr>
+                  <tr>
+                    <th class="thead-dark-vertical">ETC</th>
+                    <td><%= items['item' + i].etcComment %></td>
+                  </tr>
+                  </tbody>
+                </table>
                 <div class="modal_close">
                   <button type="button" class="btn btn-sm">Close</button>
                 </div>
@@ -74,6 +155,7 @@
     function offClick() {
       document.querySelector('.modal_wrap').style.display = 'none';
     }
+
     document.querySelector('#modal_btn').addEventListener('click', onClick);
     document.querySelector('.modal_close').addEventListener('click', offClick);
   };

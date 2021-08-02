@@ -1,20 +1,34 @@
 exports.ContractInfo = function (req, res, app, db) {
     var items = {};
-    var sql = `select * from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + "'";
+    var sql = `select *, Contract.price as totalPrice, Warehouse.price as oriPrice from Contract, Warehouse, Provider, Member where Warehouse.warehouseID=Contract.warehouseID and Warehouse.warehouseID=Provider.warehouseID and Provider.memberID=Member.memberID and buyerID='` + req.session['memberID'] + "'";
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
-            results[step].price = results[step].price * results[step].area;
             items[`item${step}`] = {
                 reqID: results[step].reqID,
-                buyerID: results[step].buyerID,
                 warehouseID: results[step].warehouseID,
                 warehouseName: results[step].warehouseName,
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
                 area: results[step].area,
-                price: results[step].price,
+                totalPrice: results[step].totalPrice,
                 iotStat: results[step].iotStat,
+                providerID: results[step].memberID,
+                name: results[step].name,
+                email: results[step].email,
+                national: results[step].national,
+                contactNumber: results[step].contactNumber,
+                address: results[step].address,
+                zipcode: results[step].zipcode,
+                warehouseEmail: results[step].warehouseEmail,
+                warehouseTEL: results[step].warehouseTEL,
+                landArea: results[step].landArea,
+                floorArea: results[step].floorArea,
+                useableArea: results[step].useableArea,
+                enrolledDate: results[step].enrolledDate,
+                perprice: results[step].oriPrice,
+                infoComment: results[step].infoComment,
+                etcComment: results[step].etcComment,
             };
         }
     }
