@@ -13,14 +13,14 @@ module.exports = function (app, db) {
     var check = (req, res, next) => {
         var id = req.session['memberID'];
         var wid = req.session['warehouseID'];
-        var hostIndex = (req.protocol + '://' + req.get('host')).length;
-        var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
-        const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem', '/iot/editsave'];
+        // var hostIndex = (req.protocol + '://' + req.get('host')).length;
+        // var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
+        // const refererPaths = ['/provider/mywarehouse', '/buyer/usagestatus', '/admin/iottest', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem', '/iot/editsave'];
 
         if (!id) res.render('Alert/needLogin');
         else if (req.path === '/' && req.method === 'POST') return next();
         else if (!wid) res.render('Alert/cannotAccess');
-        else if (!refererPaths.some((e) => (ref === e || ref === e + '/'))) res.render('Alert/cannotAccess');
+        // else if (!refererPaths.some((e) => (ref === e || ref === e + '/'))) res.render('Alert/cannotAccess');
         else next();
     };
     router.use(check);
