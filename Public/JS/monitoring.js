@@ -142,7 +142,6 @@ $(function () {
     // GraphQL 웹소켓 통신
     var ws = $('#ws').val();
     ws = ws[-1] === '/' ? ws.substring(0, -1) : ws;
-    console.log(`ws: ${ws}`);
 
     var connection = new WebSocket(`${ws}/graphql`, 'graphql-ws');
     connection.onopen = () => {

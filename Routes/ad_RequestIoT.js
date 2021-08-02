@@ -6,7 +6,6 @@ exports.RequestForIoT = function (req, res, app, db) {
             results[step].price = results[step].price * results[step].area;
             items[`item${step}`] = {
                 warehouseID: results[step].warehouseID,
-                reqType: "ReqEnrollIoT",
                 memberID: results[step].memberID,
                 national: results[step].national,
                 address: results[step].address,
@@ -25,18 +24,16 @@ exports.withAnswer = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Approve") {
-        if (reqType == "ReqEnrollIoT") {
-            connection.query(`UPDATE Warehouse SET iotStat='Y' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
-                if (error) {
-                    console.log(error);
-                    res.send(false);
-                    connection.end();
-                } else {
-                    res.send(true);
-                    connection.end();
-                }
-            });
-        }
+        connection.query(`UPDATE Warehouse SET iotStat='Y', iotServer='${iotServer}' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send(false);
+                connection.end();
+            } else {
+                res.send(true);
+                connection.end();
+            }
+        });
     } else if (answer == "Reject") {
         connection.query(`UPDATE Warehouse SET iotStat='N' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
             if (error) {
