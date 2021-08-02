@@ -2792,14 +2792,15 @@ h1 small,
 h2,
 .h2 {
   font-size: 2.5em;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 h3,
 .h3 {
   font-size: 1.825em;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   line-height: 1.4em;
 }
 
@@ -2807,8 +2808,8 @@ h4,
 .h4 {
   font-size: 1.5em;
   line-height: 1.45em;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 h4+.category,
@@ -2822,7 +2823,8 @@ h5,
 .h5 {
   font-size: 1.3em;
   line-height: 1.4em;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 h5.category,
@@ -7301,4 +7303,9 @@ img {
 
 .ion-android-remove-circle:before {
   content: "+";
+}
+
+.mb-3,
+.my-3 {
+  margin-bottom: 2rem !important;
 }
