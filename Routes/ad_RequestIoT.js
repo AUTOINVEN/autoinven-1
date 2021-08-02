@@ -17,9 +17,9 @@ exports.RequestForIoT = function (req, res, app, db) {
 }
 
 exports.withAnswer = function (req, res, app, db) {
-    var warehouseID = req.body.warehouseID;
-    var reqType = req.body.reqType;
+    var warehouseID = req.session['warehouseID'];
     var answer = req.body.answer;
+    var iotServer = req.body.iotServer;
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
