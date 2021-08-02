@@ -47,8 +47,16 @@
           <% } else if (items['item' + i].iotStat == "N"){ %>
             <td style="padding-top: 20px;">Not Currently Used</td>
           <% } %>
-          <td>
-            <button id="modal_btn" class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+            <td style="padding:6px 0;">
+              <form action="/Buyer/UsageStatus/INFO" method="POST">
+                <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+              </form>
+            </td>
+
+
+
+            <!-- <button id="modal_btn" class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
             <div class="black_bg"></div>
             <div class="modal_wrap">
               <div class="modal_body">
@@ -139,7 +147,7 @@
                 </div>
               </div>
               
-            </div>
+            </div> -->
           </td>
         </tr>
         <% } %>

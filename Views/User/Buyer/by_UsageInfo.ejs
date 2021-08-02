@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <%- include('../../head') %>
+</head>
+
+<body>
+  <%- include('../../nav_Bar') %>
+  <div class="page-header page-header-small">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+  </div>
+
+  <div class="container mb-3">
+    <table id="t1" class="board-table table">
+      <p style="font-size:30px">INFO</p>
+      <table class="table table-bordered">
+        <label class="pvInfoLabel">Provider Info</label>
+        <tbody>
+          <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+          <tr>
+            <th class="thead-dark-vertical">Provider ID</th>
+            <td><%= items['item' + i].providerID %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Provider Name</th>
+            <td><%= items['item' + i].name %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Email</th>
+            <td><%= items['item' + i].email %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Contact Number</th>
+            <td><%= items['item' + i].contactNumber %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">National</th>
+            <td><%= items['item' + i].national %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <table class="table table-bordered">
+        <label class="pvInfoLabel">Warehouse Info</label>
+        <tbody>
+          <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+          <tr>
+            <th class="thead-dark-vertical">Warehouse ID</th>
+            <td><%= items['item' + i].warehouseID %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Warehouse Name</th>
+            <td><%= items['item' + i].warehouseName %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Address</th>
+            <td><%= items['item' + i].address %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Zipcode</th>
+            <td><%= items['item' + i].zipcode %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Contact Email</th>
+            <td><%= items['item' + i].warehouseEmail %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Contact Tel</th>
+            <td><%= items['item' + i].warehouseTEL %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Enrolled Date</th>
+            <td><%= items['item' + i].enrolledDate %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Land Area</th>
+            <td><%= items['item' + i].landArea %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Floor Area</th>
+            <td><%= items['item' + i].floorArea %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Usable Area</th>
+            <td><%= items['item' + i].landArea %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Price Per Area</th>
+            <td><%= items['item' + i].perprice %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">Info Comment</th>
+            <td><%= items['item' + i].perprice %></td>
+          </tr>
+          <tr>
+            <th class="thead-dark-vertical">ETC</th>
+            <td><%= items['item' + i].etcComment %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+  </div>
+</body>
+</html>

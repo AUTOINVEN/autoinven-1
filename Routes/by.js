@@ -4,6 +4,7 @@ module.exports = function (app, db) {
     var findWH = require('./by_FindWH');
     var requestWH = require('./by_RequestStatus');
     var usageWH = require('./by_UsageStatus');
+    var usageINFO = require('./by_UsageInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -38,6 +39,14 @@ module.exports = function (app, db) {
         var items = usageWH.ContractInfo(req, res, app, db);
         items = JSON.parse(items);
         res.render('User/Buyer/by_UsageStatus', {'app': app, 'session': req.session, 'db': db, 'items': items});
+    });
+
+    router.post('/UsageStatus/INFO', function (req, res, next) {
+        var reqID = req.body.reqID;
+        var items = usageINFO.PVWHInfo(req, res, app, db);
+        console.log(items);
+        items = JSON.parse(items);
+        res.render('User/Buyer/by_UsageINFO', {'app': app, 'session': req.session, 'db': db, 'items': items});
     });
 
     router.post('/RequestStatus/Buy/Ans', function (req, res, next) {
