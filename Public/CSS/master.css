@@ -2076,7 +2076,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .form-group.no-border.input-lg .input-group-text,
 .input-group.no-border.input-lg .input-group-text {
-  padding: 15px 0 15px 19px;
+  padding: 15px 15px 15px 19px;
 }
 
 .form-group.no-border.input-lg .form-control,
@@ -5083,7 +5083,7 @@ img {
 .login-page .card-login {
   border-radius: 0.25rem;
   padding-bottom: 0.7rem;
-  max-width: 320px;
+  max-width: 360px;
 }
 
 .login-page .card-login .btn-wd {
@@ -5101,7 +5101,7 @@ img {
 }
 
 .login-page .card-login .input-group:last-child {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .login-page .card-login.card-plain .form-control::-moz-placeholder {
@@ -5129,7 +5129,7 @@ img {
 }
 
 .login-page .card-login.card-plain .form-control {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.7);
   color: #FFFFFF;
 }
 
@@ -5150,7 +5150,7 @@ img {
 
 .login-page .card-login.card-plain .input-group-text {
   background-color: transparent;
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(160, 75, 75, 0.3);
   color: #FFFFFF;
 }
 
@@ -5162,7 +5162,7 @@ img {
 
 .login-page .card-login.card-plain .form-group.no-border .form-control,
 .login-page .card-login.card-plain .input-group.no-border .form-control {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
   color: #FFFFFF;
 }
 
@@ -5199,7 +5199,7 @@ img {
 
 .login-page .card-login.card-plain .form-group.no-border .input-group-text,
 .login-page .card-login.card-plain .input-group.no-border .input-group-text {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
   border: none;
   color: #FFFFFF;
 }
