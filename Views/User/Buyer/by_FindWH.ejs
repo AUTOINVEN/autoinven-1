@@ -12,57 +12,56 @@
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
+
   <div>
     <div class="container pt-3 mb-3">
-      <div class="container pt-3 mb-3" style="width : 50%; float: left;">
-        <div id="map" style="width:100%; height: 70vh;"></div>
+      <div class="container pt-3 mb-3" style="width:50%; float:left;">
+        <div id="map" style="width:100%; height:70vh;"></div>
       </div>
-      <div class="container pt-3 mb-3" style="width : 50%; height: 80vh;float:right;">
+      <div class="container pt-3 mb-3" style="width:50%; height:80vh; float:right;">
         <table class="table table-bordered">
           <div id="image_container">
           </div>
-          <!-- <div class="jumbotron text-center">
-            <h2>Warehouse details</h2>
-          </div> -->
           <tbody>
           <tr>
-            <th style="width : 20%">Warehouse Name</th>
+            <th class="thead-dark-vertical">Warehouse Name</thclass=thead-dark-vertical>
             <td id="whName"></td>
           </tr>
           <tr>
-            <th>Address</th>
+            <th class="thead-dark-vertical">Address</th>
             <td id="whAddress"></td>
           </tr>
           <tr>
-            <th>Floor Area</th>
+            <th class="thead-dark-vertical">Floor Area</th>
             <td id="whFloorArea"> m<sup>2</sup></td>
           </tr>
           <tr>
-            <th>Usable Area</th>
+            <th class="thead-dark-vertical">Usable Area</th>
             <td id="whUseableArea"> m<sup>2</sup></td>
           </tr>
           <tr>
-            <th>Price Per Area</th>
+            <th class="thead-dark-vertical">Price Per Area</th>
             <td id="whPrice"></td>
           </tr>
           <tr>
-            <th>Contact Email</th>
+            <th class="thead-dark-vertical">Contact Email</th>
             <td id="whEmail"></td>
           </tr>
           <tr>
-            <th>Contact Tel</th>
+            <th class="thead-dark-vertical">Contact Tel</th>
             <td id="whPhone"></td>
           </tr>
           <tr>
-            <th>Comment</th>
+            <th class="thead-dark-vertical">Comment</th>
             <td id=whInfoComment></td>
             <td id="whID" style="display: none"></td>
           </tr>
           </tbody>
         </table>
-        <button class="btn btn-warning btn-lg btn-block" data-toggle="collapse" data-target="#inquire">Inquire</button>
-        <div id="inquire" class="collapse">
-          Rental Area Amount<input type="text" id="area"/>
+
+        <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#inquire">Inquire</button>
+
+        <div id="inquire" class="collapse">Rental Area Amount<input type="text" id="area"/>
 
           <div class="form-group">
             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">

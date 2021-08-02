@@ -305,3 +305,9 @@ html {
   bottom: auto;
   right: 10px;
 }
+
+.thead-dark-vertical{
+  width:20%;
+  color:#fff;
+  background-color:#686b6e;
+}
