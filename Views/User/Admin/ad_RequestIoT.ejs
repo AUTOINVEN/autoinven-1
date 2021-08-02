@@ -25,14 +25,6 @@
       </div>
       <div class="container mb-3">
         <h2 class="mb-3">Submit Lists</h2>
-        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-          <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
-          <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
-          <p id="memberID<%= i %>" style="display: none"><%= items['item' + i].memberID %></p>
-          <p id="national<%= i %>" style="display: none"><%= items['item' + i].national %></p>
-          <p id="name<%= i %>" style="display: none"><%= items['item' + i].name %></p>
-          <p id="address<%= i %>" style="display: none"><%= items['item' + i].address %></p>
-        <% } %>
         <div class="table-responsive">
           <table class="board-table table ">
             <thead class="thead-dark">
@@ -48,20 +40,20 @@
             </thead>
             <tbody>
             <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-              <% if(items['item' + i].reqType == "ReqEnrollIoT"){ %>
-                <tr class="table-warning d-flex">
-                  <td class="col-1"><%= items['item' + i].warehouseID %></td>
-                  <td class="col-1">Waiting for Approval</td>
-                  <td class="col-2"><%= items['item' + i].memberID %></td>
-                  <td class="col-2"><%= items['item' + i].name %></td>
-                  <td class="col-3"><%= items['item' + i].address %></td>
-                  <td class="col-1"><%= items['item' + i].national %></td>
-                  <td class="col-2" style="float:right; padding:0px 10px 0px 0px;">
-                    <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approve</button>
-                    <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
-                  </td>
-                </tr>
-              <% } %>
+              <tr class="table-warning d-flex">
+                <td class="col-1"><%= items['item' + i].warehouseID %></td>
+                <td class="col-1">Waiting for Approval</td>
+                <td class="col-2"><%= items['item' + i].memberID %></td>
+                <td class="col-2"><%= items['item' + i].name %></td>
+                <td class="col-3"><%= items['item' + i].address %></td>
+                <td class="col-1"><%= items['item' + i].national %></td>
+                <td class="col-2" style="float:right; padding:0px 10px 0px 0px;">
+                  <form action="iotTest" method="POST">
+                    <input type="hidden" name="wid" value="<%= items['item' + i].warehouseID %>">
+                    <button class="btn btn-sm">View</button>
+                  </form>
+                </td>
+              </tr>
             <% } %>
             </tbody>
           </table>
