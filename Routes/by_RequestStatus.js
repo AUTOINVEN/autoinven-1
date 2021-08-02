@@ -21,40 +21,6 @@ exports.RequestForBuy = function (req, res, app, db) {
     return JSON.stringify(items);
 }
 
-
-exports.Mywarehouse = function (req, res, app, db) {
-    var items = {};
-    let sql = `SELECT * from Warehouse,Buyer where Warehouse.warehouseID=Buyer.warehouseID and Buyer.memberID=\'${req.session['memberID']}\'`;
-    let results = db.query(sql);
-    if (results.length > 0) {
-        for (var step = 0; step < results.length; step++) {
-            sql = `SELECT DISTINCT memberID from Provider where warehouseID=${results[step].warehouseID}`;
-            let idList = db.query(sql);
-            items[`item${step}`] = {
-                warehouseID: results[step].warehouseID,
-                warehouseName: results[step].warehouseName,
-                providerID: idList[0].memberID,
-                enrolledDate: results[step].enrolledDate,
-                address: results[step].address,
-                latitude: results[step].latitude,
-                longitude: results[step].longitude,
-                landArea: results[step].landArea,
-                floorArea: results[step].floorArea,
-                useableArea: results[step].useableArea,
-                price: results[step].price,
-                area: results[step].area,
-                infoComment: results[step].infoComment,
-                etcComment: results[step].etcComment,
-                zipcode: results[step].zipcode,
-                iotStat: results[step].iotStat,
-                enroll: results[step].enroll
-            };
-        }
-    }
-    return items;
-}
-
-
 exports.ReqBuyWithAnswer = function (req, res, app, db) {
     var reqID = req.body.reqID;
     var reqType = req.body.reqType;

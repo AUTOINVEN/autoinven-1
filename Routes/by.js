@@ -2,7 +2,8 @@ module.exports = function (app, db) {
     var express = require('express');
     var router = express.Router();
     var findWH = require('./by_FindWH');
-    var MyWH = require('./by_RequestStatus');
+    var requestWH = require('./by_RequestStatus');
+    var usageWH = require('./by_UsageStatus');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -28,19 +29,19 @@ module.exports = function (app, db) {
     });
 
     router.get('/RequestStatus', function (req, res, next) {
-        var items = MyWH.RequestForBuy(req, res, app, db);
+        var items = requestWH.RequestForBuy(req, res, app, db);
         items = JSON.parse(items);
         res.render('User/Buyer/by_RequestStatus', {'app': app, 'session': req.session, 'db': db, 'items': items});
     });
 
     router.get('/UsageStatus', function (req, res, next) {
-        var items = MyWH.RequestForBuy(req, res, app, db);
+        var items = usageWH.ContractInfo(req, res, app, db);
         items = JSON.parse(items);
         res.render('User/Buyer/by_UsageStatus', {'app': app, 'session': req.session, 'db': db, 'items': items});
     });
 
-    router.post('/MyWarehouse/Buy/Ans', function (req, res, next) {
-        MyWH.ReqBuyWithAnswer(req, res, app, db);
+    router.post('/RequestStatus/Buy/Ans', function (req, res, next) {
+        requestWH.ReqBuyWithAnswer(req, res, app, db);
     });
 
     return router;

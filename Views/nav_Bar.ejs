@@ -11,7 +11,7 @@
           <% if(session.type == 'admin') { %>
             <div class="x991">
               <li class="nav-item" id="resizemenu">
-                <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:transparent;">Management</a>
+                <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:transparent;">Management</a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="accountMenu">
                     <a class="dropdown-item" href="/Admin/RequestEnroll" id="account_ctrl">Warehouse Enroll Request</a>
                     <a class="dropdown-item" href="/Admin/RequestIoT">IoT Service Request</a>
@@ -60,7 +60,7 @@
               <% if(session.type == 'buyer') { %>
                 <div class="x991">
                   <li class="nav-item" id="resizemenu">
-                    <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:transparent;">My Warehouse</a>
+                    <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:transparent;">My Warehouse</a>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="accountMenu">
                         <a class="dropdown-item" href="/Buyer/UsageStatus" id="account_ctrl">Usage Status</a>
                         <a class="dropdown-item" href="/Buyer/RequestStatus">Request Status</a>
