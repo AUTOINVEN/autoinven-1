@@ -2239,7 +2239,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .input-group,
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -5101,7 +5101,11 @@ img {
 }
 
 .login-page .card-login .input-group:last-child {
+<<<<<<< Updated upstream
   margin-bottom: 40px;
+=======
+  margin-bottom: 20px;
+>>>>>>> Stashed changes
 }
 
 .login-page .card-login.card-plain .form-control::-moz-placeholder {
