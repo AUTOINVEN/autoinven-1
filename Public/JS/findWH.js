@@ -55,7 +55,7 @@ function initMap() {
 
 $(function () {
 
-    $('#bu').click(function () {
+    $('#btn').click(function () {
         let warehouseID = $('#whID').text();
         let useableArea = parseInt($('#whUseableArea').text());
         let wantArea = parseInt($('#area').val());
