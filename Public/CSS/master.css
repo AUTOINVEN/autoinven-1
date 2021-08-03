@@ -2822,7 +2822,7 @@ h5,
 .h5 {
   font-size: 1.3em;
   line-height: 1.4em;
-  margin-top: 20px;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
@@ -2835,7 +2835,6 @@ h6,
 .h6 {
   font-size: 0.9em;
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 p {
