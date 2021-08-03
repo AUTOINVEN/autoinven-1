@@ -46,7 +46,7 @@ module.exports = function (app, db) {
         var items = usageINFO.PVWHInfo(req, res, app, db);
         console.log(items);
         items = JSON.parse(items);
-        res.render('User/Buyer/by_UsageINFO', {'app': app, 'session': req.session, 'db': db, 'items': items});
+        res.render('User/Buyer/by_UsageInfo', {'app': app, 'session': req.session, 'db': db, 'items': items});
     });
 
     router.post('/RequestStatus/Buy/Ans', function (req, res, next) {
