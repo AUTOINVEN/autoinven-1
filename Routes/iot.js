@@ -8,19 +8,20 @@ module.exports = function (app, db) {
     const iot_registerItem = require('./iot_registerItem');
     const iot_editItem = require('./iot_editItem');
     const iot_help = require('./iot_help');
+    const iot_rfid = require('./iot_rfid');
 
     var check = (req, res, next) => {
         var id = req.session['memberID'];
-        var wid = req.session['warehouseID'];
-        // var hostIndex = (req.protocol + '://' + req.get('host')).length;
-        // var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
-        // const refererPaths = ['/provider/mywarehouse', '/buyer/usagestatus', '/admin/iottest', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', '/iot/registeritem', '/iot/statistics', '/iot/edititem', '/iot/editsave'];
-
-        if (!id) res.render('Alert/needLogin');
-        else if (req.path === '/' && req.method === 'POST') return next();
-        else if (!wid) res.render('Alert/cannotAccess');
-        // else if (!refererPaths.some((e) => (ref === e || ref === e + '/'))) res.render('Alert/cannotAccess');
-        else next();
+        if (req.path === '/rfid') {
+            if (!id) res.send('unauthorized');
+            else next();
+        } else {
+            var wid = req.session['warehouseID'];
+            if (!id) res.render('Alert/needLogin');
+            else if (req.path === '/' && req.method === 'POST') return next();
+            else if (!wid) res.render('Alert/cannotAccess');
+            else next();
+        }
     };
     router.use(check);
 
@@ -52,6 +53,8 @@ module.exports = function (app, db) {
     router.post('/editSave', (req, res, next) => {iot_editItem.editItem(req, res, db)});
 
     router.post('/deleteItem', (req, res, next) => {iot_warehousing.delItem(req, res, db) });
+
+    router.post('/rfid', (req, res, next) => { iot_rfid.receive(req, res, db) });
 
     return router;
 };
