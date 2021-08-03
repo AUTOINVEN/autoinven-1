@@ -14,9 +14,9 @@
     <h2 class="contentBoxTop mb-3">Edit</h2>
 
     <form action="/User/Edit" method="post">
-      <div class="-groformup row">
-        <label for="memberID" class="col-sm-3 col-form-label">Id</label>
-        <div class="col-sm-9">
+      <div class="form-group row">
+        <label for="memberID" class="col-sm-2 col-form-label">Id</label>
+        <div class="col-sm-3">
           <input type="text" id="memberID" name="memberID" value="<%= session.memberID %>" disabled="disabled" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
@@ -24,11 +24,10 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="password" class="col-sm-3 col-form-label">Password</label>
-        <div class="col-sm-9">
-          <div class="form-group">
-            <button type="button" class="btn btn-primary two_btn" onclick=location.href="/User/Edit/PW">Change Password</button>
-          </div>
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-2">
+          <label class="form-control btn-primary" for="change_password" style="text-align:center; display: inline-block;">Change Password</label>
+          <input type="button" class="upload-btn-hidden" id='change_password' name='change_password' onclick=location.href="/User/Edit/PW"><br>
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
           <% } %>
@@ -36,8 +35,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="type" class="col-sm-3 col-form-label">Type</label>
-        <div class="col-sm-9">
+        <label for="type" class="col-sm-2 col-form-label">Type</label>
+        <div class="col-sm-3">
           <input type="text" id="type" name="type" value="<%= session.type %>" disabled="disabled" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
@@ -46,8 +45,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">Name</label>
-        <div class="col-sm-9">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-3">
           <input type="text" id="name" name="name" value="<%= session.username %>" disabled="disabled" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
@@ -56,8 +55,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="national" class="col-sm-3 col-form-label">Nation</label>
-        <div class="col-sm-9">
+        <label for="national" class="col-sm-2 col-form-label">Nation</label>
+        <div class="col-sm-8">
           <input type="text" id="national" name="national" value="<%= session.national %>" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
@@ -66,19 +65,22 @@
       </div>
 
       <div class="form-group row">
-        <label for="email" class="col-sm-3 col-form-label">Email</label>
-        <div class="col-sm-9">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-8">
           <input type="text" id="email" name="email" value="<%= session.email %>" class="form-control">
-          <input type="button" class="btn btn-primary" id="emailCheckButton" name="emailCheckButton" value="email Check">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
           <% } %>
         </div>
+        <div class="col-sm-2">
+          <label class="form-control btn-primary" for="emailCheckButton" style="text-align:center; display: inline-block;">Check Email</label>
+          <input type="button" class="upload-btn-hidden" id='emailCheckButton' name='emailCheckButton' value="email Check"><br>
+        </div>
       </div>
 
       <div class="form-group row">
-        <label for="contactNumber" class="col-sm-3 col-form-label">Contact-Number</label>
-        <div class="col-sm-9">
+        <label for="contactNumber" class="col-sm-2 col-form-label">Contact-Number</label>
+        <div class="col-sm-8">
           <input type="text" id="contactNumber" name="contactNumber" value="<%= session.contactNumber %>" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
@@ -87,8 +89,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="address" class="col-sm-3 col-form-label">Address</label>
-        <div class="col-sm-9">
+        <label for="address" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-8">
           <input type="text" id="address" name="address" value="<%=session.address%>" class="form-control">
           <% if(locals.err){ %>
             <span class="invalid-feedback"><%= locals.err %></span>
