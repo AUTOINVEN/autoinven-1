@@ -107,28 +107,6 @@
   border-bottom: 1px solid #47748b;
 }
 
-/*#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-#sidebar ul li a:hover {
-  color: #000000;
-  background: #fff;
-}
-
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-  color: #fff;
-  background: #000000;
-}*/
-
 a[data-toggle="collapse"] {
   position: relative;
 }
@@ -5215,8 +5193,14 @@ img {
 }
 
 .login-page .link {
-  font-size: 10px;
+  font-size: 14px;
   color: #FFFFFF;
+  text-decoration: none;
+}
+
+.login-page .link:hover {
+  font-size: 15px;
+  color: #f96332;
   text-decoration: none;
 }
 
