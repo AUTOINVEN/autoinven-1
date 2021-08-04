@@ -10,6 +10,7 @@
             var whEmail = $("#warehouseEmail").val();
             var whTel = $("#warehouseTel").val();
             var address = $("#address").val();
+            var addressDetail = $("#addressDetail").val();
             var landArea = $("#landArea").val();
             var floorArea = $("#floorArea").val();
             var price = $("#price").val();
@@ -41,12 +42,20 @@
                     text: 'You have to insert your warehouse contact telephone number'
                 })
             }
-            //check password is not null
+            //check address is not null
             else if (!address) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Fail',
                     text: 'You have to insert your warehouse address'
+                })
+            }
+            //check addressDetail is not null
+            else if (!addressDetail) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Fail',
+                    text: 'You have to insert your warehouse detail address'
                 })
             }
             //check email is not null

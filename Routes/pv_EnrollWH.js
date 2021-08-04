@@ -13,6 +13,7 @@ exports.EnrollWH = function (req, res, app, db) {
         enrolledDate: new Date(),
         zipcode: req.body.zipcode,
         address: req.body.address,
+        addressDetail: req.body.addressDetail,
         latitude: req.body.lat,
         longitude: req.body.lng,
         landArea: req.body.landArea,
