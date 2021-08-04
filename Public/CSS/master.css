@@ -112,11 +112,12 @@ a[data-toggle="collapse"] {
 }
 
 .dropdown-toggle::after {
+  font-weight: 100;
   display: block;
   position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
+  top: 45%;
+  right: 17px;
+  transform: translateY(0%);
 }
 
 ul.CTAs {
