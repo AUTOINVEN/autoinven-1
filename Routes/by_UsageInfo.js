@@ -16,6 +16,7 @@ exports.PVWHInfo = function (req, res, app, db) {
                     national: results[step].national,
                     contactNumber: results[step].contactNumber,
                     address: results[step].address,
+                    addressDetail: results[step].addressDetail,
                     zipcode: results[step].zipcode,
                     warehouseEmail: results[step].warehouseEmail,
                     warehouseTEL: results[step].warehouseTEL,

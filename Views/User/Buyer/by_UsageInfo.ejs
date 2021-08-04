@@ -54,8 +54,11 @@
             <td><%= items['item' + i].warehouseName %></td>
           </tr>
           <tr>
-            <th class="thead-dark-vertical">Address</th>
+            <th rowspan="2" class="thead-dark-vertical">Address</th>
             <td><%= items['item' + i].address %></td>
+          </tr>
+          <tr>
+            <td><%= items['item' + i].addressDetail %></td>
           </tr>
           <tr>
             <th class="thead-dark-vertical">Zipcode</th>
