@@ -155,7 +155,7 @@
                                 title: 'Success',
                                 text: 'Successfully completed warehouse enrollment.',
                             }).then(() => {
-                                location.href = "/";
+                                location.href = "/Provider/MyWarehouse";
                             })
                         } else {
                             Swal.fire({
