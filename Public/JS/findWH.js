@@ -42,12 +42,24 @@ function initMap() {
             $("#whID").html(items[k]['warehouseID']);
             $("#whName").html(items[k]['warehouseName']);
             $("#whAddress").html(items[k]['address']);
-            $("#whFloorArea").html(items[k]['floorArea']);
-            $("#whUseableArea").html(items[k]['useableArea']);
+            $("#whAddressDetail").html(items[k]['addressDetail']);
+            $("#whLandArea").html(items[k]['landArea'] + " m<sup>2</sup>");
+            $("#whFloorArea").html(items[k]['floorArea'] + " m<sup>2</sup>");
+            $("#whUseableArea").html(items[k]['useableArea'] + " m<sup>2</sup>");
             $("#whEmail").html(items[k]['warehouseEmail']);
             $("#whPhone").html(items[k]['warehouseTel']);
-            $("#whPrice").html(items[k]['price']);
+            $("#whPrice").html(items[k]['price'] + " $");
+            if (items[k]['iotStat'] === 'Y') {
+                $("#whIoT").html("In Use");
+            } else if (items[k]['iotStat'] === 'w') {
+                $("#whIoT").html("Pending Approval");
+            } else if (items[k]['iotStat'] === 'N') {
+                $("#whIoT").html("Not Currently Used");
+            } else {
+                $("#whIoT").html("Error");
+            }
             $("#whInfoComment").html(items[k]['infoComment']);
+            $("#whEtcComment").html(items[k]['etcComment']);
         });
         i++;
     }
