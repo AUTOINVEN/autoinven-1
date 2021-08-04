@@ -48,7 +48,7 @@ exports.RequestForBuy = function (req, res, app, db) {
 
 exports.Mywarehouse = function (req, res, app, db) {
     var items = {};
-    let sql = `SELECT * from Warehouse,Provider where Warehouse.warehouseID=Provider.warehouseID and Provider.memberID='${req.session['memberID']}'`;
+    let sql = `SELECT * from Warehouse,Provider where Warehouse.warehouseID=Provider.warehouseID and Provider.memberID='${req.session['memberID']}' and enroll='Y'`;
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {

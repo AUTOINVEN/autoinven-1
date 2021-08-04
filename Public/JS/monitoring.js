@@ -140,10 +140,10 @@ $(function () {
     var chart4 = new Chart(ctx4, config4);
 
     // GraphQL 웹소켓 통신
-    var ip = 'localhost';
-    var port = 5000;
+    var ws = $('#ws').val();
+    ws = ws[-1] === '/' ? ws.substring(0, -1) : ws;
 
-    var connection = new WebSocket(`ws://${ip}:${port}/graphql`, 'graphql-ws');
+    var connection = new WebSocket(`${ws}/graphql`, 'graphql-ws');
     connection.onopen = () => {
         var init = JSON.stringify({type: 'connection_init', payload: {}});
         var listen = JSON.stringify({"id": "1", "type": "start", "payload": {"variables": {}, "extensions": {}, "operationName": null, "query": "subscription {value}"}});
