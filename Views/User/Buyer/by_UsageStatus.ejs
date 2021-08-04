@@ -9,8 +9,8 @@
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
-
-  <div class="container mb-3">
+  <div class="container">
+    <h2 class="mt-5 mb-3">Warehouse Usage</h2>
     <p id="totalMoney" style="display: none">0</p>
     <% for(var i = 0; i < Object.keys(items).length; i++) { %>
       <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
@@ -24,7 +24,6 @@
       <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
     <% } %>
     <table id="t1" class="board-table table">
-      <p style="font-size:30px">Warehouse Usage</p>
       <thead class="thead-dark">
       <tr>
         <th>reqID</th>
