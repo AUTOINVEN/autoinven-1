@@ -16,5 +16,5 @@ function dateFormatting(date) {
     const year = date.getFullYear();
     const month = addZero(date.getMonth() + 1);
     const day = addZero(date.getDate());
-    return [year, month, day].join(-);
+    return [year, month, day].join('-');
 }

@@ -26,42 +26,69 @@
         </tr>
       </thead>
       <tbody>
-        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-        <tr class="table-warning">
-          <td id="reqID<%= i %>"><%= items['item' + i].reqID %></td>
-          <td id="warehouseID<%= i %>"><%= items['item' + i].warehouseID %></td>
-          <td id="warehouseName<%= i %>"><%= items['item' + i].warehouseName %></td>
-          <td id="Period<%= i %>"><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-          <td id="area<%= i %>"><%= items['item' + i].area %></td>
-          <td id="totalPrice<%= i %>"><%= items['item' + i].totalPrice %></td>
-          <% if (items['item' + i].iotStat == "Y"){ %>
-            <td style="padding:6px 0;">
-              <form action="/iot" method="POST">
-                <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
-                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
-              </form>
-            </td>
-          <% } else if (items['item' + i].iotStat == "W"){ %>
-            <td style="padding-top: 20px;">Pending Approval</td>
-          <% } else if (items['item' + i].iotStat == "N"){ %>
-            <td style="padding-top: 20px;">Not Currently Used</td>
+        <% for(var i = 0; i < Object.keys(curItems).length; i++) { %>
+        <tr class="table-success">
+          <td id="reqID<%= i %>"><%= curItems['item' + i].reqID %></td>
+          <td id="warehouseID<%= i %>"><%= curItems['item' + i].warehouseID %></td>
+          <td id="warehouseName<%= i %>"><%= curItems['item' + i].warehouseName %></td>
+          <td id="Period<%= i %>"><%= curItems['item' + i].startDate %> ~ <%= curItems['item' + i].endDate %></td>
+          <td id="area<%= i %>"><%= curItems['item' + i].area %></td>
+          <td id="totalPrice<%= i %>"><%= curItems['item' + i].totalPrice %></td>
+          <% if (curItems['item' + i].iotStat == "Y"){ %>
+          <td style="padding:6px 0;">
+            <form action="/iot" method="POST">
+              <input id="wid" name="wid" type="hidden" value="<%= curItems['item' + i].warehouseID %>">
+              <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+            </form>
+          </td>
+          <% } else if (curItems['item' + i].iotStat == "W"){ %>
+          <td style="padding-top: 20px;">Pending Approval</td>
+          <% } else if (curItems['item' + i].iotStat == "N"){ %>
+          <td style="padding-top: 20px;">Not Currently Used</td>
           <% } %>
-            <td style="padding:6px 0;">
-              <form action="/Buyer/UsageStatus/INFO" method="POST">
-                <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
-                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
-              </form>
-            </td>
+          <td style="padding:6px 0;">
+            <form action="/Buyer/UsageStatus/INFO" method="POST">
+              <input id="reqID" name="reqID" type="hidden" value="<%= curItems['item' + i].reqID %>">
+              <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+            </form>
           </td>
         </tr>
         <% } %>
+        <% for(var i = 0; i < Object.keys(nextItems).length; i++) { %>
+          <tr class="table-warning">
+            <td id="reqID<%= i %>"><%= nextItems['item' + i].reqID %></td>
+            <td id="warehouseID<%= i %>"><%= nextItems['item' + i].warehouseID %></td>
+            <td id="warehouseName<%= i %>"><%= nextItems['item' + i].warehouseName %></td>
+            <td id="Period<%= i %>"><%= nextItems['item' + i].startDate %> ~ <%= nextItems['item' + i].endDate %></td>
+            <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
+            <td id="totalPrice<%= i %>"><%= nextItems['item' + i].totalPrice %></td>
+            <% if (nextItems['item' + i].iotStat == "Y"){ %>
+            <td style="padding:6px 0;">
+              <form action="/iot" method="POST">
+                <input id="wid" name="wid" type="hidden" value="<%= nextItems['item' + i].warehouseID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+              </form>
+            </td>
+            <% } else if (nextItems['item' + i].iotStat == "W"){ %>
+            <td style="padding-top: 20px;">Pending Approval</td>
+            <% } else if (nextItems['item' + i].iotStat == "N"){ %>
+            <td style="padding-top: 20px;">Not Currently Used</td>
+            <% } %>
+            <td style="padding:6px 0;">
+              <form action="/Buyer/UsageStatus/INFO" method="POST">
+                <input id="reqID" name="reqID" type="hidden" value="<%= nextItems['item' + i].reqID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
     </table>
   </div>
 
   <div class="container mb-3">
-    
     <h2 style="font-size:30px">Previous Warehouse Usage
-      <button id="btnView" class="btn btn-primary" style=" font-size:14px; margin-left: 10px; padding: 8px 12px;">View</button>
+      <button id="btnView" class="btn btn-primary"
+        style=" font-size:14px; margin-left: 10px; padding: 8px 12px;">View</button>
     </h2>
     <table id="t2" class="board-table table">
       <thead class="thead-dark">
@@ -72,56 +99,43 @@
           <th>Rental Period</th>
           <th>Area</th>
           <th>Price</th>
-          <th>IoT</th>
           <th>Info</th>
         </tr>
       </thead>
       <tbody>
-        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-        <tr class="table-warning">
-          <td id="reqID<%= i %>"><%= items['item' + i].reqID %></td>
-          <td id="warehouseID<%= i %>"><%= items['item' + i].warehouseID %></td>
-          <td id="warehouseName<%= i %>"><%= items['item' + i].warehouseName %></td>
-          <td id="Period<%= i %>"><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-          <td id="area<%= i %>"><%= items['item' + i].area %></td>
-          <td id="totalPrice<%= i %>"><%= items['item' + i].totalPrice %></td>
-          <% if (items['item' + i].iotStat == "Y"){ %>
-            <td style="padding:6px 0;">
-              <form action="/iot" method="POST">
-                <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
-                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
-              </form>
-            </td>
-          <% } else if (items['item' + i].iotStat == "W"){ %>
-            <td style="padding-top: 20px;">Pending Approval</td>
-          <% } else if (items['item' + i].iotStat == "N"){ %>
-            <td style="padding-top: 20px;">Not Currently Used</td>
-          <% } %>
-            <td style="padding:6px 0;">
-              <form action="/Buyer/UsageStatus/INFO" method="POST">
-                <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
-                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
-              </form>
-            </td>
+        <% for(var i = 0; i < Object.keys(preItems).length; i++) { %>
+        <tr class="table-danger">
+          <td id="reqID<%= i %>"><%= preItems['item' + i].reqID %></td>
+          <td id="warehouseID<%= i %>"><%= preItems['item' + i].warehouseID %></td>
+          <td id="warehouseName<%= i %>"><%= preItems['item' + i].warehouseName %></td>
+          <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
+          <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
+          <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
+          <td style="padding:6px 0;">
+            <form action="/Buyer/UsageStatus/INFO" method="POST">
+              <input id="reqID" name="reqID" type="hidden" value="<%= preItems['item' + i].reqID %>">
+              <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+            </form>
           </td>
         </tr>
         <% } %>
     </table>
   </div>
 </body>
+
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
     $("#t2").hide();
-    $("#btnView").click(function(){
-      if( $("#btnView").html() == 'View' ) {
+    $("#btnView").click(function () {
+      if ($("#btnView").html() == 'View') {
         $("#btnView").html('Close');
         $("#t2").show();
-      }
-      else {
-        $(this).html('View');
+      } else {
+        $("#btnView").html('View');
         $("#t2").hide();
       }
     });
   });
 </script>
+
 </html>

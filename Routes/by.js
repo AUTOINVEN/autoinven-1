@@ -36,15 +36,17 @@ module.exports = function (app, db) {
     });
 
     router.get('/UsageStatus', function (req, res, next) {
-        var items = usageWH.ContractInfo(req, res, app, db);
-        items = JSON.parse(items);
-        res.render('User/Buyer/by_UsageStatus', {'app': app, 'session': req.session, 'db': db, 'items': items});
+        var curItems = usageWH.ContractInfo(req, res, app, db);
+        var nextItems = usageWH.NextInfo(req, res, app, db);
+        var preItems = usageWH.PreviousInfo(req, res, app, db);
+        curItems = JSON.parse(curItems);
+        nextItems = JSON.parse(nextItems);
+        preItems = JSON.parse(preItems);
+        res.render('User/Buyer/by_UsageStatus', {'app': app, 'session': req.session, 'db': db, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
     });
 
     router.post('/UsageStatus/INFO', function (req, res, next) {
-        var reqID = req.body.reqID;
         var items = usageINFO.PVWHInfo(req, res, app, db);
-        console.log(items);
         items = JSON.parse(items);
         res.render('User/Buyer/by_UsageInfo', {'app': app, 'session': req.session, 'db': db, 'items': items});
     });
