@@ -2238,7 +2238,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .input-group,
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -5100,7 +5100,7 @@ img {
 }
 
 .login-page .card-login .input-group:last-child {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .login-page .card-login.card-plain .form-control::-moz-placeholder {
