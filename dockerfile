@@ -18,4 +18,4 @@ COPY . .
 
 EXPOSE 80
 # CMD ["npm", "run", "serv"]
-CMD ["nodemon", "-L", "./webserver.js"]
+CMD ["nodemon", "-L", "--ignore", "Public/JS", "./webserver.js"]
