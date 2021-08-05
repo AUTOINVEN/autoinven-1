@@ -4,7 +4,7 @@
   "description": "",
   "main": "webserver.js",
   "scripts": {
-    "start": "nodemon webserver.js",
+    "start": "nodemon --ignore Public/JS ./webserver.js",
     "backend": "forever ./webserver.js",
     "serv": "npm run backend",
     "test": "echo \"Error: no test specified\" && exit 1"
