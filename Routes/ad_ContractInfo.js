@@ -8,14 +8,9 @@ exports.showContarctInfo = function (req, res, app, db) {
                 reqID: results[step].reqID,
                 buyerID: results[step].buyerID,
                 warehouseID: results[step].warehouseID,
-                amounts: results[step].price,
+                price: results[step].price,
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
-                national: results[step].national,
-                contractNumber: results[step].contractNumber,
-                address: results[step].address,
-                email: results[step].email,
-                name: results[step].name,
                 area: results[step].area
             };
         }
