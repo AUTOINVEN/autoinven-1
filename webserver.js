@@ -45,6 +45,8 @@ var server = http.createServer(app);
 apolloServer.applyMiddleware({app});
 apolloServer.installSubscriptionHandlers(server);
 
+var MySQLStore = require('express-mysql-session')(session);
+
 
 // 8) 세션을 적용
 app.use(session({
@@ -53,7 +55,9 @@ app.use(session({
     // 8-2) 수정사항이 생기지 않은 세션 요청이 왔을 때 다시 저장할지
     resave: false,
     // 8-3) 세션에 저장할 내역이 없더라도, 세션 저장할지
-    saveUninitialized: true
+    saveUninitialized: true,
+    // 8-4) 서버가 재시작되어도 세션 유지
+    store: new MySQLStore(mySQL.info)
 }));
 // 9) mySQL Connection 변수를 저장
 var dbConnection = mySQL.init();
