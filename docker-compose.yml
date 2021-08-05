@@ -33,5 +33,5 @@ services:
     depends_on:
       - mysql
     container_name: autoinven
-    volumes:
-      - ./:/usr/src/app
+#    volumes:
+#      - ./:/usr/src/app
