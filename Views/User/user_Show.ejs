@@ -106,71 +106,74 @@
       </form>
     -->
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $('#deleteBtn').click(function () {
-          var session = '<%- session %>';
-          $.ajax({
-            url: '/User/Delete',
-            type: 'POST',
-            data: {'session': session},
-            success: function (result) {
-            }
-          })
-        });
-        $('#idCheckButton').click(function () {
-          var memberID = $('#memberID').val();
-          if (memberID != '') {
-            $.ajax({
-              url: '/User/Register/MemberID',
-              type: 'POST',
-              data: {'memberID': memberID},
-              success: function (result) {
-                if (result == false) {
-                  Swal.fire({
-                    title: 'Error',
-                    text: 'Overlapped ID',
-                    icon: 'error'
-                  });
-                } else {
-                  Swal.fire({
-                    title: 'Success',
-                    text: 'You can use!',
-                    icon: 'success'
-                  });
-                }
-              }
-            });
-          }
-        });
-        $('#emailCheckButton').click(function () {
-          var email = $('#email').val();
-          if (email != '') {
-            $.ajax({
-              url: '/User/Register/EmailIDF',
-              type: 'POST',
-              data: {'email': email},
-              success: function (result) {
-                if (result == false) {
-                  Swal.fire({
-                    title: 'Error',
-                    text: 'Email send error',
-                    icon: 'error'
-                  });
-                } else {
-                  Swal.fire({
-                    title: 'Success',
-                    text: 'Email is sended',
-                    icon: 'success'
-                  });
-                }
-              }
-            });
-          }
-        });
-      })
-    </script>
   </div>
 </body>
+
+<%- include('../footer') %>
+
+<script>
+  $(document).ready(function () {
+    $('#deleteBtn').click(function () {
+      var session = '<%- session %>';
+      $.ajax({
+        url: '/User/Delete',
+        type: 'POST',
+        data: {'session': session},
+        success: function (result) {
+        }
+      })
+    });
+    $('#idCheckButton').click(function () {
+      var memberID = $('#memberID').val();
+      if (memberID != '') {
+        $.ajax({
+          url: '/User/Register/MemberID',
+          type: 'POST',
+          data: {'memberID': memberID},
+          success: function (result) {
+            if (result == false) {
+              Swal.fire({
+                title: 'Error',
+                text: 'Overlapped ID',
+                icon: 'error'
+              });
+            } else {
+              Swal.fire({
+                title: 'Success',
+                text: 'You can use!',
+                icon: 'success'
+              });
+            }
+          }
+        });
+      }
+    });
+    $('#emailCheckButton').click(function () {
+      var email = $('#email').val();
+      if (email != '') {
+        $.ajax({
+          url: '/User/Register/EmailIDF',
+          type: 'POST',
+          data: {'email': email},
+          success: function (result) {
+            if (result == false) {
+              Swal.fire({
+                title: 'Error',
+                text: 'Email send error',
+                icon: 'error'
+              });
+            } else {
+              Swal.fire({
+                title: 'Success',
+                text: 'Email is sended',
+                icon: 'success'
+              });
+            }
+          }
+        });
+      }
+    });
+  })
+</script>
+
 </html>
