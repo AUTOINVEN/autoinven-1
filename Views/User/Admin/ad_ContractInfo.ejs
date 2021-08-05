@@ -15,19 +15,6 @@
         <h1>Contract Info List</h1>
       </div>
       <div class="container mb-3">
-
-        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-          <p style="display: none"><%= items['item' + i].warehouseID %></p>
-          <p style="display: none"><%= items['item' + i].buyerID %></p>
-          <p style="display: none"><%= items['item' + i].reqID %></p>
-          <p style="display: none"><%= items['item' + i].area %></p>
-          <p style="display: none"><%= items['item' + i].amounts %></p>
-          <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
-          <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
-          <p id="national<%= i %>" style="display: none"><%= items['item' + i].national %></p>
-          <p id="name<%= i %>" style="display: none"><%= items['item' + i].name %></p>
-          <p id="email<%= i %>" style="display: none"><%= items['item' + i].email %></p>
-        <% } %>
         <div class="table-responsive">
           <table class="table table-striped ">
             <thead class="thead-dark">
