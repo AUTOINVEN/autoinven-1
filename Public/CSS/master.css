@@ -2272,10 +2272,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .form-control[disabled],
 .form-control[readonly],
-
 .input-group-btn .btn {
   border-width: 1px;
-  padding: 11px 0.7rem;
+  padding: 10px 18px 10px 18px;
 }
 
 .input-group-btn .btn-default:not(.btn-fill) {

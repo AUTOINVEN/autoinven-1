@@ -22,17 +22,6 @@
   </div>
   <div class="container">
     <h2 class="mt-5 mb-3">Warehouse Enroll Request List</h2>
-    <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-    <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
-    <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
-    <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
-    <p id="providerID<%= i %>" style="display: none"><%= items['item' + i].providerID %></p>
-    <p id="floorArea<%= i %>" style="display: none"><%= items['item' + i].floorArea %></p>
-    <p id="national<%= i %>" style="display: none"><%= items['item' + i].national %></p>
-    <p id="name<%= i %>" style="display: none"><%= items['item' + i].name %></p>
-    <p id="address<%= i %>" style="display: none"><%= items['item' + i].address %></p>
-
-    <% } %>
     <div class="table-responsive">
       <table class="board-table table ">
         <thead class="thead-dark">
@@ -49,21 +38,22 @@
         </thead>
         <tbody>
           <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-          <% if(items['item' + i].reqType == "ReqEnrollPV"){ %>
-          <tr class="table-warning d-flex">
-            <td class="col-1"><%= items['item' + i].warehouseID %></td>
-            <td class="col-1">Pending Approval</td>
-            <td class="col-1"><%= items['item' + i].floorArea %></td>
-            <td class="col-2"><%= items['item' + i].providerID %></td>
-            <td class="col-2"><%= items['item' + i].name %></td>
-            <td class="col-3"><%= items['item' + i].address %></td>
-            <td class="col-1"><%= items['item' + i].national %></td>
-            <td class="col-1" style="float:right; padding:0px 10px 0px 0px;">
-              <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approve</button>
-              <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
-            </td>
-          </tr>
-          <% } %>
+            <% if(items['item' + i].reqType == "ReqEnrollPV"){ %>
+              <tr class="table-warning d-flex">
+                <td id="whID<%= i %>" class="col-1"><%= items['item' + i].warehouseID %></td>
+                <td id="reqType<%= i %>" class="col-1">Pending Approval</td>
+                <td id="floorArea<%= i %>"  class="col-1"><%= items['item' + i].floorArea %></td>
+                <td id="providerID<%= i %>" class="col-2"><%= items['item' + i].providerID %></td>
+                <td id="name<%= i %>" class="col-2"><%= items['item' + i].name %></td>
+                <td id="address<%= i %>" class="col-3"><%= items['item' + i].address %></td>
+                <td id="national<%= i %>" class="col-1"><%= items['item' + i].national %></td>
+                <td class="col-1" style="float:right; padding:0px 10px 0px 0px;">
+                  <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approve</button>
+                  <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
+                </td>                  
+                <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
+              </tr>
+            <% } %>
           <% } %>
         </tbody>
       </table>

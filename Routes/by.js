@@ -4,6 +4,7 @@ module.exports = function (app, db) {
     var findWH = require('./by_FindWH');
     var requestWH = require('./by_RequestStatus');
     var usageWH = require('./by_UsageStatus');
+    var usageINFO = require('./by_UsageInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -35,9 +36,19 @@ module.exports = function (app, db) {
     });
 
     router.get('/UsageStatus', function (req, res, next) {
-        var items = usageWH.ContractInfo(req, res, app, db);
+        var curItems = usageWH.ContractInfo(req, res, app, db);
+        var nextItems = usageWH.NextInfo(req, res, app, db);
+        var preItems = usageWH.PreviousInfo(req, res, app, db);
+        curItems = JSON.parse(curItems);
+        nextItems = JSON.parse(nextItems);
+        preItems = JSON.parse(preItems);
+        res.render('User/Buyer/by_UsageStatus', {'app': app, 'session': req.session, 'db': db, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
+    });
+
+    router.post('/UsageStatus/INFO', function (req, res, next) {
+        var items = usageINFO.PVWHInfo(req, res, app, db);
         items = JSON.parse(items);
-        res.render('User/Buyer/by_UsageStatus', {'app': app, 'session': req.session, 'db': db, 'items': items});
+        res.render('User/Buyer/by_UsageInfo', {'app': app, 'session': req.session, 'db': db, 'items': items});
     });
 
     router.post('/RequestStatus/Buy/Ans', function (req, res, next) {

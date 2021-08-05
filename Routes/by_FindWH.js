@@ -10,6 +10,7 @@ exports.findWH = function (req, res, app, db) {
                 warehouseTel: results[step].warehouseTEL,
                 enrolledDate: results[step].enrolledDate,
                 address: results[step].address,
+                addressDetail: results[step].addressDetail,
                 latitude: results[step].latitude,
                 longitude: results[step].longitude,
                 landArea: results[step].landArea,
