@@ -13,11 +13,12 @@ exports.EnrollWH = function (req, res, app, db) {
         enrolledDate: new Date(),
         zipcode: req.body.zipcode,
         address: req.body.address,
+        addressDetail: req.body.addressDetail,
         latitude: req.body.lat,
         longitude: req.body.lng,
         landArea: req.body.landArea,
         floorArea: req.body.floorArea,
-        useableArea: req.body.floorArea,
+        useableArea: req.body.useableArea,
         price: req.body.price,
         infoComment: req.body.infoComment,
         etcComment: req.body.etcComment,
@@ -31,6 +32,9 @@ exports.EnrollWH = function (req, res, app, db) {
     } else if (onlyNum.test(item.floorArea) == false) {
         res.send("errortype3");
         console.log('errortype3');
+    } else if (onlyNum.test(item.useableArea) == false) {
+        res.send("errortype11");
+        console.log('errortype11');
     } else if (onlyNum.test(item.price) == false) {
         res.send("errortype4");
         console.log('errortype4');

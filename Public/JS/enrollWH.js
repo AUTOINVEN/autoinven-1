@@ -10,8 +10,10 @@
             var whEmail = $("#warehouseEmail").val();
             var whTel = $("#warehouseTel").val();
             var address = $("#address").val();
+            var addressDetail = $("#addressDetail").val();
             var landArea = $("#landArea").val();
             var floorArea = $("#floorArea").val();
+            var useableArea = $("#useableArea").val();
             var price = $("#price").val();
             var infoComment = $("#infoComment").val();
             var etcComment = $("#etcComment").val();
@@ -41,12 +43,20 @@
                     text: 'You have to insert your warehouse contact telephone number'
                 })
             }
-            //check password is not null
+            //check address is not null
             else if (!address) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Fail',
                     text: 'You have to insert your warehouse address'
+                })
+            }
+            //check addressDetail is not null
+            else if (!addressDetail) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Fail',
+                    text: 'You have to insert your warehouse detail address'
                 })
             }
             //check email is not null
@@ -61,6 +71,12 @@
                     icon: 'error',
                     title: 'Fail',
                     text: "You have to insert your warehouse floor area"
+                })
+            } else if (!useableArea) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Fail',
+                    text: "You have to insert your warehouse usable area"
                 })
             } else if (!price) {
                 Swal.fire({
@@ -90,14 +106,14 @@
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Fail',
-                                text: 'Please enter only numbers in the landArea field.',
+                                text: 'Please enter only numbers in the Land Area field.',
                             }).then(() => {
                             })
                         } else if (data == "errortype3") {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Fail',
-                                text: 'Please enter only numbers in the floorArea field.',
+                                text: 'Please enter only numbers in the Floor Area field.',
                             }).then(() => {
                             })
                         } else if (data == "errortype4") {
@@ -148,6 +164,14 @@
                                 title: 'Fail',
                                 text: 'Please enter the telephone number in the correct format.',
                             }).then(() => {
+                            })
+                        } else if (data == "errortype11") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'fail',
+                                text: 'Please enter only numbers in the Useable Area field.',
+                            }).then(() => {
+                                location.href = "/";
                             })
                         } else if (data == "errortype0") {
                             Swal.fire({
