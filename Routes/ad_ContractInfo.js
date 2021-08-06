@@ -1,6 +1,6 @@
 exports.showContarctInfo = function (req, res, app, db) {
     var items = {};
-    var sql = `select * from Contract, Member where Contract.buyerID=Member.memberID`;
+    var sql = `select * from Contract, Warehouse where Contract.warehouseID=Warehouse.warehouseID`;
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
@@ -8,15 +8,11 @@ exports.showContarctInfo = function (req, res, app, db) {
                 reqID: results[step].reqID,
                 buyerID: results[step].buyerID,
                 warehouseID: results[step].warehouseID,
-                amounts: results[step].price,
+                price: results[step].price,
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
-                national: results[step].national,
-                contractNumber: results[step].contractNumber,
-                address: results[step].address,
-                email: results[step].email,
-                name: results[step].name,
-                area: results[step].area
+                area: results[step].area,
+                iotStat: results[step].iotStat,
             };
         }
     }

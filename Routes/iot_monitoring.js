@@ -11,6 +11,8 @@ exports.init = function (req, res, db) {
 
 exports.sessionCheck = function (req, res, db) {
     if (req.session['type'] === 'admin') {
+        var wid = req.body.wid;
+        req.session['warehouseID'] = wid;
         req.session['iotServer'] = req.body.iotServer;
         res.redirect('/iot');
     }

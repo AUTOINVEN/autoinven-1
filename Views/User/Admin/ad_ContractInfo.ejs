@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <%- include('../../head') %>
 </head>
@@ -15,52 +16,50 @@
         <h1>Contract Info List</h1>
       </div>
       <div class="container mb-3">
-
-        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-          <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
-          <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
-          <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
-          <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
-          <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
-          <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
-          <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
-          <p id="national<%= i %>" style="display: none"><%= items['item' + i].national %></p>
-          <p id="name<%= i %>" style="display: none"><%= items['item' + i].name %></p>
-          <p id="email<%= i %>" style="display: none"><%= items['item' + i].email %></p>
-        <% } %>
         <div class="table-responsive">
           <table class="table table-striped ">
             <thead class="thead-dark">
-            <tr class="d-flex">
-              <th class="col-1">Req No</th>
-              <th class="col-1">Warehouse ID</th>
-              <th class="col-1">Rent ($)</th>
-              <th class="col-3">Rent Period</th>
-              <th class="col-1">Area (m²)</th>
-              <th class="col-1">Buyer ID</th>
-              <th class="col-1">Name</th>
-              <th class="col-2">Email</th>
-              <th class="col-3">Address</th>
-              <th class="col-1">Nation</th>
-              <th></th>
-            </tr>
+              <tr class="d-flex">
+                <th class="col-1">Req ID</th>
+                <th class="col-1">WH ID</th>
+                <th class="col-2">Buyer ID</th>
+                <th class="col-3">Rent Period</th>
+                <th class="col-1">Area</th>
+                <th class="col-1">Price</th>
+                <th class="col-2">IoT</th>
+                <th class="col-1">Info</th>
+              </tr>
             </thead>
             <tbody>
-            <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+              <% for(var i = 0; i < Object.keys(items).length; i++) { %>
               <tr class="d-flex">
-                <td class="col-1"><%= items['item' + i].reqID %></td>
-                <td class="col-1"><%= items['item' + i].warehouseID %></td>
-                <td class="col-1"><%= items['item' + i].amounts %></td>
-                <td class="col-3"><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-                <td class="col-1"><%= items['item' + i].area %></td>
-                <td class="col-1"><%= items['item' + i].buyerID %></td>
-                <td class="col-1"><%= items['item' + i].name %></td>
-                <td class="col-2"><%= items['item' + i].email %></td>
-                <td class="col-3"><%= items['item' + i].address %></td>
-                <td class="col-1"><%= items['item' + i].national %></td>
-                <td></td>
+                <td id="reqID<%= i %>" class="col-1"><%= items['item' + i].reqID %></td>
+                <td id="whID<%= i %>" class="col-1"><%= items['item' + i].warehouseID %></td>
+                <td id="buyerID<%= i %>" class="col-2"><%= items['item' + i].buyerID %></td>
+                <td id="Period<%= i %>" class="col-3"><%= items['item' + i].startDate %> ~
+                  <%= items['item' + i].endDate %></td>
+                <td id="area<%= i %>" class="col-1"><%= items['item' + i].area %></td>
+                <td id="price<%= i %>" class="col-1"><%= items['item' + i].price %></td>
+                <% if (items['item' + i].iotStat == "Y"){ %>
+                <td class="col-2" style="padding:6px 0;">
+                  <form action="/iot" method="POST">
+                    <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                    <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+                  </form>
+                </td>
+                <% } else if (items['item' + i].iotStat == "W"){ %>
+                <td class="col-2" style="padding-top: 20px;">Pending Approval</td>
+                <% } else if (items['item' + i].iotStat == "N"){ %>
+                <td class="col-2" style="padding-top: 20px;">Not Currently Used</td>
+                <% } %>
+                <td class="col-1" style="padding:6px 0;">
+                  <form action="/Admin/ContractInfo/INFO" method="POST">
+                    <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
+                    <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+                  </form>
+                </td>
               </tr>
-            <% } %>
+              <% } %>
             </tbody>
           </table>
         </div>
