@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <%- include('../head') %>
   <style>
@@ -39,62 +40,59 @@
   <div id="content">
     <div class="page-header clear-filter" filter-color="orange">
       <div class="page-header-image" style="background-image:url(/Image/about_WH.jpg)"></div>
-      <div class="content">
-          <div class="container">
-            <div class="row">
-              <div class="container mb-3">
-                <form role="form" id="regForm" class="registration-form" onsubmit="return false;">
-                  <h1>Sign up!</h1>
-                  <h3>Fill in the form below to get instant access:</h3>
-
-                  <div>
-                    <input type="text" id="memberID" name="memberID" placeholder="ID" style="width : 35%;"/>
-                    <input type="button" class="btn btn-primary" name="idCheckButton" id="idCheckButton" value="ID Check" style="width : 14%; height : auto;">
-                    <% if(locals.err) { %>
-                    <span class="invalid-feedback"><%= locals.err %></span>
-                    <% } %>
-                  </div>
-                  <div>
-                    <select name="type" id="type" style="width : 50%;">
-                      <option value="provider">Provider</option>
-                      <option value="buyer">Buyer</option>
-                    </select>
-                  </div>
-                  <div>
-                    <input type="text" placeholder="User Name" id="name" name="name" style="width : 50%;">
-                  </div>
-                  <div>
-                    <input type="password" placeholder="Password" id="password" name="password" style="width : 50%;">
-                  </div>
-                  <div>
-                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password Confirm" style="width : 35%;">
-                    <input type="button" class="btn btn-primary" id="passwordCheckButton" name="passwordCheckButton" value="PW Check" style="width : 14%; height : auto;">
-                  </div>
-                  <div>
-                    <input type="text" name="email" id="email" placeholder="Email" style="width : 35%;">
-                    <input type="button" class="btn btn-primary" id="sendAuthCode" value="send auth code" style="width :14%;"><br>
-                    <input type="text" placeholder="auth code" id="authCode" style="width : 35%;">
-                    <input type="button" class="btn btn-primary" id="codeCheck" value="check" style="width :14%;">
-                  </div>
-                  <div>
-                    <input type="text" placeholder="national" id="national" name="national" style="width :50%;">
-                  </div>
-                  <div>
-                    <input type="text" id="address" name="address" placeholder="Address" style="width : 35%; ">
-                    <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style="width : 15%">
-                  </div>
-                  <div>
-                    <input type="text" name="contactNumber1" placeholder="Phone" style="width : 16.5%;">
-                    <input type="text" name="contactNumber2" style="width : 16.5%;">
-                    <input type="text" name="contactNumber3" style="width : 16.5%;">
-                  </div>
-                  <div>
-                    <button type="submit" id="regFormBtn" class="btn btn-primary">Sign Up</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+      <div class="container">
+        <form role="form" id="regForm" class="registration-form" onsubmit="return false;">
+          <h1>Sign up!</h1>
+          <h3>Fill in the form below to get instant access:</h3>
+          <div>
+            <input type="text" id="memberID" name="memberID" placeholder="ID" style="width : 35%;" />
+            <input type="button" class="btn btn-primary" name="idCheckButton" id="idCheckButton" value="ID Check"
+              style="width : 14%; height : auto;">
+            <% if(locals.err) { %>
+            <span class="invalid-feedback"><%= locals.err %></span>
+            <% } %>
           </div>
+          <div>
+            <select name="type" id="type" style="width : 50%;">
+              <option value="provider">Provider</option>
+              <option value="buyer">Buyer</option>
+            </select>
+          </div>
+          <div>
+            <input type="text" placeholder="User Name" id="name" name="name" style="width : 50%;">
+          </div>
+          <div>
+            <input type="password" placeholder="Password" id="password" name="password" style="width : 50%;">
+          </div>
+          <div>
+            <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password Confirm"
+              style="width : 35%;">
+            <input type="button" class="btn btn-primary" id="passwordCheckButton" name="passwordCheckButton"
+              value="PW Check" style="width : 14%; height : auto;">
+          </div>
+          <div>
+            <input type="text" name="email" id="email" placeholder="Email" style="width : 35%;">
+            <input type="button" class="btn btn-primary" id="sendAuthCode" value="send auth code"
+              style="width :14%;"><br>
+            <input type="text" placeholder="auth code" id="authCode" style="width : 35%;">
+            <input type="button" class="btn btn-primary" id="codeCheck" value="check" style="width :14%;">
+          </div>
+          <div>
+            <input type="text" placeholder="national" id="national" name="national" style="width :50%;">
+          </div>
+          <div>
+            <input type="text" id="address" name="address" placeholder="Address" style="width : 35%; ">
+            <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style="width : 15%">
+          </div>
+          <div>
+            <input type="text" name="contactNumber1" placeholder="Phone" style="width : 16.5%;">
+            <input type="text" name="contactNumber2" style="width : 16.5%;">
+            <input type="text" name="contactNumber3" style="width : 16.5%;">
+          </div>
+          <div>
+            <button type="submit" id="regFormBtn" class="btn btn-primary">Sign Up</button>
+          </div>
+        </form>
       </div>
       <div class="overlay"></div>
 
@@ -117,4 +115,5 @@
     </div>
   </div>
 </body>
+
 </html>

@@ -10,60 +10,54 @@
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
-  <div>
-    <div class="container">
-      <div class="jumbotron" style="text-align : center">
-        <h1>Contract Info List</h1>
-      </div>
-      <div class="container mb-3">
-        <div class="table-responsive">
-          <table class="table table-striped ">
-            <thead class="thead-dark">
-              <tr class="d-flex">
-                <th class="col-1">Req ID</th>
-                <th class="col-1">WH ID</th>
-                <th class="col-2">Buyer ID</th>
-                <th class="col-3">Rent Period</th>
-                <th class="col-1">Area</th>
-                <th class="col-1">Price</th>
-                <th class="col-2">IoT</th>
-                <th class="col-1">Info</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-              <tr class="d-flex">
-                <td id="reqID<%= i %>" class="col-1"><%= items['item' + i].reqID %></td>
-                <td id="whID<%= i %>" class="col-1"><%= items['item' + i].warehouseID %></td>
-                <td id="buyerID<%= i %>" class="col-2"><%= items['item' + i].buyerID %></td>
-                <td id="Period<%= i %>" class="col-3"><%= items['item' + i].startDate %> ~
-                  <%= items['item' + i].endDate %></td>
-                <td id="area<%= i %>" class="col-1"><%= items['item' + i].area %></td>
-                <td id="price<%= i %>" class="col-1"><%= items['item' + i].price %></td>
-                <% if (items['item' + i].iotStat == "Y"){ %>
-                <td class="col-2" style="padding:6px 0;">
-                  <form action="/iot" method="POST">
-                    <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
-                    <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
-                  </form>
-                </td>
-                <% } else if (items['item' + i].iotStat == "W"){ %>
-                <td class="col-2" style="padding-top: 20px;">Pending Approval</td>
-                <% } else if (items['item' + i].iotStat == "N"){ %>
-                <td class="col-2" style="padding-top: 20px;">Not Currently Used</td>
-                <% } %>
-                <td class="col-1" style="padding:6px 0;">
-                  <form action="/Admin/ContractInfo/INFO" method="POST">
-                    <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
-                    <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
-                  </form>
-                </td>
-              </tr>
-              <% } %>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class="container">
+    <h2 class="mt-5 mb-3">Contract Info list</h2>
+    <div class="table-responsive">
+      <table class="table table-striped ">
+        <thead class="thead-dark">
+          <tr class="d-flex">
+            <th class="col-1">Req ID</th>
+            <th class="col-1">WH ID</th>
+            <th class="col-2">Buyer ID</th>
+            <th class="col-3">Rent Period</th>
+            <th class="col-1">Area</th>
+            <th class="col-1">Price</th>
+            <th class="col-2">IoT</th>
+            <th class="col-1">Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+          <tr class="d-flex">
+            <td id="reqID<%= i %>" class="col-1"><%= items['item' + i].reqID %></td>
+            <td id="whID<%= i %>" class="col-1"><%= items['item' + i].warehouseID %></td>
+            <td id="buyerID<%= i %>" class="col-2"><%= items['item' + i].buyerID %></td>
+            <td id="Period<%= i %>" class="col-3"><%= items['item' + i].startDate %> ~
+              <%= items['item' + i].endDate %></td>
+            <td id="area<%= i %>" class="col-1"><%= items['item' + i].area %></td>
+            <td id="price<%= i %>" class="col-1"><%= items['item' + i].price %></td>
+            <% if (items['item' + i].iotStat == "Y"){ %>
+            <td class="col-2" style="padding:6px 0;">
+              <form action="/iot" method="POST">
+                <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+              </form>
+            </td>
+            <% } else if (items['item' + i].iotStat == "W"){ %>
+            <td class="col-2" style="padding-top: 20px;">Pending Approval</td>
+            <% } else if (items['item' + i].iotStat == "N"){ %>
+            <td class="col-2" style="padding-top: 20px;">Not Currently Used</td>
+            <% } %>
+            <td class="col-1" style="padding:6px 0;">
+              <form action="/Admin/ContractInfo/INFO" method="POST">
+                <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
+                <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="overlay"></div>

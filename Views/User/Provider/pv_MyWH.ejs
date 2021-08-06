@@ -9,8 +9,8 @@
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
-  <div class="container mb-3">
-    <h2 class="mb-3">My Warehouse</h2>
+  <div class="container">
+    <h2 class="mt-5 mb-3">My Warehouse</h2>
     <table class="board-table table " id="myWH">
       <thead class="thead-dark">
       <tr>
@@ -50,8 +50,8 @@
       </tbody>
     </table>
   </div>
-  <div class="container mb-3">
-    <h2 class="mb-3">Warehouse Enroll Lists</h2>
+  <div class="container">
+    <h2 class="mt-5 mb-3">Warehouse Enroll List</h2>
     <% for(var i = 0; i < Object.keys(enrollItems).length; i++) { %>
       <p id="whID0<%= i %>" style="display: none"><%= enrollItems['item' + i].warehouseID %></p>
       <p id="reqID0<%= i %>" style="display: none"><%= enrollItems['item' + i].reqID %></p>
@@ -91,8 +91,8 @@
     </table>
   </div>
 
-  <div class="container mb-3">
-    <h2 class="mb-3">Buy Request Lists</h2>
+  <div class="container">
+    <h2 class="mt-5 mb-3">Warehouse Buy Request List</h2>
     <% for(var i = 0; i < Object.keys(requestItems).length; i++) { %>
       <p id="whID1<%= i %>" style="display: none"><%= requestItems['item' + i].warehouseID %></p>
       <p id="reqID1<%= i %>" style="display: none"><%= requestItems['item' + i].reqID %></p>

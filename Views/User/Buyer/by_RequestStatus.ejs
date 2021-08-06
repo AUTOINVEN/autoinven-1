@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <%- include('../../head') %>
 </head>
@@ -9,22 +10,21 @@
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
-  <div>
-    <div class="container mb-3">
-      <p id="totalMoney" style="display: none">0</p>
-      <p id="payFlag" style="display: none">F</p>
-      <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-        <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
-        <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
-        <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
-        <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
-        <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
-        <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
-        <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
-      <% } %>
-      <table id="t1" class="board-table table">
-        <p style="font-size:30px">Submit Lists</p>
-        <thead class="thead-dark">
+  <div class="container">
+    <h2 class="mt-5 mb-3">Warehouse Request List</h2>
+    <p id="totalMoney" style="display: none">0</p>
+    <p id="payFlag" style="display: none">F</p>
+    <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+    <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
+    <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
+    <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
+    <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
+    <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
+    <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
+    <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
+    <% } %>
+    <table id="t1" class="board-table table">
+      <thead class="thead-dark">
         <tr>
           <th>WarehouseID</th>
           <th>State</th>
@@ -32,22 +32,22 @@
           <th>Rental Period</th>
           <th></th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-          <% if(items['item' + i].reqType == "ReqByBuyer" || items['item' + i].reqType == "ReqByAdmin"){ %>
-            <tr class="table-warning">
-              <td><%= items['item' + i].warehouseID %></td>
-              <td>Pending Approval</td>
-              <td><%= items['item' + i].amounts %></td>
-              <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-              <td style="float:right; padding:0px 10px 0px 0px;">
-                <button type="button" class="btn btn-sm" onclick="byClick(<%= i %>, 0)">Cancel</button>
-              </td>
-            </tr>
-          <% } %>
+        <% if(items['item' + i].reqType == "ReqByBuyer" || items['item' + i].reqType == "ReqByAdmin"){ %>
+        <tr class="table-warning">
+          <td><%= items['item' + i].warehouseID %></td>
+          <td>Pending Approval</td>
+          <td><%= items['item' + i].amounts %></td>
+          <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+          <td style="float:right; padding:0px 10px 0px 0px;">
+            <button type="button" class="btn btn-sm" onclick="byClick(<%= i %>, 0)">Cancel</button>
+          </td>
+        </tr>
+        <% } %>
         <% if(items['item' + i].reqType == "Rejected"){ %>
-        <tbody>
+      <tbody>
         <tr class="table-danger">
           <td><%= items['item' + i].warehouseID %></td>
           <td>Rejected</td>
@@ -58,15 +58,15 @@
           </td>
         </tr>
         <% } %>
-        </tbody>
-        <% } %>
-      </table>
-    </div>
+      </tbody>
+      <% } %>
+    </table>
+  </div>
 
-    <div class="container mb-3">
-      <table id="t2" class="board-table table">
-        <p style="font-size:30px">Payment Lists</p>
-        <thead class="thead-dark">
+  <div class="container">
+    <h2 class="mt-5 mb-3">Payment List</h2>
+    <table id="t2" class="board-table table">
+      <thead class="thead-dark">
         <tr>
           <th>Check List</th>
           <th>Warehouse ID</th>
@@ -75,33 +75,33 @@
           <th>Period</th>
           <th></th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-          <% if(items['item' + i].reqType == "ReqPayByBuyer"){ %>
-            <script>
-              document.getElementById('payFlag').innerText = 'T';
-            </script>
-            <p id="count<%= i %>" style="display: none"><%= i %></p>
-            <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
-            <tr class="table-primary">
-              <td>
-                <input type="checkbox" name="paymentCheck" value="<%= items['item' + i].amounts %>" onclick='getCheckboxValue(event)'/>
-              </td>
-              <td><%= items['item' + i].warehouseID %></td>
-              <td>Waiting for Payment</td>
-              <td id="amounts<%= i %>"><%= items['item' + i].amounts %></td>
-              <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-              <td style="float:right; padding:0px 7px 0px 0px;">
-                 <button type="button" class="btn btn-info btn-sm" onclick="byClick(<%= i %>, 1)">Pay</button>
-                <button type="button" class="btn btn-sm" onclick="byClick(<%= i %>, 0)">Cancel</button>
-              </td>
-            </tr>
-          <% } %>
+        <% if(items['item' + i].reqType == "ReqPayByBuyer"){ %>
+        <script>
+          document.getElementById('payFlag').innerText = 'T';
+        </script>
+        <p id="count<%= i %>" style="display: none"><%= i %></p>
+        <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
+        <tr class="table-primary">
+          <td>
+            <input type="checkbox" name="paymentCheck" value="<%= items['item' + i].amounts %>"
+              onclick='getCheckboxValue(event)' />
+          </td>
+          <td><%= items['item' + i].warehouseID %></td>
+          <td>Waiting for Payment</td>
+          <td id="amounts<%= i %>"><%= items['item' + i].amounts %></td>
+          <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+          <td style="float:right; padding:0px 7px 0px 0px;">
+            <button type="button" class="btn btn-info btn-sm" onclick="byClick(<%= i %>, 1)">Pay</button>
+            <button type="button" class="btn btn-sm" onclick="byClick(<%= i %>, 0)">Cancel</button>
+          </td>
+        </tr>
         <% } %>
-        </tbody>
-      </table>
-    </div>
+        <% } %>
+      </tbody>
+    </table>
   </div>
   <div id="smart-button-container">
     <div style="text-align: center;">
@@ -214,7 +214,9 @@
     }
   }
 </script>
-<script src="https://www.paypal.com/sdk/js?client-id=AVTGoMn8H9F9YqVPP8EshG1M6L0BhU9zNHWfQF9u0FdJa6PTakC1b5kwlfk77cUz81s5_QxbLz1SxFc0"></script>
+<script
+  src="https://www.paypal.com/sdk/js?client-id=AVTGoMn8H9F9YqVPP8EshG1M6L0BhU9zNHWfQF9u0FdJa6PTakC1b5kwlfk77cUz81s5_QxbLz1SxFc0">
+</script>
 <script>
   function getAmounts() {
     $.ajax({
@@ -276,8 +278,8 @@
     let result = 0;
     if (event.target.checked) {
       result = event.target.value;
-      result *= 1;  // 형변환
-      makeIndex();  //
+      result *= 1; // 형변환
+      makeIndex(); //
     } else {
       result -= event.target.value;
     }
@@ -329,12 +331,12 @@
     var limit = countNumofElement();
     for (var i = 0; i < limit; i++) {
       result = document.getElementById('count' + i);
-      if (result == null) {
-      } else {
+      if (result == null) {} else {
         index.push(result.innerText);
       }
     }
     return index;
   }
 </script>
+
 </html>

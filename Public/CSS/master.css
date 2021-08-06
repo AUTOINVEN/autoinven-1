@@ -107,38 +107,17 @@
   border-bottom: 1px solid #47748b;
 }
 
-/*#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-#sidebar ul li a:hover {
-  color: #000000;
-  background: #fff;
-}
-
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-  color: #fff;
-  background: #000000;
-}*/
-
 a[data-toggle="collapse"] {
   position: relative;
 }
 
 .dropdown-toggle::after {
+  font-weight: 100;
   display: block;
   position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
+  top: 45%;
+  right: 17px;
+  transform: translateY(0%);
 }
 
 ul.CTAs {
@@ -5214,8 +5193,14 @@ img {
 }
 
 .login-page .link {
-  font-size: 10px;
+  font-size: 14px;
   color: #FFFFFF;
+  text-decoration: none;
+}
+
+.login-page .link:hover {
+  font-size: 15px;
+  color: #f96332;
   text-decoration: none;
 }
 
@@ -7300,9 +7285,4 @@ img {
 
 .ion-android-remove-circle:before {
   content: "+";
-}
-
-.mb-3,
-.my-3 {
-  margin-bottom: 2rem !important;
 }

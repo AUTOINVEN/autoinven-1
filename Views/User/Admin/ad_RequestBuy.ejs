@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <%- include('../../head') %>
   <title></title>
   <style media="screen">
-      .card-header {
-          font-size: 25px
-      }
+    .card-header {
+      font-size: 25px
+    }
 
-      .page-link {
-          font-size: 20px !important
-      }
+    .page-link {
+      font-size: 20px !important
+    }
   </style>
 </head>
 
@@ -19,53 +20,45 @@
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
-  <div>
-    <div class="container">
-      <div class="jumbotron" style="text-align : center">
-        <h1>Buyer Request list</h1>
-      </div>
-      <div class="container mb-3">
-
-        <h2 class="mb-3">Submit Lists</h2>
+  <div class="container">
+    <h2 class="mt-5 mb-3">Warehouse Buy Request list</h2>
+    <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+    <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
+    <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
+    <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
+    <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
+    <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
+    <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
+    <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
+    <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
+    <% } %>
+    <table class="board-table table ">
+      <thead class="thead-dark">
+        <tr>
+          <th>Warehouse ID</th>
+          <th>State</th>
+          <th>Rental Fee($)</th>
+          <th>Rental Period</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
         <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-          <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
-          <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
-          <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
-          <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
-          <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
-          <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
-          <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
-          <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
+        <% if(items['item' + i].reqType == "ReqByBuyer"){ %>
+        <tr class="table-warning">
+          <td><%= items['item' + i].warehouseID %></td>
+          <td>Pending Approval</td>
+          <td><%= items['item' + i].amounts %></td>
+          <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+          <td style="float:right; padding:0px 10px 0px 0px;">
+            <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approve</button>
+            <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
+          </td>
+        </tr>
         <% } %>
-        <table class="board-table table ">
-          <thead class="thead-dark">
-          <tr>
-            <th>Warehouse ID</th>
-            <th>State</th>
-            <th>Rental Fee($)</th>
-            <th>Rental Period</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-            <% if(items['item' + i].reqType == "ReqByBuyer"){ %>
-              <tr class="table-warning">
-                <td><%= items['item' + i].warehouseID %></td>
-                <td>Pending Approval</td>
-                <td><%= items['item' + i].amounts %></td>
-                <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-                <td style="float:right; padding:0px 10px 0px 0px;">
-                  <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approve</button>
-                  <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
-                </td>
-              </tr>
-            <% } %>
-          <% } %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+        <% } %>
+      </tbody>
+    </table>
   </div>
   <div class="overlay"></div>
 </body>
@@ -133,4 +126,5 @@
     }
   }
 </script>
+
 </html>
