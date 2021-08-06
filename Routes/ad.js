@@ -6,6 +6,7 @@ module.exports = function (app, db) {
     const ad_iotTest = require('./ad_iotTest');
     const ad_ReqBuy = require('./ad_RequestBuy');
     const ad_ContractInfo = require('./ad_ContractInfo');
+    const ad_ContractInfoView = require('./ad_ContractInfoView');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -43,6 +44,15 @@ module.exports = function (app, db) {
         var items = ad_ContractInfo.showContarctInfo(req, res, app, db);
         items = JSON.parse(items);
         res.render('User/Admin/ad_ContractInfo', {'app': app, 'session': req.session, 'db': db, 'items': items});
+    });
+    router.post('/ContractInfo/INFO', function (req, res, next) {
+        var WHitems = ad_ContractInfoView.getWHInfo(req, res, app, db);
+        var PVitems = ad_ContractInfoView.getPVInfo(req, res, app, db);
+        var BYitems = ad_ContractInfoView.getBYInfo(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        PVitems = JSON.parse(PVitems);
+        BYitems = JSON.parse(BYitems);
+        res.render('User/Admin/ad_ContractInfoView', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'BYitems': BYitems});
     });
     router.post('/RequestBuy/Ans', function (req, res, next) {
         ad_ReqBuy.withAnswer(req, res, app, db);
