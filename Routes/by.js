@@ -46,9 +46,11 @@ module.exports = function (app, db) {
     });
 
     router.post('/UsageStatus/INFO', function (req, res, next) {
-        var items = usageINFO.PVWHInfo(req, res, app, db);
-        items = JSON.parse(items);
-        res.render('User/Buyer/by_UsageInfo', {'app': app, 'session': req.session, 'db': db, 'items': items});
+        var WHitems = usageINFO.getWHInfo(req, res, app, db);
+        var PVitems = usageINFO.getPVInfo(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        PVitems = JSON.parse(PVitems);
+        res.render('User/Buyer/by_UsageInfo', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
     });
 
     router.post('/RequestStatus/Buy/Ans', function (req, res, next) {
