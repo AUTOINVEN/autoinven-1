@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <%- include('../head') %>
-  <meta charset="utf-8">
-  <title>Monitoring</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="/CSS/iot.css"/>
-  <script src="/JS/monitoring.js"></script>
+    <meta charset="utf-8">
+    <title>Monitoring</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/CSS/iot.css" />
+    <script src="/JS/monitoring.js"></script>
 </head>
 
 <body>
-  <div id="content">
+  <div id="iot_content">
     <%- include('nav') %>
-    <div class="container">
-      <div class="sensor">
-        <canvas id="chart1" width="350" height="350"></canvas>
+      <div class="container">
+        <div class="sensor">
+          <canvas id="chart1" width="350" height="350"></canvas>
+        </div>
+        <div class="sensor">
+          <canvas id="chart2" width="350" height="350"></canvas>
+        </div>
+        <div class="sensor">
+          <canvas id="chart3" width="350" height="350"></canvas>
+        </div>
+        <div class="sensor">
+          <canvas id="chart4" width="350" height="350"></canvas>
+        </div>
       </div>
-      <div class="sensor">
-        <canvas id="chart2" width="350" height="350"></canvas>
-      </div>
-      <div class="sensor">
-        <canvas id="chart3" width="350" height="350"></canvas>
-      </div>
-      <div class="sensor">
-        <canvas id="chart4" width="350" height="350"></canvas>
-      </div>
-    </div>
   </div>
-  <input type="hidden" id="ws" value="<%= iotServer %>"/>
+  <input type="hidden" id="ws" value="<%= iotServer %>" />
 </body>
 <%- include('../footer') %>
+
 </html>
