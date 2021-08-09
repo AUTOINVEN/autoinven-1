@@ -49,10 +49,15 @@ module.exports = function (app, db) {
     router.post('/WHinfo', function (req, res, next) {
         var WHitems = WHinfo.getWHInfo(req, res, app, db);
         var PVitems = WHinfo.getPVInfo(req, res, app, db);
+        var curItems = WHinfo.getCurUsage(req, res, app, db);
+        var nextItems = WHinfo.getNextUsage(req, res, app, db);
+        var preItems = WHinfo.getPreUsage(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         PVitems = JSON.parse(PVitems);
-        console.log(WHitems);
-        res.render('User/WHinfo', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
+        curItems = JSON.parse(curItems);
+        nextItems = JSON.parse(nextItems);
+        preItems = JSON.parse(preItems);
+        res.render('User/WHinfo', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
     });
 
     router.get('/MyWarehouse', function (req, res, next) {
