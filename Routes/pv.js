@@ -57,7 +57,7 @@ module.exports = function (app, db) {
         curItems = JSON.parse(curItems);
         nextItems = JSON.parse(nextItems);
         preItems = JSON.parse(preItems);
-        res.render('User/WHinfo', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
+        res.render('User/WHinfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
     });
 
     router.get('/MyWarehouse', function (req, res, next) {

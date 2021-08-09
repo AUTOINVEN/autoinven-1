@@ -10,9 +10,12 @@
   <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
   </div>
-  <div class="container">
-    <h2 class="mt-5 mb-3">Warehouse Info
-      <button class="btn btn-primary">IoT</button>
+  <div class="container">    
+      <form action="/iot" method="POST">
+        <h2 class="mt-5 mb-3">Warehouse Info
+        <input id="wid" name="wid" type="hidden" value="<%= req.body.warehouseID %>">
+        <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT</button>
+      </form>
     </h2>
     <table class="table table-bordered">
       <tbody>
