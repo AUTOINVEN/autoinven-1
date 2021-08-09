@@ -4,7 +4,7 @@ exports.getWHInfo = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
     console.log("WHInfo : " + warehouseID);
     var items = viewInfo.getWHInfo(db, warehouseID);
-    return JSON.stringify(items);
+    return items;
 }
 
 exports.getPVInfo = function (req, res, app, db) {
@@ -15,5 +15,5 @@ exports.getPVInfo = function (req, res, app, db) {
         var providerID = results[0].memberID;
         items = viewInfo.getMemberInfo(db, providerID);
     }
-    return JSON.stringify(items);
+    return items;
 }

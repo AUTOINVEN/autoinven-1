@@ -51,6 +51,7 @@ module.exports = function (app, db) {
         var PVitems = WHinfo.getPVInfo(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         PVitems = JSON.parse(PVitems);
+        console.log(WHitems);
         res.render('User/WHinfo', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
     });
 
