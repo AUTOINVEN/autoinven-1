@@ -6,54 +6,61 @@
 </head>
 
 <body>
-  <%- include('../nav_Bar') %>
-  <div class="page-header page-header-small">
-    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
-  </div>
-  <div class="container">
-    <h2 class="mt-5 mb-3">How to use Autoinven</h2>
-    <div id="help" class="container">
-      <ul id="help-list" class="list-feature">
-        <li>
-          <a data-toggle="collapse" class="collapsed" href="#help1">Update/Delete Users <i
-              class="ion-android-remove"></i></a>
-          <div id="help1" class="collapse" data-parent="#help-list">
-            <p>If you need update/delete for your data, You can edit/delete it in "MYINFO" page.</p>
-          </div>
-        </li>
-
-        <li>
-          <a data-toggle="collapse" href="#help2" class="collapsed">Forgot Email or Password <i
-              class="ion-android-remove"></i></a>
-          <div id="help2" class="collapse" data-parent="#help-list">
-            <p>Please enter your email address and your password will be sent to the email address registered with your
-              account<br>
-              and then you can creat your new password. Or you can send e-mail via service@autoinspec.com</p>
-          </div>
-        </li>
-
-        <li>
-          <a data-toggle="collapse" href="#help3" class="collapsed">Update/Delete Warehouse <i
-              class="ion-android-remove"></i></a>
-          <div id="help3" class="collapse" data-parent="#help-list">
-            <p>If you need update data or find wrong data for your company, You can send to service@autoinven.com<br>
-              We will contact you within 12 hours.</p>
-          </div>
-        </li>
-
-        <li>
-          <a data-toggle="collapse" href="#help4" class="collapsed">How to Pay <i class="ion-android-remove"></i></a>
-          <div id="help4" class="collapse" data-parent="#help-list">
-            <p>AUOTINVEN.com Secure Payment aims to provide a safe payment service for membership.<br>
-              By partnering with an online payment platform (PayPal), AUTOINVEN.com provides payment security to
-              membership.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
+  <div class="wrap">
+    <header>
+      <%- include('../nav_Bar') %>
+      <div class="page-header page-header-small">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+      </div>
+    </header>
+    <section>
+      <div class="container">
+        <h2 class="mt-5 mb-3">How to use Autoinven</h2>
+        <div id="help" class="container">
+          <ul id="help-list" class="list-feature">
+            <li>
+              <a data-toggle="collapse" class="collapsed" href="#help1">Update/Delete Users <i
+                  class="ion-android-remove"></i></a>
+              <div id="help1" class="collapse" data-parent="#help-list">
+                <p>If you need update/delete for your data, You can edit/delete it in "MYINFO" page.</p>
+              </div>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#help2" class="collapsed">Forgot Email or Password <i
+                  class="ion-android-remove"></i></a>
+              <div id="help2" class="collapse" data-parent="#help-list">
+                <p>Please enter your email address and your password will be sent to the email address registered with
+                  your
+                  account<br>
+                  and then you can creat your new password. Or you can send e-mail via service@autoinspec.com</p>
+              </div>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#help3" class="collapsed">Update/Delete Warehouse <i
+                  class="ion-android-remove"></i></a>
+              <div id="help3" class="collapse" data-parent="#help-list">
+                <p>If you need update data or find wrong data for your company, You can send to
+                  service@autoinven.com<br>
+                  We will contact you within 12 hours.</p>
+              </div>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#help4" class="collapsed">How to Pay <i
+                  class="ion-android-remove"></i></a>
+              <div id="help4" class="collapse" data-parent="#help-list">
+                <p>AUOTINVEN.com Secure Payment aims to provide a safe payment service for membership.<br>
+                  By partnering with an online payment platform (PayPal), AUTOINVEN.com provides payment security to
+                  membership.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <%- include('../footer') %>
+    </footer>
   </div>
 </body>
-
-<%- include('../footer') %>
 
 </html>

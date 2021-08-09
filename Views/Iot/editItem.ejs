@@ -3,19 +3,19 @@
 
 <head>
   <%- include('../head') %>
-    <meta charset="utf-8">
-    <title>Change Product Information</title>
-    <link rel="stylesheet" href="/CSS/iot.css" />
+  <title>Change Product Information</title>
 </head>
 
 <body>
-  <div id="iot_content">
-    <%- include('nav') %>
+  <div class="wrap">
+    <header>
+      <%- include('nav') %>
+    </header>
+    <section id="iot">
       <div class="container">
         <div class="container mb-3">
           <h2 class="mb-3">Change Product Information</h2>
         </div>
-
         <form action="/iot/editSave" method="POST">
           <div class="table-responsive">
             <table class="board-table table">
@@ -47,7 +47,11 @@
         <button class="btn btn-primary two_btn" onclick="location.href='warehousing'">Back</button>
       </div>
   </div>
+  </section>
+  <footer>
+    <%- include('../footer') %>
+  </footer>
+  </div>
 </body>
-<%- include('../footer') %>
 
 </html>

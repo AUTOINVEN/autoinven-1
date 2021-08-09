@@ -3,16 +3,17 @@
 
 <head>
   <%- include('../head') %>
-    <meta charset="utf-8">
-    <title>Monitoring</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/CSS/iot.css" />
-    <script src="/JS/monitoring.js"></script>
+  <title>Monitoring</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/JS/monitoring.js"></script>
 </head>
 
 <body>
-  <div id="iot_content">
-    <%- include('nav') %>
+  <div class="wrap">
+    <header>
+      <%- include('nav') %>
+    </header>
+    <section id="iot">
       <div class="container">
         <div class="sensor">
           <canvas id="chart1" width="350" height="350"></canvas>
@@ -27,9 +28,12 @@
           <canvas id="chart4" width="350" height="350"></canvas>
         </div>
       </div>
+      <input type="hidden" id="ws" value="<%= iotServer %>" />
+    </section>
+    <footer>
+      <%- include('../footer') %>
+    </footer>
   </div>
-  <input type="hidden" id="ws" value="<%= iotServer %>" />
 </body>
-<%- include('../footer') %>
 
 </html>

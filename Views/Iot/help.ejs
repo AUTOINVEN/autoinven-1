@@ -3,14 +3,16 @@
 
 <head>
   <%- include('../head') %>
-    <meta charset="utf-8">
-    <title>Product Registration</title>
-    <link rel="stylesheet" href="/CSS/iot.css" />
+  <meta charset="utf-8">
+  <title>Product Registration</title>
 </head>
 
 <body>
-  <div id="iot_content">
-    <%- include('nav') %>
+  <div class="wrap">
+    <header>
+      <%- include('nav') %>
+    </header>
+    <section id="iot">
       <div class="container">
         <div class="container mb-3">
           <h2>How to use AUTOINIoT</h2>
@@ -47,7 +49,6 @@
                 <img src="Public/Image/iot_help1.PNG" alt="help1">
               </div>
             </li>
-
             <li>
               <a data-toggle="collapse" href="#help4" class="collapsed">Check Warehouse Status - Flame/Gas <i
                   class="ion-android-remove"></i></a>
@@ -61,7 +62,11 @@
         </div>
       </div>
   </div>
+  </section>
+  <footer>
+    <%- include('../footer') %>
+  </footer>
+  </div>
 </body>
-<%- include('../footer') %>
 
 </html>

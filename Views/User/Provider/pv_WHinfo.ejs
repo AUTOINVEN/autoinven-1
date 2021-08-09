@@ -1,76 +1,87 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <%- include('../../head') %>
 </head>
 
 <body>
-  <%- include('../../nav_Bar') %>
-  <div class="page-header page-header-small">
-    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
-  </div>
-  <div class="container">
-    <h2 class="mt-5 mb-3">Warehouse Name
-      <!--<form>-->
-        <button class="btn btn-primary">IoT</button>
-      <!--</form>-->
-    </h2>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Warehouse Address</label>
-        <div class="col-sm-10"><input type="text" class="form-control" id="address" name="address" placeholder="Address" readonly></div>
+  <div class="wrap">
+    <header>
+      <%- include('../../nav_Bar') %>
+      <div class="page-header page-header-small">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
       </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">LandArea</label>
-        <div class="col-sm-10"><input type="text" class="form-control" id="landArea" name="landArea" placeholder="Numbers Only"></div>
+    </header>
+    <section>
+      <div class="container">
+        <h2 class="mt-5 mb-3">Warehouse Name
+          <!--<form>-->
+          <button id="btnView" class="btn btn-primary" style=" font-size:14px; margin-left: 10px; padding: 8px 12px;">IoT</button>
+          <!--</form>-->
+        </h2>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Warehouse Address</label>
+          <div class="col-sm-10"><input type="text" class="form-control" id="address" name="address"
+              placeholder="Address" readonly></div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">LandArea</label>
+          <div class="col-sm-10"><input type="text" class="form-control" id="landArea" name="landArea"
+              placeholder="Numbers Only"></div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">FloorArea</label>
+          <div class="col-sm-10"><input type="text" class="form-control" id="floorArea" name="floorArea"
+              placeholder="Numbers Only"></div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Price Per Area</label>
+          <div class="col-sm-10"><input type="text" class="form-control" id="price" name="price"
+              placeholder="ex)(100$)"></div>
+        </div>
       </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">FloorArea</label>
-        <div class="col-sm-10"><input type="text" class="form-control" id="floorArea" name="floorArea" placeholder="Numbers Only"></div>
+      <div class="container">
+        <h2 class="mt-5 mb-3">Usage List</h2>
+        <table class="board-table table " id="myWH">
+          <thead class="thead-dark">
+            <tr>
+              <th>Request ID</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Space</th>
+              <th>Price</th>
+              <th>B.ID</th>
+              <th>B.name</th>
+              <th>B.email</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Price Per Area</label>
-        <div class="col-sm-10"><input type="text" class="form-control" id="price" name="price" placeholder="ex)(100$)"></div>
+      <div class="container">
+        <h2 class="mt-5 mb-3">Used List</h2>
+        <table class="board-table table ">
+          <thead class="thead-dark">
+            <tr>
+              <th>Request ID</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Space</th>
+              <th>Price</th>
+              <th>B.ID</th>
+              <th>B.name</th>
+              <th>B.email</th>
+            </tr>
+          </thead>
+        </table>
       </div>
+    </section>
+    <footer>
+      <%- include('../../footer') %>
+    </footer>
   </div>
-  <div class="container">
-    <h2 class="mt-5 mb-3">Usage List</h2>
-    <table class="board-table table " id="myWH">
-      <thead class="thead-dark">
-      <tr>
-        <th>Request ID</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Space</th>
-        <th>Price</th>
-        <th>B.ID</th>
-        <th>B.name</th>
-        <th>B.email</th>
-      </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-  <div class="container">
-    <h2 class="mt-5 mb-3">Used List</h2>
-    <table class="board-table table ">
-      <thead class="thead-dark">
-      <tr>
-        <th>Request ID</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Space</th>
-        <th>Price</th>
-        <th>B.ID</th>
-        <th>B.name</th>
-        <th>B.email</th>
-      </tr>
-      </thead>
-    </table>
-  </div>
-  <div class="overlay"></div>
 </body>
-
-<%- include('../../footer') %>
 
 </html>
