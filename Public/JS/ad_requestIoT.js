@@ -1,7 +1,8 @@
 function adClick(val) {
     var iotServer = $('#iotServer').val();
+    var wid = $('#wid').val();
     if (val === 'Test') {
-        $.redirect('/iot', {'iotServer': iotServer});
+        $.redirect('/iot', {'iotServer': iotServer, 'wid': wid});
     }
     else if (val === 'Approve') {
         Swal.fire({
