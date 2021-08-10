@@ -2819,6 +2819,7 @@ p {
   line-height: 1.61em;
   font-weight: 300;
   font-size: 1.2em;
+  margin-bottom: 5px;
 }
 
 .title {
@@ -5275,6 +5276,7 @@ img {
   transform: translate(-50%, -50%);
   text-align: center;
   color: #FFFFFF;
+  margin-top: 100px;
   padding: 0 15px;
   width: 100%;
   max-width: 880px;
