@@ -78,6 +78,7 @@ p {
   line-height: 1.61em;
   font-weight: 300;
   font-size: 1.2em;
+  margin-bottom: 5px;
 }
 
 a[data-toggle="collapse"] {
@@ -919,13 +920,14 @@ h6,
   transform: translate(-50%, -50%);
   text-align: center;
   color: #FFFFFF;
+  margin-top: 100px;
   padding: 0 15px;
   width: 100%;
   max-width: 880px;
 }
 
 .brand .h1-seo {
-  font-size: 2.8em;
+  font-size: 3.5em;
   text-transform: uppercase;
   font-weight: 300;
 }
