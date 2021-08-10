@@ -47,9 +47,10 @@
               </td>
               <% } %>
               <td style="padding:6px 0;">
-                <form action="/Provider/WHinfo" method="GET">
-                  <button class="btn btn-sm" id="viewbtn<%= i %>" style="margin: 0; padding: 8px 12px;">INFO</button>
-                </form>
+              <form action="/Provider/WHinfo" method="POST">
+              <input id="warehouseID" name="warehouseID" type="hidden" value="<%= wList['item' + i].warehouseID %>">
+              <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+            </form>
               </td>
             </tr>
             <% } %>
@@ -179,7 +180,6 @@
       }
     });
   }
-
   function pvClick(where, i, flag) {
     var URL = '/Provider/MyWarehouse/Enroll/Ans';
     var Area = null;
