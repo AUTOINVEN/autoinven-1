@@ -15,15 +15,12 @@
       </div>
     </header>
     <section>
-      <div>
-        <div class="container">
-          <input type="text" class="col-3" id="iotServer" placeholder="ws://localhost:5000">
-          <button class="btn btn-info btn-sm" id="btn_test" onclick="adClick('Test')">Test</button>
-          <button type="button" class="btn btn-success btn-sm" id="btn_approve"
-            onclick="adClick('Approve')">Approve</button>
-          <button type="button" class="btn btn-danger btn-sm" id="btn_reject"
-            onclick="adClick('Reject')">Reject</button>
-        </div>
+      <div class="container">
+        <input type="text" class="col-3" id="iotServer" placeholder="ws://localhost:5000">
+        <button class="btn btn-info btn-sm" id="btn_test" onclick="adClick('Test')">Test</button>
+        <button type="button" class="btn btn-success btn-sm" id="btn_approve" onclick="adClick('Approve')">Approve</button>
+        <button type="button" class="btn btn-danger btn-sm" id="btn_reject" onclick="adClick('Reject')">Reject</button>
+        <input type="hidden" id="wid" value="<%= wid %>">
       </div>
     </section>
     <footer>
@@ -33,5 +30,4 @@
 </body>
 
 <script src="/JS/ad_requestIoT.js"></script>
-
 </html>
