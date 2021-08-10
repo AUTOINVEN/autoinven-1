@@ -2,10 +2,10 @@ const mysql = require('sync-mysql');
 
 var db_info = {
     host : process.env.MYSQL_HOST_IP, //docker mysql container의 ip주소로 변경해주어야함.
-    user : 'autoin',
-    port : 3306,
-    password : 'autoin2021',
-    database : 'autoinven',
+    user : process.env.DB_ID,
+    port : process.env.DB_PORT,
+    password : process.env.DB_PW,
+    database : process.env.DB_DATABASE
 };
 
 module.exports = {

@@ -11,14 +11,13 @@ exports.emailIDF = async function (req, res, app, db) {
     });
 
     var nodemailer = require('nodemailer');
-    var mailConfig = require('../config/mailconfig');
 
     let smtpTransport = nodemailer.createTransport({
-        service: mailConfig.mailservice,
-        host: mailConfig.mailhost,
+        service: process.env.MAIL_SERVICE,
+        host: process.env.MAIL_HOST,
         auth: {
-            user: 'service@autoingroup.com',
-            pass: 'autoin2020$'
+            user: process.env.MAIL_ID,
+            pass: process.env.MAIL_PW
         },
         tls: {
             rejectUnauthorized: false
