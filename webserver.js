@@ -14,6 +14,9 @@ const fs = require('fs');
 var apolloServer = require('./apollo');
 var http = require('http');
 
+require('dotenv').config();
+
+
 // 1. 설정
 // 1) View 경로 설정
 app.set('views', __dirname + '/Views');
