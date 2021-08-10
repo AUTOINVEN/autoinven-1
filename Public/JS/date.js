@@ -1,4 +1,4 @@
-exports.getToday = function (req, res, app, db) {
+exports.getToday = function () {
     var today = new Date();
     var UTC = today.getTime() + (today.getTimezoneOffset() * 60 * 1000);
     var KR_DIFF = 9 * 60 * 60 * 1000;
