@@ -13,24 +13,27 @@
 
 <body class="index-page" style="overflow: auto;">
   <%- include('nav_Bar') %>
-  <% var sess=session; %>
-  <div class="wrapper">
-    <div class="page-header" style="background-color: rgba(0, 0, 0, 0.25);">
-      <div class="page-header-image" id="mainhead">
-      </div>
-      <div class="container">
-        <div class="content-center brand">
-          <h1 class="h1-seo">Autoinven</h1>
-          <h3>Connect to the Global Automotive Industry</h3>
-          <div>
-            <p>· Provide a warehouse and earn money!</p>
-            <p>· Use the space you need, for as long as you need it, at an affordable price!</p>
-            <p>· Check the status of the warehouse where goods are stored in real time!</p>
-            <p>· Start autoinven right now!</p>
+    <% var sess=session; %>
+      <div class="wrapper">
+        <div class="page-header" style="background-color: rgba(0, 0, 0, 0.25);">
+          <div class="page-header-image" id="mainhead">
           </div>
-          <button class="btn btn-primary" onclick="location.href = '/User/Register'">start autoinven →
-            sign up</button>
-          <button class="btn btn-primary" onclick="location.href = '/User/Help'">more information → help</button>
+          <div class="container">
+            <div class="content-center brand">
+              <h1 class="h1-seo">Autoinven</h1>
+              <h3>Connect to the Global Automotive Industry</h3>
+              <div style="font-size:17px; text-align:left; padding: 50px 0 30px 35px;">
+                <p>· Provide a warehouse and earn money!</p>
+                <p>· Use the space you need for as long as you need at an affordable price!</p>
+                <p>· Check the status of the warehouse where goods are stored in real time!</p>
+                <p>· Start autoinven right now!</p>
+              </div>
+              <div style="display:inline-block">
+                <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Register'">Start Autoinven</button>
+                <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Help'">More Information</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,7 +60,8 @@
         </tbody>
       </table>
     </div>
-  </div>
+    <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Login'" style="margin: auto">Require for Using Warehouse</button>
+  </div>  
   <p id="items" style="display: none"><%= items %></p>
   <div class="overlay"></div>
 </body>
@@ -84,9 +88,8 @@
   function zoomImg() {
     var h_window = window.innerHeight;
     var h_body = document.body.scrollHeight;
-    var h_end = 1500; //크기변화 끝낼위치 설정
+    var h_end = 1500;
 
-    //h_end값 잘못넣으면 그냥 맨 마지막 스크롤까지 효과 나오도록
     if (h_end > h_body || h_end < h_window) {
       var size_x = firstSize_x - Math.floor((firstSize_x - 100) / (h_body - h_window) * window.scrollY);
       var size_y = firstSize_y - Math.floor((firstSize_y - 100) / (h_body - h_window) * window.scrollY);
