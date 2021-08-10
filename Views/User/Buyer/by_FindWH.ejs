@@ -12,109 +12,111 @@
 </head>
 
 <body>
-  <%- include('../../nav_Bar') %>
-  <div class="page-header page-header-small">
-    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
-  </div>
-  <div class="container mt-4">
-    <div class="container pt-3 mb-3" style="width:50%; float:left;">
-      <div id="map" style="width:100%; height:70vh;"></div>
-    </div>
-    <div class="container pt-3 mb-3" style="width:50%; height:80vh; float:right;">
-      <table class="table table-bordered">
-        <div id="image_container"></div>
-        <tbody>
-          <tr>
-            <th class="thead-dark-vertical">Name</th>
-            <td id="whName"></td>
-          </tr>
-          <tr>
-            <th rowspan="2" class="thead-dark-vertical">Address</th>
-            <td id="whAddress">　</td>
-          </tr>
-          <tr>
-            <td id="whAddressDetail">　</td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">Land Area</th>
-            <td id="whLandArea"></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">Floor Area</th>
-            <td id="whFloorArea"></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">Usable Area</th>
-            <td id="whUseableArea"></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">Price Per m<sup>2</sup></th>
-            <td id="whPrice"></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">Contact Email</th>
-            <td id="whEmail"></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">Contact Tel</th>
-            <td id="whPhone"></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">IoT</th>
-            <td id="whIoT"></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">Comment</th>
-            <td id = "whID" style="display: none"></td>
-            <td id=whInfoComment></td>
-          </tr>
-          <tr>
-            <th class="thead-dark-vertical">ETC</th>
-            <td id=whEtcComment></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#inquire">Inquire</button>
-
-      <div id="inquire" class="collapse">
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Rental Area Amount</label>
-          <div class="col-sm-8"><input type="text" class="form-control" id="area" placeholder="Rental Area Amount">
-          </div>
+  <div class="wrap">
+    <header>
+      <%- include('../../nav_Bar') %>
+      <div class="page-header page-header-small">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+      </div>
+    </header>
+    <section>
+      <div class="container mt-4">
+        <div class="container pt-3 mb-3" style="width:50%; float:left;">
+          <div id="map" style="width:100%; height:70vh;"></div>
         </div>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Start Date</label>
-          <div class="col-sm-8 input-group date" id="datetimepicker1" data-target-input="nearest">
-            <input id="sDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1">
-            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-              <div class="input-group-text">
-                <i class="fa fa-calendar"></i>
+        <div class="container pt-3 mb-3" style="width:50%; float:right; overflow:auto;">
+          <table class="table table-bordered">
+            <div id="image_container"></div>
+            <tbody>
+              <tr>
+                <th class="thead-dark-vertical">Name</th>
+                <td id="whName"></td>
+              </tr>
+              <tr>
+                <th rowspan="2" class="thead-dark-vertical">Address</th>
+                <td id="whAddress">　</td>
+              </tr>
+              <tr>
+                <td id="whAddressDetail">　</td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Land Area</th>
+                <td id="whLandArea"></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Floor Area</th>
+                <td id="whFloorArea"></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Usable Area</th>
+                <td id="whUseableArea"></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Price Per m<sup>2</sup></th>
+                <td id="whPrice"></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Contact Email</th>
+                <td id="whEmail"></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Contact Tel</th>
+                <td id="whPhone"></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">IoT</th>
+                <td id="whIoT"></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Comment</th>
+                <td id="whID" style="display: none"></td>
+                <td id=whInfoComment></td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">ETC</th>
+                <td id=whEtcComment></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#inquire">Inquire</button>
+
+          <div id="inquire" class="collapse">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Rental Area Amount</label>
+              <div class="col-sm-8"><input type="text" class="form-control" id="area" placeholder="Rental Area Amount">
               </div>
             </div>
-          </div>
-          <label class="col-sm-4 col-form-label">End Date</label>
-          <div class="col-sm-8 input-group date" id="datetimepicker2" data-target-input="nearest">
-            <input id="eDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2">
-            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-              <div class="input-group-text">
-                <i class="fa fa-calendar"></i>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Start Date</label>
+              <div class="col-sm-8 input-group date" id="datetimepicker1" data-target-input="nearest">
+                <input id="sDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1">
+                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
               </div>
+              <label class="col-sm-4 col-form-label">End Date</label>
+              <div class="col-sm-8 input-group date" id="datetimepicker2" data-target-input="nearest">
+                <input id="eDate" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2">
+                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-left:43%;" id="btn">Submit</button>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" style="margin-left:43%;" id="btn">Submit</button>
         </div>
       </div>
-    </div>
+    </section>
+    <footer>
+      <%- include('../../footer') %>
+    </footer>
   </div>
-  <p id="items" style="display: none"><%= items %></p>
-  <p id="startDate" style="display: none"></p>
-  <p id="endDate" style="display: none"></p>
-  <div class="overlay"></div>
 </body>
 
-<%- include('../../footer') %>
-
 <script type="text/javascript" src="/JS/findWH.js"></script>
-
 </html>

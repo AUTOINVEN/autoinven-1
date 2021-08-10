@@ -6,18 +6,22 @@
 </head>
 
 <body>
-  <%- include('../nav_Bar') %>
-  <div class="page-header page-header-small">
-    <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
-  </div>
-  <div class="container">    
-      <form action="/iot" method="POST">
-        <h2 class="mt-5 mb-3">Warehouse Info
-        <input id="wid" name="wid" type="hidden" value="<%= req.body.warehouseID %>">
-        <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT</button>
-      </form>
-    </h2>
-    <table class="table table-bordered">
+  <div class="wrap">
+    <header>
+    <%- include('../nav_Bar') %>
+      <div class="page-header page-header-small">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+      </div>
+    </header>
+    <section>
+      <div class="container">    
+        <form action="/iot" method="POST">
+          <h2 class="mt-5 mb-3">Warehouse Info
+          <input id="wid" name="wid" type="hidden" value="<%= req.body.warehouseID %>">
+          <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT</button>
+          </h2>
+        </form>          
+      <table class="table table-bordered">
       <tbody>
         <% for(var i = 0; i < Object.keys(WHitems).length; i++) { %>
         <tr>
@@ -297,15 +301,19 @@
                 </table>
                 <div class="modal_close">
                   <button type="button" class="btn btn-sm">Close</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </td>
-        </tr>
-        <% } %>
-    </table>
+            </td>
+          </tr>
+          <% } %>
+        </table>
+      </div>
+    </section>
+    <footer>
+      <%- include('../footer') %>
+    </footer>
   </div>
-  <div class="overlay"></div>
 </body>
 <script>
   window.onload = function () {
@@ -316,10 +324,9 @@
     function offClick() {
       document.querySelector('.modal_wrap').style.display = 'none';
     }
+    
     document.querySelector('#modal_btn').addEventListener('click', onClick);
     document.querySelector('.modal_close').addEventListener('click', offClick);
   };
 </script>
-<%- include('../footer') %>
-
 </html>
