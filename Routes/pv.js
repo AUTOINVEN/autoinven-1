@@ -5,6 +5,7 @@ module.exports = function (app, db) {
     const pv_myWH = require('./pv_MyWH');
     const pv_EnrollWH = require('./pv_EnrollWH');
     const WHinfo = require('./WHinfo');
+    const WHedit = require('./pv_WHedit');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -58,6 +59,14 @@ module.exports = function (app, db) {
         nextItems = JSON.parse(nextItems);
         preItems = JSON.parse(preItems);
         res.render('User/WHinfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
+    });
+
+    router.post('/WHinfo/Edit', function (req, res, next) {
+        WHedit.Show(req, res, app, db);
+    });
+
+    router.post('/WHinfo/Edit/Save', function (req, res, next) {
+        WHedit.Save(req, res, app, db);
     });
 
     router.get('/MyWarehouse', function (req, res, next) {
