@@ -4,6 +4,7 @@ module.exports = function (app, db) {
 
     const pv_myWH = require('./pv_MyWH');
     const pv_EnrollWH = require('./pv_EnrollWH');
+    const WHinfo = require('./WHinfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -45,12 +46,18 @@ module.exports = function (app, db) {
         pv_myWH.ReqIoTAns(req, res, app, db);
     });
 
-    router.get('/WHinfo', function (req, res, next) {
-        res.render('User/Provider/pv_WHinfo', {
-            'app': app,
-            'session': req.session,
-            'db': db
-        });
+    router.post('/WHinfo', function (req, res, next) {
+        var WHitems = WHinfo.getWHInfo(req, res, app, db);
+        var PVitems = WHinfo.getPVInfo(req, res, app, db);
+        var curItems = WHinfo.getCurUsage(req, res, app, db);
+        var nextItems = WHinfo.getNextUsage(req, res, app, db);
+        var preItems = WHinfo.getPreUsage(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        PVitems = JSON.parse(PVitems);
+        curItems = JSON.parse(curItems);
+        nextItems = JSON.parse(nextItems);
+        preItems = JSON.parse(preItems);
+        res.render('User/WHinfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
     });
 
     router.get('/MyWarehouse', function (req, res, next) {

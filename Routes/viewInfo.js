@@ -1,7 +1,7 @@
-exports.getWHInfo = function (req, res, app, db) {
-    var reqID = req.body.reqID;
+exports.getWHInfo = function (db, WID) {
     var items = {};
-    let results = db.query(`select * from Contract, Warehouse where Contract.warehouseID=Warehouse.warehouseID and reqID=` + [reqID] + `;`);
+    console.log("viewInfo : " + WID);
+    let results = db.query(`select * from Warehouse where warehouseID=` + WID + `;`);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
@@ -25,14 +25,13 @@ exports.getWHInfo = function (req, res, app, db) {
     return JSON.stringify(items);
 }
 
-exports.getPVInfo = function (req, res, app, db) {
-    var reqID = req.body.reqID;
+exports.getMemberInfo = function (db, memID) {
     var items = {};
-    let results = db.query(`select * from Contract, Warehouse, Provider, Member where Contract.warehouseID=Warehouse.warehouseID and Warehouse.warehouseID=Provider.warehouseID and Provider.memberID=Member.memberID and reqID=` + [reqID] + `;`);
+    let results = db.query(`select * from Member where memberID="` + [memID] + `";`);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
-                providerID: results[step].memberID,
+                memberID: results[step].memberID,
                 name: results[step].name,
                 national: results[step].national,
                 email: results[step].email,
