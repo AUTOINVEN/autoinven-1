@@ -18,97 +18,93 @@
         <table id="t1" class="table table-bordered">
           <h2 class="mt-5 mb-3">Provider Info</h2>
           <tbody>
-            <% for(var i = 0; i < Object.keys(PVitems).length; i++) { %>
             <tr>
               <th class="thead-dark-vertical">Provider ID</th>
-              <td><%= PVitems['item' + i].memberID %></td>
+              <td><%= PVitems.memberID %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Provider Name</th>
-              <td><%= PVitems['item' + i].name %></td>
+              <td><%= PVitems.name %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">National</th>
-              <td><%= PVitems['item' + i].national %></td>
+              <td><%= PVitems.national %></td>
             </tr>
             <tr>
               <th rowspan="2" class="thead-dark-vertical">Address</th>
-              <td><%= PVitems['item' + i].zipcode %></td>
+              <td><%= PVitems.zipcode %></td>
             </tr>
             <tr>
-              <td><%= PVitems['item' + i].address %></td>
+              <td><%= PVitems.address %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Email</th>
-              <td><%= PVitems['item' + i].email %></td>
+              <td><%= PVitems.email %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Contact Number</th>
-              <td><%= PVitems['item' + i].contactNumber %></td>
+              <td><%= PVitems.contactNumber %></td>
             </tr>
-            <% } %>
           </tbody>
         </table>
         <table id="t2"class="table table-bordered">
           <h2 class="mt-5 mb-3">Warehouse Info</h2>
           <tbody>
-            <% for(var i = 0; i < Object.keys(WHitems).length; i++) { %>
             <tr>
               <th class="thead-dark-vertical">Warehouse ID</th>
-              <td><%= WHitems['item' + i].warehouseID %></td>
+              <td><%= WHitems.warehouseID %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Warehouse Name</th>
-              <td><%= WHitems['item' + i].warehouseName %></td>
+              <td><%= WHitems.warehouseName %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Zipcode</th>
-              <td><%= WHitems['item' + i].zipcode %></td>
+              <td><%= WHitems.zipcode %></td>
             </tr>
             <tr>
               <th rowspan="2" class="thead-dark-vertical">Address</th>
-              <td><%= WHitems['item' + i].address %></td>
+              <td><%= WHitems.address %></td>
             </tr>
             <tr>
-              <td><%= WHitems['item' + i].addressDetail %></td>
+              <td><%= WHitems.addressDetail %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Contact Email</th>
-              <td><%= WHitems['item' + i].warehouseEmail %></td>
+              <td><%= WHitems.warehouseEmail %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Contact Tel</th>
-              <td><%= WHitems['item' + i].warehouseTEL %></td>
+              <td><%= WHitems.warehouseTEL %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Enrolled Date</th>
-              <td><%= WHitems['item' + i].enrolledDate %></td>
+              <td><%= WHitems.enrolledDate %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Land Area</th>
-              <td><%= WHitems['item' + i].landArea %></td>
+              <td><%= WHitems.landArea %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Floor Area</th>
-              <td><%= WHitems['item' + i].floorArea %></td>
+              <td><%= WHitems.floorArea %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Usable Area</th>
-              <td><%= WHitems['item' + i].landArea %></td>
+              <td><%= WHitems.landArea %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Price Per Area</th>
-              <td><%= WHitems['item' + i].perprice %></td>
+              <td><%= WHitems.perprice %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Info Comment</th>
-              <td><%= WHitems['item' + i].perprice %></td>
+              <td><%= WHitems.perprice %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Etc Comment</th>
-              <td><%= WHitems['item' + i].etcComment %></td>
+              <td><%= WHitems.etcComment %></td>
             </tr>
-            <% } %>
           </tbody>
         </table>
       </div>
