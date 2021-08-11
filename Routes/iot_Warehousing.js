@@ -51,9 +51,9 @@ exports.delItem = function (req, res, db) {
     var check = db.query(delSQL);
     if (!check) {
         console.log("error ocurred", error);
-        res.redirect('warehousing');
+        res.redirect('Warehousing');
     } else {
-        res.redirect('warehousing');
+        res.redirect('Warehousing');
     }
 }
 
@@ -69,5 +69,5 @@ exports.randomTest = function (req, res, db) {
 
     var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}', ${wid});`);
     if (!row) console.log('err: randomTest');
-    else res.redirect('warehousing');
+    else res.redirect('Warehousing');
 }

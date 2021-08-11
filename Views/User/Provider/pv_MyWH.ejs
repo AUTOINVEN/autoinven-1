@@ -32,7 +32,7 @@
               <td><%= wList['item' + i].warehouseName %></td>
               <% if (wList['item' + i].iotStat == "Y"){ %>
               <td style="padding:6px 0;">
-                <form action="/iot" method="POST">
+                <form action="/IoT" method="POST">
                   <input id="wid" name="wid" type="hidden" value="<%= wList['item' + i].warehouseID %>">
                   <button class="btn btn-primary" style="margin: 0; padding: 10px 15px;">IoT Page</button>
                 </form>

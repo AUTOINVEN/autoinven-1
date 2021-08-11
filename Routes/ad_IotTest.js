@@ -4,6 +4,6 @@ exports.init = function (req, res, app, db) {
     if (!rows.length) res.render('Alert/cannotAccess');
     else {
         req.session['warehouseID'] = wid;
-        res.render('User/Admin/ad_IotTest', {'session': req.session, 'wid': wid});
+        res.render('User/Admin/ad_IoTTest', {'session': req.session, 'wid': wid});
     }
 }

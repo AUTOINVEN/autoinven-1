@@ -40,7 +40,7 @@
               <td id="totalPrice<%= i %>"><%= curItems['item' + i].totalPrice %></td>
               <% if (curItems['item' + i].iotStat == "Y"){ %>
               <td style="padding:6px 0;">
-                <form action="/iot" method="POST">
+                <form action="/IoT" method="POST">
                   <input id="wid" name="wid" type="hidden" value="<%= curItems['item' + i].warehouseID %>">
                   <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
                 </form>
@@ -68,7 +68,7 @@
               <td id="totalPrice<%= i %>"><%= nextItems['item' + i].totalPrice %></td>
               <% if (nextItems['item' + i].iotStat == "Y"){ %>
               <td style="padding:6px 0;">
-                <form action="/iot" method="POST">
+                <form action="/IoT" method="POST">
                   <input id="wid" name="wid" type="hidden" value="<%= nextItems['item' + i].warehouseID %>">
                   <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
                 </form>

@@ -42,7 +42,7 @@
                 <td id="price<%= i %>" class="col-1"><%= items['item' + i].price %></td>
                 <% if (items['item' + i].iotStat == "Y"){ %>
                 <td class="col-2" style="padding:6px 0;">
-                  <form action="/iot" method="POST">
+                  <form action="/IoT" method="POST">
                     <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
                     <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
                   </form>

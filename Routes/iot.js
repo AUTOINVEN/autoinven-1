@@ -3,16 +3,16 @@ module.exports = function (app, db) {
     const express = require('express');
     const router = express.Router();
 
-    const iot_monitoring = require('./iot_monitoring');
-    const iot_warehousing = require('./iot_warehousing');
-    const iot_registerItem = require('./iot_registerItem');
-    const iot_editItem = require('./iot_editItem');
-    const iot_help = require('./iot_help');
-    const iot_rfid = require('./iot_rfid');
+    const iot_Monitoring = require('./iot_Monitoring');
+    const iot_Warehousing = require('./iot_Warehousing');
+    const iot_RegisterItem = require('./iot_RegisterItem');
+    const iot_EditItem = require('./iot_EditItem');
+    const iot_Help = require('./iot_Help');
+    const iot_RFID = require('./iot_RFID');
 
     var check = (req, res, next) => {
         var id = req.session['memberID'];
-        if (req.path === '/rfid') {
+        if (req.path === '/RFID') {
             if (!id) res.send('unauthorized');
             else next();
         } else {
@@ -25,36 +25,36 @@ module.exports = function (app, db) {
     };
     router.use(check);
 
-    router.get('/', (req, res, next) => { iot_monitoring.init(req, res, db) });
+    router.get('/', (req, res, next) => { iot_Monitoring.init(req, res, db) });
 
-    router.post('/', (req, res, next) => { iot_monitoring.sessionCheck(req, res, db) });
+    router.post('/', (req, res, next) => { iot_Monitoring.sessionCheck(req, res, db) });
 
-    router.get('/monitoring', (req, res, next) => { iot_monitoring.init(req, res, db) });
+    router.get('/Monitoring', (req, res, next) => { iot_Monitoring.init(req, res, db) });
 
-    router.get('/warehousing', (req, res, next) => {
-        var itemlist = iot_warehousing.initWarehouse(req, res, db);
+    router.get('/Warehousing', (req, res, next) => {
+        var itemlist = iot_Warehousing.initWarehouse(req, res, db);
         var userType = req.session['type'];
         itemlist = JSON.parse(itemlist);
-        res.render('Iot/warehousing', {'itemlist': itemlist, 'userType': userType});
+        res.render('IoT/iot_Warehousing', {'itemlist': itemlist, 'userType': userType});
     });
 
-    router.get('/help', (req, res, next) => { iot_help.init(req, res, db) });
+    router.get('/Help', (req, res, next) => { iot_Help.init(req, res, db) });
 
-    router.get('/randomTest', (req, res, next) => { iot_warehousing.randomTest(req, res, db) });
+    router.get('/RandomTest', (req, res, next) => { iot_Warehousing.randomTest(req, res, db) });
 
-    router.get('/registerItem', (req, res, next) => { res.render('Iot/registerItem') });
+    router.get('/RegisterItem', (req, res, next) => { res.render('IoT/iot_RegisterItem') });
 
-    router.post('/registerItem', (req, res, next) => { iot_registerItem.registerItem(req, res, db) });
+    router.post('/RegisterItem', (req, res, next) => { iot_RegisterItem.registerItem(req, res, db) });
 
-    router.get('/editItem', (req, res, next) => {res.render('Iot/editItem') });
+    router.get('/EditItem', (req, res, next) => {res.render('IoT/iot_EditItem') });
 
-    router.post('/editItem', (req, res, next) => {res.render('Iot/editItem', {'rfid': req.body.itemEdit}); });
+    router.post('/EditItem', (req, res, next) => {res.render('IoT/iot_EditItem', {'rfid': req.body.itemEdit}); });
 
-    router.post('/editSave', (req, res, next) => {iot_editItem.editItem(req, res, db)});
+    router.post('/EditSave', (req, res, next) => {iot_EditItem.editItem(req, res, db)});
 
-    router.post('/deleteItem', (req, res, next) => {iot_warehousing.delItem(req, res, db) });
+    router.post('/DeleteItem', (req, res, next) => {iot_Warehousing.delItem(req, res, db) });
 
-    router.post('/rfid', (req, res, next) => { iot_rfid.receive(req, res, db) });
+    router.post('/RFID', (req, res, next) => { iot_RFID.receive(req, res, db) });
 
     return router;
 };
