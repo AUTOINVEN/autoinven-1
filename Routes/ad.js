@@ -8,7 +8,7 @@ module.exports = function (app, db) {
     const ad_UsageHistory = require('./ad_UsageHistory');
     const ad_UsageHistoryInfo = require('./ad_UsageHistoryInfo');
     const ad_WarehouseList = require('./ad_WarehouseList');
-    const WHinfo = require('./WHinfo');
+    const WHInfo = require('./WHInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -47,18 +47,18 @@ module.exports = function (app, db) {
         WHList = JSON.parse(WHList);
         res.render('User/Admin/ad_WarehouseList', {'app': app, 'session': req.session, 'db': db, 'WHList': WHList});
     });
-    router.post('/WHinfo', function (req, res, next) {
-        var WHitems = WHinfo.getWHInfo(req, res, app, db);
-        var PVitems = WHinfo.getPVInfo(req, res, app, db);
-        var curItems = WHinfo.getCurUsage(req, res, app, db);
-        var nextItems = WHinfo.getNextUsage(req, res, app, db);
-        var preItems = WHinfo.getPreUsage(req, res, app, db);
+    router.post('/WHInfo', function (req, res, next) {
+        var WHitems = WHInfo.getWHInfo(req, res, app, db);
+        var PVitems = WHInfo.getPVInfo(req, res, app, db);
+        var curItems = WHInfo.getCurUsage(req, res, app, db);
+        var nextItems = WHInfo.getNextUsage(req, res, app, db);
+        var preItems = WHInfo.getPreUsage(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         PVitems = JSON.parse(PVitems);
         curItems = JSON.parse(curItems);
         nextItems = JSON.parse(nextItems);
         preItems = JSON.parse(preItems);
-        res.render('User/WHinfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
+        res.render('User/WHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
     });
     router.get('/UsageHistory', function (req, res, next) {
         var items = ad_UsageHistory.getUsageHistory(req, res, app, db);
