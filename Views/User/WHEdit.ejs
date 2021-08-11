@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <%- include('../../head') %>
+  <%- include('../head') %>
   <script src="/JS/jquery.serializeObject.js"></script>
   <script src="/JS/editWH.js"></script>
 </head>
@@ -10,7 +10,7 @@
 <body>
   <div class="wrap">
     <header>
-      <%- include('../../nav_Bar') %>
+      <%- include('../nav_Bar') %>
       <div class="page-header page-header-small">
         <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
       </div>
@@ -21,60 +21,58 @@
         <form action="Edit/Save" method="post" enctype="multipart/form-data" id="enrollForm" onsubmit="return false;">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse Name</label>
-            <div class="col-sm-4"><input type="text" class="form-control" value="<%= wh.item0.warehouseName %>" readonly></div>
+            <div class="col-sm-4"><input type="text" class="form-control" value="<%= wh.warehouseName %>" readonly></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse Address</label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" value="<%= wh.item0.zipcode %>" readonly>
+              <input type="text" class="form-control" value="<%= wh.zipcode %>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" value="<%= wh.item0.address %>" readonly>
+              <input type="text" class="form-control" value="<%= wh.address %>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" value="<%= wh.item0.addressDetail %>" readonly>
+              <input type="text" class="form-control" value="<%= wh.addressDetail %>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse Email</label>
-            <div class="col-sm-4"><input type="text" class="form-control" id="warehouseEmail" name="warehouseEmail" value="<%= wh.item0.warehouseEmail %>" placeholder="Contact Email"></div>
+            <div class="col-sm-4"><input type="text" class="form-control" id="warehouseEmail" name="warehouseEmail" value="<%= wh.warehouseEmail %>" placeholder="Contact Email"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse Phone</label>
-            <div class="col-sm-4"><input type="text" class="form-control" id="warehouseTel" name="warehouseTel" value="<%= wh.item0.warehouseTEL %>" placeholder="Telephone Number (ex. 010-0000-0000)"></div>
+            <div class="col-sm-4"><input type="text" class="form-control" id="warehouseTel" name="warehouseTel" value="<%= wh.warehouseTEL %>" placeholder="Telephone Number (ex. 010-0000-0000)"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">LandArea</label>
-            <div class="col-sm-4"><input type="text" class="form-control" id="landArea" name="landArea" value="<%= wh.item0.landArea %>" placeholder="Numbers Only"></div>
+            <div class="col-sm-4"><input type="text" class="form-control" id="landArea" name="landArea" value="<%= wh.landArea %>" placeholder="Numbers Only"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">FloorArea</label>
-            <div class="col-sm-4"><input type="text" class="form-control" id="floorArea" name="floorArea" value="<%= wh.item0.floorArea %>" placeholder="Numbers Only"></div>
+            <div class="col-sm-4"><input type="text" class="form-control" id="floorArea" name="floorArea" value="<%= wh.floorArea %>" placeholder="Numbers Only"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Useable Area</label>
-            <div class="col-sm-4"><input type="text" class="form-control" id="useableArea" name="useableArea" value="<%= wh.item0.useableArea %>" placeholder="Numbers Only"></div>
+            <div class="col-sm-4"><input type="text" class="form-control" id="useableArea" name="useableArea" value="<%= wh.useableArea %>" placeholder="Numbers Only"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Price Per Area</label>
-            <div class="col-sm-4"><input type="text" class="form-control" id="price" name="price" value="<%= wh.item0.perprice %>" placeholder="(ex. 100$)"></div>
+            <div class="col-sm-4"><input type="text" class="form-control" id="price" name="price" value="<%= wh.perprice %>" placeholder="(ex. 100$)"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Info Comment</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="infoComment" name="infoComment" value="<%= wh.item0.infoComment %>" placeholder="Information Comment"></div>
+            <div class="col-sm-10"><input type="text" class="form-control" id="infoComment" name="infoComment" value="<%= wh.infoComment %>" placeholder="Information Comment"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Etc Comment</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="etcComment" name="etcComment" value="<%= wh.item0.etcComment %>" placeholder="Etc Comment"></div>
+            <div class="col-sm-10"><input type="text" class="form-control" id="etcComment" name="etcComment" value="<%= wh.etcComment %>" placeholder="Etc Comment"></div>
           </div>
-          <div class="col-sm-10"><input type="hidden" class="form-control" id="lat" name="lat" placeholder="latitude"></div>
-          <div class="col-sm-10"><input type="hidden" class="form-control" id="lng" name="lng" placeholder="longitude"></div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse Image</label>
             <div class="col-sm-8">
@@ -85,7 +83,7 @@
               <input type='file' class="upload-btn-hidden" id='profile_img' name='profile_img' accept='image/*' multiple/>
             </div>
           </div>
-          <input type="hidden" name="warehouseID" value="<%= wh.item0.warehouseID %>">
+          <input type="hidden" name="warehouseID" value="<%= wh.warehouseID %>">
           <div class="button">
             <input type="submit" class="btn btn-primary two_btn" id="enrollBtn" value="Apply">
           </div>
@@ -94,7 +92,7 @@
       </div>
     </section>
   <footer>
-    <%- include('../../footer') %>
+    <%- include('../footer') %>
   </footer>
   </div>
 </body>

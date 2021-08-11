@@ -9,5 +9,5 @@ exports.registerItem = function (req, res, db) {
 
     var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}',${wid});`);
     if (!row) console.log('err: registerItem');
-    else res.redirect('warehousing');
+    else res.redirect('Warehousing');
 }

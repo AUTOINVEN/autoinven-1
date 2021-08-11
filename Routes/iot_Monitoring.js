@@ -1,10 +1,10 @@
 exports.init = function (req, res, db) {
-    if (req.session['type'] === 'admin') res.render('Iot/monitoring', {iotServer: req.session['iotServer']});
+    if (req.session['type'] === 'admin') res.render('IoT/iot_Monitoring', {iotServer: req.session['iotServer']});
     else {
         var wid = req.session['warehouseID'];
         var row = db.query("SELECT iotServer FROM Warehouse WHERE warehouseID = ?;", [wid]);
         if (!row) res.render('Alert/cannotAccess');
-        else res.render('Iot/monitoring', {iotServer: row[0].iotServer});
+        else res.render('IoT/iot_Monitoring', {iotServer: row[0].iotServer});
     }
 }
 
@@ -14,7 +14,7 @@ exports.sessionCheck = function (req, res, db) {
         var wid = req.body.wid;
         req.session['warehouseID'] = wid;
         req.session['iotServer'] = req.body.iotServer;
-        res.redirect('/iot');
+        res.redirect('/IoT');
     }
     else {
         var wid = req.body.wid;
@@ -28,7 +28,7 @@ exports.sessionCheck = function (req, res, db) {
             else {
                 req.session['warehouseID'] = wid;
                 req.session['iotServer'] = row[0].iotServer;
-                res.redirect('/iot/monitoring');
+                res.redirect('IoT/Monitoring');
             }
         }
     }
