@@ -27,7 +27,7 @@ exports.getBYInfo = function (req, res, app, db) {
     var items = {};
     let results = db.query(`select buyerID from Contract where reqID=` + [reqID] + `;`);
     if (results.length > 0) {
-        var buyerID = results[step].buyerID;
+        var buyerID = results[0].buyerID;
         items = viewInfo.getMemberInfo(db, buyerID);
     }
     return JSON.stringify(items);

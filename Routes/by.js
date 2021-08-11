@@ -36,9 +36,9 @@ module.exports = function (app, db) {
     });
 
     router.get('/UsageStatus', function (req, res, next) {
-        var curItems = usageWH.ContractInfo(req, res, app, db);
-        var nextItems = usageWH.NextInfo(req, res, app, db);
-        var preItems = usageWH.PreviousInfo(req, res, app, db);
+        var curItems = usageWH.getCurUsage(req, res, app, db);
+        var nextItems = usageWH.getNextUsage(req, res, app, db);
+        var preItems = usageWH.getPreUsage(req, res, app, db);
         curItems = JSON.parse(curItems);
         nextItems = JSON.parse(nextItems);
         preItems = JSON.parse(preItems);
