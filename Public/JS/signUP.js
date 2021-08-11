@@ -6,6 +6,31 @@
         var authCode = null;
         var authFlag = false;
 
+        $('#slcFormBtn').off("click").on("click", function () {
+            var query = 'input[name="selectType"]:checked';
+            var selectedElements = document.querySelectorAll(query);
+
+            var selectedElementsCnt = selectedElements.length;
+            if (selectedElementsCnt == 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed',
+                    text: 'Please select one'
+                })
+            }
+            else {
+                var formData = $("#regForm").serialize();
+
+                $.ajax({
+                    url: '/User/Select',
+                    type: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        location.href = "/User/Register";
+                    }
+                })
+            }
+        });
         //length>8 //num + upper case + lower case + Special Characters //no blank //no id //no korean
         $("#passwordCheckButton").off("click").on("click", function () {
             var pw = $("#password").val();
@@ -109,7 +134,7 @@
                 $.ajax({
                     url: '/User/Register/MemberID',
                     type: 'post',
-                    data: {'memberID': memberID},
+                    data: { 'memberID': memberID },
                     success: function (data) {
                         if (data == true) {
                             Swal.fire({
@@ -146,7 +171,7 @@
                 $.ajax({
                     url: '/User/Register/EmailIDF',
                     type: 'POST',
-                    data: {'email': email},
+                    data: { 'email': email },
                     success: function (rcvData) {
                         if (rcvData.result == false) {
                             Swal.fire({

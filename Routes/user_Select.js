@@ -1,7 +1,6 @@
 // ȸ������ �ڵ鷯
 exports.register = function (req, res, app, db) {
     var mysql = require('mysql');
-    const crypto = require('crypto');
 
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
