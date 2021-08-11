@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <%- include('../head') %>
+</head>
+
+<body class="login-page" style="overflow: hidden;">
+  <header>
+    <%- include('../nav_Bar') %>
+  </header>
+  <section>
+    <div>
+      <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image" style="background-image:url(/Image/about_WH.jpg)"></div>
+        <div class="container">
+          <form role="form" id="regForm" class="registration-form" onsubmit="return false;">
+            <h1>Sign up!</h1>
+            <h3>Choose which type to sign up for:</h3>
+            <div>
+              <input type="button" id="typeBtn" class="btn btn-primary" name="provider"
+                value="I own a warehouse and would like to provide it!">
+              <input type="button" id="typeBtn" class="btn btn-primary" name="buyer"
+                value="I would like to rent a warehouse and use it!">
+            </div>
+            <div>
+              <button type="submit" id="regFormBtn" class="btn btn-primary">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer></footer>
+</body>
+
+</html>

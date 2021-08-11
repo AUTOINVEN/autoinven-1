@@ -2,6 +2,7 @@ module.exports = function (app, db) {
     var express = require('express');
     var router = express.Router();
 
+    const select = require('./user_Select');
     const register = require('./user_Register');
     const login = require('./user_Login');
     const edit = require('./user_Edit');
@@ -35,11 +36,19 @@ module.exports = function (app, db) {
     });
 
     router.get('/Register', function (req, res, next) {
-        res.render('User/user_Register', {'app': app, 'session': req.session, 'db': db});
+        res.render('User/user_Register', { 'app': app, 'session': req.session, 'db': db });
+    });
+
+    router.post('/Select', function (req, res, next) {
+        select.register(req, res, app, db);
+    });
+
+    router.get('/Select', function (req, res, next) {
+        res.render('User/user_Select', { 'app': app, 'session': req.session, 'db': db });
     });
 
     router.get('/Login', function (req, res, next) {
-        res.render('User/user_Login', {'app': app, 'session': req.session, 'db': db});
+        res.render('User/user_Login', { 'app': app, 'session': req.session, 'db': db });
     });
 
     router.post('/Login', function (req, res, next) {
@@ -52,7 +61,7 @@ module.exports = function (app, db) {
     });
 
     router.get('/Edit', function (req, res, next) {
-        res.render('User/user_Edit', {'app': app, 'session': req.session, 'db': db});
+        res.render('User/user_Edit', { 'app': app, 'session': req.session, 'db': db });
     });
 
     router.post('/Edit', function (req, res, next) {
@@ -60,7 +69,7 @@ module.exports = function (app, db) {
     });
 
     router.get('/Edit/PW', function (req, res, next) {
-        res.render('User/user_PwEdit', {'app': app, 'session': req.session, 'db': db});
+        res.render('User/user_PwEdit', { 'app': app, 'session': req.session, 'db': db });
     });
 
     router.post('/Edit/PW', function (req, res, next) {
@@ -68,11 +77,11 @@ module.exports = function (app, db) {
     });
 
     router.get('/Show', function (req, res, next) {
-        res.render('User/user_Show', {'app': app, 'session': req.session, 'db': db});
+        res.render('User/user_Show', { 'app': app, 'session': req.session, 'db': db });
     });
 
     router.get('/Help', function (req, res, next) {
-        res.render('User/user_Help', {'app': app, 'session': req.session, 'db': db});
+        res.render('User/user_Help', { 'app': app, 'session': req.session, 'db': db });
     });
 
     router.post('/Delete', function (req, res, next) {
