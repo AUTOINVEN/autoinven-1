@@ -16,42 +16,43 @@
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Enroll Request List</h2>
-        <div class="table-responsive">
-          <table class="board-table table ">
-            <thead class="thead-dark">
-              <tr class="d-flex">
-                <th class="col-1">Warehouse ID</th>
-                <th class="col-1">State</th>
-                <th class="col-1">Warehouse Area</th>
-                <th class="col-2">User ID</th>
-                <th class="col-2">Warehouse Name</th>
-                <th class="col-3">Warehouse Address</th>
-                <th class="col-1">Nation</th>
-                <th class="col-1"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-              <% if(items['item' + i].reqType == "ReqEnrollPV"){ %>
-              <tr class="table-warning d-flex">
-                <td id="whID<%= i %>" class="col-1"><%= items['item' + i].warehouseID %></td>
-                <td id="reqType<%= i %>" class="col-1">Pending Approval</td>
-                <td id="floorArea<%= i %>" class="col-1"><%= items['item' + i].floorArea %></td>
-                <td id="providerID<%= i %>" class="col-2"><%= items['item' + i].providerID %></td>
-                <td id="name<%= i %>" class="col-2"><%= items['item' + i].name %></td>
-                <td id="address<%= i %>" class="col-3"><%= items['item' + i].address %></td>
-                <td id="national<%= i %>" class="col-1"><%= items['item' + i].national %></td>
-                <td class="col-1" style="float:right; padding:0px 10px 0px 0px;">
-                  <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approve</button>
-                  <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
-                </td>
-                <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
-              </tr>
-              <% } %>
-              <% } %>
-            </tbody>
-          </table>
-        </div>
+        <table class="board-table table ">
+          <thead class="thead-dark">
+            <tr class="d-flex">
+              <th class="col-1" style="font-size: 0.9em;">Warehouse ID</th>
+              <th class="col-1">State</th>
+              <th class="col-1" style="font-size: 0.9em;">Warehouse Area</th>
+              <th class="col-2">User ID</th>
+              <th class="col-2">Warehouse Name</th>
+              <th class="col-3">Warehouse Address</th>
+              <th class="col-1">Nation</th>
+              <th class="col-1"></th>
+              <th class="col-1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+            <% if(items['item' + i].reqType == "ReqEnrollPV"){ %>
+            <tr class="table-warning d-flex">
+              <td id="whID<%= i %>" class="col-1"><%= items['item' + i].warehouseID %></td>
+              <td id="reqType<%= i %>" class="col-1">Pending Approval</td>
+              <td id="floorArea<%= i %>" class="col-1"><%= items['item' + i].floorArea %></td>
+              <td id="providerID<%= i %>" class="col-2"><%= items['item' + i].providerID %></td>
+              <td id="name<%= i %>" class="col-2"><%= items['item' + i].name %></td>
+              <td id="address<%= i %>" class="col-3"><%= items['item' + i].address %></td>
+              <td id="national<%= i %>" class="col-1"><%= items['item' + i].national %></td>
+              <td id="td-btn" class="col-1">
+                <button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button>
+              </td>
+              <td id="td-btn" class="col-1">
+                <button type="button" class="btn btn-td btn-grey" onclick="adClick(<%= i %>, 0)">Cancel</button>
+              </td>
+              <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
+            </tr>
+            <% } %>
+            <% } %>
+          </tbody>
+        </table>
       </div>
     </section>
     <footer>

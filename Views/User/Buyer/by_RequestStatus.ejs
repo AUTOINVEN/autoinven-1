@@ -27,7 +27,7 @@
         <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
         <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
         <% } %>
-        <table id="t1" class="board-table table">
+        <table class="board-table table">
           <thead class="thead-dark">
             <tr>
               <th>WarehouseID</th>
@@ -45,30 +45,29 @@
               <td>Pending Approval</td>
               <td><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-              <td style="float:right; padding:0px 10px 0px 0px;">
-                <button type="button" class="btn btn-sm" onclick="byClick(<%= i %>, 0)">Cancel</button>
+              <td id="td-btn">
+                <button type="button" class="btn btn-td btn-grey" onclick="byClick(<%= i %>, 0)">Cancel</button>
               </td>
             </tr>
             <% } %>
             <% if(items['item' + i].reqType == "Rejected"){ %>
-          <tbody>
             <tr class="table-danger">
               <td><%= items['item' + i].warehouseID %></td>
               <td>Rejected</td>
               <td><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-              <td style="float:right; padding:0px 10px 0px 0px;">
-                <button type="button" class="btn btn-sm" onclick="byClick(<%= i %>, 2)">Confirm</button>
+              <td id="td-btn">
+                <button type="button" class="btn btn-td btn-grey" onclick="byClick(<%= i %>, 2)">Confirm</button>
               </td>
             </tr>
             <% } %>
-          </tbody>
           <% } %>
+        </tbody>
         </table>
       </div>
       <div class="container">
         <h2 class="mt-5 mb-3">Payment List</h2>
-        <table id="t2" class="board-table table">
+        <table class="board-table table">
           <thead class="thead-dark">
             <tr>
               <th>Check List</th>
@@ -76,6 +75,7 @@
               <th>State</th>
               <th>Total Amount</th>
               <th>Period</th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -87,7 +87,7 @@
             </script>
             <p id="count<%= i %>" style="display: none"><%= i %></p>
             <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
-            <tr class="table-primary">
+            <tr class="table-basic">
               <td>
                 <input type="checkbox" name="paymentCheck" value="<%= items['item' + i].amounts %>"
                   onclick='getCheckboxValue(event)' />
@@ -96,20 +96,17 @@
               <td>Waiting for Payment</td>
               <td id="amounts<%= i %>"><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-              <td style="float:right; padding:0px 7px 0px 0px;">
-                <button type="button" class="btn btn-info btn-sm" onclick="byClick(<%= i %>, 1)">Pay</button>
-                <button type="button" class="btn btn-sm" onclick="byClick(<%= i %>, 0)">Cancel</button>
-              </td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-info" onclick="byClick(<%= i %>, 1)">Pay</button></td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-grey" onclick="byClick(<%= i %>, 0)">Cancel</button></td>
             </tr>
             <% } %>
             <% } %>
           </tbody>
         </table>
       </div>
-      <div id="smart-button-container">
-        <div style="text-align: center;">
-          <div id="paypal-button-container"></div>
-        </div>
+      <!--Paypal-->
+      <div id="smart-button-container" style="width: max-content; margin:4% 40%;">
+        <div id="paypal-button-container" style="text-align: center;"></div>
       </div>
     </section>
     <footer>

@@ -16,7 +16,7 @@
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Usage</h2>
-        <table id="t1" class="board-table table">
+        <table class="board-table table">
           <thead class="thead-dark">
             <tr>
               <th>Req ID</th>
@@ -39,21 +39,21 @@
               <td id="area<%= i %>"><%= curItems['item' + i].area %></td>
               <td id="totalPrice<%= i %>"><%= curItems['item' + i].totalPrice %></td>
               <% if (curItems['item' + i].iotStat == "Y"){ %>
-              <td style="padding:6px 0;">
+              <td id="td-btn">
                 <form action="/IoT" method="POST">
                   <input id="wid" name="wid" type="hidden" value="<%= curItems['item' + i].warehouseID %>">
-                  <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+                  <button class="btn btn-td btn-main">IoT Page</button>
                 </form>
               </td>
               <% } else if (curItems['item' + i].iotStat == "W"){ %>
-              <td style="padding-top: 20px;">Pending Approval</td>
+              <td>Pending Approval</td>
               <% } else if (curItems['item' + i].iotStat == "N"){ %>
-              <td style="padding-top: 20px;">Not Currently Used</td>
+              <td>Not Currently Used</td>
               <% } %>
-              <td style="padding:6px 0;">
+              <td id="td-btn">
                 <form action="/Buyer/UsageHistory/INFO" method="POST">
                   <input id="reqID" name="reqID" type="hidden" value="<%= curItems['item' + i].reqID %>">
-                  <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+                  <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
             </tr>
@@ -67,21 +67,21 @@
               <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
               <td id="totalPrice<%= i %>"><%= nextItems['item' + i].totalPrice %></td>
               <% if (nextItems['item' + i].iotStat == "Y"){ %>
-              <td style="padding:6px 0;">
+              <td id="td-btn">
                 <form action="/IoT" method="POST">
                   <input id="wid" name="wid" type="hidden" value="<%= nextItems['item' + i].warehouseID %>">
-                  <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+                  <button class="btn btn-td btn-main">IoT Page</button>
                 </form>
               </td>
               <% } else if (nextItems['item' + i].iotStat == "W"){ %>
-              <td style="padding-top: 20px;">Pending Approval</td>
+              <td>Pending Approval</td>
               <% } else if (nextItems['item' + i].iotStat == "N"){ %>
-              <td style="padding-top: 20px;">Not Currently Used</td>
+              <td>Not Currently Used</td>
               <% } %>
-              <td style="padding:6px 0;">
+              <td id="td-btn">
                 <form action="/Buyer/UsageHistory/INFO" method="POST">
                   <input id="reqID" name="reqID" type="hidden" value="<%= nextItems['item' + i].reqID %>">
-                  <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+                  <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
             </tr>
@@ -90,7 +90,7 @@
       </div>
       <div class="container">
         <h2 class="mt-5 mb-3">Previous Warehouse Usage
-          <button id="btnView" class="btn btn-primary" style=" font-size:14px; margin-left: 10px; padding: 8px 12px;">View</button>
+          <button id="btnView" class="btn btn-big btn-main">View</button>
         </h2>
         <table id="t2" class="board-table table" style="display: none;">
           <thead class="thead-dark">
@@ -113,10 +113,10 @@
               <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
               <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
-              <td style="padding:6px 0;">
+              <td id="td-btn">
                 <form action="/Buyer/UsageHistory/INFO" method="POST">
                   <input id="reqID" name="reqID" type="hidden" value="<%= preItems['item' + i].reqID %>">
-                  <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+                  <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
             </tr>

@@ -20,8 +20,7 @@
           <div class="form-group row">
             <label for="memberID" class="col-sm-2 col-form-label">Id</label>
             <div class="col-sm-3">
-              <input type="text" id="memberID" name="memberID" value="<%= session.memberID %>" disabled="disabled"
-                class="form-control">
+              <input type="text" id="memberID" name="memberID" value="<%= session.memberID %>" disabled="disabled" class="form-control">
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
               <% } %>
@@ -30,16 +29,13 @@
           <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-2">
-              <label class="form-control btn-primary" for="change_password"
-                style="text-align:center; display: inline-block;">Change Password</label>
-              <input type="button" class="upload-btn-hidden" id='change_password' name='change_password'
-                onclick=location.href="/User/Edit/PW"><br>
+              <label class="form-control btn-form btn-danger" for="change_password">Change Password</label>
+              <input type="button" class="upload-btn-hidden" id='change_password' name='change_password' onclick=location.href="/User/Edit/PW"><br>
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
               <% } %>
             </div>
           </div>
-
           <div class="form-group row">
             <label for="type" class="col-sm-2 col-form-label">Type</label>
             <div class="col-sm-3">
@@ -50,12 +46,10 @@
               <% } %>
             </div>
           </div>
-
           <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-3">
-              <input type="text" id="name" name="name" value="<%= session.username %>" disabled="disabled"
-                class="form-control">
+              <input type="text" id="name" name="name" value="<%= session.username %>" disabled="disabled" class="form-control">
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
               <% } %>
@@ -81,10 +75,8 @@
               <% } %>
             </div>
             <div class="col-sm-2">
-              <label class="form-control btn-primary" for="emailCheckButton"
-                style="text-align:center; display: inline-block;">Check Email</label>
-              <input type="button" class="upload-btn-hidden" id='emailCheckButton' name='emailCheckButton'
-                value="email Check"><br>
+              <label class="form-control btn-form btn-danger" for="emailCheckButton">Check Email</label>
+              <input type="button" class="upload-btn-hidden" id='emailCheckButton' name='emailCheckButton' value="email Check"><br>
             </div>
           </div>
 
@@ -108,17 +100,15 @@
               <% } %>
             </div>
           </div>
-
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary two_btn">Save</button>
+          <div class="form-group btn-wrap">
+            <button type="submit" class="btn btn-main btn-two-l">Save</button>
           </div>
         </form>
-
-        <form action="/User/Delete" method="get">
-          <input type="submit" class="btn btn-primary two_btn" value="Delete">
-        </form>
         <form action="/" method="get">
-          <input type="button" class="btn btn-primary two_btn" onclick=location.href="/User/Show" value="Back">
+          <input type="button" class="btn btn-main btn-two-l ml-1" onclick=location.href="/User/Show" value="Back">
+        </form>
+        <form action="/User/Delete" method="get">
+          <input type="submit" class="btn btn-grey btn-two-r ml-1" value="Delete Member Information">
         </form>
       </div>
     </section>

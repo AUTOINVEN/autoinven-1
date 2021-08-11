@@ -3,7 +3,7 @@ module.exports = function (app, db) {
     const router = express.Router();
     const ad_ReqEnroll = require('./ad_RequestEnroll');
     const ad_ReqIoT = require('./ad_RequestIoT');
-    const ad_IotTest = require('./ad_IotTest');
+    const ad_IotTest = require('./ad_IoTTest');
     const ad_ReqBuy = require('./ad_RequestBuy');
     const ad_UsageHistory = require('./ad_UsageHistory');
     const ad_UsageHistoryInfo = require('./ad_UsageHistoryInfo');
@@ -35,7 +35,7 @@ module.exports = function (app, db) {
         ad_ReqIoT.withAnswer(req, res, app, db);
     });
     router.post('/IoTest', function (req, res, next) {
-        ad_IotTest.init(req, res, app, db);
+        ad_IoTTest.init(req, res, app, db);
     });
     router.get('/RequestBuy', function (req, res, next) {
         var items = ad_ReqBuy.RequestForBuy(req, res, app, db);
