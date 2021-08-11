@@ -41,21 +41,21 @@
                 <td id="area<%= i %>" class="col-1"><%= items['item' + i].area %></td>
                 <td id="price<%= i %>" class="col-1"><%= items['item' + i].price %></td>
                 <% if (items['item' + i].iotStat == "Y"){ %>
-                <td class="col-2" style="padding:6px 0;">
+                <td id="td-btn" class="col-2">
                   <form action="/iot" method="POST">
                     <input id="wid" name="wid" type="hidden" value="<%= items['item' + i].warehouseID %>">
-                    <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">IoT Page</button>
+                    <button class="btn btn-td btn-main">IoT Page</button>
                   </form>
                 </td>
                 <% } else if (items['item' + i].iotStat == "W"){ %>
-                <td class="col-2" style="padding-top: 20px;">Pending Approval</td>
+                <td id="td-btn" class="col-2">Pending Approval</td>
                 <% } else if (items['item' + i].iotStat == "N"){ %>
-                <td class="col-2" style="padding-top: 20px;">Not Currently Used</td>
+                <td id="td-btn" class="col-2">Not Currently Used</td>
                 <% } %>
-                <td class="col-1" style="padding:6px 0;">
+                <td id="td-btn" class="col-1">
                   <form action="/Admin/ContractInfo/INFO" method="POST">
                     <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
-                    <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+                    <button class="btn btn-td btn-info">INFO</button>
                   </form>
                 </td>
               </tr>
