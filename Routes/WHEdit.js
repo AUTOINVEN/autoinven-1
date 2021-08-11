@@ -4,7 +4,7 @@ exports.Show = function (req, res, app, db) {
     const wid = req.body.wid;
     let WHInfo = viewInfo.getWHInfo(db, wid);
     WHInfo = JSON.parse(WHInfo);
-    res.render('User/Provider/pv_WHEdit', {session: req.session, wh: WHInfo});
+    res.render('User/WHEdit', {session: req.session, wh: WHInfo});
 }
 
 exports.Save = function (req, res, app, db) {
