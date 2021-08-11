@@ -7,6 +7,8 @@ module.exports = function (app, db) {
     const ad_ReqBuy = require('./ad_RequestBuy');
     const ad_UsageHistory = require('./ad_UsageHistory');
     const ad_UsageHistoryInfo = require('./ad_UsageHistoryInfo');
+    const ad_WarehouseList = require('./ad_WarehouseList');
+    const WHinfo = require('./WHinfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -32,13 +34,31 @@ module.exports = function (app, db) {
     router.post('/RequestIoT', function (req, res, next) {
         ad_ReqIoT.withAnswer(req, res, app, db);
     });
-    router.post('/IotTest', function (req, res, next) {
+    router.post('/IoTest', function (req, res, next) {
         ad_IotTest.init(req, res, app, db);
     });
     router.get('/RequestBuy', function (req, res, next) {
         var items = ad_ReqBuy.RequestForBuy(req, res, app, db);
         items = JSON.parse(items);
         res.render('User/Admin/ad_RequestBuy', {'app': app, 'session': req.session, 'db': db, 'items': items});
+    });
+    router.get('/WarehouseList', function (req, res, next) {
+        var WHList = ad_WarehouseList.getWHList(req, res, app, db);
+        WHList = JSON.parse(WHList);
+        res.render('User/Admin/ad_WarehouseList', {'app': app, 'session': req.session, 'db': db, 'WHList': WHList});
+    });
+    router.post('/WHinfo', function (req, res, next) {
+        var WHitems = WHinfo.getWHInfo(req, res, app, db);
+        var PVitems = WHinfo.getPVInfo(req, res, app, db);
+        var curItems = WHinfo.getCurUsage(req, res, app, db);
+        var nextItems = WHinfo.getNextUsage(req, res, app, db);
+        var preItems = WHinfo.getPreUsage(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        PVitems = JSON.parse(PVitems);
+        curItems = JSON.parse(curItems);
+        nextItems = JSON.parse(nextItems);
+        preItems = JSON.parse(preItems);
+        res.render('User/WHinfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
     });
     router.get('/UsageHistory', function (req, res, next) {
         var items = ad_UsageHistory.getUsageHistory(req, res, app, db);
