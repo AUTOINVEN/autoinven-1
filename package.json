@@ -4,7 +4,7 @@
   "description": "",
   "main": "webserver.js",
   "scripts": {
-    "start": "nodemon --ignore Public/JS ./webserver.js",
+    "start": "nodemon --signal SIGKILL --ignore Public/JS ./webserver.js",
     "backend": "forever ./webserver.js",
     "serv": "npm run backend",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/AUTOINVEN/autoinven#readme",
   "dependencies": {
     "apollo-server-express": "^2.25.2",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",

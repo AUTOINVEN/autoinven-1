@@ -3,8 +3,8 @@ module.exports = function (app, db) {
     var router = express.Router();
     var findWH = require('./by_FindWH');
     var requestWH = require('./by_RequestStatus');
-    var usageWH = require('./by_UsageStatus');
-    var usageINFO = require('./by_UsageInfo');
+    var UsageHistory = require('./by_UsageHistory');
+    var UsageHistoryInfo = require('./by_UsageHistoryInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -35,22 +35,22 @@ module.exports = function (app, db) {
         res.render('User/Buyer/by_RequestStatus', {'app': app, 'session': req.session, 'db': db, 'items': items});
     });
 
-    router.get('/UsageStatus', function (req, res, next) {
-        var curItems = usageWH.ContractInfo(req, res, app, db);
-        var nextItems = usageWH.NextInfo(req, res, app, db);
-        var preItems = usageWH.PreviousInfo(req, res, app, db);
+    router.get('/UsageHistory', function (req, res, next) {
+        var curItems = UsageHistory.getCurUsage(req, res, app, db);
+        var nextItems = UsageHistory.getNextUsage(req, res, app, db);
+        var preItems = UsageHistory.getPreUsage(req, res, app, db);
         curItems = JSON.parse(curItems);
         nextItems = JSON.parse(nextItems);
         preItems = JSON.parse(preItems);
-        res.render('User/Buyer/by_UsageStatus', {'app': app, 'session': req.session, 'db': db, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
+        res.render('User/Buyer/by_UsageHistory', {'app': app, 'session': req.session, 'db': db, 'curItems': curItems, 'preItems': preItems, 'nextItems': nextItems});
     });
 
-    router.post('/UsageStatus/INFO', function (req, res, next) {
-        var WHitems = usageINFO.getWHInfo(req, res, app, db);
-        var PVitems = usageINFO.getPVInfo(req, res, app, db);
+    router.post('/UsageHistory/INFO', function (req, res, next) {
+        var WHitems = UsageHistoryInfo.getWHInfo(req, res, app, db);
+        var PVitems = UsageHistoryInfo.getPVInfo(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         PVitems = JSON.parse(PVitems);
-        res.render('User/Buyer/by_UsageInfo', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
+        res.render('User/Buyer/by_UsageHistoryInfo', {'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
     });
 
     router.post('/RequestStatus/Buy/Ans', function (req, res, next) {

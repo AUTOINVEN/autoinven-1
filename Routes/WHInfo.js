@@ -3,8 +3,8 @@ const date = require('../Public/JS/date.js');
 
 exports.getWHInfo = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
-    console.log("WHInfo : " + warehouseID);
-    var items = viewInfo.getWHInfo(db, warehouseID);
+    var items = {};
+    items = viewInfo.getWHInfo(db, warehouseID);
     return items;
 }
 

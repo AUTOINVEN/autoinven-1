@@ -90,6 +90,7 @@ p {
   line-height: 1.61em;
   font-weight: 300;
   font-size: 1.2em;
+  margin-bottom: 5px;
 }
 
 a[data-toggle="collapse"] {
@@ -1052,7 +1053,7 @@ h6,
 }
 
 .brand .h1-seo {
-  font-size: 2.8em;
+  font-size: 3.5em;
   text-transform: uppercase;
   font-weight: 300;
 }
