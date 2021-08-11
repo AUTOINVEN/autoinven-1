@@ -25,11 +25,17 @@ module.exports = function (app, db) {
     };
     router.use(check);
 
-    router.get('/', (req, res, next) => { iot_Monitoring.init(req, res, db) });
+    router.get('/', (req, res, next) => {
+        iot_Monitoring.init(req, res, db)
+    });
 
-    router.post('/', (req, res, next) => { iot_Monitoring.sessionCheck(req, res, db) });
+    router.post('/', (req, res, next) => {
+        iot_Monitoring.sessionCheck(req, res, db)
+    });
 
-    router.get('/Monitoring', (req, res, next) => { iot_Monitoring.init(req, res, db) });
+    router.get('/Monitoring', (req, res, next) => {
+        iot_Monitoring.init(req, res, db)
+    });
 
     router.get('/Warehousing', (req, res, next) => {
         var itemlist = iot_Warehousing.initWarehouse(req, res, db);
@@ -38,23 +44,41 @@ module.exports = function (app, db) {
         res.render('IoT/iot_Warehousing', {'itemlist': itemlist, 'userType': userType});
     });
 
-    router.get('/Help', (req, res, next) => { iot_Help.init(req, res, db) });
+    router.get('/Help', (req, res, next) => {
+        iot_Help.init(req, res, db)
+    });
 
-    router.get('/RandomTest', (req, res, next) => { iot_Warehousing.randomTest(req, res, db) });
+    router.get('/RandomTest', (req, res, next) => {
+        iot_Warehousing.randomTest(req, res, db)
+    });
 
-    router.get('/RegisterItem', (req, res, next) => { res.render('IoT/iot_RegisterItem') });
+    router.get('/RegisterItem', (req, res, next) => {
+        res.render('IoT/iot_RegisterItem')
+    });
 
-    router.post('/RegisterItem', (req, res, next) => { iot_RegisterItem.registerItem(req, res, db) });
+    router.post('/RegisterItem', (req, res, next) => {
+        iot_RegisterItem.registerItem(req, res, db)
+    });
 
-    router.get('/EditItem', (req, res, next) => {res.render('IoT/iot_EditItem') });
+    router.get('/EditItem', (req, res, next) => {
+        res.render('IoT/iot_EditItem')
+    });
 
-    router.post('/EditItem', (req, res, next) => {res.render('IoT/iot_EditItem', {'rfid': req.body.itemEdit}); });
+    router.post('/EditItem', (req, res, next) => {
+        res.render('IoT/iot_EditItem', {'rfid': req.body.itemEdit});
+    });
 
-    router.post('/EditSave', (req, res, next) => {iot_EditItem.editItem(req, res, db)});
+    router.post('/EditSave', (req, res, next) => {
+        iot_EditItem.editItem(req, res, db)
+    });
 
-    router.post('/DeleteItem', (req, res, next) => {iot_Warehousing.delItem(req, res, db) });
+    router.post('/DeleteItem', (req, res, next) => {
+        iot_Warehousing.delItem(req, res, db)
+    });
 
-    router.post('/RFID', (req, res, next) => { iot_RFID.receive(req, res, db) });
+    router.post('/RFID', (req, res, next) => {
+        iot_RFID.receive(req, res, db)
+    });
 
     return router;
 };
