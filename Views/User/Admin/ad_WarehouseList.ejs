@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <%- include('../../head') %>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <%- include('../../nav_Bar') %>
+      <div class="page-header page-header-small">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
+      </div>
+    </header>
+    <section>
+      <div class="container">
+        <h2 class="mt-5 mb-3">Warehouse List</h2>
+        <table class="board-table table " id="myWH">
+          <thead class="thead-dark">
+            <tr>
+              <th>Warehouse ID</th>
+              <th>Warehouse Name</th>
+              <th>Member ID</th>
+              <th>IoT</th>
+              <th>Warehouse Info</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < Object.keys(WHList).length; i++) { %>
+            <tr class="table-striped" id='#row<%= i %>'>
+              <td><%= WHList['item' + i].warehouseID %></td>
+              <td><%= WHList['item' + i].warehouseName %></td>
+              <td><%= WHList['item' + i].memberID %></td>
+              <% if (WHList['item' + i].iotStat == "Y"){ %>
+              <td style="padding:6px 0;">
+                <form action="/iot" method="POST">
+                  <input id="wid" name="wid" type="hidden" value="<%= WHList['item' + i].warehouseID %>">
+                  <button class="btn btn-primary" style="margin: 0; padding: 10px 15px;">IoT Page</button>
+                </form>
+              </td>
+              <% } else if (WHList['item' + i].iotStat == "W"){ %>
+              <td style="padding-top: 20px;">Pending Approval</td>
+              <% } else if (WHList['item' + i].iotStat == "N"){ %>
+                <td style="padding-top: 20px;">Not Currently Used</td>
+              <% } %>
+              <td style="padding:6px 0;">
+              <form action="/Admin/WHinfo" method="POST">
+              <input id="warehouseID" name="warehouseID" type="hidden" value="<%= WHList['item' + i].warehouseID %>">
+              <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+            </form>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <footer>
+      <%- include('../../footer') %>
+    </footer>
+  </div>
+</body>
+
+<script>
+  function reqClick(i, WID) {
+    $.ajax({
+      url: '/Provider/MyWarehouse/IoT/Ans',
+      dataType: 'json',
+      type: 'POST',
+      data: {
+        warehouseID: parseInt(WID)
+      },
+      success: function (data) {
+        if (data == true) {
+          Swal.fire({
+            title: 'Submitted',
+            icon: 'success'
+          }).then(() => location.href = "/Provider/MyWarehouse");
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'An error has occurred.',
+            icon: 'error'
+          }).then(() => location.href = "/Provider/MyWarehouse");
+        }
+      }
+    });
+  }
+  function pvClick(where, i, flag) {
+    var URL = '/Provider/MyWarehouse/Enroll/Ans';
+    var Area = null;
+    if (where) {
+      URL = '/Provider/MyWarehouse/Buy/Ans';
+      Area = document.getElementById('area' + where + i).innerText
+    }
+    switch (flag) {
+      case 0: // Cancel
+        $.ajax({
+          url: URL,
+          dataType: 'json',
+          type: 'POST',
+          data: {
+            answer: "Cancel",
+            reqID: document.getElementById('reqID' + where + i).innerText,
+            whID: document.getElementById('whID' + where + i).innerText,
+            reqType: document.getElementById('reqType' + where + i).innerText,
+            memberID: document.getElementById('memberID' + where + i).innerText,
+            area: Area
+            //other things will be here
+          },
+          success: function (data) {
+            if (data == true) {
+              Swal.fire({
+                title: 'Canceled',
+                icon: 'warning'
+              }).then(() => location.href = "/Provider/MyWarehouse");
+            } else {
+              Swal.fire({
+                title: 'Error',
+                text: 'An error has occurred.',
+                icon: 'error'
+              }).then(() => location.href = "/Provider/MyWarehouse");
+            }
+          }
+        });
+        break;
+      case 1: // Approve
+        $.ajax({
+          url: URL,
+          dataType: 'json',
+          type: 'POST',
+          data: {
+            answer: "Approve",
+            reqID: document.getElementById('reqID' + where + i).innerText,
+            whID: document.getElementById('whID' + where + i).innerText,
+            reqType: document.getElementById('reqType' + where + i).innerText,
+            memberID: document.getElementById('memberID' + where + i).innerText,
+            area: Area
+            //other things will be here
+          },
+          success: function (data) {
+            if (data == true) {
+              Swal.fire({
+                title: 'Accepted',
+                icon: 'success'
+              }).then(() => location.href = "/Provider/MyWarehouse");
+            } else {
+              Swal.fire({
+                title: 'Error',
+                text: 'An error has occurred.',
+                icon: 'error'
+              }).then(() => location.href = "/Provider/MyWarehouse");
+            }
+          }
+        });
+        break;
+      case 2: // Confirm
+        $.ajax({
+          url: URL,
+          dataType: 'json',
+          type: 'POST',
+          data: {
+            answer: "Confirm",
+            reqID: document.getElementById('reqID' + where + i).innerText,
+            whID: document.getElementById('whID' + where + i).innerText,
+            reqType: document.getElementById('reqType' + where + i).innerText,
+            memberID: document.getElementById('memberID' + where + i).innerText,
+            area: Area
+            //other things will be here
+          },
+          success: function (data) {
+            if (data == true) {
+              Swal.fire({
+                title: 'Confirmed',
+                icon: 'success'
+              }).then(() => location.href = "/Provider/MyWarehouse");
+            } else {
+              Swal.fire({
+                title: 'Error',
+                text: 'An error has occurred.',
+                icon: 'error'
+              }).then(() => location.href = "/Provider/MyWarehouse");
+            }
+          }
+        });
+        break;
+    }
+  }
+</script>
+
+</html>
