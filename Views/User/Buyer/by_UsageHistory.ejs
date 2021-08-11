@@ -51,7 +51,7 @@
               <td style="padding-top: 20px;">Not Currently Used</td>
               <% } %>
               <td style="padding:6px 0;">
-                <form action="/Buyer/UsageStatus/INFO" method="POST">
+                <form action="/Buyer/UsageHistory/INFO" method="POST">
                   <input id="reqID" name="reqID" type="hidden" value="<%= curItems['item' + i].reqID %>">
                   <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
                 </form>
@@ -79,7 +79,7 @@
               <td style="padding-top: 20px;">Not Currently Used</td>
               <% } %>
               <td style="padding:6px 0;">
-                <form action="/Buyer/UsageStatus/INFO" method="POST">
+                <form action="/Buyer/UsageHistory/INFO" method="POST">
                   <input id="reqID" name="reqID" type="hidden" value="<%= nextItems['item' + i].reqID %>">
                   <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
                 </form>
@@ -114,7 +114,7 @@
               <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
               <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
               <td style="padding:6px 0;">
-                <form action="/Buyer/UsageStatus/INFO" method="POST">
+                <form action="/Buyer/UsageHistory/INFO" method="POST">
                   <input id="reqID" name="reqID" type="hidden" value="<%= preItems['item' + i].reqID %>">
                   <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
                 </form>
