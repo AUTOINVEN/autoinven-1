@@ -8,7 +8,7 @@ exports.getWHInfo = function (req, res, app, db) {
         var warehouseID = results[0].warehouseID;
         items = viewInfo.getWHInfo(db, warehouseID);
     }
-    return JSON.stringify(items);
+    return items;
 }
 
 exports.getPVInfo = function (req, res, app, db) {
@@ -19,7 +19,7 @@ exports.getPVInfo = function (req, res, app, db) {
         var providerID = results[0].memberID;        
         items = viewInfo.getMemberInfo(db, providerID);
     }
-    return JSON.stringify(items);
+    return items;
 }
 
 exports.getBYInfo = function (req, res, app, db) {
@@ -30,5 +30,5 @@ exports.getBYInfo = function (req, res, app, db) {
         var buyerID = results[0].buyerID;
         items = viewInfo.getMemberInfo(db, buyerID);
     }
-    return JSON.stringify(items);
+    return items;
 }
