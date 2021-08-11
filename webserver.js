@@ -2,6 +2,8 @@
 // 1) Express Module 불러오기
 const express = require('express');
 const app = express();
+//
+require('dotenv').config();
 // 2) bodyParser Module 불러오기
 const bodyParser = require('body-parser');
 // 3) MySQL Module 불러오기
