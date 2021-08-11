@@ -21,7 +21,7 @@
             <% for(var i = 0; i < Object.keys(BYitems).length; i++) { %>
             <tr>
               <th class="thead-dark-vertical">Buyer ID</th>
-              <td><%= BYitems['item' + i].buyerID %></td>
+              <td><%= BYitems['item' + i].memberID%></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Buyer Name</th>
@@ -55,7 +55,7 @@
             <% for(var i = 0; i < Object.keys(PVitems).length; i++) { %>
             <tr>
               <th class="thead-dark-vertical">Provider ID</th>
-              <td><%= PVitems['item' + i].providerID %></td>
+              <td><%= PVitems['item' + i].memberID %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Provider Name</th>
