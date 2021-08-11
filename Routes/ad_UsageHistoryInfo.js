@@ -1,26 +1,12 @@
+const viewInfo = require('./viewInfo');
+
 exports.getWHInfo = function (req, res, app, db) {
     var reqID = req.body.reqID;
     var items = {};
-    let results = db.query(`select * from Contract, Warehouse where Contract.warehouseID=Warehouse.warehouseID and reqID=` + [reqID] + `;`);
+    let results = db.query(`select warehouseID from Contract where reqID=` + [reqID] + `;`);
     if (results.length > 0) {
-        for (var step = 0; step < results.length; step++) {
-            items[`item${step}`] = {
-                warehouseID: results[step].warehouseID,
-                warehouseName: results[step].warehouseName,
-                address: results[step].address,
-                addressDetail: results[step].addressDetail,
-                zipcode: results[step].zipcode,
-                warehouseEmail: results[step].warehouseEmail,
-                warehouseTEL: results[step].warehouseTEL,
-                landArea: results[step].landArea,
-                floorArea: results[step].floorArea,
-                useableArea: results[step].useableArea,
-                enrolledDate: results[step].enrolledDate.substring(0, 10),
-                perprice: results[step].price,
-                infoComment: results[step].infoComment,
-                etcComment: results[step].etcComment,
-            };
-        }
+        var warehouseID = results[0].warehouseID;
+        items = viewInfo.getWHInfo(db, warehouseID);
     }
     return JSON.stringify(items);
 }
@@ -28,19 +14,10 @@ exports.getWHInfo = function (req, res, app, db) {
 exports.getPVInfo = function (req, res, app, db) {
     var reqID = req.body.reqID;
     var items = {};
-    let results = db.query(`select * from Contract, Warehouse, Provider, Member where Contract.warehouseID=Warehouse.warehouseID and Warehouse.warehouseID=Provider.warehouseID and Provider.memberID=Member.memberID and reqID=` + [reqID] + `;`);
+    let results = db.query(`select memberID from Contract, Warehouse, Provider where Contract.warehouseID=Warehouse.warehouseID and Warehouse.warehouseID=Provider.warehouseID and reqID=` + [reqID] + `;`);
     if (results.length > 0) {
-        for (var step = 0; step < results.length; step++) {
-            items[`item${step}`] = {
-                providerID: results[step].memberID,
-                name: results[step].name,
-                national: results[step].national,
-                email: results[step].email,
-                contactNumber: results[step].contactNumber,
-                address: results[step].address,
-                zipcode: results[step].zipcode,
-            };
-        }
+        var providerID = results[0].memberID;        
+        items = viewInfo.getMemberInfo(db, providerID);
     }
     return JSON.stringify(items);
 }
@@ -48,19 +25,10 @@ exports.getPVInfo = function (req, res, app, db) {
 exports.getBYInfo = function (req, res, app, db) {
     var reqID = req.body.reqID;
     var items = {};
-    let results = db.query(`select * from Contract, Member where Contract.buyerID=Member.memberID and reqID=` + [reqID] + `;`);
+    let results = db.query(`select buyerID from Contract where reqID=` + [reqID] + `;`);
     if (results.length > 0) {
-        for (var step = 0; step < results.length; step++) {
-            items[`item${step}`] = {
-                buyerID: results[step].memberID,
-                name: results[step].name,
-                national: results[step].national,
-                email: results[step].email,
-                contactNumber: results[step].contactNumber,
-                address: results[step].address,
-                zipcode: results[step].zipcode,
-            };
-        }
+        var buyerID = results[step].buyerID;
+        items = viewInfo.getMemberInfo(db, buyerID);
     }
     return JSON.stringify(items);
 }
