@@ -166,11 +166,6 @@ h6,
   text-align: center;
 }
 
-#typeBtn {
-  font-size: large;
-  text-align: center;
-}
-
 .btn {
   font-weight: 400;
   font-size: 0.8571em;
@@ -183,6 +178,7 @@ h6,
   background-color: #888888;
   color: #FFFFFF;
 }
+
 
 .btn:hover {
   background-color: #979797;
@@ -215,6 +211,17 @@ h6,
 .btn-primary:hover,
 .btn-primary:focus {
   background-color: #fa7a50;
+  border-color: #fa7a50;
+}
+
+.type-btn {
+  font-size: large;
+  text-align: center;
+  width: 50%;
+}
+
+.type-btn:focus {
+  background-color: #6d2c16;
   border-color: #fa7a50;
 }
 
