@@ -1,36 +1,3 @@
-function reAlert(text, callback) {
-    Swal.fire({
-        title: 'Are you sure?',
-        html: text,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#2A9EDD',
-        cancelButtonColor: '#66687A',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            callback();
-        }
-    });
-}
-
-function inputAlert(text, callback) {
-    Swal.fire({
-        title: 'Are you sure?',
-        input: 'text',
-        icon: 'warning',
-        html: text,
-        inputAttributes: { autocapitalize: 'off' },
-        showCancelButton: true,
-        confirmButtonColor: '#2A9EDD',
-        cancelButtonColor: '#66687A',
-        confirmButtonText: 'OK',
-        showLoaderOnConfirm: true,
-        preConfirm: callback,
-        allowOutsideClick: () => !Swal.isLoading()
-    });
-}
-
 function byClick(i, flag) {
     switch (flag) {
         case 0:  // Cancel
@@ -49,19 +16,9 @@ function byClick(i, flag) {
                         reason: reason
                         //other things will be here
                     },
-                    success: function (data) {
-                        if (data == true) {
-                            Swal.fire({
-                                title: 'Canceled',
-                                icon: 'success'
-                            }).then(() => location.reload());
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'An error has occurred.',
-                                icon: 'error'
-                            }).then(() => location.reload());
-                        }
+                    success: function (success) {
+                        if (success) resultAlert('Canceled');
+                        else errorAlert();
                     }
                 });
             });
@@ -83,19 +40,9 @@ function byClick(i, flag) {
                         endDate: document.getElementById('endDate' + i).innerText
                         //other things will be here
                     },
-                    success: function (data) {
-                        if (data == true) {
-                            Swal.fire({
-                                title: 'Success',
-                                icon: 'success'
-                            }).then(() => location.reload());
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'An error has occurred.',
-                                icon: 'error'
-                            }).then(() => location.reload());
-                        }
+                    success: function (success) {
+                        if (success) resultAlert('Success');
+                        else errorAlert();
                     }
                 });
             });
@@ -115,19 +62,9 @@ function byClick(i, flag) {
                         area: document.getElementById('area' + i).innerText
                         //other things will be here
                     },
-                    success: function (data) {
-                        if (data == true) {
-                            Swal.fire({
-                                title: 'Deleted',
-                                icon: 'success'
-                            }).then(() => location.reload());
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'An error has occurred.',
-                                icon: 'error'
-                            }).then(() => location.reload());
-                        }
+                    success: function (success) {
+                        if (success) resultAlert('Deleted');
+                        else errorAlert();
                     }
                 });
             });

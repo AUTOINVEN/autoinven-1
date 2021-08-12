@@ -3,7 +3,6 @@
 
 <head>
   <%- include('../../head') %>
-  <script src="/JS/pv_MyWH.js"></script>
 </head>
 
 <body>
@@ -85,14 +84,15 @@
               </td>
             </tr>
             <% } %>
-            <% if(enrollItems['item' + i].reqType == "ReqRejectPV"){ %>
+            <% if(enrollItems['item' + i].reqType == "RejByAdmin"){ %>
             <tr class="table-danger">
               <td><%= enrollItems['item' + i].warehouseID %></td>
               <td><%= enrollItems['item' + i].warehouseName %></td>
               <td>Rejected by admin</td>
               <td id="td-btn">
-                <button class="btn btn-td btn-warning" onclick="pvClick(0, <%= i %>, 2)" type="button">Delete</button>
+                <button class="btn btn-td btn-info" onclick="pvClick(0, <%= i %>, 2)" type="button">View</button>
               </td>
+              <input type="hidden" id="rejectCmt<%= i %>" value="<%= enrollItems['item' + i].rejectCmt %>">
             </tr>
             <% } %>
             <% } %>
@@ -146,7 +146,7 @@
               <td><%= requestItems['item' + i].warehouseName %></td>
               <td>Rejected</td>
               <td id="td-btn">
-                <button class="btn btn-td btn-warning" onclick="pvClick(1, <%= i %>, 2)" type="button">Delete</button>
+                <button class="btn btn-td btn-info" onclick="pvClick(1, <%= i %>, 2)" type="button">Delete</button>
               </td>
             </tr>
             <% } %>
@@ -161,4 +161,6 @@
   </div>
 </body>
 
+<script src="/JS/alerts.js"></script>
+<script src="/JS/pv_MyWH.js"></script>
 </html>

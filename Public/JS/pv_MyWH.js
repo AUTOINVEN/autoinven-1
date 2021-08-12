@@ -1,36 +1,3 @@
-function reAlert(text, callback) {
-    Swal.fire({
-        title: 'Are you sure?',
-        html: text,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#2A9EDD',
-        cancelButtonColor: '#66687A',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            callback();
-        }
-    });
-}
-
-function inputAlert(text, callback) {
-    Swal.fire({
-        title: 'Are you sure?',
-        input: 'text',
-        icon: 'warning',
-        html: text,
-        inputAttributes: { autocapitalize: 'off' },
-        showCancelButton: true,
-        confirmButtonColor: '#2A9EDD',
-        cancelButtonColor: '#66687A',
-        confirmButtonText: 'OK',
-        showLoaderOnConfirm: true,
-        preConfirm: callback,
-        allowOutsideClick: () => !Swal.isLoading()
-    });
-}
-
 function reqClick(i, WID) {
     reAlert('Request IoT Server?', () => {
         $.ajax({
@@ -40,19 +7,9 @@ function reqClick(i, WID) {
             data: {
                 warehouseID: parseInt(WID)
             },
-            success: function (data) {
-                if (data == true) {
-                    Swal.fire({
-                        title: 'Submitted',
-                        icon: 'success'
-                    }).then(() => location.reload());
-                } else {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'An error has occurred.',
-                        icon: 'error'
-                    }).then(() => location.reload());
-                }
+            success: function (success) {
+                if (success) resultAlert('Submitted');
+                else errorAlert();
             }
         });
     });
@@ -86,19 +43,9 @@ function pvClick(where, i, flag) {
                     reason: reason
                     //other things will be here
                 },
-                success: function (data) {
-                    if (data == true) {
-                        Swal.fire({
-                            title: resTitle,
-                            icon: 'success'
-                        }).then(() => location.reload());
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An error has occurred.',
-                            icon: 'error'
-                        }).then(() => location.reload());
-                    }
+                success: function (success) {
+                    if (success) resultAlert(resTitle);
+                    else errorAlert();
                 }
             });
         });
@@ -118,19 +65,9 @@ function pvClick(where, i, flag) {
                     area: Area
                     //other things will be here
                 },
-                success: function (data) {
-                    if (data == true) {
-                        Swal.fire({
-                            title: 'Accepted',
-                            icon: 'success'
-                        }).then(() => location.reload());
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An error has occurred.',
-                            icon: 'error'
-                        }).then(() => location.reload());
-                    }
+                success: function (success) {
+                    if (success) resultAlert('Approved');
+                    else errorAlert();
                 }
             });
         });
@@ -150,19 +87,9 @@ function pvClick(where, i, flag) {
                     area: Area
                     //other things will be here
                 },
-                success: function (data) {
-                    if (data == true) {
-                        Swal.fire({
-                            title: 'Deleted',
-                            icon: 'success'
-                        }).then(() => location.reload());
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An error has occurred.',
-                            icon: 'error'
-                        }).then(() => location.reload());
-                    }
+                success: function (success) {
+                    if (success) resultAlert('Deleted');
+                    else errorAlert();
                 }
             });
         });

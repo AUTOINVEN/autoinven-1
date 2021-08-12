@@ -1,19 +1,3 @@
-function reAlert(text, callback) {
-    Swal.fire({
-        title: 'Are you sure?',
-        html: text,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#2A9EDD',
-        cancelButtonColor: '#66687A',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            callback();
-        }
-    });
-}
-
 function adClick(val) {
     var iotServer = $('#iotServer').val();
     var wid = $('#wid').val();
@@ -30,19 +14,9 @@ function adClick(val) {
                     answer: "Approve",
                     iotServer: iotServer
                 },
-                success: function (data) {
-                    if (data == true) {
-                        Swal.fire({
-                            title: 'Accepted',
-                            icon: 'success'
-                        }).then(() => location.href = "/Admin/RequestIoT");
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An error has occurred.',
-                            icon: 'error'
-                        }).then(() => location.href = "/Admin/RequestIoT");
-                    }
+                success: function (success) {
+                    if (success) resultAlert('Approved');
+                    else errorAlert();
                 }
             });
         });
@@ -55,19 +29,9 @@ function adClick(val) {
                 data: {
                     answer: "Reject"
                 },
-                success: function (data) {
-                    if (data == true) {
-                        Swal.fire({
-                            title: 'Rejected',
-                            icon: 'warning'
-                        }).then(() => location.href = "/Admin/RequestIoT");
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An error has occurred.',
-                            icon: 'error'
-                        }).then(() => location.href = "/Admin/RequestIoT");
-                    }
+                success: function (success) {
+                    if (success) resultAlert('Rejected');
+                    else errorAlert();
                 }
             });
         });
