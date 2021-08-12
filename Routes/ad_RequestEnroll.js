@@ -25,6 +25,7 @@ exports.withAnswer = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
     var reqType = req.body.reqType;
     var answer = req.body.answer;
+    var reason = req.body.reason;
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
@@ -62,19 +63,29 @@ exports.withAnswer = function (req, res, app, db) {
             });
         }
     } else if (answer == "Reject") {
-        connection.query(`UPDATE RequestForEnroll SET reqType='ReqRejectPV' WHERE reqID =?`, [reqID], function (error, results, fields) {
+        connection.query(`UPDATE RequestForEnroll SET reqType='RejByAdmin', rejectCmt='${reason}' WHERE reqID =?`, [reqID], function (error, results, fields) {
             if (error) {
                 res.send(false);
                 connection.end();
             } else {
-                connection.query(`DELETE FROM Warehouse WHERE warehouseID =${warehouseID}`, function (error, results, fields) {
+                var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                var cols = 'reqID, reqDate, reqType, providerID, warehouseID, rejectCmt';
+                connection.query(`INSERT INTO DeletedEnroll (${cols}, rejectTime) (SELECT ${cols}, '${now}' FROM RequestForEnroll WHERE reqID=?)`, reqID, function (error, results, fields) {
                     if (error) {
-                        res.send(false);
                         console.log(error);
+                        res.send(false);
                         connection.end();
                     } else {
-                        res.send(true);
-                        connection.end();
+                        connection.query(`DELETE FROM Warehouse WHERE warehouseID =${warehouseID}`, function (error, results, fields) {
+                            if (error) {
+                                res.send(false);
+                                console.log(error);
+                                connection.end();
+                            } else {
+                                res.send(true);
+                                connection.end();
+                            }
+                        });
                     }
                 });
             }
