@@ -178,6 +178,17 @@ h6,
   text-align: center;
 }
 
+.footer-forMain {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 23px 0;
+  background-color: #212529;
+  color: white;
+  text-align: center;
+}
+
 .btn {
   font-weight: 400;
   font-size: 0.9em;
@@ -187,12 +198,12 @@ h6,
   padding: 10px 15px;
   cursor: pointer;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
-  color: #212529;
+  color: white;
 }
 
 
 .btn:hover {
-  color: #212529;
+  color: white;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
   opacity: 1;
   filter: alpha(opacity=100);
@@ -210,8 +221,8 @@ h6,
 }
 
 .btn:disabled:hover {
-  background-color: gray;
-  color: white;
+  background-color: white;
+  color: gray;
   cursor: default;
 }
 
@@ -221,11 +232,9 @@ h6,
 }
 
 .btn-main:hover {
-  background-color: #ff4e13;
-  color: white;
-  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
-  opacity: 1;
-  filter: alpha(opacity=100);
+  background-color: white;
+  color: #f96332;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
 .btn-success {
@@ -234,8 +243,8 @@ h6,
 }
 
 .btn-success:hover {
-  background-color: #40c589;
-  color: white;
+  background-color: white;
+  color: #40c589;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
   opacity: 1;
   filter: alpha(opacity=100);
@@ -248,8 +257,8 @@ h6,
 
 .btn-info:hover,
 .btn-info:focus {
-  background-color: #2a9edd;
-  color: white;
+  background-color: white;
+  color: #2a9edd;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
   opacity: 1;
   filter: alpha(opacity=100);
@@ -261,8 +270,8 @@ h6,
 }
 
 .btn-warning:hover {
-  background-color: #ffbe55;
-  color: white;
+  background-color: white;
+  color: #ffbe55;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
   opacity: 1;
   filter: alpha(opacity=100);
@@ -283,8 +292,8 @@ h6,
 }
 
 .btn-grey:hover {
-  background-color: #66687a;
-  color: white;
+  background-color: white;
+  color: #66687a;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
   opacity: 1;
   filter: alpha(opacity=100);
@@ -338,7 +347,7 @@ h6,
   cursor: pointer;
 }
 
-.btn-wrap {
+.center-wrap {
   width: max-content;
   margin: 0 auto;
 }
@@ -935,7 +944,7 @@ h6,
 }
 
 .index-page .page-header .container > .content-center {
-  top: 37%;
+  top: 55%;
 }
 
 .login-page .page-header:before {
@@ -1053,10 +1062,10 @@ h6,
   max-width: 880px;
 }
 
-.brand .h1-seo {
+.h1-seo {
   font-size: 3.5em;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 600;
 }
 
 .upload-btn-hidden {
