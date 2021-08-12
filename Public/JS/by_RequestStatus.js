@@ -117,37 +117,6 @@ function byClick(i, flag) {
     }
 }
 
-function getAmounts() {
-    $.ajax({
-        url: '/Buyer/RequestStatus/Buy/Ans',
-        dataType: 'json',
-        type: 'POST',
-        data: {
-            answer: "Confirm",
-            reqID: document.getElementById('reqID' + i).innerText,
-            whID: document.getElementById('whID' + i).innerText,
-            reqType: document.getElementById('reqType' + i).innerText,
-            buyerID: document.getElementById('buyerID' + i).innerText,
-            area: document.getElementById('area' + i).innerText
-            //other things will be here
-        },
-        success: function (data) {
-            if (data == true) {
-                Swal.fire({
-                    title: 'Confirmed',
-                    icon: 'success'
-                }).then(() => location.href = "/Buyer/RequestStatus");
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'An error has occurred.',
-                    icon: 'error'
-                }).then(() => location.href = "/Buyer/RequestStatus");
-            }
-        }
-    });
-}
-
 if (document.getElementById("payFlag").innerText == 'T') {
     paypal.Buttons({
         createOrder: function (data, actions) {
@@ -170,38 +139,6 @@ if (document.getElementById("payFlag").innerText == 'T') {
             });
         }
     }).render('#paypal-button-container');
-}
-
-function getCheckboxValue(event) {
-    let result = 0;
-    if (event.target.checked) {
-        result = event.target.value;
-        result *= 1; // 형변환
-        makeIndex(); //
-    } else {
-        result -= event.target.value;
-    }
-    var a = document.getElementById('totalMoney').innerText;
-    a *= 1;
-    document.getElementById('totalMoney').innerText = (result + a);
-}
-
-function countNumofElement() {
-    var payByBuyerCount = 0;
-    var otherCount = 0;
-    var result = 1;
-    var i = 0;
-    var index = [];
-    while (result != null) {
-        result = document.getElementById('count' + i);
-        if (result == null) {
-            continue;
-        } else {
-            index.push(result.innerText);
-        }
-        i++;
-    }
-    return payByBuyerCount, otherCount;
 }
 
 function countNumofElement() {
@@ -231,4 +168,18 @@ function makeIndex() {
         }
     }
     return index;
+}
+
+function getCheckboxValue(event) {
+    let result = 0;
+    if (event.target.checked) {
+        result = event.target.value;
+        result *= 1; // 형변환
+        makeIndex(); //
+    } else {
+        result -= event.target.value;
+    }
+    var a = document.getElementById('totalMoney').innerText;
+    a *= 1;
+    document.getElementById('totalMoney').innerText = (result + a);
 }
