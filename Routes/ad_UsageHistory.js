@@ -1,4 +1,4 @@
-exports.showContarctInfo = function (req, res, app, db) {
+exports.getUsageHistory = function (req, res, app, db) {
     var items = {};
     var sql = `select * from Contract, Warehouse where Contract.warehouseID=Warehouse.warehouseID`;
     let results = db.query(sql);

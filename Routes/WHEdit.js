@@ -2,9 +2,9 @@ const fs = require("fs");
 exports.Show = function (req, res, app, db) {
     const viewInfo = require('./viewInfo');
     const wid = req.body.wid;
-    let whinfo = viewInfo.getWHInfo(db, wid);
-    whinfo = JSON.parse(whinfo);
-    res.render('User/Provider/pv_WHEdit', {session: req.session, wh: whinfo});
+    let WHInfo = viewInfo.getWHInfo(db, wid);
+    WHInfo = JSON.parse(WHInfo);
+    res.render('User/WHEdit', {session: req.session, wh: WHInfo});
 }
 
 exports.Save = function (req, res, app, db) {

@@ -3,8 +3,7 @@
 
 <head>
   <%- include('../../head') %>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIi10uF1LmXxxNyYIc6OkVFt_G0vO-Cz8&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_API_KEY %>&callback=initMap"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js">
@@ -22,7 +21,7 @@
     <section>
       <div class="container mt-4">
         <div class="container pt-3 mb-3" style="width:50%; float:left;">
-          <div id="map" style="width:100%; height:70vh;"></div>
+          <div id="map" style="width:100%; height:80vh;"></div>
         </div>
         <div class="container pt-3 mb-3" style="width:50%; float:right; overflow:auto;">
           <table class="table table-bordered">
@@ -79,7 +78,7 @@
             </tbody>
           </table>
 
-          <button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#inquire">Inquire</button>
+          <button class="btn btn-warning btn-block mb-4" data-toggle="collapse" data-target="#inquire">Inquire</button>
 
           <div id="inquire" class="collapse">
             <div class="form-group row">
@@ -106,7 +105,9 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary" style="margin-left:43%;" id="btn">Submit</button>
+            </div>
+            <div class="btn-wrap">
+              <button type="submit" class="btn btn-main" id="btn">Submit</button>
             </div>
           </div>
           <p id="items" style="display: none"><%= items %></p>

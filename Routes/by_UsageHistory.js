@@ -1,6 +1,6 @@
 var date = require('../Public/JS/date.js');
 
-exports.ContractInfo = function (req, res, app, db) {
+exports.getCurUsage = function (req, res, app, db) {
     var today = date.getToday();
     var items = {};
     var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate >= '` + [today] + `' and startDate <= '` + [today] + `';`
@@ -22,7 +22,7 @@ exports.ContractInfo = function (req, res, app, db) {
     return JSON.stringify(items);
 }
 
-exports.NextInfo = function (req, res, app, db) {
+exports.getNextUsage = function (req, res, app, db) {
     var today = date.getToday();
     var items = {};
     var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and startDate > '` + [today] + `';`
@@ -44,7 +44,7 @@ exports.NextInfo = function (req, res, app, db) {
     return JSON.stringify(items);
 }
 
-exports.PreviousInfo = function (req, res, app, db) {
+exports.getPreUsage = function (req, res, app, db) {
     var today = date.getToday();
     var items = {};
     var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate < '` + [today] + `';`

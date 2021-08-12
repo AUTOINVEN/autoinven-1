@@ -34,6 +34,7 @@
               <th>Rental Fee($)</th>
               <th>Rental Period</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -44,10 +45,8 @@
               <td>Pending Approval</td>
               <td><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
-              <td style="float:right; padding:0px 10px 0px 0px;">
-                <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 1)">Approve</button>
-                <button type="button" class="btn btn-sm" onclick="adClick(<%= i %>, 0)">Cancel</button>
-              </td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button></td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-grey" onclick="adClick(<%= i %>, 0)">Cancel</button></td>
             </tr>
             <% } %>
             <% } %>

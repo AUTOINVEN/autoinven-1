@@ -9,14 +9,14 @@
 <body>
   <div class="wrap">
     <header>
-      <%- include('nav') %>
+      <%- include('iot_Nav') %>
     </header>
     <section id="iot">
       <div class="container">
         <div class="container mb-3">
           <h2 class="mb-3">Change Product Information</h2>
         </div>
-        <form action="/iot/editSave" method="POST">
+        <form action="/IoT/EditSave" method="POST">
           <div class="table-responsive">
             <table class="board-table table">
               <thead class="thead-dark">
@@ -28,23 +28,27 @@
               <tbody class="table-bg">
                 <tr>
                   <th>RFID</th>
-                  <td><input type="text" name="edititem_rfid" id="edititem_rfid" class="box" value="<%= rfid %>"
+                  <td><input type="text" name="editItem_rfid" id="editItem_rfid" class="box" value="<%= rfid %>"
                       readonly></td>
                 </tr>
                 <tr>
                   <th>Product Name</th>
-                  <td><input type="text" name="edititem_name" id="edititem_name" class="box"></td>
+                  <td><input type="text" name="editItem_name" id="editItem_name" class="box"></td>
                 </tr>
                 <tr>
                   <th>Product Quantity</th>
-                  <td><input type="number" name="edititem_num" id="edititem_num" class="box"></td>
+                  <td><input type="number" name="editItem_num" id="editItem_num" class="box"></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <button type="submit" class="btn btn-primary two_btn">Save</button>
+          <button type="submit" class="btn btn-primary btn-two-l">Save</button>
         </form>
-        <button class="btn btn-primary two_btn" onclick="location.href='warehousing'">Back</button>
+<<<<<<< HEAD:Views/Iot/editItem.ejs
+        <button class="btn btn-primary btn-two-l" onclick="location.href='warehousing'">Back</button>
+=======
+        <button class="btn btn-primary two_btn" onclick="location.href='Warehousing'">Back</button>
+>>>>>>> develop:Views/IoT/iot_EditItem.ejs
       </div>
   </div>
   </section>
