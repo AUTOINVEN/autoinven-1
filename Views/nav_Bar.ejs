@@ -1,17 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: rgb(18, 20, 22);">
   <div class="container">
     <a id="home_title" class="navbar-brand js-scroll-trigger" href="/" style="margin-left:7%">
-      <img src="/Image/inven_logo.png" alt=""/></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="/Image/inven_logo.png" alt="" /></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
       <i class="fas fa-bars ml-1"></i>
     </button>
     <div class="collapse navbar-collapse" data-hover="dropdown" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ml-auto">
         <% if(session.memberID) { %>
-          <% if(session.type == 'admin') { %>
+          <% if(session.type=='admin' ) { %>
             <div class="x991">
               <div class="nav-item" id="resizemenu">
-                <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:transparent;">Management</a>
+                <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="background-color:transparent;">Management</a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="accountMenu">
                     <a class="dropdown-item" href="/Admin/RequestEnroll" id="account_ctrl">Warehouse Enroll Request</a>
                     <a class="dropdown-item" href="/Admin/RequestIoT">IoT Service Request</a>

@@ -29,7 +29,7 @@
             <p>· Start autoinven right now!</p>
           </div>
           <div style="display:inline-block">
-            <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Register'">Start Autoinven</button>
+            <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Select'">Start Autoinven</button>
             <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Help'">More Information</button>
           </div>
         </div>
@@ -63,6 +63,7 @@
   <p id="items" style="display: none"><%= items %></p>
   <div class="overlay"></div>
 </body>
+
 </html>
 
 <script>
@@ -100,7 +101,7 @@
   }
 
   function initMap() {
-    var daegu = {lat: 35.87222, lng: 128.60250};
+    var daegu = { lat: 35.87222, lng: 128.60250 };
     var items = JSON.parse(document.getElementById("items").innerText);
     map = new google.maps.Map(
       document.getElementById('map'), {

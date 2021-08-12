@@ -109,7 +109,9 @@
                 $.ajax({
                     url: '/User/Register/MemberID',
                     type: 'post',
-                    data: {'memberID': memberID},
+                    data: {
+                        'memberID': memberID
+                    },
                     success: function (data) {
                         if (data == true) {
                             Swal.fire({
@@ -146,15 +148,16 @@
                 $.ajax({
                     url: '/User/Register/EmailIDF',
                     type: 'POST',
-                    data: {'email': email},
+                    data: {
+                        'email': email
+                    },
                     success: function (rcvData) {
                         if (rcvData.result == false) {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Fail',
                                 text: "Please try again.",
-                            }).then(function () {
-                            })
+                            }).then(function () {})
                         } else {
                             Swal.fire({
                                 icon: 'success',
