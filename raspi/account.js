@@ -1,16 +1,18 @@
-module.exports = () => {
-    var readline = require('readline');
+var readline = require('readline');
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+var input = question => {
     return new Promise(resolve => {
-        var r1 = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
-        r1.question('ID: ', (id) => {
-            r1.question('Password: ', (pw) => {
-                r1.close();
-                console.clear();
-                resolve({id, pw});
-            });
-        });
-    })
+        rl.question(question, resolve);
+    });
+};
+
+module.exports = async () => {
+    var id = await input('ID: ');
+    var pw = await input('PW: ');
+    console.clear();
+    rl.close();
+    return {id, pw};
 }

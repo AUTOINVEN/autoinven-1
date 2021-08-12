@@ -30,40 +30,38 @@ exports.withAnswer = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Approve") {
-        if (reqType == "ReqEnrollPV") {
-            var info = {
-                "memberID": providerID,
-                "warehouseID": req.body.warehouseID,
-            };
-            connection.query('INSERT INTO Provider SET ?', info, function (error, results, fields) {
-                if (error) {
-                    console.log(error);
-                    res.send(false);
-                    connection.end();
-                } else {
-                    connection.query("DELETE FROM RequestForEnroll WHERE reqID =" + reqID, function (error, results, fields) {
-                        if (error) {
-                            console.log('Error at Delete from RQFEnroll');
-                            res.send(false);
-                            connection.end();
-                        } else {
-                            connection.query('UPDATE Warehouse SET enroll=? WHERE warehouseID=?', ['Y', info.warehouseID], function (error, results, fields) {
-                                if (error) {
-                                    console.log('Error at Update Warehouse' + error);
-                                    res.send(false);
-                                    connection.end();
-                                } else {
-                                    res.send(true);
-                                    connection.end();
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        }
+        var info = {
+            "memberID": providerID,
+            "warehouseID": req.body.warehouseID,
+        };
+        connection.query('INSERT INTO Provider SET ?', info, function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send(false);
+                connection.end();
+            } else {
+                connection.query('DELETE FROM RequestForEnroll WHERE reqID=?', reqID, function (error, results, fields) {
+                    if (error) {
+                        console.log('Error at Delete from RQFEnroll');
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        connection.query('UPDATE Warehouse SET enroll=? WHERE warehouseID=?', ['Y', info.warehouseID], function (error, results, fields) {
+                            if (error) {
+                                console.log('Error at Update Warehouse' + error);
+                                res.send(false);
+                                connection.end();
+                            } else {
+                                res.send(true);
+                                connection.end();
+                            }
+                        });
+                    }
+                });
+            }
+        });
     } else if (answer == "Reject") {
-        connection.query(`UPDATE RequestForEnroll SET reqType='RejByAdmin', rejectCmt='${reason}' WHERE reqID =?`, [reqID], function (error, results, fields) {
+        connection.query(`UPDATE RequestForEnroll SET reqType='RejByAdmin', rejectCmt='${reason}' WHERE reqID =?`, reqID, function (error, results, fields) {
             if (error) {
                 res.send(false);
                 connection.end();

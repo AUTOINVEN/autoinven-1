@@ -83,7 +83,7 @@ exports.ReqIoTAns = function (req, res, app, db) {
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
-    connection.query(`UPDATE Warehouse SET iotStat='W' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
+    connection.query(`UPDATE Warehouse SET iotStat='W' WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
         if (error) {
             console.log(error);
             res.send(false);
@@ -104,7 +104,7 @@ exports.ReqEnrollAns = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Confirm") {
-        connection.query(`DELETE FROM RequestForEnroll WHERE reqID =${reqID}`, function (error, results, fields) {
+        connection.query(`DELETE FROM RequestForEnroll WHERE reqID =?`, reqID, function (error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send(false);
@@ -115,7 +115,7 @@ exports.ReqEnrollAns = function (req, res, app, db) {
             }
         });
     } else if (answer == "Cancel") {
-        connection.query(`UPDATE RequestForEnroll SET reqType='CnlByPv', rejectCmt='${reason}' WHERE reqID =${reqID}`, function (error, results, fields) {
+        connection.query(`UPDATE RequestForEnroll SET reqType='CnlByPv', rejectCmt=? WHERE reqID =?`, [reason, reqID], function (error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send(false);
@@ -123,19 +123,19 @@ exports.ReqEnrollAns = function (req, res, app, db) {
             } else {
                 var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
                 var cols = 'reqID, reqDate, reqType, providerID, warehouseID, rejectCmt';
-                connection.query(`INSERT INTO DeletedEnroll (${cols}, rejectTime) (SELECT ${cols}, '${now}' FROM RequestForEnroll WHERE reqID=?)`, reqID, function (error, results, fields) {
+                connection.query(`INSERT INTO DeletedEnroll (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForEnroll WHERE reqID=?)`, [now, reqID], function (error, results, fields) {
                     if (error) {
                         console.log(error);
                         res.send(false);
                         connection.end();
                     } else {
-                        connection.query(`DELETE FROM Warehouse WHERE warehouseID =${warehouseID}`, function (error, results, fields) {
+                        connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
                             if (error) {
                                 console.log(error);
                                 res.send(false);
                                 connection.end();
                             } else {
-                                connection.query(`DELETE FROM FileInfo WHERE warehouseID =${warehouseID}`, function (error, results, fields) {
+                                connection.query(`DELETE FROM FileInfo WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
                                     if (error) {
                                         console.log(error);
                                         res.send(false);
@@ -163,17 +163,15 @@ exports.ReqBuyAns = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Approve") {
-        if (reqType == "ReqByAdmin") {
-            connection.query(`UPDATE RequestForBuy SET reqType='ReqPayByBuyer' WHERE reqID =${reqID}`, function (error, results, fields) {
-                if (error) {
-                    res.send(false);
-                    connection.end();
-                } else {
-                    res.send(true);
-                    connection.end();
-                }
-            });
-        }
+        connection.query(`UPDATE RequestForBuy SET reqType='ReqPayByBuyer' WHERE reqID =${reqID}`, function (error, results, fields) {
+            if (error) {
+                res.send(false);
+                connection.end();
+            } else {
+                res.send(true);
+                connection.end();
+            }
+        });
     } else if (answer == "Cancel") {
         connection.query(`UPDATE RequestForBuy SET reqType='RejByPv', rejectCmt='${reason}' WHERE reqID =${reqID}`, function (error, results, fields) {
             if (error) {

@@ -24,7 +24,7 @@ exports.withAnswer = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Approve") {
-        connection.query(`UPDATE Warehouse SET iotStat='Y', iotServer='${iotServer}' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
+        connection.query(`UPDATE Warehouse SET iotStat='Y', iotServer=? WHERE warehouseID=?`, [iotServer, warehouseID], function (error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send(false);
@@ -35,7 +35,7 @@ exports.withAnswer = function (req, res, app, db) {
             }
         });
     } else if (answer == "Reject") {
-        connection.query(`UPDATE Warehouse SET iotStat='N' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
+        connection.query(`UPDATE Warehouse SET iotStat='N' WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send(false);

@@ -29,17 +29,15 @@ exports.withAnswer = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Approve") {
-        if (reqType == "ReqByBuyer") {
-            connection.query(`UPDATE RequestForBuy SET reqType='ReqByAdmin' WHERE reqID=?`, [reqID], function (error, results, fields) {
-                if (error) {
-                    res.send(false);
-                    connection.end()
-                } else {
-                    res.send(true);
-                    connection.end();
-                }
-            });
-        }
+        connection.query(`UPDATE RequestForBuy SET reqType='ReqByAdmin' WHERE reqID=?`, reqID, function (error, results, fields) {
+            if (error) {
+                res.send(false);
+                connection.end()
+            } else {
+                res.send(true);
+                connection.end();
+            }
+        });
     } else if (answer == "Reject") {
         connection.query(`UPDATE RequestForBuy SET reqType='RejByAdmin', rejectCmt=? WHERE reqID =?`, [reason, reqID], function (error, results, fields) {
             if (error) {
