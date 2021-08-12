@@ -3,6 +3,7 @@
 
 <head>
   <%- include('../../head') %>
+  <script src="/JS/ad_RequestBuy.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
               <td><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td id="td-btn"><button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button></td>
-              <td id="td-btn"><button type="button" class="btn btn-td btn-grey" onclick="adClick(<%= i %>, 0)">Cancel</button></td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-grey" onclick="adClick(<%= i %>, 0)">Reject</button></td>
             </tr>
             <% } %>
             <% } %>
@@ -59,67 +60,5 @@
     </footer>
   </div>
 </body>
-
-<script>
-  function adClick(i, flag) {
-    if (flag) { // flag == 1 -> Approve
-      $.ajax({
-        url: '/Admin/RequestBuy/Ans',
-        dataType: 'json',
-        type: 'POST',
-        data: {
-          answer: "Approve",
-          buyerID: document.getElementById('buyerID' + i).innerText,
-          reqType: document.getElementById('reqType' + i).innerText,
-          warehouseID: parseInt(document.getElementById('whID' + i).innerText),
-          reqID: parseInt(document.getElementById("reqID" + i).innerText),
-          area: parseInt(document.getElementById("area" + i).innerText)
-        },
-        success: function (data) {
-          if (data == true) {
-            Swal.fire({
-              title: 'Accepted',
-              icon: 'success'
-            }).then(() => location.href = "/Admin/RequestBuy");
-          } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'An error has occurred.',
-              icon: 'error'
-            }).then(() => location.href = "/Admin/RequestBuy");
-          }
-        }
-      });
-    } else { // flag == 0 -> Reject
-      $.ajax({
-        url: '/Admin/RequestBuy/Ans',
-        dataType: 'json',
-        type: 'POST',
-        data: {
-          answer: "Reject",
-          buyerID: document.getElementById('buyerID' + i).innerText,
-          reqType: document.getElementById('reqType' + i).innerText,
-          warehouseID: parseInt(document.getElementById('whID' + i).innerText),
-          reqID: parseInt(document.getElementById("reqID" + i).innerText),
-          area: parseInt(document.getElementById("area" + i).innerText)
-        },
-        success: function (data) {
-          if (data == true) {
-            Swal.fire({
-              title: 'Rejected',
-              icon: 'warning'
-            }).then(() => location.href = "/Admin/RequestBuy");
-          } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'An error has occurred.',
-              icon: 'error'
-            }).then(() => location.href = "/Admin/RequestBuy");
-          }
-        }
-      });
-    }
-  }
-</script>
 
 </html>
