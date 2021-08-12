@@ -1,6 +1,5 @@
 exports.getWHInfo = function (db, WID) {
     var items = {};
-    console.log("viewInfo : " + WID);
     let results = db.query(`select * from Warehouse where warehouseID=` + WID + `;`);
     if (results.length > 0) {
         items = {

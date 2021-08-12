@@ -3,6 +3,7 @@
 
 <head>
   <%- include('../../head') %>
+  <script src="/JS/ad_RequestEnroll.js"></script>
 </head>
 
 <body>
@@ -45,7 +46,7 @@
                 <button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button>
               </td>
               <td id="td-btn" class="col-1">
-                <button type="button" class="btn btn-td btn-grey" onclick="adClick(<%= i %>, 0)">Cancel</button>
+                <button type="button" class="btn btn-td btn-danger" onclick="adClick(<%= i %>, 0)">Reject</button>
               </td>
               <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
             </tr>
@@ -60,63 +61,5 @@
     </footer>
   </div>
 </body>
-
-<script>
-  function adClick(i, flag) {
-    if (flag) { // flag == 1 -> Approve
-      $.ajax({
-        url: '/Admin/RequestEnroll',
-        dataType: 'json',
-        type: 'POST',
-        data: {
-          answer: "Approve",
-          providerID: document.getElementById('providerID' + i).innerText,
-          reqType: "ReqEnrollPV",
-          warehouseID: parseInt(document.getElementById('whID' + i).innerText),
-          reqID: parseInt(document.getElementById("reqID" + i).innerText)
-        },
-        success: function (data) {
-          if (data == true) {
-            Swal.fire({
-              title: 'Accepted',
-              icon: 'success'
-            }).then(() => location.href = "/Admin/RequestEnroll");
-          } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'An error has occurred.',
-              icon: 'error'
-            }).then(() => location.href = "/Admin/RequestEnroll");
-          }
-        }
-      });
-    } else { // flag == 0 -> Reject
-      $.ajax({
-        url: '/Admin/RequestEnroll',
-        dataType: 'json',
-        type: 'POST',
-        data: {
-          answer: "Reject",
-          reqID: parseInt(document.getElementById('reqID' + i).innerText),
-          warehouseID: parseInt(document.getElementById('whID' + i).innerText),
-        },
-        success: function (data) {
-          if (data == true) {
-            Swal.fire({
-              title: 'Rejected',
-              icon: 'warning'
-            }).then(() => location.href = "/Admin/RequestEnroll");
-          } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'An error has occurred.',
-              icon: 'error'
-            }).then(() => location.href = "/Admin/RequestEnroll");
-          }
-        }
-      });
-    }
-  }
-</script>
 
 </html>

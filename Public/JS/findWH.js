@@ -67,6 +67,12 @@ function initMap() {
 
 $(function () {
 
+    var swalError = (text) => Swal.fire({
+        icon: 'error',
+        title: 'Fail',
+        text: text
+    });
+
     $('#btn').click(function () {
         let warehouseID = $('#whID').text();
         let useableArea = parseInt($('#whUseableArea').text());
@@ -74,46 +80,16 @@ $(function () {
         let startDate = $('#startDate').text();
         let endDate = $('#endDate').text();
 
-        if (!useableArea) {
-            Swal.fire({
-                title: 'Error',
-                text: 'Please select the warehouse.',
-                icon: 'error'
-            });
-            return;
-        }
-        else if (!wantArea) {
-            Swal.fire({
-                title: 'Error',
-                text: 'Please enter the area.',
-                icon: 'error'
-            });
-            return;
-        }
-        else if (useableArea < wantArea) {
-            Swal.fire({
-                title: 'Error',
-                text: 'Please enter the area smaller than usable area.',
-                icon: 'error'
-            });
-            return;
-        }
-        else if (!startDate) {
-            Swal.fire({
-                title: 'Error',
-                text: 'Please enter the start date.',
-                icon: 'error'
-            });
-            return;
-        }
-        else if (!endDate) {
-            Swal.fire({
-                title: 'Error',
-                text: 'Please enter the end date.',
-                icon: 'error'
-            });
-            return;
-        }
+        if (!useableArea)
+            swalError('Please select the warehouse.');
+        else if (!wantArea)
+            swalError('Please enter the area.');
+        else if (useableArea < wantArea)
+            swalError('Please enter the area smaller than usable area.');
+        else if (!startDate)
+            swalError('Please enter the start date.');
+        else if (!endDate)
+            swalError('Please enter the end date.');
 
         $.ajax({
             url: '/Buyer/FindWH/Inquire',
@@ -132,11 +108,12 @@ $(function () {
                         icon: 'success'
                     }).then(() => location.href = "/Buyer/RequestStatus");
                 } else {
+                    swalError()
                     Swal.fire({
                         title: 'Error',
                         text: 'An error has occurred.',
                         icon: 'error'
-                    }).then(() => location.href = "/Buyer/FindWH");
+                    });
                 }
             }
         });
