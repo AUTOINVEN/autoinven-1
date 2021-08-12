@@ -119,7 +119,7 @@
         document.getElementById("zipcode").value = data.zonecode;
         document.getElementById("address").value = data.roadAddressEnglish;
         var baseAPIUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-        baseAPIUrl = baseAPIUrl + roadAddr + "&key=" + "AIzaSyCTpvrrCVsZ3iVplpd3t40oKLXAENMoZ1M"
+        baseAPIUrl = baseAPIUrl + roadAddr + "&key=" + "<%= process.env.GOOGLE_MAP_GEOCODING_KEY %>"
         $.ajax({
           url: baseAPIUrl,
           type: "GET",
