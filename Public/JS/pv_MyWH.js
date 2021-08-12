@@ -14,6 +14,23 @@ function reAlert(text, callback) {
     });
 }
 
+function inputAlert(text, callback) {
+    Swal.fire({
+        title: 'Are you sure?',
+        input: 'text',
+        icon: 'warning',
+        html: text,
+        inputAttributes: { autocapitalize: 'off' },
+        showCancelButton: true,
+        confirmButtonColor: '#2A9EDD',
+        cancelButtonColor: '#66687A',
+        confirmButtonText: 'OK',
+        showLoaderOnConfirm: true,
+        preConfirm: callback,
+        allowOutsideClick: () => !Swal.isLoading()
+    });
+}
+
 function reqClick(i, WID) {
     reAlert('Request IoT Server?', () => {
         $.ajax({
@@ -42,19 +59,19 @@ function reqClick(i, WID) {
 }
 
 function pvClick(where, i, flag) {
-    var text = 'Cancel enrollment?';
+    var text = 'Input the reason for cancellation to submit.';
     var URL = '/Provider/MyWarehouse/Enroll/Ans';
     var resTitle = 'Canceled';
     var Area = null;
     if (where) {
-        text = 'Reject buy request?'
+        text = 'Input the reason for rejection to submit.'
         URL = '/Provider/MyWarehouse/Buy/Ans';
         resTitle = 'Rejected';
         Area = document.getElementById('area' + where + i).innerText
     }
     switch (flag) {
     case 0: // Cancel
-        reAlert(text, () => {
+        inputAlert(text, (reason) => {
             $.ajax({
                 url: URL,
                 dataType: 'json',
@@ -65,7 +82,8 @@ function pvClick(where, i, flag) {
                     whID: document.getElementById('whID' + where + i).innerText,
                     reqType: document.getElementById('reqType' + where + i).innerText,
                     memberID: document.getElementById('memberID' + where + i).innerText,
-                    area: Area
+                    area: Area,
+                    reason: reason
                     //other things will be here
                 },
                 success: function (data) {
