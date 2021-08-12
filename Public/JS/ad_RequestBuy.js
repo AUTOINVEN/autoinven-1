@@ -14,6 +14,23 @@ function reAlert(text, callback) {
     });
 }
 
+function inputAlert(text, callback) {
+    Swal.fire({
+        title: 'Are you sure?',
+        input: 'text',
+        icon: 'warning',
+        html: text,
+        inputAttributes: { autocapitalize: 'off' },
+        showCancelButton: true,
+        confirmButtonColor: '#2A9EDD',
+        cancelButtonColor: '#66687A',
+        confirmButtonText: 'OK',
+        showLoaderOnConfirm: true,
+        preConfirm: callback,
+        allowOutsideClick: () => !Swal.isLoading()
+    });
+}
+
 function adClick(i, flag) {
     if (flag) { // flag == 1 -> Approve
         reAlert('Approve buy request?', () => {
@@ -46,7 +63,7 @@ function adClick(i, flag) {
             });
         });
     } else { // flag == 0 -> Reject
-        reAlert('Reject buy request?', () => {
+        inputAlert('Reject buy request?', (reason) => {
             $.ajax({
                 url: '/Admin/RequestBuy/Ans',
                 dataType: 'json',
@@ -57,7 +74,8 @@ function adClick(i, flag) {
                     reqType: document.getElementById('reqType' + i).innerText,
                     warehouseID: parseInt(document.getElementById('whID' + i).innerText),
                     reqID: parseInt(document.getElementById("reqID" + i).innerText),
-                    area: parseInt(document.getElementById("area" + i).innerText)
+                    area: parseInt(document.getElementById("area" + i).innerText),
+                    reason: reason
                 },
                 success: function (data) {
                     if (data == true) {

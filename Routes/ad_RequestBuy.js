@@ -24,6 +24,7 @@ exports.withAnswer = function (req, res, app, db) {
     var reqID = req.body.reqID;
     var reqType = req.body.reqType;
     var answer = req.body.answer;
+    var reason = req.body.reason;
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
@@ -40,13 +41,23 @@ exports.withAnswer = function (req, res, app, db) {
             });
         }
     } else if (answer == "Reject") {
-        connection.query(`UPDATE RequestForBuy SET reqType='RejByAdmin' WHERE reqID =?`, [reqID], function (error, results, fields) {
+        connection.query(`UPDATE RequestForBuy SET reqType='RejByAdmin', rejectCmt=? WHERE reqID =?`, [reason, reqID], function (error, results, fields) {
             if (error) {
                 res.send(false);
-                connection.end()
-            } else {
-                res.send(true);
                 connection.end();
+            } else {
+                var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                var cols = 'reqID, reqDate, reqType, warehouseID, buyerID, area, startDate, endDate, rejectCmt';
+                connection.query(`INSERT INTO DeletedBuy (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForBuy WHERE reqID=?)`, [now, reqID], function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        res.send(true);
+                        connection.end();
+                    }
+                });
             }
         });
     }
