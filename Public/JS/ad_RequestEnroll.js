@@ -19,7 +19,7 @@ function adClick(i, flag) {
             });
         })
     } else {  // flag == 0 -> Reject
-        inputAlert('Reject enroll request?', (reason) => {
+        inputAlert('Input the reason for rejection to submit.', (reason) => {
             $.ajax({
                 url: '/Admin/RequestEnroll',
                 dataType: 'json',

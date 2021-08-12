@@ -20,7 +20,7 @@ function adClick(i, flag) {
             });
         });
     } else { // flag == 0 -> Reject
-        inputAlert('Reject buy request?', (reason) => {
+        inputAlert('Input the reason for rejection to submit.', (reason) => {
             $.ajax({
                 url: '/Admin/RequestBuy/Ans',
                 dataType: 'json',

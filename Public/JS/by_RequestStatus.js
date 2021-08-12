@@ -1,7 +1,7 @@
 function byClick(i, flag) {
     switch (flag) {
         case 0:  // Cancel
-            inputAlert('Cancel buy request?', (reason) => {
+            inputAlert('Input the reason for cancellation to submit.', (reason) => {
                 $.ajax({
                     url: '/Buyer/RequestStatus/Buy/Ans',
                     dataType: 'json',

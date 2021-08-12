@@ -21,10 +21,10 @@ function pvClick(where, i, flag) {
     var resTitle = 'Canceled';
     var Area = null;
     if (where) {
-        text = 'Input the reason for rejection to submit.'
+        text = 'Input the reason for rejection to submit.';
         URL = '/Provider/MyWarehouse/Buy/Ans';
         resTitle = 'Rejected';
-        Area = document.getElementById('area' + where + i).innerText
+        Area = document.getElementById('area' + where + i).innerText;
     }
     switch (flag) {
     case 0: // Cancel
