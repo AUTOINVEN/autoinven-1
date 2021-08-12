@@ -12,56 +12,66 @@
 </head>
 
 <body class="index-page" style="overflow: auto;">
-  <%- include('nav_Bar') %>
-  <% var sess=session; %>
-  <div class="wrapper">
-    <div class="page-header" style="background-color: rgba(0, 0, 0, 0.25);">
-      <div class="page-header-image" id="mainhead">
-      </div>
-      <div class="container">
-        <div class="content-center brand">
-          <h1 class="h1-seo">Autoinven</h1>
-          <h3>Connect to the Global Automotive Industry</h3>
-          <div style="font-size:17px; text-align:left; padding: 50px 0 30px 35px;">
-            <p>· Provide a warehouse and earn money!</p>
-            <p>· Use the space you need for as long as you need at an affordable price!</p>
-            <p>· Check the status of the warehouse where goods are stored in real time!</p>
-            <p>· Start autoinven right now!</p>
-          </div>
-          <div style="display:inline-block">
-            <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Select'">Start Autoinven</button>
-            <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Help'">More Information</button>
+  <header>
+    <%- include('nav_Bar') %>
+    <% var sess=session; %>
+  </header>
+  <section>
+    <div class="wrap">
+      <div class="page-header">
+        <div class="page-header-image" id="mainhead"></div>
+        <div class="container">
+          <div class="content-center">
+            <h1 class="h1-seo">Autoinven</h1>
+            <h3 style="font-weight:600; font-style: italic;">Connect to the Global Automotive Industry</h3>
+            <div style="font-size:17px; text-align:left; padding: 45px 0 30px 40px;margin-bottom: 40px;">
+              <p>· Provide a warehouse and earn money!</p>
+              <p>· Use the space you need for as long as you need at an affordable price!</p>
+              <p>· Check the status of the warehouse where goods are stored in real time!</p>
+              <p>· Start autoinven right now!</p>
+            </div>
+            <div style="display:inline-block">
+              <button class="btn btn-main btn-round btn-lg m-3" onclick="location.href = '/User/Select'">Start Autoinven</button>
+              <button class="btn btn-main btn-round btn-lg m-3" onclick="location.href = '/User/Help'">More Information</button>
+            </div>
           </div>
         </div>
       </div>
+      <div class="container" style="padding:50px 100px">
+        <div class="center-wrap">
+          <h2>Search for Warehouses</h2>
+        </div>
+        <div class="container pt-3 mb-3">
+          <div id="map" style="width:100%; height:70vh;"></div>
+        </div>
+        <div class="container-info pt-3 mb-3">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th class="thead-dark-vertical">Name</th>
+                <td id="whName"></td>
+              </tr>
+              <tr>
+                <th rowspan="1" class="thead-dark-vertical">Address</th>
+                <td id="whAddress">　</td>
+              </tr>
+              <tr>
+                <th class="thead-dark-vertical">Land Area</th>
+                <td id="whLandArea"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="center-wrap">
+          <button class="btn btn-main btn-round btn-lg" onclick="location.href = '/User/Login'">Require for Using Warehouse</button>
+        </div>
+      </div>
+      <p id="items" style="display: none"><%= items %></p>
     </div>
-  </div>
-  <div class="container" style="padding:100px">
-    <div class="container pt-3 mb-3">
-      <div id="map" style="width:100%; height:70vh;"></div>
-    </div>
-    <div class="container pt-3 mb-3">
-      <table class="table table-bordered">
-        <tbody>
-        <tr>
-          <th class="thead-dark-vertical">Name</th>
-          <td id="whName"></td>
-        </tr>
-        <tr>
-          <th rowspan="1" class="thead-dark-vertical">Address</th>
-          <td id="whAddress">　</td>
-        </tr>
-        <tr>
-          <th class="thead-dark-vertical">Land Area</th>
-          <td id="whLandArea"></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <button class="btn btn-primary btn-round btn-lg m-3" onclick="location.href = '/User/Login'" style="margin: auto">Require for Using Warehouse</button>
-  </div>
-  <p id="items" style="display: none"><%= items %></p>
-  <div class="overlay"></div>
+  </section>
+  <footer>
+    <%- include('footer_forMain') %>
+  </footer>
 </body>
 
 </html>
@@ -101,7 +111,10 @@
   }
 
   function initMap() {
-    var daegu = { lat: 35.87222, lng: 128.60250 };
+    var daegu = {
+      lat: 35.87222,
+      lng: 128.60250
+    };
     var items = JSON.parse(document.getElementById("items").innerText);
     map = new google.maps.Map(
       document.getElementById('map'), {
@@ -110,7 +123,10 @@
       });
     for (key in items) {
       markers[i] = new google.maps.Marker({
-        position: {lat: items[key].latitude, lng: items[key].longitude},
+        position: {
+          lat: items[key].latitude,
+          lng: items[key].longitude
+        },
         map: map,
       });
       markers[i].addListener('click', function () {
