@@ -1,7 +1,5 @@
-var date = require('../Public/JS/date.js');
-
 exports.getCurUsage = function (req, res, app, db) {
-    var today = date.getToday();
+    var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
     var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate >= '` + [today] + `' and startDate <= '` + [today] + `';`
     let results = db.query(sql);
@@ -23,7 +21,7 @@ exports.getCurUsage = function (req, res, app, db) {
 }
 
 exports.getNextUsage = function (req, res, app, db) {
-    var today = date.getToday();
+    var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
     var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and startDate > '` + [today] + `';`
     let results = db.query(sql);
@@ -45,7 +43,7 @@ exports.getNextUsage = function (req, res, app, db) {
 }
 
 exports.getPreUsage = function (req, res, app, db) {
-    var today = date.getToday();
+    var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
     var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate < '` + [today] + `';`
     let results = db.query(sql);
