@@ -13,49 +13,24 @@
             var useableArea = $("#useableArea").val();
             var price = $("#price").val();
 
-            //check wemailis not null
-            if (!whEmail) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your warehouse contact email'
-                })
-            }
-            //check wphone is not null
-            else if (!whTel) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your warehouse contact telephone number'
-                })
-            }
-            //check email is not null
-            else if (!landArea) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your warehouse land area'
-                })
-            } else if (!floorArea) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: "You have to insert your warehouse floor area"
-                })
-            } else if (!useableArea) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: "You have to insert your warehouse usable area"
-                })
-            } else if (!price) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: "You have to insert your warehouse price"
-                })
-            }
-            //finish all test
+            var swalError = (text) => Swal.fire({
+                icon: 'error',
+                title: 'Fail',
+                text: text
+            });
+
+            if (!whEmail)
+                swalError('You have to insert your warehouse contact email.');
+            else if (!whTel)
+                swalError('You have to insert your warehouse contact telephone number.');
+            else if (!landArea)
+                swalError('You have to insert your warehouse land area.');
+            else if (!floorArea)
+                swalError('You have to insert your warehouse floor area.');
+            else if (!useableArea)
+                swalError('You have to insert your warehouse usable area.');
+            else if (!price)
+                swalError('You have to insert your warehouse price.');
             else {
                 var formData = new FormData(document.getElementById('enrollForm'));
                 $.ajax({
@@ -65,43 +40,19 @@
                     processData: false,
                     contentType: false,
                     success: function (data) {
-                        if (data == "errortype2") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Fail',
-                                text: 'Please enter only numbers in the Land Area field.'
-                            })
-                        } else if (data == "errortype3") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Fail',
-                                text: 'Please enter only numbers in the Floor Area field.'
-                            })
-                        } else if (data == "errortype4") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Fail',
-                                text: 'Please enter only numbers in the price field.'
-                            })
-                        } else if (data == "errortype9") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Fail',
-                                text: 'Please enter the email in the correct format.'
-                            })
-                        } else if (data == "errortype10") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Fail',
-                                text: 'Please enter the telephone number in the correct format.'
-                            })
-                        } else if (data == "errortype11") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'fail',
-                                text: 'Please enter only numbers in the Useable Area field.'
-                            })
-                        } else if (data == "success") {
+                        if (data == "errortype2")
+                            swalError('Please enter only numbers in the Land Area field.');
+                        else if (data == "errortype3")
+                            swalError('Please enter only numbers in the Floor Area field.');
+                        else if (data == "errortype4")
+                            swalError('Please enter only numbers in the price field.');
+                        else if (data == "errortype9")
+                            swalError('Please enter the email in the correct format.');
+                        else if (data == "errortype10")
+                            swalError('Please enter the telephone number in the correct format.');
+                        else if (data == "errortype11")
+                            swalError('Please enter only numbers in the Useable Area field.');
+                        else if (data == "success") {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Success'
@@ -111,7 +62,7 @@
                         } else {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Fail',
+                                title: 'Error',
                                 text: 'An error was occurred.'
                             })
                         }

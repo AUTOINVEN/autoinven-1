@@ -8,63 +8,33 @@
             var id = $("#memberID").val();
             var pw = $("#password").val();
 
-            //check id is not null
-            if (!id) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your Id'
-                })
-            }
-            //check id overlap
-            else if (!pw) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to check PW'
-                })
-            }
+            var swalError = (text) => Swal.fire({
+                icon: 'error',
+                title: 'Fail',
+                text: text
+            });
+
+            if (!id)
+                swalError('You have to insert your Id');
+            else if (!pw)
+                swalError('You have to check PW');
             else if (((engishDigit.test(id)) || (pwCheck.test(pw))) == false)
-            {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to check ID, PW'
-                })
-            }
-            //finish all test
+                swalError('You have to check ID, PW');
             else {
                 var formData = $("#form1").serialize();
-
                 $.ajax({
                     url: '/User/Login',
                     type: 'POST',
                     data: formData,
                     success: function (data) {
-                        if (data == "loginError01") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Fail',
-                                text:  'The ID does not exist.',
-                            }).then(() => {
-                            })
-                        } else if (data == "loginError02") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'fail',
-                                text:  'Wrong password',
-                            }).then(() => {
-                            })
-                        } else if (data == "loginSuccess") {
+                        if (data == "loginError01")
+                            swalError('The ID does not exist.');
+                        else if (data == "loginError02")
+                            swalError('Wrong password');
+                        else if (data == "loginSuccess")
                             window.location.href="/";
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title : 'fail',
-                                text: 'Undefined Error',
-                            }).then(() => {
-                            }
-                            )}
+                        else
+                            swalError('Undefined Error');
                     },
                     error: function (request, status, error) {
                         Swal.fire({
