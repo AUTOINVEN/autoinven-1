@@ -3,6 +3,7 @@
 
 <head>
   <%- include('../../head') %>
+  <script src="/JS/pv_MyWH.js"></script>
 </head>
 
 <body>
@@ -67,9 +68,9 @@
           <thead class="thead-dark">
             <tr>
               <th>Warehouse ID</th>
+              <th>Warehouse Name</th>
               <th>State</th>
-              <th></th>
-              <th class="col-1"></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -77,19 +78,20 @@
             <% if(enrollItems['item' + i].reqType == "ReqEnrollPV"){ %>
             <tr class="table-warning">
               <td><%= enrollItems['item' + i].warehouseID %></td>
+              <td><%= enrollItems['item' + i].warehouseName %></td>
               <td>Pending Approval</td>
-              <td></td>
-              <td id="td-btn" class="col-1">
+              <td id="td-btn">
                 <button class="btn btn-td btn-grey" onclick="pvClick(0,<%= i %>, 0)" type="button">Cancel</button>
               </td>
             </tr>
             <% } %>
-            <% if(enrollItems['item' + i].reqType == "ReqEnrollRejected"){ %>
+            <% if(enrollItems['item' + i].reqType == "ReqRejectPV"){ %>
             <tr class="table-danger">
               <td><%= enrollItems['item' + i].warehouseID %></td>
+              <td><%= enrollItems['item' + i].warehouseName %></td>
               <td>Rejected</td>
               <td id="td-btn">
-                <button class="btn btn-td btn-success" onclick="pvClick(0, <%= i %>, 2)" type="button">Confirm</button>
+                <button class="btn btn-td btn-warning" onclick="pvClick(0, <%= i %>, 2)" type="button">Delete</button>
               </td>
             </tr>
             <% } %>
@@ -110,9 +112,9 @@
           <thead class="thead-dark">
             <tr>
               <th>Warehouse ID</th>
+              <th>Warehouse Name</th>
               <th>State</th>
-              <th class="col-1"></th>
-              <th class="col-1"></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -120,11 +122,10 @@
             <% if(requestItems['item' + i].reqType == "ReqByAdmin"){ %>
             <tr class="table-warning">
               <td><%= requestItems['item' + i].warehouseID %></td>
+              <td><%= requestItems['item' + i].warehouseName %></td>
               <td>Pending Approval</td>
-              <td id="td-btn" class="col-1">
+              <td id="td-btn">
                 <button class="btn btn-td btn-success" onclick="pvClick(1, <%= i %>, 1)" type="button">Approve</button>
-              </td>
-              <td id="td-btn" class="col-1">
                 <button class="btn btn-td btn-grey" onclick="pvClick(1, <%= i %>, 0)" type="button">Cancel</button>
               </td>
             </tr>
@@ -132,9 +133,9 @@
             <% if(requestItems['item' + i].reqType == "ReqPayByBuyer"){ %>
             <tr class="table-basic">
               <td><%= requestItems['item' + i].warehouseID %></td>
+              <td><%= requestItems['item' + i].warehouseName %></td>
               <td>Waiting for Payment</td>
-              <td></td>
-              <td id="td-btn" class="col-1">
+              <td id="td-btn">
                 <button class="btn btn-td btn-grey" onclick="pvClick(1, <%= i %>, 0)" type="button">Cancel</button>
               </td>
             </tr>
@@ -142,10 +143,10 @@
             <% if(requestItems['item' + i].reqType == "Rejected"){ %>
             <tr class="table-danger">
               <td><%= requestItems['item' + i].warehouseID %></td>
+              <td><%= requestItems['item' + i].warehouseName %></td>
               <td>Rejected</td>
-              <td></td>
-              <td id="td-btn" class="col-1">
-                <button class="btn btn-td btn-grey" onclick="pvClick(1, <%= i %>, 2)" type="button">Confirm</button>
+              <td id="td-btn">
+                <button class="btn btn-td btn-warning" onclick="pvClick(1, <%= i %>, 2)" type="button">Delete</button>
               </td>
             </tr>
             <% } %>
@@ -159,132 +160,5 @@
     </footer>
   </div>
 </body>
-
-<script>
-  function reqClick(i, WID) {
-    $.ajax({
-      url: '/Provider/MyWarehouse/IoT/Ans',
-      dataType: 'json',
-      type: 'POST',
-      data: {
-        warehouseID: parseInt(WID)
-      },
-      success: function (data) {
-        if (data == true) {
-          Swal.fire({
-            title: 'Submitted',
-            icon: 'success'
-          }).then(() => location.href = "/Provider/MyWarehouse");
-        } else {
-          Swal.fire({
-            title: 'Error',
-            text: 'An error has occurred.',
-            icon: 'error'
-          }).then(() => location.href = "/Provider/MyWarehouse");
-        }
-      }
-    });
-  }
-  function pvClick(where, i, flag) {
-    var URL = '/Provider/MyWarehouse/Enroll/Ans';
-    var Area = null;
-    if (where) {
-      URL = '/Provider/MyWarehouse/Buy/Ans';
-      Area = document.getElementById('area' + where + i).innerText
-    }
-    switch (flag) {
-      case 0: // Cancel
-        $.ajax({
-          url: URL,
-          dataType: 'json',
-          type: 'POST',
-          data: {
-            answer: "Cancel",
-            reqID: document.getElementById('reqID' + where + i).innerText,
-            whID: document.getElementById('whID' + where + i).innerText,
-            reqType: document.getElementById('reqType' + where + i).innerText,
-            memberID: document.getElementById('memberID' + where + i).innerText,
-            area: Area
-            //other things will be here
-          },
-          success: function (data) {
-            if (data == true) {
-              Swal.fire({
-                title: 'Canceled',
-                icon: 'warning'
-              }).then(() => location.href = "/Provider/MyWarehouse");
-            } else {
-              Swal.fire({
-                title: 'Error',
-                text: 'An error has occurred.',
-                icon: 'error'
-              }).then(() => location.href = "/Provider/MyWarehouse");
-            }
-          }
-        });
-        break;
-      case 1: // Approve
-        $.ajax({
-          url: URL,
-          dataType: 'json',
-          type: 'POST',
-          data: {
-            answer: "Approve",
-            reqID: document.getElementById('reqID' + where + i).innerText,
-            whID: document.getElementById('whID' + where + i).innerText,
-            reqType: document.getElementById('reqType' + where + i).innerText,
-            memberID: document.getElementById('memberID' + where + i).innerText,
-            area: Area
-            //other things will be here
-          },
-          success: function (data) {
-            if (data == true) {
-              Swal.fire({
-                title: 'Accepted',
-                icon: 'success'
-              }).then(() => location.href = "/Provider/MyWarehouse");
-            } else {
-              Swal.fire({
-                title: 'Error',
-                text: 'An error has occurred.',
-                icon: 'error'
-              }).then(() => location.href = "/Provider/MyWarehouse");
-            }
-          }
-        });
-        break;
-      case 2: // Confirm
-        $.ajax({
-          url: URL,
-          dataType: 'json',
-          type: 'POST',
-          data: {
-            answer: "Confirm",
-            reqID: document.getElementById('reqID' + where + i).innerText,
-            whID: document.getElementById('whID' + where + i).innerText,
-            reqType: document.getElementById('reqType' + where + i).innerText,
-            memberID: document.getElementById('memberID' + where + i).innerText,
-            area: Area
-            //other things will be here
-          },
-          success: function (data) {
-            if (data == true) {
-              Swal.fire({
-                title: 'Confirmed',
-                icon: 'success'
-              }).then(() => location.href = "/Provider/MyWarehouse");
-            } else {
-              Swal.fire({
-                title: 'Error',
-                text: 'An error has occurred.',
-                icon: 'error'
-              }).then(() => location.href = "/Provider/MyWarehouse");
-            }
-          }
-        });
-        break;
-    }
-  }
-</script>
 
 </html>
