@@ -14,10 +14,27 @@ function reAlert(text, callback) {
     });
 }
 
+function inputAlert(text, callback) {
+    Swal.fire({
+        title: 'Are you sure?',
+        input: 'text',
+        icon: 'warning',
+        html: text,
+        inputAttributes: { autocapitalize: 'off' },
+        showCancelButton: true,
+        confirmButtonColor: '#2A9EDD',
+        cancelButtonColor: '#66687A',
+        confirmButtonText: 'OK',
+        showLoaderOnConfirm: true,
+        preConfirm: callback,
+        allowOutsideClick: () => !Swal.isLoading()
+    });
+}
+
 function byClick(i, flag) {
     switch (flag) {
         case 0:  // Cancel
-            reAlert('Cancel buy request?', () => {
+            inputAlert('Cancel buy request?', (reason) => {
                 $.ajax({
                     url: '/Buyer/RequestStatus/Buy/Ans',
                     dataType: 'json',
@@ -28,7 +45,8 @@ function byClick(i, flag) {
                         whID: document.getElementById('whID' + i).innerText,
                         reqType: document.getElementById('reqType' + i).innerText,
                         buyerID: document.getElementById('buyerID' + i).innerText,
-                        area: document.getElementById('area' + i).innerText
+                        area: document.getElementById('area' + i).innerText,
+                        reason: reason
                         //other things will be here
                     },
                     success: function (data) {
