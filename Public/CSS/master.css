@@ -270,11 +270,13 @@ h6,
 
 .btn-danger {
   background-color: #FF3636;
+  color: white;
 }
 
 .btn-danger:hover,
 .btn-danger:focus {
   background-color: #ff5555;
+  color: white;
 }
 
 .btn-grey {
