@@ -14,17 +14,17 @@
       <div class="page-header clear-filter" filter-color="orange">
         <div class="page-header-image" style="background-image:url(/Image/about_WH.jpg)"></div>
         <div class="container">
-          <form role="form" id="regForm" class="registration-form" onsubmit="return false;">
             <h1>Sign up!</h1>
             <h3>Choose which type to sign up for:</h3>
             <div>
-              <input type='checkbox' name='selectType' value='provider' onclick='checkOnlyOne(this)' />
-              I own a warehouse and would like to provide it! <br />
-              <input type='checkbox' name='selectType' value='provider' onclick='checkOnlyOne(this)' />
-              I would like to rent a warehouse and use it!
-            </div>
-            <div>
-              <button type="submit" id="slcFormBtn" class="btn btn-primary">Next</button>
+              <form action="Register" method="GET">
+                <input type="hidden" name="userType" value="provider">
+                <button class="btn btn-sm">I own a warehouse and would like to provide it!</button>
+              </form>
+              <form action="Register" method="GET">
+                <input type="hidden" name="userType" value="buyer">
+                <button class="btn btn-sm">I would like to rent a warehouse and use it!</button>
+              </form>
             </div>
           </form>
         </div>
@@ -33,17 +33,4 @@
   </section>
   <footer></footer>
 </body>
-
 </html>
-
-<script src="/JS/signUP.js"></script>
-<script>
-  function checkOnlyOne(element) {
-
-    const checkboxes = document.getElementsByName("selectType");
-
-    checkboxes.forEach((cb) => { cb.checked = false; })
-
-    element.checked = true;
-  }
-</script>

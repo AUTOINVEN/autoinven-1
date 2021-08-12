@@ -2,7 +2,6 @@ module.exports = function (app, db) {
     var express = require('express');
     var router = express.Router();
 
-    const select = require('./user_Select');
     const register = require('./user_Register');
     const login = require('./user_Login');
     const edit = require('./user_Edit');
@@ -36,11 +35,7 @@ module.exports = function (app, db) {
     });
 
     router.get('/Register', function (req, res, next) {
-        res.render('User/user_Register', { 'app': app, 'session': req.session, 'db': db });
-    });
-
-    router.post('/Select', function (req, res, next) {
-        select.register(req, res, app, db);
+        res.render('User/user_Register', { 'app': app, 'session': req.session, 'db': db, 'req': req });
     });
 
     router.get('/Select', function (req, res, next) {

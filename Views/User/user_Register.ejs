@@ -27,12 +27,7 @@
                 </span>
                 <% } %>
             </div>
-            <!-- <div>
-              <select name="type" id="type" style="width : 50%;">
-                <option value="provider">Provider</option>
-                <option value="buyer">Buyer</option>
-              </select>
-            </div> -->
+              <input type="text" name="type" id="type" value="<%= req.query.userType %>" style="display: none;">
             <div>
               <input type="password" placeholder="Password" id="password" name="password" style="width : 50%;">
             </div>
@@ -44,8 +39,7 @@
             </div>
             <div>
               <input type="text" name="email" id="email" placeholder="Email" style="width : 35%;">
-              <input type="button" class="btn btn-primary" id="sendAuthCode" value="send auth code"
-                style="width :15%;"><br>
+              <input type="button" class="btn btn-primary" id="sendAuthCode" value="send auth code" style="width :15%;"><br>
               <input type="text" placeholder="auth code" id="authCode" style="width : 35%;">
               <input type="button" class="btn btn-primary" id="codeCheck" value="check" style="width :15%;">
             </div>
@@ -53,16 +47,16 @@
               <input type="text" placeholder="national" id="national" name="national" style="width :50%;">
             </div>
             <div>
-              <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style="width : 15%">
-              <input type="text" id="address" name="address" placeholder="Address" style="width : 35%; ">
+              <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style="width : 10%">
+              <input type="text" id="address" name="address" placeholder="Address" style="width : 40%; ">
             </div>
             <div>
               <input type="text" placeholder="User Name" id="name" name="name" style="width : 50%;">
             </div>
             <div>
-              <input type="text" name="contactNumber1" placeholder="Phone" style="width : 50%;">
-              <!-- <input type="text" name="contactNumber2" style="width : 16.5%;">
-              <input type="text" name="contactNumber3" style="width : 16.5%;"> -->
+              <input type="text" name="contactNumber1" style="width : 16.5%;">
+              <input type="text" name="contactNumber2" style="width : 16.5%;">
+              <input type="text" name="contactNumber3" style="width : 16.5%;">
             </div>
             <div>
               <button type="submit" id="regFormBtn" class="btn btn-primary">Sign Up</button>
@@ -103,7 +97,6 @@
     padding: 5px 15px;
   }
 </style>
-
 <script src="/JS/jquery.serializeObject.js"></script>
 <script src="/JS/signUP.js"></script>
 <!--이미지 위에 글자가 표시되게하기 위한 class -->
