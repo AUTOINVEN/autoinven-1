@@ -28,27 +28,27 @@
           </thead>
           <tbody>
             <% for(var i = 0; i < Object.keys(WHList).length; i++) { %>
-            <tr class="table-striped" id='#row<%= i %>'>
+            <tr class="table-basic" id='#row<%= i %>'>
               <td><%= WHList['item' + i].warehouseID %></td>
               <td><%= WHList['item' + i].warehouseName %></td>
               <td><%= WHList['item' + i].memberID %></td>
               <% if (WHList['item' + i].iotStat == "Y"){ %>
-              <td style="padding:6px 0;">
+              <td id="td-btn">
                 <form action="/iot" method="POST">
                   <input id="wid" name="wid" type="hidden" value="<%= WHList['item' + i].warehouseID %>">
-                  <button class="btn btn-primary" style="margin: 0; padding: 10px 15px;">IoT Page</button>
+                  <button class="btn btn-td btn-main">IoT Page</button>
                 </form>
               </td>
               <% } else if (WHList['item' + i].iotStat == "W"){ %>
-              <td style="padding-top: 20px;">Pending Approval</td>
+              <td>Pending Approval</td>
               <% } else if (WHList['item' + i].iotStat == "N"){ %>
-                <td style="padding-top: 20px;">Not Currently Used</td>
+              <td>Not Currently Used</td>
               <% } %>
-              <td style="padding:6px 0;">
-              <form action="/Admin/WHinfo" method="POST">
-              <input id="warehouseID" name="warehouseID" type="hidden" value="<%= WHList['item' + i].warehouseID %>">
-              <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
-            </form>
+              <td>
+                <form action="/Admin/WHinfo" method="POST">
+                  <button class="btn btn-td btn-info">INFO</button>
+                  <input id="warehouseID" name="warehouseID" type="hidden" value="<%= WHList['item' + i].warehouseID %>">
+                </form>
               </td>
             </tr>
             <% } %>
@@ -61,4 +61,5 @@
     </footer>
   </div>
 </body>
+
 </html>
