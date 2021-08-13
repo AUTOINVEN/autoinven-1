@@ -75,16 +75,6 @@ exports.withAnswer = function (req, res, app, db) {
                         res.send(false);
                         connection.end();
                     } else {
-                        connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
-                            if (error) {
-                                res.send(false);
-                                console.log(error);
-                                connection.end();
-                            } else {
-                                res.send(true);
-                                connection.end();
-                            }
-                        });
                     }
                 });
             }
@@ -95,8 +85,24 @@ exports.withAnswer = function (req, res, app, db) {
                 res.send(false);
                 connection.end()
             } else {
-                res.send(true);
-                connection.end();
+                connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        connection.query(`DELETE FROM FileInfo WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                            if (error) {
+                                console.log(error);
+                                res.send(false);
+                                connection.end();
+                            } else {
+                                res.send(true);
+                                connection.end();
+                            }
+                        });
+                    }
+                });
             }
         });
     }
