@@ -53,7 +53,7 @@ module.exports = function (app, db) {
     });
 
     router.get('/RegisterItem', (req, res, next) => {
-        res.render('IoT/iot_RegisterItem')
+        res.render('IoT/iot_RegisterItem', { 'session': req.session })
     });
 
     router.post('/RegisterItem', (req, res, next) => {
@@ -61,7 +61,7 @@ module.exports = function (app, db) {
     });
 
     router.get('/EditItem', (req, res, next) => {
-        res.render('IoT/iot_EditItem')
+        res.render('IoT/iot_EditItem', { 'session': req.session })
     });
 
     router.post('/EditItem', (req, res, next) => {
