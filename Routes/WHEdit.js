@@ -1,4 +1,3 @@
-const fs = require("fs");
 exports.Show = function (req, res, app, db) {
     const viewInfo = require('./viewInfo');
     const wid = req.body.wid;

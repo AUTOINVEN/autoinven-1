@@ -1,4 +1,3 @@
-const WHInfo = require("./WHInfo");
 module.exports = function (app, db) {
     var express = require('express');
     var router = express.Router();
