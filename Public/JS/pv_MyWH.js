@@ -28,7 +28,7 @@ function pvClick(where, i, flag) {
     }
     switch (flag) {
     case 0: // Cancel
-        inputAlert(rejTitle, (reason) => {
+        inputAlert(text, (reason) => {
             $.ajax({
                 url: URL,
                 dataType: 'json',
