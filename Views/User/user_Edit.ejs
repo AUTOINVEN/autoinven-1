@@ -29,7 +29,7 @@
           <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-2">
-              <label class="form-control btn-form btn-danger" for="change_password">Change Password</label>
+              <label id="form-control-btn" class="form-control btn-form" for="change_password">Change Password</label>
               <input type="button" class="upload-btn-hidden" id='change_password' name='change_password' onclick=location.href="/User/Edit/PW"><br>
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
@@ -75,7 +75,7 @@
               <% } %>
             </div>
             <div class="col-sm-2">
-              <label class="form-control btn-form btn-danger" for="emailCheckButton">Check Email</label>
+              <label id="form-control-btn" class="form-control btn-form" for="emailCheckButton">Check Email</label>
               <input type="button" class="upload-btn-hidden" id='emailCheckButton' name='emailCheckButton' value="email Check"><br>
             </div>
           </div>
@@ -100,16 +100,16 @@
               <% } %>
             </div>
           </div>
-          <div class="form-group ">
+          <div class="center-wrap">
             <button type="submit" class="btn btn-main btn-two-l">Save</button>
           </div>
         </form>
         <form action="/" method="get">
-          <input type="button" class="btn btn-main btn-two-l ml-1" onclick=location.href="/User/Show" value="Back">
+          <input type="button" class="btn btn-grey btn-two-l ml-1" onclick=location.href="/User/Show" value="Back">
         </form>
-        <form action="/User/Delete" method="get">
-          <input type="submit" class="btn btn-grey btn-two-r ml-1" value="Delete Member Information">
-        </form>
+        <!--<form action="/User/Delete" method="get">
+          <input type="submit" class="btn btn-grey btn-two-r" value="Delete Member Information">
+        </form>-->
       </div>
     </section>
     <footer>

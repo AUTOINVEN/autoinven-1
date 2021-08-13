@@ -13,19 +13,17 @@
     </header>
     <section id="iot">
       <div class="container">
-        <% if (userType !="provider" ){ %>
-        <button class="btn btn-primary btn-two-r" onclick="location.href='RegisterItem'">Register Product</button>
-        <% } %>
-        <!-- 물품 등록 연결되면 삭제 -->
-        <form action="RandomTest" method="GET">
-          <button class="btn btn-primary btn-two-r">Random Register</button>
-        </form>
-      </div>
-      <div class="container">
         <div class="container mb-3">
-          <h2 class="mb-3">Product Register Confirmation</h2>
+          <h2 class="mb-3">Product Register Confirmation
+              <!-- 물품 등록 연결되면 삭제 -->
+              <form action="RandomTest" method="GET" style="display: inline-block;">
+                <button class="btn btn-big btn-main">Random Register</button>
+              </form>
+              <% if (userType !="provider" ){ %>
+                <button class="btn btn-big btn-main ml-1" onclick="location.href='RegisterItem'">Register Product</button>
+              <% } %>
+          </h2>
         </div>
-        <div class="table-responsive">
           <table class="board-table table">
             <thead class="thead-dark">
               <tr>
@@ -63,16 +61,16 @@
                   <%= itemlist['item' + i].received %>
                 </td>
                 <% if (userType !="provider" ){ %>
-                <td>
+                <td id="td-btn">
                   <form action="/IoT/EditItem" method="POST">
+                    <button class="btn btn-td btn-info">Edit</button>
                     <input type="hidden" id="itemEdit" name="itemEdit" value="<%= itemlist['item' + i].rfid %>">
-                    <button class="checkBtn">Edit</button>
                   </form>
                 </td>
-                <td>
+                <td id="td-btn">
                   <form action="/IoT/DeleteItem" method="POST">
+                    <button class="btn btn-td btn-grey">Delete</button>
                     <input type="hidden" id="itemDel" name="itemDel" value="<%= itemlist['item' + i].rfid %>">
-                    <button class="checkBtn">Delete</button>
                   </form>
                 </td>
                 <% } %>
@@ -80,7 +78,6 @@
               <% } %>
             </tbody>
           </table>
-        </div>
       </div>
     </section>
     <footer>
