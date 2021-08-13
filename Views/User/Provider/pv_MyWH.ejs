@@ -38,10 +38,20 @@
                 </form>
               </td>
               <% } else if (wList['item' + i].iotStat == "W"){ %>
-              <td>Pending Approval</td>
+              <td>
+                Pending Approval&nbsp;&nbsp;
+                <button class="btn btn-td btn-grey" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 0)" type="button">Cancel</button>
+                <p id="IoTReqID<%= i %>" style="display: none"><%= IoTitems[wList['item' + i].warehouseID].reqID %></p>
+              </td>
+              <% } else if (wList['item' + i].iotStat == "R"){ %>
+              <td id="td-btn">
+                <button class="btn btn-td" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 1)" type="button">Rejected...</button>
+                <p id="IoTRejectCmt<%= i %>" style="display: none"><%= IoTitems[wList['item' + i].warehouseID].rejectCmt %></p>
+                <p id="IoTReqID<%= i %>" style="display: none"><%= IoTitems[wList['item' + i].warehouseID].reqID %></p>
+              </td>
               <% } else if (wList['item' + i].iotStat == "N"){ %>
               <td id="td-btn">
-                <button class="btn btn-td btn-main" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>)" type="button">Request Service</button>
+                <button class="btn btn-td btn-main" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 3)" type="button">Request Service</button>
               </td>
               <% } %>
               <td id="td-btn">
@@ -92,7 +102,6 @@
               <td id="td-btn">
                 <button class="btn btn-td btn-info" onclick="pvClick(0, <%= i %>, 2)" type="button">View</button>
               </td>
-              <input type="hidden" id="rejectCmt<%= i %>" value="<%= enrollItems['item' + i].rejectCmt %>">
             </tr>
             <% } %>
             <% } %>
@@ -151,7 +160,7 @@
             <p id="reqType1<%= i %>" style="display: none"><%= requestItems['item' + i].reqType %></p>
             <p id="memberID1<%= i %>" style="display: none"><%= requestItems['item' + i].buyerID %></p>
             <p id="area1<%= i %>" style="display: none"><%= requestItems['item' + i].area %></p>
-            <p id="rejectCmt<%= i %>" style="display: none"><%= requestItems['item' + i].rejectCmt %></p>
+            <p id="buyRejectCmt<%= i %>" style="display: none"><%= requestItems['item' + i].rejectCmt %></p>
             <% } %>
             <% } %>
           </tbody>

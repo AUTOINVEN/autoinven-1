@@ -1,18 +1,66 @@
-function reqClick(i, WID) {
-    reAlert('Request IoT Server?', () => {
-        $.ajax({
-            url: '/Provider/MyWarehouse/IoT/Ans',
-            dataType: 'json',
-            type: 'POST',
-            data: {
-                warehouseID: parseInt(WID)
-            },
-            success: function (success) {
-                if (success) resultAlert('Submitted');
-                else errorAlert();
-            }
+function reqClick(i, WID, flag) {
+    var reqID = $(`#IoTReqID${i}`).text();
+    switch (flag) {
+    case 0:
+        inputAlert('Input the reason for cancellation to submit.', (reason) => {
+            $.ajax({
+                url: '/Provider/MyWarehouse/IoT/Ans',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    answer: "Cancel",
+                    warehouseID: parseInt(WID),
+                    reqID: reqID,
+                    reason: reason
+                    //other things will be here
+                },
+                success: function (success) {
+                    if (success) resultAlert('Canceled');
+                    else errorAlert();
+                },
+            });
         });
-    });
+        break;
+    case 1:
+        var rejectCmt = $(`#IoTRejectCmt${i}`).text();
+        rejectedAlert('Rejected By Admin', rejectCmt, () => {
+            reAlert('Delete from table?', () => {
+                $.ajax({
+                    url: '/Provider/MyWarehouse/IoT/Ans',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        answer: "Confirm",
+                        warehouseID: parseInt(WID),
+                        reqID: reqID,
+                        //other things will be here
+                    },
+                    success: function (success) {
+                        if (success) resultAlert('Deleted');
+                        else errorAlert();
+                    }
+                });
+            })
+        });
+        break;
+    case 3:
+        reAlert('Request IoT Server?', () => {
+            $.ajax({
+                url: '/Provider/MyWarehouse/IoT/Ans',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    answer: "Request",
+                    warehouseID: parseInt(WID)
+                },
+                success: function (success) {
+                    if (success) resultAlert('Submitted');
+                    else errorAlert();
+                }
+            });
+        });
+        break;
+    }
 }
 
 function pvClick(where, i, flag) {
@@ -73,7 +121,7 @@ function pvClick(where, i, flag) {
         });
         break;
     case 2:  // Confirm
-        var rejectCmt = $(`#rejectCmt${i}`).text();
+        var rejectCmt = $(`#buyRejectCmt${i}`).text();
         rejectedAlert('Canceled By Buyer', rejectCmt, () => {
             reAlert('Delete from table?', () => {
                 $.ajax({

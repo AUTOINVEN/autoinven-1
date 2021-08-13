@@ -1,3 +1,4 @@
+const WHInfo = require("./WHInfo");
 module.exports = function (app, db) {
     var express = require('express');
     var router = express.Router();
@@ -72,16 +73,20 @@ module.exports = function (app, db) {
     router.get('/MyWarehouse', function (req, res, next) {
         var enrollItems = pv_myWH.RequestForEnroll(req, res, app, db);
         var requestItems = pv_myWH.RequestForBuy(req, res, app, db);
+        var IoTitems = WHInfo.getIoTInfo(req, res, app, db);
         var wList = pv_myWH.Mywarehouse(req, res, app, db);
         enrollItems = JSON.parse(enrollItems);
         requestItems = JSON.parse(requestItems);
+        IoTitems = JSON.parse(IoTitems);
         wList = JSON.parse(wList);
+
         res.render('User/Provider/pv_MyWH', {
             'app': app,
             'session': req.session,
             'db': db,
             'enrollItems': enrollItems,
             'requestItems': requestItems,
+            'IoTitems': IoTitems,
             'wList': wList
         });
     });

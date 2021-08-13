@@ -82,19 +82,87 @@ exports.Mywarehouse = function (req, res, app, db) {
 
 exports.ReqIoTAns = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
+    var answer = req.body.answer;
+    var reqID = req.body.reqID;
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
-    connection.query(`UPDATE Warehouse SET iotStat='W' WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
-        if (error) {
-            console.log(error);
-            res.send(false);
-            connection.end();
-        } else {
-            res.send(true);
-            connection.end();
-        }
-    });
+
+    if (answer === 'Request') {
+        var reqItem = {
+            "reqDate": new Date(),
+            "reqType": "ReqIoTPv",
+            "providerID": req.session['memberID'],
+            "warehouseID": warehouseID
+        };
+        connection.query(`INSERT INTO RequestForIoT SET ?`, reqItem, function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send(false);
+                connection.end();
+            } else {
+                connection.query(`UPDATE Warehouse SET iotStat='W' WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        res.send(true);
+                        connection.end();
+                    }
+                });
+            }
+        });
+    } else if (answer === 'Confirm') {
+        connection.query(`UPDATE Warehouse SET iotStat='N' WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send(false);
+                connection.end();
+            } else {
+                connection.query(`DELETE FROM RequestForIoT WHERE reqID=?`, reqID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        res.send(true);
+                        connection.end();
+                    }
+                });
+            }
+        });
+    } else if (answer === 'Cancel') {
+        var reason = req.body.reason;
+        connection.query(`UPDATE RequestForIoT SET reqType='CnlByPv', rejectCmt=? WHERE reqID=?`, [reason, reqID], function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send(false);
+                connection.end();
+            } else {
+                connection.query(`UPDATE Warehouse SET iotStat='N' WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                        var cols = 'reqID, reqDate, reqType, providerID, warehouseID, rejectCmt';
+                        connection.query(`INSERT INTO DeletedIoT (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForIoT WHERE reqID=?)`, [now, reqID], function (error, results, fields) {
+                            if (error) {
+                                console.log(error);
+                                res.send(false);
+                                connection.end();
+                            } else {
+                                res.send(true);
+                                connection.end();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
 }
 
 exports.ReqEnrollAns = function (req, res, app, db) {

@@ -75,7 +75,7 @@ exports.withAnswer = function (req, res, app, db) {
                         res.send(false);
                         connection.end();
                     } else {
-                        connection.query(`DELETE FROM Warehouse WHERE warehouseID=`, warehouseID, function (error, results, fields) {
+                        connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
                             if (error) {
                                 res.send(false);
                                 console.log(error);

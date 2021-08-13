@@ -18,6 +18,21 @@ exports.getPVInfo = function (req, res, app, db) {
     return items;
 }
 
+exports.getIoTInfo = function (req, res, app, db) {
+    var memberID = req.session.memberID;
+    var items = {};
+    let results = db.query(`select * from RequestForIoT where providerID='${memberID}'`);
+    if (results.length > 0) {
+        for (var step = 0; step < results.length; step++) {
+            items[results[step].warehouseID] = {
+                reqID: results[step].reqID,
+                rejectCmt: results[step].rejectCmt
+            };
+        }
+    }
+    return JSON.stringify(items);
+}
+
 exports.getCurUsage = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
     var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
