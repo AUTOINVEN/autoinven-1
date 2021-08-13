@@ -9,7 +9,8 @@ exports.RequestForEnroll = function (req, res, app, db) {
                 reqDate: results[step].reqDate,
                 reqType: results[step].reqType,
                 warehouseID: results[step].warehouseID,
-                providerID: results[step].providerID
+                providerID: results[step].providerID,
+                rejectCmt: results[step].rejectCmt
             };
         }
     }
@@ -39,7 +40,8 @@ exports.RequestForBuy = function (req, res, app, db) {
                 email: results[step].email,
                 contractNumber: results[step].contractNumber,
                 national: results[step].national,
-                area: results[step].area
+                area: results[step].area,
+                rejectCmt: results[step].rejectCmt
             };
         }
     }
@@ -163,7 +165,7 @@ exports.ReqBuyAns = function (req, res, app, db) {
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Approve") {
-        connection.query(`UPDATE RequestForBuy SET reqType='ReqPayByBuyer' WHERE reqID =${reqID}`, function (error, results, fields) {
+        connection.query(`UPDATE RequestForBuy SET reqType='ReqByPv' WHERE reqID =${reqID}`, function (error, results, fields) {
             if (error) {
                 res.send(false);
                 connection.end();
@@ -173,14 +175,14 @@ exports.ReqBuyAns = function (req, res, app, db) {
             }
         });
     } else if (answer == "Cancel") {
-        connection.query(`UPDATE RequestForBuy SET reqType='RejByPv', rejectCmt='${reason}' WHERE reqID =${reqID}`, function (error, results, fields) {
+        connection.query(`UPDATE RequestForBuy SET reqType='RejByPv3', rejectCmt=? WHERE reqID =?`, [reason, reqID], function (error, results, fields) {
             if (error) {
                 res.send(false);
                 connection.end();
             } else {
                 var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
                 var cols = 'reqID, reqDate, reqType, warehouseID, buyerID, area, startDate, endDate, rejectCmt';
-                connection.query(`INSERT INTO DeletedBuy (${cols}, rejectTime) (SELECT ${cols}, '${now}' FROM RequestForBuy WHERE reqID=?)`, reqID, function (error, results, fields) {
+                connection.query(`INSERT INTO DeletedBuy (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForBuy WHERE reqID=?)`, [now, reqID], function (error, results, fields) {
                     if (error) {
                         console.log(error);
                         res.send(false);
@@ -192,5 +194,30 @@ exports.ReqBuyAns = function (req, res, app, db) {
                 });
             }
         });
+    } else if (answer === "Confirm") {
+        var viewState = parseInt(reqType.charAt(reqType.length - 1));
+        viewState -= 4;  // flag_provider
+        if (viewState === 0) {
+            connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
+                if (error) {
+                    res.send(false);
+                    connection.end()
+                } else {
+                    res.send(true);
+                    connection.end();
+                }
+            });
+        } else {
+            reqType = reqType.substring(0, reqType.length - 1) + viewState.toString();
+            connection.query(`UPDATE RequestForBuy SET reqType=? WHERE reqID =?`, [reqType, reqID], function (error, results, fields) {
+                if (error) {
+                    res.send(false);
+                    connection.end()
+                } else {
+                    res.send(true);
+                    connection.end();
+                }
+            });
+        }
     }
 }

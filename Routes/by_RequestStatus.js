@@ -32,7 +32,8 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
     // const nodePickle = require('pickle');
     connection.connect();
     if (answer === "Cancel") {
-        connection.query(`UPDATE RequestForBuy SET reqType='CnlByBuyer', rejectCmt=? WHERE reqID =?`, [reason, reqID], function (error, results, fields) {
+        var cnlType = reqType === 'ReqByBuyer' ? 'CnlByBuyer1' : 'CnlByBuyer5';
+        connection.query(`UPDATE RequestForBuy SET reqType=?, rejectCmt=? WHERE reqID =?`, [cnlType, reason, reqID], function (error, results, fields) {
             if (error) {
                 res.send(false);
                 connection.end();

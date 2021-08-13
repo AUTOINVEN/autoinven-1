@@ -101,13 +101,6 @@
       </div>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Buy Request List</h2>
-        <% for(var i = 0; i < Object.keys(requestItems).length; i++) { %>
-        <p id="whID1<%= i %>" style="display: none"><%= requestItems['item' + i].warehouseID %></p>
-        <p id="reqID1<%= i %>" style="display: none"><%= requestItems['item' + i].reqID %></p>
-        <p id="reqType1<%= i %>" style="display: none"><%= requestItems['item' + i].reqType %></p>
-        <p id="memberID1<%= i %>" style="display: none"><%= requestItems['item' + i].buyerID %></p>
-        <p id="area1<%= i %>" style="display: none"><%= requestItems['item' + i].area %></p>
-        <% } %>
         <table class="board-table table">
           <thead class="thead-dark">
             <tr>
@@ -118,8 +111,10 @@
             </tr>
           </thead>
           <tbody>
-            <% for(var i = 0; i < Object.keys(requestItems).length; i++) { %>
-            <% if(requestItems['item' + i].reqType == "ReqByAdmin"){ %>
+            <% for (var i = 0; i < Object.keys(requestItems).length; i++) { %>
+            <% if (['ReqByAdmin', 'ReqByPv', 'CnlByBuyer4', 'CnlByBuyer5'].includes(requestItems['item' + i].reqType)) { %>
+
+            <% if (requestItems['item' + i].reqType === 'ReqByAdmin') { %>
             <tr class="table-warning">
               <td><%= requestItems['item' + i].warehouseID %></td>
               <td><%= requestItems['item' + i].warehouseName %></td>
@@ -129,8 +124,8 @@
                 <button class="btn btn-td btn-danger" onclick="pvClick(1, <%= i %>, 0)" type="button">Reject</button>
               </td>
             </tr>
-            <% } %>
-            <% if(requestItems['item' + i].reqType == "ReqPayByBuyer"){ %>
+
+            <% } else if (requestItems['item' + i].reqType == 'ReqByPv') { %>
             <tr class="table-basic">
               <td><%= requestItems['item' + i].warehouseID %></td>
               <td><%= requestItems['item' + i].warehouseName %></td>
@@ -139,16 +134,24 @@
                 <button class="btn btn-td btn-danger" onclick="pvClick(1, <%= i %>, 0)" type="button">Reject</button>
               </td>
             </tr>
-            <% } %>
-            <% if(requestItems['item' + i].reqType == "Rejected"){ %>
+
+            <% } else if (requestItems['item' + i].reqType.includes('CnlByBuyer')) { %>
             <tr class="table-danger">
               <td><%= requestItems['item' + i].warehouseID %></td>
               <td><%= requestItems['item' + i].warehouseName %></td>
-              <td>Rejected</td>
+              <td>Canceled By Buyer</td>
               <td id="td-btn">
-                <button class="btn btn-td btn-info" onclick="pvClick(1, <%= i %>, 2)" type="button">Delete</button>
+                <button class="btn btn-td btn-info" onclick="pvClick(1, <%= i %>, 2)" type="button">View</button>
               </td>
             </tr>
+            <% } %>
+
+            <p id="whID1<%= i %>" style="display: none"><%= requestItems['item' + i].warehouseID %></p>
+            <p id="reqID1<%= i %>" style="display: none"><%= requestItems['item' + i].reqID %></p>
+            <p id="reqType1<%= i %>" style="display: none"><%= requestItems['item' + i].reqType %></p>
+            <p id="memberID1<%= i %>" style="display: none"><%= requestItems['item' + i].buyerID %></p>
+            <p id="area1<%= i %>" style="display: none"><%= requestItems['item' + i].area %></p>
+            <p id="rejectCmt<%= i %>" style="display: none"><%= requestItems['item' + i].rejectCmt %></p>
             <% } %>
             <% } %>
           </tbody>
