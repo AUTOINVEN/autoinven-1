@@ -34,7 +34,7 @@ module.exports = function (app, db) {
     router.post('/RequestIoT', function (req, res, next) {
         ad_ReqIoT.withAnswer(req, res, app, db);
     });
-    router.post('/IoTest', function (req, res, next) {
+    router.post('/IoTTest', function (req, res, next) {
         ad_IoTTest.init(req, res, app, db);
     });
     router.get('/RequestBuy', function (req, res, next) {
