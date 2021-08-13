@@ -1,6 +1,6 @@
 exports.RequestForEnroll = function (req, res, app, db) {
     var items = {};
-    var sql = `SELECT * from RequestForEnroll where providerID ="${req.session['memberID']}"`;
+    var sql = `SELECT * from RequestForEnroll, Warehouse where providerID ='${req.session['memberID']}' and RequestForEnroll.warehouseID=Warehouse.warehouseID`;
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
@@ -9,6 +9,7 @@ exports.RequestForEnroll = function (req, res, app, db) {
                 reqDate: results[step].reqDate,
                 reqType: results[step].reqType,
                 warehouseID: results[step].warehouseID,
+                warehouseName: results[step].warehouseName,
                 providerID: results[step].providerID,
                 rejectCmt: results[step].rejectCmt
             };
