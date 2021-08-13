@@ -48,24 +48,29 @@ function byClick(i, flag) {
             });
             break;
         case 2:  // Confirm
-            reAlert('Delete from table?', () => {
-                $.ajax({
-                    url: '/Buyer/RequestStatus/Buy/Ans',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: {
-                        answer: "Confirm",
-                        reqID: document.getElementById('reqID' + i).innerText,
-                        whID: document.getElementById('whID' + i).innerText,
-                        reqType: document.getElementById('reqType' + i).innerText,
-                        buyerID: document.getElementById('buyerID' + i).innerText,
-                        area: document.getElementById('area' + i).innerText
-                        //other things will be here
-                    },
-                    success: function (success) {
-                        if (success) resultAlert('Deleted');
-                        else errorAlert();
-                    }
+            var rejectCmt = $(`#rejectCmt${i}`).val();
+            var rejBy = $(`#reqType${i}`).text();
+            var text = rejBy.includes('Pv') ? 'Rejected By Provider' : 'Rejected By Admin';
+            rejectedAlert(text, rejectCmt, () => {
+                reAlert('Delete from table?', () => {
+                    $.ajax({
+                        url: '/Buyer/RequestStatus/Buy/Ans',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {
+                            answer: "Confirm",
+                            reqID: document.getElementById('reqID' + i).innerText,
+                            whID: document.getElementById('whID' + i).innerText,
+                            reqType: document.getElementById('reqType' + i).innerText,
+                            buyerID: document.getElementById('buyerID' + i).innerText,
+                            area: document.getElementById('area' + i).innerText
+                            //other things will be here
+                        },
+                        success: function (success) {
+                            if (success) resultAlert('Deleted');
+                            else errorAlert();
+                        }
+                    });
                 });
             });
             break;

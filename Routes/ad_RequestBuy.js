@@ -13,7 +13,8 @@ exports.RequestForBuy = function (req, res, app, db) {
                 amounts: results[step].price * results[step].area,
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
-                area: results[step].area
+                area: results[step].area,
+                rejectCmt: results[step].rejectCmt
             };
         }
     }
@@ -58,5 +59,30 @@ exports.withAnswer = function (req, res, app, db) {
                 });
             }
         });
+    } else if (answer === "Confirm") {
+        var viewState = parseInt(reqType.charAt(reqType.length - 1));
+        viewState -= 1;  // flag_admin
+        if (viewState === 0) {
+            connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
+                if (error) {
+                    res.send(false);
+                    connection.end()
+                } else {
+                    res.send(true);
+                    connection.end();
+                }
+            });
+        } else {
+            reqType = reqType.substring(0, reqType.length - 1) + viewState.toString();
+            connection.query(`UPDATE RequestForBuy SET reqType=? WHERE reqID =?`, [reqType, reqID], function (error, results, fields) {
+                if (error) {
+                    res.send(false);
+                    connection.end()
+                } else {
+                    res.send(true);
+                    connection.end();
+                }
+            });
+        }
     }
 }

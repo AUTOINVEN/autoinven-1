@@ -14,7 +14,8 @@ exports.RequestForBuy = function (req, res, app, db) {
                 area: results[step].area,
                 amounts: results[step].price,
                 startDate: results[step].startDate.substring(0, 10),
-                endDate: results[step].endDate.substring(0, 10)
+                endDate: results[step].endDate.substring(0, 10),
+                rejectCmt: results[step].rejectCmt
             };
         }
     }
@@ -51,15 +52,30 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
             }
         });
     } else if (answer === "Confirm") {
-        connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
-            if (error) {
-                res.send(false);
-                connection.end()
-            } else {
-                res.send(true);
-                connection.end();
-            }
-        });
+        var viewState = parseInt(reqType.charAt(reqType.length - 1));
+        viewState -= 2;  // flag_buyer
+        if (viewState === 0) {
+            connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
+                if (error) {
+                    res.send(false);
+                    connection.end()
+                } else {
+                    res.send(true);
+                    connection.end();
+                }
+            });
+        } else {
+            reqType = reqType.substring(0, reqType.length - 1) + viewState.toString();
+            connection.query(`UPDATE RequestForBuy SET reqType=? WHERE reqID =?`, [reqType, reqID], function (error, results, fields) {
+                if (error) {
+                    res.send(false);
+                    connection.end()
+                } else {
+                    res.send(true);
+                    connection.end();
+                }
+            });
+        }
     } else if (answer === "Accept") {
         let price = db.query(`SELECT price FROM Warehouse WHERE warehouseID='${req.body.whID}'`);
         connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
