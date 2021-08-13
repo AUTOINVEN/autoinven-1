@@ -1,6 +1,6 @@
 exports.RequestForEnroll = function (req, res, app, db) {
     var items = {};
-    let results = db.query('select * from RequestForEnroll, Member, Warehouse where RequestForEnroll.providerID=Member.memberID and RequestForEnroll.warehouseID=Warehouse.warehouseID');
+    let results = db.query('select * from RequestForEnroll, Member where RequestForEnroll.providerID=Member.memberID');
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
@@ -12,7 +12,8 @@ exports.RequestForEnroll = function (req, res, app, db) {
                 national: results[step].national,
                 address: results[step].address,
                 name: results[step].name,
-                floorArea: results[step].floorArea
+                floorArea: results[step].floorArea,
+                rejectCmt: results[step].rejectCmt
             };
         }
     }
@@ -61,20 +62,20 @@ exports.withAnswer = function (req, res, app, db) {
             }
         });
     } else if (answer == "Reject") {
-        connection.query(`UPDATE RequestForEnroll SET reqType='RejByAdmin', rejectCmt='${reason}' WHERE reqID =?`, reqID, function (error, results, fields) {
+        connection.query(`UPDATE RequestForEnroll SET reqType='RejByAdmin', rejectCmt=? WHERE reqID =?`, [reason, reqID], function (error, results, fields) {
             if (error) {
                 res.send(false);
                 connection.end();
             } else {
                 var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
                 var cols = 'reqID, reqDate, reqType, providerID, warehouseID, rejectCmt';
-                connection.query(`INSERT INTO DeletedEnroll (${cols}, rejectTime) (SELECT ${cols}, '${now}' FROM RequestForEnroll WHERE reqID=?)`, reqID, function (error, results, fields) {
+                connection.query(`INSERT INTO DeletedEnroll (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForEnroll WHERE reqID=?)`, [now, reqID], function (error, results, fields) {
                     if (error) {
                         console.log(error);
                         res.send(false);
                         connection.end();
                     } else {
-                        connection.query(`DELETE FROM Warehouse WHERE warehouseID =${warehouseID}`, function (error, results, fields) {
+                        connection.query(`DELETE FROM Warehouse WHERE warehouseID=`, warehouseID, function (error, results, fields) {
                             if (error) {
                                 res.send(false);
                                 console.log(error);
@@ -86,6 +87,16 @@ exports.withAnswer = function (req, res, app, db) {
                         });
                     }
                 });
+            }
+        });
+    } else if (answer === "Confirm") {
+        connection.query(`DELETE FROM RequestForEnroll WHERE reqID=?`, reqID, function (error, results, fields) {
+            if (error) {
+                res.send(false);
+                connection.end()
+            } else {
+                res.send(true);
+                connection.end();
             }
         });
     }
