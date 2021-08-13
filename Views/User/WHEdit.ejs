@@ -17,7 +17,7 @@
     </header>
     <section>
       <div class="container">
-        <h2 class="mt-5 mb-3" style="padding-bottom: 30px;">Edit Warehouse</h2>
+        <h2 class="mt-5 mb-5">Edit Warehouse</h2>
         <form action="Edit/Save" method="post" enctype="multipart/form-data" id="enrollForm" onsubmit="return false;">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse Name</label>
@@ -84,11 +84,13 @@
             </div>
           </div>
           <input type="hidden" name="warehouseID" value="<%= wh.warehouseID %>">
-          <div class="button">
-            <input type="submit" class="btn btn-primary two_btn" id="enrollBtn" value="Apply">
+          <div class="center-wrap">
+            <input type="submit" class="btn btn-main btn-two-l" id="enrollBtn" value="Apply">
           </div>
         </form>
-        <input type="submit" class="btn two_btn" id="cancelBtn" value="Cancel" style="margin-left: 10px;" onclick="history.back()">
+        <div>
+        <input type="submit" class="btn btn-grey btn-two-l ml-1" id="cancelBtn" value="Cancel" onclick="history.back()">
+        </div>
       </div>
     </section>
   <footer>

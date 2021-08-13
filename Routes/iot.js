@@ -41,7 +41,7 @@ module.exports = function (app, db) {
         var itemlist = iot_Warehousing.initWarehouse(req, res, db);
         var userType = req.session['type'];
         itemlist = JSON.parse(itemlist);
-        res.render('IoT/iot_Warehousing', {'itemlist': itemlist, 'userType': userType});
+        res.render('IoT/iot_Warehousing', { 'session': req.session, 'itemlist': itemlist, 'userType': userType });
     });
 
     router.get('/Help', (req, res, next) => {
@@ -53,7 +53,7 @@ module.exports = function (app, db) {
     });
 
     router.get('/RegisterItem', (req, res, next) => {
-        res.render('IoT/iot_RegisterItem')
+        res.render('IoT/iot_RegisterItem', { 'session': req.session })
     });
 
     router.post('/RegisterItem', (req, res, next) => {
@@ -61,11 +61,11 @@ module.exports = function (app, db) {
     });
 
     router.get('/EditItem', (req, res, next) => {
-        res.render('IoT/iot_EditItem')
+        res.render('IoT/iot_EditItem', { 'session': req.session })
     });
 
     router.post('/EditItem', (req, res, next) => {
-        res.render('IoT/iot_EditItem', {'rfid': req.body.itemEdit});
+        res.render('IoT/iot_EditItem', { 'rfid': req.body.itemEdit, 'session': req.session })
     });
 
     router.post('/EditSave', (req, res, next) => {

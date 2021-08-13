@@ -17,9 +17,9 @@
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Info
-          <button class="btn btn-primary" style="margin: 0; padding: 8px 12px;" onclick="btnClick('pv', 'iot')">IoT</button>
+          <button class="btn btn-big btn-main" onclick="btnClick('pv', 'iot')">IoT</button>
           <% if (session.type === 'provider') { %>
-            <button class="btn" style="margin: 0; padding: 8px 12px;" onclick="btnClick('pv', 'edit')">EDIT</button>
+          <button class="btn btn-big btn-info two-btn-l ml-1" onclick="btnClick('pv', 'edit')">Edit</button>
           <% } %>
         </h2>
       <table class="table table-bordered">
@@ -139,8 +139,8 @@
           <td id="Period<%= i %>"><%= curItems['item' + i].startDate %> ~ <%= curItems['item' + i].endDate %></td>
           <td id="area<%= i %>"><%= curItems['item' + i].area %></td>
           <td id="totalPrice<%= i %>"><%= curItems['item' + i].totalPrice %></td>
-          <td style="padding:6px 0;">
-            <button id="modal_btn" class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+          <td id="td-btn">
+            <button id="modal_btn" class="btn btn-td btn-info">INFO</button>
             <div class="black_bg"></div>
             <div class="modal_wrap">
               <div class="modal_body">
@@ -148,36 +148,36 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th class="thead-dark-vertical">Buyer ID</th>
-                      <td><%= curItems['item' + i].buyerID %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Buyer ID</th>
+                      <td id="modal_border"><%= curItems['item' + i].buyerID %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">Buyer Name</th>
-                      <td><%= curItems['item' + i].name %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Buyer Name</th>
+                      <td id="modal_border"><%= curItems['item' + i].name %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">National</th>
-                      <td><%= curItems['item' + i].national %></td>
+                      <th class="thead-dark-vertical" id="modal_border">National</th>
+                      <td id="modal_border"><%= curItems['item' + i].national %></td>
                     </tr>
                     <tr>
-                      <th rowspan="2" class="thead-dark-vertical">Address</th>
-                      <td><%= curItems['item' + i].zipcode %></td>
+                      <th rowspan="2" class="thead-dark-vertical" id="modal_border">Address</th>
+                      <td id="modal_border"><%= curItems['item' + i].zipcode %></td>
                     </tr>
                     <tr>
-                      <td><%= curItems['item' + i].address %></td>
+                      <td id="modal_border"><%= curItems['item' + i].address %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">Email</th>
-                      <td><%= curItems['item' + i].email %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Email</th>
+                      <td id="modal_border"><%= curItems['item' + i].email %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">Contact Number</th>
-                      <td><%= curItems['item' + i].contactNumber %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Contact Number</th>
+                      <td id="modal_border"><%= curItems['item' + i].contactNumber %></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="modal_close">
-                  <button type="button" class="btn btn-sm">Close</button>
+                  <button type="button" class="btn btn-grey">Close</button>
                 </div>
               </div>
             </div>
@@ -187,12 +187,12 @@
         <% for(var i = 0; i < Object.keys(nextItems).length; i++) { %>
         <tr class="table-warning">
           <td id="reqID<%= i %>"><%= nextItems['item' + i].reqID %></td>
-          <td id="buyerID<%= i %>"><%= curItems['item' + i].buyerID %></td>
+          <td id="buyerID<%= i %>"><%= nextItems['item' + i].buyerID %></td>
           <td id="Period<%= i %>"><%= nextItems['item' + i].startDate %> ~ <%= nextItems['item' + i].endDate %></td>
           <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
           <td id="totalPrice<%= i %>"><%= nextItems['item' + i].totalPrice %></td>
-          <td style="padding:6px 0;">
-            <button id="modal_btn" class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+          <td id="td-btn">
+            <button id="modal_btn" class="btn btn-td btn-info">INFO</button>
             <div class="black_bg"></div>
             <div class="modal_wrap">
               <div class="modal_body">
@@ -200,36 +200,36 @@
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <th class="thead-dark-vertical">Buyer ID</th>
-                      <td><%= nextItems['item' + i].buyerID %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Buyer ID</th>
+                      <td id="modal_border"><%= nextItems['item' + i].buyerID %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">Buyer Name</th>
-                      <td><%= nextItems['item' + i].name %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Buyer Name</th>
+                      <td id="modal_border"><%= nextItems['item' + i].name %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">National</th>
-                      <td><%= nextItems['item' + i].national %></td>
+                      <th class="thead-dark-vertical" id="modal_border">National</th>
+                      <td id="modal_border"><%= nextItems['item' + i].national %></td>
                     </tr>
                     <tr>
-                      <th rowspan="2" class="thead-dark-vertical">Address</th>
-                      <td><%= nextItems['item' + i].zipcode %></td>
+                      <th rowspan="2" class="thead-dark-vertical" id="modal_border">Address</th>
+                      <td id="modal_border"><%= nextItems['item' + i].zipcode %></td>
                     </tr>
                     <tr>
                       <td><%= nextItems['item' + i].address %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">Email</th>
-                      <td><%= nextItems['item' + i].email %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Email</th>
+                      <td id="modal_border"><%= nextItems['item' + i].email %></td>
                     </tr>
                     <tr>
-                      <th class="thead-dark-vertical">Contact Number</th>
-                      <td><%= nextItems['item' + i].contactNumber %></td>
+                      <th class="thead-dark-vertical" id="modal_border">Contact Number</th>
+                      <td id="modal_border"><%= nextItems['item' + i].contactNumber %></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="modal_close">
-                  <button type="button" class="btn btn-sm">Close</button>
+                  <button type="button" class="btn btn-grey">Close</button>
                 </div>
               </div>
             </div>
@@ -240,13 +240,13 @@
   </div>
   <div class="container">
     <h2 class="mt-5 mb-3">Previous Warehouse Usage
-      <button id="btnView" class="btn btn-primary"
-        style=" font-size:14px; margin-left: 10px; padding: 8px 12px;">View</button>
+      <button id="btnView" class="btn btn-big btn-main">View</button>
     </h2>
-    <table id="t2" class="board-table table">
+    <table id="t2" class="board-table table" style="display: none;">
       <thead class="thead-dark">
         <tr>
           <th>Req ID</th>
+          <th>Buyer ID</th>
           <th>Rental Period</th>
           <th>Area</th>
           <th>Price</th>
@@ -257,7 +257,7 @@
         <% for(var i = 0; i < Object.keys(preItems).length; i++) { %>
         <tr class="table-danger">
           <td id="reqID<%= i %>"><%= preItems['item' + i].reqID %></td>
-          <td id="buyerID<%= i %>"><%= curItems['item' + i].buyerID %></td>
+          <td id="buyerID<%= i %>"><%= preItems['item' + i].buyerID %></td>
           <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
           <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
           <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
@@ -315,6 +315,19 @@
   </div>
 </body>
 <script>
+$(document).ready(function () {
+    $("#t2").hide();
+    $("#btnView").click(function () {
+      if ($("#btnView").html() == 'View') {
+        $("#btnView").html('Close');
+        $("#t2").fadeIn();
+      } else {
+        $("#btnView").html('View');
+        $("#t2").fadeOut();
+      }
+    });
+  });
+
   window.onload = function () {
     function onClick() {
       document.querySelector('.modal_wrap').style.display = 'block';
