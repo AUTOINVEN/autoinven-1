@@ -187,7 +187,7 @@
         <% for(var i = 0; i < Object.keys(nextItems).length; i++) { %>
         <tr class="table-warning">
           <td id="reqID<%= i %>"><%= nextItems['item' + i].reqID %></td>
-          <td id="buyerID<%= i %>"><%= curItems['item' + i].buyerID %></td>
+          <td id="buyerID<%= i %>"><%= nextItems['item' + i].buyerID %></td>
           <td id="Period<%= i %>"><%= nextItems['item' + i].startDate %> ~ <%= nextItems['item' + i].endDate %></td>
           <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
           <td id="totalPrice<%= i %>"><%= nextItems['item' + i].totalPrice %></td>
@@ -246,6 +246,7 @@
       <thead class="thead-dark">
         <tr>
           <th>Req ID</th>
+          <th>Buyer ID</th>
           <th>Rental Period</th>
           <th>Area</th>
           <th>Price</th>
@@ -256,7 +257,7 @@
         <% for(var i = 0; i < Object.keys(preItems).length; i++) { %>
         <tr class="table-danger">
           <td id="reqID<%= i %>"><%= preItems['item' + i].reqID %></td>
-          <td id="buyerID<%= i %>"><%= curItems['item' + i].buyerID %></td>
+          <td id="buyerID<%= i %>"><%= preItems['item' + i].buyerID %></td>
           <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
           <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
           <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
