@@ -17,15 +17,53 @@
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">How to use Autoinven</h2>
-        <div class="helpbtn-left">
+        <div class="btn-help-left">
           <div class="eff-left"></div>
-          <a href="#"> FAQ </a>
+          <a onclick=setDisplay(1)> FAQ </a>
         </div>
-        <div class="helpbtn-right">
+        <div class="btn-help-right">
           <div class="eff-right"></div>
-          <a href="#"> Help </a>
+          <a onclick=setDisplay(0)> HELP </a>
         </div>
-        <div id="help" class="container">
+        <div id="faq" class="container">
+          <ul id="faq-list" class="list-feature">
+            <li>
+              <a data-toggle="collapse" class="collapsed" href="#faq1">Update/Delete Users <i
+                  class="ion-android-remove"></i></a>
+              <div id="faq1" class="collapse" data-parent="#faq-list">
+                <p>If you need update/delete for your data, You can edit/delete it in "MYINFO" page.</p>
+              </div>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#faq2" class="collapsed">Forgot Email or Password <i
+                  class="ion-android-remove"></i></a>
+              <div id="faq2" class="collapse" data-parent="#faq-list">
+                <p>Please enter your email address and your password will be sent to the email address registered with
+                  your
+                  account<br>
+                  and then you can creat your new password. Or you can send e-mail via service@autoinspec.com</p>
+              </div>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#faq3" class="collapsed">Update/Delete Warehouse <i
+                  class="ion-android-remove"></i></a>
+              <div id="faq3" class="collapse" data-parent="#faq-list">
+                <p>If you need update data or find wrong data for your company, You can send to
+                  service@autoinven.com<br>
+                  We will contact you within 12 hours.</p>
+              </div>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#faq4" class="collapsed">How to Pay <i class="ion-android-remove"></i></a>
+              <div id="faq4" class="collapse" data-parent="#faq-list">
+                <p>AUOTINVEN.com Secure Payment aims to provide a safe payment service for membership.<br>
+                  By partnering with an online payment platform (PayPal), AUTOINVEN.com provides payment security to
+                  membership.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="help" class="container" style="display: none">
           <ul id="help-list" class="list-feature">
             <li>
               <a data-toggle="collapse" class="collapsed" href="#help1">Update/Delete Users <i
@@ -53,15 +91,6 @@
                   We will contact you within 12 hours.</p>
               </div>
             </li>
-            <li>
-              <a data-toggle="collapse" href="#help4" class="collapsed">How to Pay <i
-                  class="ion-android-remove"></i></a>
-              <div id="help4" class="collapse" data-parent="#help-list">
-                <p>AUOTINVEN.com Secure Payment aims to provide a safe payment service for membership.<br>
-                  By partnering with an online payment platform (PayPal), AUTOINVEN.com provides payment security to
-                  membership.</p>
-              </div>
-            </li>
           </ul>
         </div>
       </div>
@@ -75,7 +104,7 @@
 </html>
 
 <style>
-  .helpbtn-left {
+  .btn-help-left {
     width: 140px;
     height: 50px;
     border: 1px solid #f96332;
@@ -89,7 +118,7 @@
     overflow: hidden;
   }
 
-  .helpbtn-left a {
+  .btn-help-left a {
     font-family: arial;
     font-size: 16px;
     color: #f96332;
@@ -111,15 +140,15 @@
     z-index: 1;
   }
 
-  .helpbtn-left:hover .eff-left {
+  .btn-help-left:hover .eff-left {
     right: 0;
   }
 
-  .helpbtn-left:hover a {
+  .btn-help-left:hover a {
     color: #fff;
   }
 
-  .helpbtn-right {
+  .btn-help-right {
     width: 140px;
     height: 50px;
     border: 1px solid #f96332;
@@ -133,7 +162,7 @@
     overflow: hidden;
   }
 
-  .helpbtn-right a {
+  .btn-help-right a {
     font-family: arial;
     font-size: 16px;
     color: #f96332;
@@ -154,11 +183,25 @@
     z-index: 1;
   }
 
-  .helpbtn-right:hover .eff-right {
+  .btn-help-right:hover .eff-right {
     left: 0;
   }
 
-  .helpbtn-right:hover a {
+  .btn-help-right:hover a {
     color: #fff;
   }
 </style>
+
+<script>
+  function setDisplay(val) {
+    if (val == 1) {//val==1 faq
+      $('#faq').show();
+      $('#help').hide();
+    }
+    if (val == 0) {//val==0 help
+      $('#faq').hide();
+      $('#help').show();
+    }
+  }
+
+</script>
