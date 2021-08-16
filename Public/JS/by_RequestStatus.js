@@ -1,23 +1,7 @@
-function reAlert(text, callback) {
-    Swal.fire({
-        title: 'Are you sure?',
-        html: text,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#2A9EDD',
-        cancelButtonColor: '#66687A',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            callback();
-        }
-    });
-}
-
 function byClick(i, flag) {
     switch (flag) {
         case 0:  // Cancel
-            reAlert('Cancel buy request?', () => {
+            inputAlert('Input the reason for cancellation to submit.', (reason) => {
                 $.ajax({
                     url: '/Buyer/RequestStatus/Buy/Ans',
                     dataType: 'json',
@@ -28,22 +12,13 @@ function byClick(i, flag) {
                         whID: document.getElementById('whID' + i).innerText,
                         reqType: document.getElementById('reqType' + i).innerText,
                         buyerID: document.getElementById('buyerID' + i).innerText,
-                        area: document.getElementById('area' + i).innerText
+                        area: document.getElementById('area' + i).innerText,
+                        reason: reason
                         //other things will be here
                     },
-                    success: function (data) {
-                        if (data == true) {
-                            Swal.fire({
-                                title: 'Canceled',
-                                icon: 'success'
-                            }).then(() => location.reload());
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'An error has occurred.',
-                                icon: 'error'
-                            }).then(() => location.reload());
-                        }
+                    success: function (success) {
+                        if (success) resultAlert('Canceled');
+                        else errorAlert();
                     }
                 });
             });
@@ -65,52 +40,37 @@ function byClick(i, flag) {
                         endDate: document.getElementById('endDate' + i).innerText
                         //other things will be here
                     },
-                    success: function (data) {
-                        if (data == true) {
-                            Swal.fire({
-                                title: 'Success',
-                                icon: 'success'
-                            }).then(() => location.reload());
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'An error has occurred.',
-                                icon: 'error'
-                            }).then(() => location.reload());
-                        }
+                    success: function (success) {
+                        if (success) resultAlert('Success');
+                        else errorAlert();
                     }
                 });
             });
             break;
         case 2:  // Confirm
-            reAlert('Delete from table?', () => {
-                $.ajax({
-                    url: '/Buyer/RequestStatus/Buy/Ans',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: {
-                        answer: "Confirm",
-                        reqID: document.getElementById('reqID' + i).innerText,
-                        whID: document.getElementById('whID' + i).innerText,
-                        reqType: document.getElementById('reqType' + i).innerText,
-                        buyerID: document.getElementById('buyerID' + i).innerText,
-                        area: document.getElementById('area' + i).innerText
-                        //other things will be here
-                    },
-                    success: function (data) {
-                        if (data == true) {
-                            Swal.fire({
-                                title: 'Deleted',
-                                icon: 'success'
-                            }).then(() => location.reload());
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'An error has occurred.',
-                                icon: 'error'
-                            }).then(() => location.reload());
+            var rejectCmt = $(`#rejectCmt${i}`).val();
+            var rejBy = $(`#reqType${i}`).text();
+            var text = rejBy.includes('Pv') ? 'Rejected By Provider' : 'Rejected By Admin';
+            rejectedAlert(text, rejectCmt, () => {
+                reAlert('Delete from table?', () => {
+                    $.ajax({
+                        url: '/Buyer/RequestStatus/Buy/Ans',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {
+                            answer: "Confirm",
+                            reqID: document.getElementById('reqID' + i).innerText,
+                            whID: document.getElementById('whID' + i).innerText,
+                            reqType: document.getElementById('reqType' + i).innerText,
+                            buyerID: document.getElementById('buyerID' + i).innerText,
+                            area: document.getElementById('area' + i).innerText
+                            //other things will be here
+                        },
+                        success: function (success) {
+                            if (success) resultAlert('Deleted');
+                            else errorAlert();
                         }
-                    }
+                    });
                 });
             });
             break;

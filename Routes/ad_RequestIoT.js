@@ -1,15 +1,16 @@
 exports.RequestForIoT = function (req, res, app, db) {
     var items = {};
-    let results = db.query("SELECT * from Warehouse, Provider, Member WHERE Warehouse.warehouseID=Provider.warehouseID and Provider.memberID=Member.memberID and Warehouse.iotStat='W';");
+    let results = db.query("SELECT * from RequestForIoT, Warehouse, Provider WHERE Warehouse.warehouseID=Provider.warehouseID and RequestForIoT.warehouseID=Warehouse.warehouseID");
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             results[step].price = results[step].price * results[step].area;
             items[`item${step}`] = {
                 warehouseID: results[step].warehouseID,
                 memberID: results[step].memberID,
-                national: results[step].national,
                 address: results[step].address,
-                name: results[step].name
+                reqType: results[step].reqType,
+                reqID: results[step].reqID,
+                rejectCmt: results[step].rejectCmt
             };
         }
     }
@@ -20,26 +21,65 @@ exports.withAnswer = function (req, res, app, db) {
     var warehouseID = req.session['warehouseID'];
     var answer = req.body.answer;
     var iotServer = req.body.iotServer;
+    var reqID = req.body.reqID;
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
     if (answer == "Approve") {
-        connection.query(`UPDATE Warehouse SET iotStat='Y', iotServer='${iotServer}' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
+        connection.query(`UPDATE Warehouse SET iotStat='Y', iotServer=? WHERE warehouseID=?`, [iotServer, warehouseID], function (error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send(false);
                 connection.end();
             } else {
-                res.send(true);
-                connection.end();
+                connection.query(`DELETE FROM RequestForIoT WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        res.send(true);
+                        connection.end();
+                    }
+                });
             }
         });
     } else if (answer == "Reject") {
-        connection.query(`UPDATE Warehouse SET iotStat='N' WHERE warehouseID=${warehouseID}`, function (error, results, fields) {
+        var reason = req.body.reason;
+        connection.query(`UPDATE RequestForIoT SET reqType='RejByAdmin', rejectCmt=? WHERE warehouseID=?`, [reason, warehouseID], function (error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send(false);
                 connection.end();
+            } else {
+                connection.query(`UPDATE Warehouse SET iotStat='R' WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                        var cols = 'reqID, reqDate, reqType, providerID, warehouseID, rejectCmt';
+                        connection.query(`INSERT INTO DeletedIoT (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForIoT WHERE warehouseID=?)`, [now, warehouseID], function (error, results, fields) {
+                            if (error) {
+                                console.log(error);
+                                res.send(false);
+                                connection.end();
+                            } else {
+                                res.send(true);
+                                connection.end();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else if (answer === "Confirm") {
+        connection.query(`DELETE FROM RequestForIoT WHERE reqID=?`, reqID, function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send(false);
+                connection.end()
             } else {
                 res.send(true);
                 connection.end();

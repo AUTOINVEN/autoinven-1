@@ -3,7 +3,6 @@
 
 <head>
   <%- include('../../head') %>
-  <script src="/JS/ad_RequestBuy.js"></script>
 </head>
 
 <body>
@@ -17,16 +16,6 @@
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Buy Request list</h2>
-        <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-        <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
-        <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
-        <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
-        <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
-        <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
-        <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
-        <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
-        <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
-        <% } %>
         <table class="board-table table ">
           <thead class="thead-dark">
             <tr>
@@ -40,7 +29,9 @@
           </thead>
           <tbody>
             <% for(var i = 0; i < Object.keys(items).length; i++) { %>
-            <% if(items['item' + i].reqType == "ReqByBuyer"){ %>
+            <% if(!['RejByAdmin', 'RejByPv2', 'CnlByBuyer2', 'CnlByBuyer4'].includes(items['item' + i].reqType)){ %>
+
+              <% if (items['item' + i].reqType === 'ReqByBuyer') { %>
             <tr class="table-warning">
               <td><%= items['item' + i].warehouseID %></td>
               <td>Pending Approval</td>
@@ -49,6 +40,47 @@
               <td id="td-btn"><button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button></td>
               <td id="td-btn"><button type="button" class="btn btn-td btn-danger" onclick="adClick(<%= i %>, 0)">Reject</button></td>
             </tr>
+
+            <% } else if (['ReqByAdmin', 'ReqByPv'].includes(items['item' + i].reqType)) { %>
+            <tr class="table-basic">
+              <td><%= items['item' + i].warehouseID %></td>
+              <td>In Progress</td>
+              <td><%= items['item' + i].amounts %></td>
+              <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <% } else if (items['item' + i].reqType.includes('RejByPv')) { %>
+            <tr class="table-danger">
+              <td><%= items['item' + i].warehouseID %></td>
+              <td>Rejected By Provider</td>
+              <td><%= items['item' + i].amounts %></td>
+              <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+              <td></td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-info" onclick="adClick(<%= i %>, 2)">View</button></td>
+            </tr>
+
+            <% } else if (items['item' + i].reqType.includes('CnlByBuyer')) { %>
+            <tr class="table-danger">
+              <td><%= items['item' + i].warehouseID %></td>
+              <td>Canceled By Buyer</td>
+              <td><%= items['item' + i].amounts %></td>
+              <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+              <td></td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-info" onclick="adClick(<%= i %>, 2)">View</button></td>
+            </tr>
+            <% } %>
+
+            <p id="whID<%= i %>" style="display: none"><%= items['item' + i].warehouseID %></p>
+            <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
+            <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
+            <p id="buyerID<%= i %>" style="display: none"><%= items['item' + i].buyerID %></p>
+            <p id="area<%= i %>" style="display: none"><%= items['item' + i].area %></p>
+            <p id="amounts<%= i %>" style="display: none"><%= items['item' + i].amounts %></p>
+            <p id="startDate<%= i %>" style="display: none"><%= items['item' + i].startDate %></p>
+            <p id="endDate<%= i %>" style="display: none"><%= items['item' + i].endDate %></p>
+            <p id="rejectCmt<%= i %>" style="display: none"><%= items['item' + i].rejectCmt %></p>
             <% } %>
             <% } %>
           </tbody>
@@ -61,4 +93,6 @@
   </div>
 </body>
 
+<script src="/JS/alerts.js"></script>
+<script src="/JS/ad_RequestBuy.js"></script>
 </html>

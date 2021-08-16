@@ -3,7 +3,6 @@
 
 <head>
   <%- include('../../head') %>
-  <script src="/JS/pv_MyWH.js"></script>
 </head>
 
 <body>
@@ -39,10 +38,20 @@
                 </form>
               </td>
               <% } else if (wList['item' + i].iotStat == "W"){ %>
-              <td>Pending Approval</td>
+              <td>
+                Pending Approval&nbsp;&nbsp;
+                <button class="btn btn-td btn-grey" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 0)" type="button">Cancel</button>
+                <p id="IoTReqID<%= i %>" style="display: none"><%= IoTitems[wList['item' + i].warehouseID].reqID %></p>
+              </td>
+              <% } else if (wList['item' + i].iotStat == "R"){ %>
+              <td id="td-btn">
+                <button class="btn btn-td" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 1)" type="button">Rejected...</button>
+                <p id="IoTRejectCmt<%= i %>" style="display: none"><%= IoTitems[wList['item' + i].warehouseID].rejectCmt %></p>
+                <p id="IoTReqID<%= i %>" style="display: none"><%= IoTitems[wList['item' + i].warehouseID].reqID %></p>
+              </td>
               <% } else if (wList['item' + i].iotStat == "N"){ %>
               <td id="td-btn">
-                <button class="btn btn-td btn-main" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>)" type="button">Request Service</button>
+                <button class="btn btn-td btn-main" onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 3)" type="button">Request Service</button>
               </td>
               <% } %>
               <td id="td-btn">
@@ -85,13 +94,13 @@
               </td>
             </tr>
             <% } %>
-            <% if(enrollItems['item' + i].reqType == "ReqRejectPV"){ %>
+            <% if(enrollItems['item' + i].reqType == "RejByAdmin"){ %>
             <tr class="table-danger">
               <td><%= enrollItems['item' + i].warehouseID %></td>
               <td><%= enrollItems['item' + i].warehouseName %></td>
-              <td>Rejected</td>
+              <td>Rejected by admin</td>
               <td id="td-btn">
-                <button class="btn btn-td btn-warning" onclick="pvClick(0, <%= i %>, 2)" type="button">Delete</button>
+                <button class="btn btn-td btn-info" onclick="pvClick(0, <%= i %>, 2)" type="button">View</button>
               </td>
             </tr>
             <% } %>
@@ -101,13 +110,6 @@
       </div>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Buy Request List</h2>
-        <% for(var i = 0; i < Object.keys(requestItems).length; i++) { %>
-        <p id="whID1<%= i %>" style="display: none"><%= requestItems['item' + i].warehouseID %></p>
-        <p id="reqID1<%= i %>" style="display: none"><%= requestItems['item' + i].reqID %></p>
-        <p id="reqType1<%= i %>" style="display: none"><%= requestItems['item' + i].reqType %></p>
-        <p id="memberID1<%= i %>" style="display: none"><%= requestItems['item' + i].buyerID %></p>
-        <p id="area1<%= i %>" style="display: none"><%= requestItems['item' + i].area %></p>
-        <% } %>
         <table class="board-table table">
           <thead class="thead-dark">
             <tr>
@@ -118,8 +120,10 @@
             </tr>
           </thead>
           <tbody>
-            <% for(var i = 0; i < Object.keys(requestItems).length; i++) { %>
-            <% if(requestItems['item' + i].reqType == "ReqByAdmin"){ %>
+            <% for (var i = 0; i < Object.keys(requestItems).length; i++) { %>
+            <% if (['ReqByAdmin', 'ReqByPv', 'CnlByBuyer4', 'CnlByBuyer5'].includes(requestItems['item' + i].reqType)) { %>
+
+            <% if (requestItems['item' + i].reqType === 'ReqByAdmin') { %>
             <tr class="table-warning">
               <td><%= requestItems['item' + i].warehouseID %></td>
               <td><%= requestItems['item' + i].warehouseName %></td>
@@ -129,8 +133,8 @@
                 <button class="btn btn-td btn-danger" onclick="pvClick(1, <%= i %>, 0)" type="button">Reject</button>
               </td>
             </tr>
-            <% } %>
-            <% if(requestItems['item' + i].reqType == "ReqPayByBuyer"){ %>
+
+            <% } else if (requestItems['item' + i].reqType == 'ReqByPv') { %>
             <tr class="table-basic">
               <td><%= requestItems['item' + i].warehouseID %></td>
               <td><%= requestItems['item' + i].warehouseName %></td>
@@ -139,16 +143,24 @@
                 <button class="btn btn-td btn-danger" onclick="pvClick(1, <%= i %>, 0)" type="button">Reject</button>
               </td>
             </tr>
-            <% } %>
-            <% if(requestItems['item' + i].reqType == "Rejected"){ %>
+
+            <% } else if (requestItems['item' + i].reqType.includes('CnlByBuyer')) { %>
             <tr class="table-danger">
               <td><%= requestItems['item' + i].warehouseID %></td>
               <td><%= requestItems['item' + i].warehouseName %></td>
-              <td>Rejected</td>
+              <td>Canceled By Buyer</td>
               <td id="td-btn">
-                <button class="btn btn-td btn-warning" onclick="pvClick(1, <%= i %>, 2)" type="button">Delete</button>
+                <button class="btn btn-td btn-info" onclick="pvClick(1, <%= i %>, 2)" type="button">View</button>
               </td>
             </tr>
+            <% } %>
+
+            <p id="whID1<%= i %>" style="display: none"><%= requestItems['item' + i].warehouseID %></p>
+            <p id="reqID1<%= i %>" style="display: none"><%= requestItems['item' + i].reqID %></p>
+            <p id="reqType1<%= i %>" style="display: none"><%= requestItems['item' + i].reqType %></p>
+            <p id="memberID1<%= i %>" style="display: none"><%= requestItems['item' + i].buyerID %></p>
+            <p id="area1<%= i %>" style="display: none"><%= requestItems['item' + i].area %></p>
+            <p id="buyRejectCmt<%= i %>" style="display: none"><%= requestItems['item' + i].rejectCmt %></p>
             <% } %>
             <% } %>
           </tbody>
@@ -161,4 +173,6 @@
   </div>
 </body>
 
+<script src="/JS/alerts.js"></script>
+<script src="/JS/pv_MyWH.js"></script>
 </html>

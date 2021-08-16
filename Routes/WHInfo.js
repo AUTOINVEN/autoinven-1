@@ -1,5 +1,4 @@
 const viewInfo = require('./viewInfo');
-const date = require('../Public/JS/date.js');
 
 exports.getWHInfo = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
@@ -19,9 +18,24 @@ exports.getPVInfo = function (req, res, app, db) {
     return items;
 }
 
+exports.getIoTInfo = function (req, res, app, db) {
+    var memberID = req.session.memberID;
+    var items = {};
+    let results = db.query(`select * from RequestForIoT where providerID='${memberID}'`);
+    if (results.length > 0) {
+        for (var step = 0; step < results.length; step++) {
+            items[results[step].warehouseID] = {
+                reqID: results[step].reqID,
+                rejectCmt: results[step].rejectCmt
+            };
+        }
+    }
+    return JSON.stringify(items);
+}
+
 exports.getCurUsage = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
-    var today = date.getToday();
+    var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
     var sql = `select * from Contract, Member where Contract.buyerID=Member.memberID and warehouseID=` + warehouseID + ` and endDate >= '` + today + `' and startDate <= '` + today + `';`
     let results = db.query(sql);
@@ -48,7 +62,7 @@ exports.getCurUsage = function (req, res, app, db) {
 
 exports.getNextUsage = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
-    var today = date.getToday();
+    var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
     var sql = `select * from Contract, Member where Contract.buyerID=Member.memberID and warehouseID=` + warehouseID + ` and startDate > '` + today + `';`
     let results = db.query(sql);
@@ -75,7 +89,7 @@ exports.getNextUsage = function (req, res, app, db) {
 
 exports.getPreUsage = function (req, res, app, db) {
     var warehouseID = req.body.warehouseID;
-    var today = date.getToday();
+    var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
     var sql = `select * from Contract, Member where Contract.buyerID=Member.memberID and warehouseID=` + warehouseID + ` and endDate < '` + today + `';`
     let results = db.query(sql);
