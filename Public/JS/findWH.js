@@ -50,17 +50,35 @@ async function initMap() {
             $("#whEmail").html(items[k]['warehouseEmail']);
             $("#whPhone").html(items[k]['warehouseTel']);
             $("#whPrice").html(items[k]['price'] + " $");
+            $("#whInfoComment").html(items[k]['infoComment']);
+            $("#whEtcComment").html(items[k]['etcComment']);
+
             if (items[k]['iotStat'] === 'Y') {
                 $("#whIoT").html("In Use");
-            } else if (items[k]['iotStat'] === 'w') {
+            } else if (items[k]['iotStat'] === 'W') {
                 $("#whIoT").html("Pending Approval");
             } else if (items[k]['iotStat'] === 'N') {
                 $("#whIoT").html("Not Currently Used");
             } else {
                 $("#whIoT").html("Error");
             }
-            $("#whInfoComment").html(items[k]['infoComment']);
-            $("#whEtcComment").html(items[k]['etcComment']);
+
+            var hideArr = [$("#whFloorArea"), $("#whUseableArea"), $("#whEmail"), $("#whPhone"), $("#whPrice"), $("#whIoT"), $("#whInfoComment"), $("#whEtcComment")];
+            hideArr.forEach(tr => items[k]['isPublic'] ? tr.parent().hide() : tr.parent().show());
+
+            if (items[k]['isPublic']) {
+                $("#whAddressDetail").hide();
+                $("#btnInquire").hide();
+                $("#btnContact").show();
+                if (!$("#btnInquire").hasClass('collapsed')) {
+                    $("#btnInquire").click();
+                }
+
+            } else {
+                $("#whAddressDetail").show();
+                $("#btnInquire").show();
+                $("#btnContact").hide();
+            }
         });
         i++;
     }
@@ -119,6 +137,8 @@ $(function () {
             }
         });
     });
+    $("#btnInquire").hide();
+    $("#btnContact").hide();
 
     let dp1 = $("#datetimepicker1");
     let dp2 = $("#datetimepicker2");
