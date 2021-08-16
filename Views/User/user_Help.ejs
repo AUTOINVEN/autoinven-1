@@ -9,13 +9,22 @@
   <div class="wrap">
     <header>
       <%- include('../nav_Bar') %>
-      <div class="page-header page-header-small">
-        <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
-      </div>
+        <div class="page-header page-header-small">
+          <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');">
+          </div>
+        </div>
     </header>
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">How to use Autoinven</h2>
+        <div class="helpbtn-left">
+          <div class="eff-left"></div>
+          <a href="#"> FAQ </a>
+        </div>
+        <div class="helpbtn-right">
+          <div class="eff-right"></div>
+          <a href="#"> Help </a>
+        </div>
         <div id="help" class="container">
           <ul id="help-list" class="list-feature">
             <li>
@@ -64,3 +73,88 @@
 </body>
 
 </html>
+
+<style>
+  .helpbtn-left {
+    width: 140px;
+    height: 50px;
+    border: 2px solid #34495e;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .helpbtn-left a {
+    font-family: arial;
+    font-size: 16px;
+    color: #34495e;
+    text-decoration: none;
+    line-height: 50px;
+    transition: all .5s ease;
+    z-index: 2;
+    position: relative;
+  }
+
+  .eff-left {
+    width: 140px;
+    height: 50px;
+    top: -2px;
+    right: -140px;
+    background: #34495e;
+    position: absolute;
+    transition: all .5s ease;
+    z-index: 1;
+  }
+
+  .helpbtn-left:hover .eff-left {
+    right: 0;
+  }
+
+  .helpbtn-left:hover a {
+    color: #fff;
+  }
+
+  .helpbtn-right {
+    width: 140px;
+    height: 50px;
+    border: 2px solid #34495e;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .helpbtn-right a {
+    font-family: arial;
+    font-size: 16px;
+    color: #34495e;
+    text-decoration: none;
+    line-height: 50px;
+    transition: all .5s ease;
+    z-index: 2;
+    position: relative;
+  }
+
+  .eff-right {
+    width: 140px;
+    height: 50px;
+    left: -140px;
+    background: #34495e;
+    position: absolute;
+    transition: all .5s ease;
+    z-index: 1;
+  }
+
+  .helpbtn-right:hover .eff-right {
+    left: 0;
+  }
+
+  .helpbtn-right:hover a {
+    color: #fff;
+  }
+</style>
