@@ -4,8 +4,12 @@ module.exports = function (app, db) {
     var main_Home = require('./main_Home');
 
     router.get('/', function (req, res, next) {
+        res.render('main_Home', {'session': req.session});
+    });
+
+    router.post('/searchWH', function (req, res, next) {
         var items = main_Home.searchWH(req, res, app, db);
-        res.render('main_Home', {'app': app, 'session': req.session, 'db': db, 'items': items});
+        res.send(items);
     });
 
     return router;

@@ -63,9 +63,6 @@
             Warehouse</button>
         </div>
       </div>
-      <p id="items" style="display: none">
-        <%= items %>
-      </p>
     </div>
   </section>
   <footer>
@@ -109,12 +106,13 @@
     t_zoom.style.background = 'url(/Image/main_home.jpg) 50% 50% /' + --size_x + '% ' + --size_y + '% no-repeat';
   }
 
-  function initMap() {
+  async function initMap() {
     var daegu = {
       lat: 35.87222,
       lng: 128.60250
     };
-    var items = JSON.parse(document.getElementById("items").innerText);
+    var items;
+    await $.post('searchWH', data => items = JSON.parse(data));
     map = new google.maps.Map(
       document.getElementById('map'), {
       zoom: 12,
@@ -127,6 +125,9 @@
           lng: items[key].longitude
         },
         map: map,
+        // icon: {
+        //   url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+        // }
       });
       markers[i].addListener('click', function () {
         var k = 'item' + markers.indexOf(this);
