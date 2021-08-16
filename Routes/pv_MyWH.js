@@ -1,6 +1,6 @@
 exports.RequestForEnroll = function (req, res, app, db) {
     var items = {};
-    var sql = `SELECT * from RequestForEnroll where providerID ="${req.session['memberID']}"`;
+    var sql = `SELECT * from RequestForEnroll, Warehouse where providerID ='${req.session['memberID']}' and RequestForEnroll.warehouseID=Warehouse.warehouseID`;
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
@@ -9,6 +9,7 @@ exports.RequestForEnroll = function (req, res, app, db) {
                 reqDate: results[step].reqDate,
                 reqType: results[step].reqType,
                 warehouseID: results[step].warehouseID,
+                warehouseName: results[step].warehouseName,
                 providerID: results[step].providerID,
                 rejectCmt: results[step].rejectCmt
             };
@@ -180,8 +181,24 @@ exports.ReqEnrollAns = function (req, res, app, db) {
                 res.send(false);
                 connection.end();
             } else {
-                res.send(true);
-                connection.end();
+                connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        connection.query(`DELETE FROM FileInfo WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                            if (error) {
+                                console.log(error);
+                                res.send(false);
+                                connection.end();
+                            } else {
+                                res.send(true);
+                                connection.end();
+                            }
+                        });
+                    }
+                });
             }
         });
     } else if (answer == "Cancel") {
@@ -199,24 +216,8 @@ exports.ReqEnrollAns = function (req, res, app, db) {
                         res.send(false);
                         connection.end();
                     } else {
-                        connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
-                            if (error) {
-                                console.log(error);
-                                res.send(false);
-                                connection.end();
-                            } else {
-                                connection.query(`DELETE FROM FileInfo WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
-                                    if (error) {
-                                        console.log(error);
-                                        res.send(false);
-                                        connection.end();
-                                    } else {
-                                        res.send(true);
-                                        connection.end();
-                                    }
-                                });
-                            }
-                        });
+                        res.send(true);
+                        connection.end();
                     }
                 });
             }

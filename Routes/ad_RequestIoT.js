@@ -1,13 +1,15 @@
 exports.RequestForIoT = function (req, res, app, db) {
     var items = {};
-    let results = db.query("SELECT * from RequestForIoT, Warehouse, Provider WHERE Warehouse.warehouseID=Provider.warehouseID and RequestForIoT.warehouseID=Warehouse.warehouseID");
+    let results = db.query("SELECT * from RequestForIoT, Member, Warehouse, Provider WHERE Warehouse.warehouseID=Provider.warehouseID and RequestForIoT.warehouseID=Warehouse.warehouseID and RequestForIoT.providerID=Member.MemberID");
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             results[step].price = results[step].price * results[step].area;
             items[`item${step}`] = {
                 warehouseID: results[step].warehouseID,
+                warehouseName: results[step].warehouseName,
                 memberID: results[step].memberID,
                 address: results[step].address,
+                national: results[step].national,
                 reqType: results[step].reqType,
                 reqID: results[step].reqID,
                 rejectCmt: results[step].rejectCmt

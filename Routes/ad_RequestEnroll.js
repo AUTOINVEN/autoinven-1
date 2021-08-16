@@ -1,6 +1,6 @@
 exports.RequestForEnroll = function (req, res, app, db) {
     var items = {};
-    let results = db.query('select * from RequestForEnroll, Member where RequestForEnroll.providerID=Member.memberID');
+    let results = db.query('select * from RequestForEnroll, Member, Warehouse where RequestForEnroll.providerID=Member.memberID and RequestForEnroll.warehouseID=Warehouse.warehouseID');
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
@@ -12,6 +12,7 @@ exports.RequestForEnroll = function (req, res, app, db) {
                 national: results[step].national,
                 address: results[step].address,
                 name: results[step].name,
+                warehouseName: results[step].warehouseName,
                 floorArea: results[step].floorArea,
                 rejectCmt: results[step].rejectCmt
             };
@@ -75,16 +76,6 @@ exports.withAnswer = function (req, res, app, db) {
                         res.send(false);
                         connection.end();
                     } else {
-                        connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
-                            if (error) {
-                                res.send(false);
-                                console.log(error);
-                                connection.end();
-                            } else {
-                                res.send(true);
-                                connection.end();
-                            }
-                        });
                     }
                 });
             }
@@ -95,8 +86,24 @@ exports.withAnswer = function (req, res, app, db) {
                 res.send(false);
                 connection.end()
             } else {
-                res.send(true);
-                connection.end();
+                connection.query(`DELETE FROM Warehouse WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send(false);
+                        connection.end();
+                    } else {
+                        connection.query(`DELETE FROM FileInfo WHERE warehouseID=?`, warehouseID, function (error, results, fields) {
+                            if (error) {
+                                console.log(error);
+                                res.send(false);
+                                connection.end();
+                            } else {
+                                res.send(true);
+                                connection.end();
+                            }
+                        });
+                    }
+                });
             }
         });
     }
