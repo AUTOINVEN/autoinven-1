@@ -25,8 +25,11 @@ module.exports = function (app, db) {
         findWH.inquireWH(req, res, app, db);
     });
     router.get('/FindWH', function (req, res, next) {
-        var items = findWH.findWH(req, res, app, db);
-        res.render('User/Buyer/by_FindWH', {'app': app, 'session': req.session, 'db': db, 'items': items});
+        res.render('User/Buyer/by_FindWH', {'app': app, 'session': req.session, 'db': db});
+    });
+    router.post('/searchWH', function (req, res, next) {
+        var items = findWH.searchWH(req, res, app, db);
+        res.send(items);
     });
 
     router.get('/RequestStatus', function (req, res, next) {

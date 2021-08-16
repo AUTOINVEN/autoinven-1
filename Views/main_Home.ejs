@@ -3,12 +3,6 @@
 
 <head>
   <%- include('head') %>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_JAVASCRIPT_KEY %>&callback=initMap"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js">
-      </script>
 </head>
 
 <body class="index-page" style="overflow: auto;">
@@ -69,9 +63,6 @@
             Warehouse</button>
         </div>
       </div>
-      <p id="items" style="display: none">
-        <%= items %>
-      </p>
     </div>
   </section>
   <footer>
@@ -115,12 +106,13 @@
     t_zoom.style.background = 'url(/Image/main_home.jpg) 50% 50% /' + --size_x + '% ' + --size_y + '% no-repeat';
   }
 
-  function initMap() {
+  async function initMap() {
     var daegu = {
       lat: 35.87222,
       lng: 128.60250
     };
-    var items = JSON.parse(document.getElementById("items").innerText);
+    var items;
+    await $.post('searchWH', data => items = JSON.parse(data));
     map = new google.maps.Map(
       document.getElementById('map'), {
       zoom: 12,
@@ -133,6 +125,9 @@
           lng: items[key].longitude
         },
         map: map,
+        // icon: {
+        //   url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+        // }
       });
       markers[i].addListener('click', function () {
         var k = 'item' + markers.indexOf(this);
@@ -144,4 +139,8 @@
       i++;
     }
   }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_JAVASCRIPT_KEY %>&callback=initMap"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js">
 </script>

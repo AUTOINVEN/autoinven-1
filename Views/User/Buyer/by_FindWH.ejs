@@ -3,11 +3,6 @@
 
 <head>
   <%- include('../../head') %>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_JAVASCRIPT_KEY %>&callback=initMap"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js">
-  </script>
 </head>
 
 <body>
@@ -78,7 +73,11 @@
             </tbody>
           </table>
 
-          <button class="btn btn-warning btn-block mb-4" data-toggle="collapse" data-target="#inquire">Inquire</button>
+          <button class="btn btn-warning btn-block mb-4 collapsed" id="btnInquire" data-toggle="collapse" data-target="#inquire">Inquire</button>
+          <button class="btn btn-block mb-4" id="btnContact" disabled>
+            <i class="fas fa-phone-alt" style="margin-right: 5px;"></i>
+            Please contact us
+          </button>
 
           <div id="inquire" class="collapse">
             <div class="form-group row">
@@ -110,7 +109,6 @@
               <button type="submit" class="btn btn-main" id="btn">Submit</button>
             </div>
           </div>
-          <p id="items" style="display: none"><%= items %></p>
           <p id="startDate" style="display: none"></p>
           <p id="endDate" style="display: none"></p>
         </div>
@@ -123,4 +121,8 @@
 </body>
 
 <script type="text/javascript" src="/JS/findWH.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_JAVASCRIPT_KEY %>&callback=initMap"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js">
+</script>
 </html>

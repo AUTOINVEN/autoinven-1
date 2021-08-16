@@ -1,6 +1,10 @@
 exports.searchWH = function (req, res, app, db) {
     var items = {};
-    let results = db.query(`SELECT * from Warehouse where enroll='Y'`);
+    const cols = 'warehouseID, warehouseName, address, latitude, longitude, landArea';
+    const results1 = db.query(`SELECT ${cols} from PublicWarehouse`);
+    const results2 = db.query(`SELECT ${cols} from Warehouse where enroll='Y'`);
+    const results = results1.concat(results2);
+
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
@@ -9,6 +13,7 @@ exports.searchWH = function (req, res, app, db) {
                 latitude: results[step].latitude,
                 longitude: results[step].longitude,
                 landArea: results[step].landArea,
+                isPublic: parseInt(results[step].warehouseID) < 10000
             };
         }
     }
