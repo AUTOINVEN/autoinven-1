@@ -14,9 +14,10 @@ function createImage(objImageInfo) {
     document.getElementById("image_container").innerHTML = strDOM;
 }
 
-function initMap() {
+async function initMap() {
     var daegu = {lat: 35.87222, lng: 128.60250};
-    var items = JSON.parse(document.getElementById("items").innerText);
+    var items;
+    await $.post('searchWH', data => items = JSON.parse(data));
     map = new google.maps.Map(
         document.getElementById('map'), {
             zoom: 12,

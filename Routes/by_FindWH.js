@@ -1,6 +1,8 @@
-exports.findWH = function (req, res, app, db) {
+exports.searchWH = function (req, res, app, db) {
     var items = {};
-    let results = db.query(`SELECT * from Warehouse where enroll='Y'`);
+    const results1 = db.query(`SELECT * from PublicWarehouse`);
+    const results2 = db.query(`SELECT * from Warehouse where enroll='Y'`);
+    const results = results1.concat(results2);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
             items[`item${step}`] = {
@@ -21,7 +23,8 @@ exports.findWH = function (req, res, app, db) {
                 etcComment: results[step].etcComment,
                 zipcode: results[step].zipcode,
                 iotStat: results[step].iotStat,
-                enroll: results[step].enroll
+                enroll: results[step].enroll,
+                isPublic: parseInt(results[step].warehouseID) < 10000
             };
         }
     }
