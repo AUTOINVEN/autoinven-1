@@ -1166,6 +1166,7 @@ h6,
 }
 
 #help #help-list a {
+  color: #f96332;
   display: block;
   position: relative;
   font-family: "Montserrat", sans-serif;
@@ -1202,6 +1203,136 @@ h6,
   content: "+";
 }
 
+#faq {
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+#faq #faq-list {
+  padding: 0;
+  list-style: none;
+}
+
+#faq #faq-list li {
+  border-bottom: 1px solid #ebebeb;
+}
+
+#faq #faq-list a {
+  color: #f96332;
+  display: block;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 400;
+  padding: 22px 20px 22px 0;
+}
+
+#faq #faq-list i {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+#faq #faq-list p {
+  margin-bottom: 20px;
+}
+
+#faq #faq-list a.collapsed {
+  color: #000;
+}
+
+#faq #faq-list a.collapsed i::before {
+  content: "+" !important;
+}
+
+.btn-help-left {
+    width: 140px;
+    height: 50px;
+    border: 1px solid #f96332;
+    border-top-left-radius: 0.7rem;
+    border-bottom-left-radius: 0.7rem;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .btn-help-left a {
+    font-family: arial;
+    font-size: 16px;
+    color: #f96332;
+    text-decoration: none;
+    line-height: 50px;
+    transition: all .5s ease;
+    z-index: 2;
+    position: relative;
+  }
+
+  .eff-left {
+    width: 140px;
+    height: 50px;
+    top: -2px;
+    right: -140px;
+    background: #f96332;
+    position: absolute;
+    transition: all .5s ease;
+    z-index: 1;
+  }
+
+  .btn-help-left:hover .eff-left {
+    right: 0;
+  }
+
+  .btn-help-left:hover a {
+    color: #fff;
+  }
+
+  .btn-help-right {
+    width: 140px;
+    height: 50px;
+    border: 1px solid #f96332;
+    border-top-right-radius: 0.7rem;
+    border-bottom-right-radius: 0.7rem;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .btn-help-right a {
+    font-family: arial;
+    font-size: 16px;
+    color: #f96332;
+    text-decoration: none;
+    line-height: 50px;
+    transition: all .5s ease;
+    z-index: 2;
+    position: relative;
+  }
+
+  .eff-right {
+    width: 140px;
+    height: 50px;
+    left: -140px;
+    background: #f96332;
+    position: absolute;
+    transition: all .5s ease;
+    z-index: 1;
+  }
+
+  .btn-help-right:hover .eff-right {
+    left: 0;
+  }
+
+  .btn-help-right:hover a {
+    color: #fff;
+  }
 /* iot page */
 #iot {
   padding-top: 100px;
