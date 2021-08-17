@@ -79,6 +79,7 @@
               <th>Warehouse ID</th>
               <th>Warehouse Name</th>
               <th>State</th>
+              <th>Info</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -90,6 +91,12 @@
               <td><%= enrollItems['item' + i].warehouseName %></td>
               <td>Pending Approval</td>
               <td id="td-btn">
+                <form action="/Provider/EnrollWHInfo" method="POST">
+                  <input id="warehouseID" name="warehouseID" type="hidden" value="<%= enrollItems['item' + i].warehouseID %>">
+                  <button class="btn btn-td btn-info">INFO</button>
+                </form>
+              </td>
+              <td id="td-btn">
                 <button class="btn btn-td btn-grey" onclick="pvClick(0,<%= i %>, 0)" type="button">Cancel</button>
               </td>
             </tr>
@@ -99,6 +106,12 @@
               <td><%= enrollItems['item' + i].warehouseID %></td>
               <td><%= enrollItems['item' + i].warehouseName %></td>
               <td>Rejected by admin</td>
+              <td id="td-btn">
+                <form action="/Provider/EnrollWHInfo" method="POST">
+                  <input id="warehouseID" name="warehouseID" type="hidden" value="<%= enrollItems['item' + i].warehouseID %>">
+                  <button class="btn btn-td btn-info">INFO</button>
+                </form>
+              </td>
               <td id="td-btn">
                 <button class="btn btn-td btn-info" onclick="pvClick(0, <%= i %>, 2)" type="button">View</button>
               </td>

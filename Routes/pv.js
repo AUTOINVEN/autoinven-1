@@ -5,7 +5,8 @@ module.exports = function (app, db) {
     const pv_myWH = require('./pv_MyWH');
     const pv_EnrollWH = require('./pv_EnrollWH');
     const WHInfo = require('./WHInfo');
-    const WHEdit = require('./WHEdit');
+    const WHEdit = require('./WHEdit');    
+    const EnrollWHInfo = require('./EnrollWHInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -67,6 +68,12 @@ module.exports = function (app, db) {
 
     router.post('/WHInfo/Edit/Save', function (req, res, next) {
         WHEdit.Save(req, res, app, db);
+    });
+
+    router.post('/EnrollWHInfo', function (req, res, next) {
+        var WHitems = EnrollWHInfo.getWHInfo(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        res.render('User/EnrollWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems});
     });
 
     router.get('/MyWarehouse', function (req, res, next) {
