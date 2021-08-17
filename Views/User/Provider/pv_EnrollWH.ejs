@@ -22,12 +22,14 @@
         <form action="/Provider/EnrollWH" method="post" enctype="multipart/form-data" id="enrollForm"
           onsubmit="return false;">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Name (창고 이름)</label>
+            <label class="col-sm-3 col-form-label">Warehouse Name (창고 이름) <a style="color: #f96332;">*</a>
+            </label>
             <div class="col-sm-4"><input type="text" class="form-control" id="warehouseName" name="warehouseName"
                 placeholder="Warehouse Name"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Address (창고 주소)</label>
+            <label class="col-sm-3 col-form-label">Warehouse Address (창고 주소) <a style="color: #f96332;">*</a></label>
+
             <div class="col-sm-2">
               <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Zip Code" readonly>
             </div>
@@ -39,56 +41,56 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label"></label>
+            <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="address" name="address" placeholder="Address" readonly>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label"></label>
+            <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="addressDetail" name="addressDetail"
                 placeholder="Detail Address (ex. 3rd Floor)">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Email (이메일)</label>
+            <label class="col-sm-3 col-form-label">Warehouse Email (이메일) <a style="color: #f96332;">*</a></label>
             <div class="col-sm-4"><input type="text" class="form-control" id="warehouseEmail" name="warehouseEmail"
                 placeholder="Contact Email"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Phone (창고 전화 번호)</label>
+            <label class="col-sm-3 col-form-label">Warehouse Phone (창고 전화 번호) <a style="color: #f96332;">*</a></label>
             <div class="col-sm-4"><input type="text" class="form-control" id="warehouseTel" name="warehouseTel"
                 placeholder="Telephone Number (ex. 010-0000-0000)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">LandArea (총 면적)</label>
+            <label class="col-sm-3 col-form-label">LandArea (총 면적) <a style="color: #f96332;">*</a></label>
             <div class="col-sm-4"><input type="text" class="form-control" id="landArea" name="landArea"
                 placeholder="Numbers Only (m²)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">FloorArea (층 면적)</label>
+            <label class="col-sm-3 col-form-label">FloorArea (층 면적) <a style="color: #f96332;">*</a></label>
             <div class="col-sm-4"><input type="text" class="form-control" id="floorArea" name="floorArea"
                 placeholder="Numbers Only (m²)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Useable Area (사용가능 면적)</label>
+            <label class="col-sm-3 col-form-label">Useable Area (사용가능 면적) <a style="color: #f96332;">*</a></label>
             <div class="col-sm-4"><input type="text" class="form-control" id="useableArea" name="useableArea"
                 placeholder="Numbers Only (m²)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Price Per Area (m²당 가격)</label>
+            <label class="col-sm-3 col-form-label">Price Per Area (m²당 가격) <a style="color: #f96332;">*</a></label>
             <div class="col-sm-4"><input type="text" class="form-control" id="price" name="price"
                 placeholder="ex. 100 ($)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Info Comment (추가 정보)</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="infoComment" name="infoComment"
+            <label class="col-sm-3 col-form-label">Info Comment (추가 정보) </label>
+            <div class="col-sm-9"><input type="text" class="form-control" id="infoComment" name="infoComment"
                 placeholder="Information Comment"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Etc Comment (추가 정보)</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="etcComment" name="etcComment"
+            <label class="col-sm-3 col-form-label">Etc Comment (기타 정보)</label>
+            <div class="col-sm-9"><input type="text" class="form-control" id="etcComment" name="etcComment"
                 placeholder="Etc Comment"></div>
           </div>
           <div class="col-sm-10"><input type="hidden" class="form-control" id="lat" name="lat" placeholder="latitude">
@@ -96,8 +98,8 @@
           <div class="col-sm-10"><input type="hidden" class="form-control" id="lng" name="lng" placeholder="longitude">
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Image (창고 사진)</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 col-form-label">Warehouse Image (창고 사진) <a style="color: #f96332;">*</a></label>
+            <div class="col-sm-7">
               <input type="text" class="form-control" id="img_name" name="img_name" readonly="readonly"
                 disabled="disabled" placeholder="Warehouse Image (1개만 등록 가능)">
             </div>
