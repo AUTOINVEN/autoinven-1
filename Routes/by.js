@@ -5,6 +5,7 @@ module.exports = function (app, db) {
     var requestWH = require('./by_RequestStatus');
     var UsageHistory = require('./by_UsageHistory');
     var UsageHistoryInfo = require('./by_UsageHistoryInfo');
+    const RequestWHInfo = require('./RequestWHInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -36,6 +37,14 @@ module.exports = function (app, db) {
         var items = requestWH.RequestForBuy(req, res, app, db);
         items = JSON.parse(items);
         res.render('User/Buyer/by_RequestStatus', {'app': app, 'session': req.session, 'db': db, 'items': items});
+    });
+    
+    router.post('/RequestWHInfo', function (req, res, next) {
+        var WHitems = RequestWHInfo.getWHInfo(req, res, app, db);
+        var PVitems = RequestWHInfo.getPVInfo(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        PVitems = JSON.parse(PVitems);
+        res.render('User/RequestWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
     });
 
     router.get('/UsageHistory', function (req, res, next) {

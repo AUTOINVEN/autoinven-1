@@ -77,7 +77,7 @@
           </tbody>
         </table>
       </div>
-      <% if (session.type === 'admin') { %>
+      <% if (session.type === 'admin' || session.type === 'buyer') { %>
       <div class="container">
         <h2 class="mt-5 mb-3">Provider Info</h2>
         <table class="table table-bordered">

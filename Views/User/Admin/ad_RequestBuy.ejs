@@ -26,7 +26,6 @@
               <th>Rental Period</th>
               <th>Info</th>
               <th></th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -46,8 +45,10 @@
                   <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
-              <td id="td-btn"><button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button></td>
-              <td id="td-btn"><button type="button" class="btn btn-td btn-danger" onclick="adClick(<%= i %>, 0)">Reject</button></td>
+              <td id="td-btn">
+                <button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button>
+                <button type="button" class="btn btn-td btn-danger" onclick="adClick(<%= i %>, 0)">Reject</button>
+              </td>
             </tr>
 
             <% } else if (['ReqByAdmin', 'ReqByPv'].includes(items['item' + i].reqType)) { %>
@@ -64,7 +65,6 @@
                 </form>
               </td>
               <td></td>
-              <td></td>
             </tr>
 
             <% } else if (items['item' + i].reqType.includes('RejByPv')) { %>
@@ -80,7 +80,6 @@
                   <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
-              <td></td>
               <td id="td-btn"><button type="button" class="btn btn-td btn-info" onclick="adClick(<%= i %>, 2)">View</button></td>
             </tr>
 
@@ -97,7 +96,6 @@
                   <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
-              <td></td>
               <td id="td-btn"><button type="button" class="btn btn-td btn-info" onclick="adClick(<%= i %>, 2)">View</button></td>
             </tr>
             <% } %>

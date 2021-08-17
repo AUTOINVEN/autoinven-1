@@ -76,7 +76,6 @@ module.exports = function (app, db) {
         WHitems = JSON.parse(WHitems);
         res.render('User/EnrollWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems});
     });
-
     
     router.post('/RequestWHInfo', function (req, res, next) {
         var WHitems = RequestWHInfo.getWHInfo(req, res, app, db);
