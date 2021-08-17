@@ -17,13 +17,15 @@
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">How to use Autoinven</h2>
-        <div class="btn-help-left">
-          <div class="eff-left"></div>
-          <a onclick=setDisplay(1)> FAQ </a>
-        </div>
-        <div class="btn-help-right">
-          <div class="eff-right"></div>
-          <a onclick=setDisplay(0)> HELP </a>
+        <div class="help-container">
+          <div class="btn-help-left" onclick=setDisplay(1)>
+            <div class="eff-left"></div>
+            <a> FAQ </a>
+          </div>
+          <div class="btn-help-right" onclick=setDisplay(0)>
+            <div class="eff-right"></div>
+            <a> HELP </a>
+          </div>
         </div>
         <div id="faq" class="container">
           <ul id="faq-list" class="list-feature">
@@ -114,5 +116,4 @@
       $('#help').show();
     }
   }
-
 </script>
