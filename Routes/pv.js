@@ -7,6 +7,7 @@ module.exports = function (app, db) {
     const WHInfo = require('./WHInfo');
     const WHEdit = require('./WHEdit');    
     const EnrollWHInfo = require('./EnrollWHInfo');
+    const RequestWHInfo = require('./RequestWHInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -74,6 +75,15 @@ module.exports = function (app, db) {
         var WHitems = EnrollWHInfo.getWHInfo(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         res.render('User/EnrollWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems});
+    });
+
+    
+    router.post('/RequestWHInfo', function (req, res, next) {
+        var WHitems = RequestWHInfo.getWHInfo(req, res, app, db);
+        var BYitems = RequestWHInfo.getPVInfo(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        BYitems = JSON.parse(BYitems);
+        res.render('User/RequestWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'BYitems': BYitems});
     });
 
     router.get('/MyWarehouse', function (req, res, next) {
