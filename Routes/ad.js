@@ -61,7 +61,7 @@ module.exports = function (app, db) {
     router.post('/RequestWHInfo', function (req, res, next) {
         var WHitems = RequestWHInfo.getWHInfo(req, res, app, db);
         var PVitems = RequestWHInfo.getPVInfo(req, res, app, db);
-        var BYitems = RequestWHInfo.getPVInfo(req, res, app, db);
+        var BYitems = RequestWHInfo.getBYInfo(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         PVitems = JSON.parse(PVitems);
         BYitems = JSON.parse(BYitems);
