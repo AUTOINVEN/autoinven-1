@@ -56,7 +56,14 @@
                 <td id="whID<%= i %>"><%= items['item' + i].warehouseID %></td>    
                 <td id="name<%= i %>"><%= items['item' + i].warehouseName %></td>          
                 <td id="providerID<%= i %>"><%= items['item' + i].providerID %></td>
-                <td id="reqType<%= i %>">Canceled by Provider</td>   
+                <td id="reqType<%= i %>">Canceled by Provider</td>
+                <td id="td-btn">
+                  <form action="/Admin/EnrollWHInfo" method="POST">
+                    <input id="warehouseID" name="warehouseID" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                    <input id="providerID" name="providerID" type="hidden" value="<%= items['item' + i].providerID %>">
+                    <button class="btn btn-td btn-info">INFO</button>
+                  </form>
+                </td>   
                 <td class="col-1"></td>
                 <td id="td-btn">
                   <button type="button" class="btn btn-td btn-info" onclick="adClick(<%= i %>, 2)">View</button>
