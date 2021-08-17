@@ -16,6 +16,37 @@
     </header>
     <section>
       <div class="container">
+        <h2 class="mt-5 mb-3">Buy Request Info</h2>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="thead-dark-vertical">Req ID</th>
+              <td><%= ReqItems.reqID %></td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Req Date</th>
+              <td><%= ReqItems.reqDate %></td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Warehouse ID</th>
+              <td><%= ReqItems.warehouseID %></td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Total Amount</th>
+              <td><%= ReqItems.amounts %> $</td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Rental Area</th>
+              <td><%= ReqItems.area %> m²</td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Rental Period</th>
+              <td><%= ReqItems.startDate %> ~ <%= ReqItems.endDate %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Info</h2>
         <table class="table table-bordered">
           <tbody>
@@ -114,45 +145,46 @@
       </div>
       <% } %>
       <% if (session.type === 'provider' || session.type === 'admin') { %>
-        <div class="container">
-          <h2 class="mt-5 mb-3">Buyer Info</h2>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <th class="thead-dark-vertical">Buyer ID</th>
-                <td><%= BYitems.memberID %></td>
-              </tr>
-              <tr>
-                <th class="thead-dark-vertical">Buyer Name</th>
-                <td><%= BYitems.name %></td>
-              </tr>
-              <tr>
-                <th class="thead-dark-vertical">National</th>
-                <td><%= BYitems.national %></td>
-              </tr>
-              <tr>
-                <th rowspan="2" class="thead-dark-vertical">Address</th>
-                <td><%= BYitems.zipcode %></td>
-              </tr>
-              <tr>
-                <td><%= BYitems.address %></td>
-              </tr>
-              <tr>
-                <th class="thead-dark-vertical">Email</th>
-                <td><%= BYitems.email %></td>
-              </tr>
-              <tr>
-                <th class="thead-dark-vertical">Contact Number</th>
-                <td><%= BYitems.contactNumber %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <% } %>
+      <div class="container">
+        <h2 class="mt-5 mb-3">Buyer Info</h2>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="thead-dark-vertical">Buyer ID</th>
+              <td><%= BYitems.memberID %></td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Buyer Name</th>
+              <td><%= BYitems.name %></td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">National</th>
+              <td><%= BYitems.national %></td>
+            </tr>
+            <tr>
+              <th rowspan="2" class="thead-dark-vertical">Address</th>
+              <td><%= BYitems.zipcode %></td>
+            </tr>
+            <tr>
+              <td><%= BYitems.address %></td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Email</th>
+              <td><%= BYitems.email %></td>
+            </tr>
+            <tr>
+              <th class="thead-dark-vertical">Contact Number</th>
+              <td><%= BYitems.contactNumber %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <% } %>
     </section>
     <footer>
       <%- include('../footer') %>
     </footer>
   </div>
 </body>
+
 </html>

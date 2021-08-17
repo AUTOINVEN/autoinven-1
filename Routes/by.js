@@ -42,9 +42,11 @@ module.exports = function (app, db) {
     router.post('/RequestWHInfo', function (req, res, next) {
         var WHitems = RequestWHInfo.getWHInfo(req, res, app, db);
         var PVitems = RequestWHInfo.getPVInfo(req, res, app, db);
+        var ReqItems = RequestWHInfo.getReqInfo(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         PVitems = JSON.parse(PVitems);
-        res.render('User/RequestWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
+        ReqItems = JSON.parse(ReqItems);
+        res.render('User/RequestWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'ReqItems': ReqItems});
     });
 
     router.get('/UsageHistory', function (req, res, next) {

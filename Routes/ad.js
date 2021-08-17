@@ -62,10 +62,12 @@ module.exports = function (app, db) {
         var WHitems = RequestWHInfo.getWHInfo(req, res, app, db);
         var PVitems = RequestWHInfo.getPVInfo(req, res, app, db);
         var BYitems = RequestWHInfo.getBYInfo(req, res, app, db);
+        var ReqItems = RequestWHInfo.getReqInfo(req, res, app, db);
         WHitems = JSON.parse(WHitems);
         PVitems = JSON.parse(PVitems);
         BYitems = JSON.parse(BYitems);
-        res.render('User/RequestWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'BYitems': BYitems});
+        ReqItems = JSON.parse(ReqItems);
+        res.render('User/RequestWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'BYitems': BYitems, 'ReqItems': ReqItems});
     });
 
     router.get('/WarehouseList', function (req, res, next) {
