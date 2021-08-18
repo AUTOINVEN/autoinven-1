@@ -10,6 +10,7 @@ module.exports = function (app, db) {
     const ad_WarehouseList = require('./ad_WarehouseList');
     const WHInfo = require('./WHInfo');
     const EnrollWHInfo = require('./EnrollWHInfo');
+    const RequestWHInfo = require('./RequestWHInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -55,6 +56,18 @@ module.exports = function (app, db) {
         var items = ad_ReqBuy.RequestForBuy(req, res, app, db);
         items = JSON.parse(items);
         res.render('User/Admin/ad_RequestBuy', {'app': app, 'session': req.session, 'db': db, 'items': items});
+    });
+
+    router.post('/RequestWHInfo', function (req, res, next) {
+        var WHitems = RequestWHInfo.getWHInfo(req, res, app, db);
+        var PVitems = RequestWHInfo.getPVInfo(req, res, app, db);
+        var BYitems = RequestWHInfo.getBYInfo(req, res, app, db);
+        var ReqItems = RequestWHInfo.getReqInfo(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        PVitems = JSON.parse(PVitems);
+        BYitems = JSON.parse(BYitems);
+        ReqItems = JSON.parse(ReqItems);
+        res.render('User/RequestWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems, 'BYitems': BYitems, 'ReqItems': ReqItems});
     });
 
     router.get('/WarehouseList', function (req, res, next) {
