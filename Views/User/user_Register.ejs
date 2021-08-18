@@ -34,21 +34,19 @@
               <div class="form-group row">
                 <div class="col-sm-12">
                   <input type="text" name="type" id="type" value="<%= req.query.userType %>" style="display: none;">
-                  <input type="text" class="form-control" id="password" name="password" placeholder="Password">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="passwordConfirmation" name="passwordConfirmation"
-                    placeholder="Password Confirm" />
+                  <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password Confirm" />
                   <% if(locals.err){ %>
                   <span class="invalid-feedback"><%= locals.err %></span>
                   <% } %>
                 </div>
                 <div class="col-sm-3">
                   <label id="form-control-btn" class="form-control" for="passwordCheckButton">PW Check</label>
-                  <input type="button" class="upload-btn-hidden" id="passwordCheckButton" name="passwordCheckButton"
-                    value="PW Check"><br>
+                  <input type="button" class="upload-btn-hidden" id="passwordCheckButton" name="passwordCheckButton" value="PW Check"><br>
                 </div>
               </div>
               <div class="form-group row">
