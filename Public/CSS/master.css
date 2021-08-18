@@ -915,7 +915,7 @@ h6,
 }
 
 .modal_wrap {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -925,10 +925,10 @@ h6,
 }
 
 .modal_body {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
-  width: 1000px;
+  width: 700px;
   height: 600px;
   padding: 40px;
   text-align: center;
@@ -938,10 +938,23 @@ h6,
   transform: translateX(-50%) translateY(-50%);
 }
 
-.modal_close {
-  position: absolute;
-  bottom: auto;
-  width: 920px;
+.modal_body_2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 180px;
+  padding: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.modal_body .modal_close {
+  position: relative;
+  margin-top: 15px;
   text-align: center;
 }
 

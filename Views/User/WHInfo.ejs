@@ -9,7 +9,7 @@
 <body>
   <div class="wrap">
     <header>
-      <%- include('../nav_Bar') %>
+    <%- include('../nav_Bar') %>
       <div class="page-header page-header-small">
         <div class="page-header-image" data-parallax="true" style="background-image: url('/Image/about_WH.jpg');"></div>
       </div>
@@ -57,23 +57,23 @@
             </tr>
             <tr>
               <th class="thead-dark-vertical">Land Area</th>
-              <td><%= WHitems.landArea %> m²</td>
+              <td><%= WHitems.landArea %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Floor Area</th>
-              <td><%= WHitems.floorArea %> m²</td>
+              <td><%= WHitems.floorArea %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Usable Area</th>
-              <td><%= WHitems.useableArea %> m²</td>
+              <td><%= WHitems.useableArea %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Price Per Area</th>
-              <td><%= WHitems.perprice %> $</td>
+              <td><%= WHitems.perprice %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Info Comment</th>
-              <td><%= WHitems.infoComment %></td>
+              <td><%= WHitems.perprice %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">ETC</th>
@@ -236,6 +236,7 @@
               </td>
             </tr>
             <% } %>
+          </tbody>
         </table>
       </div>
       <div class="container">
@@ -261,8 +262,8 @@
               <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
               <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
-              <td style="padding:6px 0;">
-                <button id="modal_btn" class="btn btn-primary" style="margin: 0; padding: 8px 12px;">INFO</button>
+              <td id="btn-td">
+                <button id="modal_btn" class="btn btn-info">INFO</button>
                 <div class="black_bg"></div>
                 <div class="modal_wrap">
                   <div class="modal_body">
@@ -299,13 +300,14 @@
                       </tbody>
                     </table>
                     <div class="modal_close">
-                      <button type="button" class="btn btn-sm">Close</button>
+                      <button type="button" class="btn btn-grey">Close</button>
                     </div>
                   </div>
                 </div>
               </td>
             </tr>
             <% } %>
+          </tbody>
         </table>
       </div>
     </section>
@@ -314,8 +316,9 @@
     </footer>
   </div>
 </body>
+
 <script>
-  $(document).ready(function () {
+$(document).ready(function () {
     $("#t2").hide();
     $("#btnView").click(function () {
       if ($("#btnView").html() == 'View') {
@@ -342,16 +345,12 @@
   };
 
   function btnClick(type, page) {
-    var wid = < %= req.body.warehouseID % > ;
+    var wid = <%= req.body.warehouseID %>;
     if (type === 'pv') {
-      if (page === 'iot') $.redirect('/iot', {
-        'wid': wid
-      });
-      else if (page === 'edit') $.redirect('WHInfo/Edit', {
-        'wid': wid
-      });
+      if (page === 'iot') $.redirect('/iot', {'wid': wid});
+      else if (page === 'edit') $.redirect('WHInfo/Edit', {'wid': wid});
     }
   }
 </script>
-
 </html>
+
