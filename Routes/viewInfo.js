@@ -17,6 +17,7 @@ exports.getWHInfo = function (db, WID) {
             perprice: results[0].price,
             infoComment: results[0].infoComment,
             etcComment: results[0].etcComment,
+            iotStat: results[0].iotStat
         };
     }
     return JSON.stringify(items);

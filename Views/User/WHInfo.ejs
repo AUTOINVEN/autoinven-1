@@ -17,7 +17,9 @@
     <section>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Info
+          <% if (WHitems.iotStat === 'Y') { %>
           <button class="btn btn-big btn-main" onclick="btnClick('pv', 'iot')">IoT</button>
+          <% } %>
           <% if (session.type === 'provider') { %>
           <button class="btn btn-big btn-info two-btn-l ml-1" onclick="btnClick('pv', 'edit')">Edit</button>
           <% } %>
