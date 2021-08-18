@@ -50,10 +50,10 @@ exports.checkPW = function (req, res, app, db) {
     var id = attr.id;
     var pw = attr.pw;
     var c_p = attr.c_p;
-    var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    var pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&-]{8,}$/;
     var koreancheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
-    if (false === reg.test(pw)) {
+    if (false === pwReg.test(pw)) {
         //error all
         res.send("errortype1");
     } else if (id == '') {
