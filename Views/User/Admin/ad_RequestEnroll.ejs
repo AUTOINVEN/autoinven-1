@@ -19,86 +19,55 @@
         <h2 class="mt-5 mb-3">Warehouse Register Request List</h2>
         <table class="board-table table ">
           <thead class="thead-dark">
-            <tr class="d-flex">
-              <th class="col-1" style="font-size: 0.9em;">Warehouse ID</th>
-              <th class="col-1">State</th>
-              <th class="col-1" style="font-size: 0.9em;">Warehouse Area</th>
-              <th class="col-2">User ID</th>
-              <th class="col-2">Warehouse Name</th>
-              <th class="col-3">Warehouse Address</th>
-              <th class="col-1">Nation</th>
-              <th class="col-1"></th>
-              <th class="col-1"></th>
+              <th style="font-size: 0.9em;">Warehouse ID</th>
+              <th>Warehouse Name</th>
+              <th>Provider ID</th>
+              <th>State</th>              
+              <th>Info</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <% for(var i=0; i < Object.keys(items).length; i++) { %>
-              <% if(items['item' + i].reqType=="ReqEnrollPV" ){ %>
-                <tr class="table-warning d-flex">
-                  <td id="whID<%= i %>" class="col-1">
-                    <%= items['item' + i].warehouseID %>
-                  </td>
-                  <td id="reqType<%= i %>" class="col-1">Pending Approval</td>
-                  <td id="floorArea<%= i %>" class="col-1">
-                    <%= items['item' + i].floorArea %>
-                  </td>
-                  <td id="providerID<%= i %>" class="col-2">
-                    <%= items['item' + i].providerID %>
-                  </td>
-                  <td id="name<%= i %>" class="col-2">
-                    <%= items['item' + i].warehouseName %>
-                  </td>
-                  <td id="address<%= i %>" class="col-3">
-                    <%= items['item' + i].address %>
-                  </td>
-                  <td id="national<%= i %>" class="col-1">
-                    <%= items['item' + i].national %>
-                  </td>
-                  <td id="td-btn" class="col-1">
-                    <button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button>
-                  </td>
-                  <td id="td-btn" class="col-1">
-                    <button type="button" class="btn btn-td btn-danger" onclick="adClick(<%= i %>, 0)">Reject</button>
-                  </td>
-                  <p id="reqID<%= i %>" style="display: none">
-                    <%= items['item' + i].reqID %>
-                  </p>
-                </tr>
+            <% for(var i = 0; i < Object.keys(items).length; i++) { %>
+            <% if(items['item' + i].reqType == "ReqEnrollPV"){ %>
+            <tr class="table-warning">
+              <td id="whID<%= i %>"><%= items['item' + i].warehouseID %></td>    
+              <td id="name<%= i %>"><%= items['item' + i].warehouseName %></td>          
+              <td id="providerID<%= i %>"><%= items['item' + i].providerID %></td>
+              <td id="reqType<%= i %>">Pending Approval</td>     
+              <td id="td-btn">
+                <form action="/Admin/EnrollWHInfo" method="POST">
+                  <input id="warehouseID" name="warehouseID" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                  <input id="providerID" name="providerID" type="hidden" value="<%= items['item' + i].providerID %>">
+                  <button class="btn btn-td btn-info">INFO</button>
+                </form>
+              </td>         
+              <td id="td-btn">
+                <button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button>
+              </td>
+              <td id="td-btn">
+                <button type="button" class="btn btn-td btn-danger" onclick="adClick(<%= i %>, 0)">Reject</button>
+              </td>
+              <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
+            </tr>
 
-                <% } else if (items['item' + i].reqType=="CnlByPv" ) { %>
-                  <tr class="table-danger d-flex">
-                    <td id="whID<%= i %>" class="col-1">
-                      <%= items['item' + i].warehouseID %>
-                    </td>
-                    <td id="reqType<%= i %>" class="col-1">Pending Approval</td>
-                    <td id="floorArea<%= i %>" class="col-1">
-                      <%= items['item' + i].floorArea %>
-                    </td>
-                    <td id="providerID<%= i %>" class="col-2">
-                      <%= items['item' + i].providerID %>
-                    </td>
-                    <td id="name<%= i %>" class="col-2">
-                      <%= items['item' + i].warehouseName %>
-                    </td>
-                    <td id="address<%= i %>" class="col-3">
-                      <%= items['item' + i].address %>
-                    </td>
-                    <td id="national<%= i %>" class="col-1">
-                      <%= items['item' + i].national %>
-                    </td>
-                    <td class="col-1"></td>
-                    <td id="td-btn" class="col-1">
-                      <button type="button" class="btn btn-td btn-info" onclick="adClick(<%= i %>, 2)">View</button>
-                    </td>
-                    <p id="reqID<%= i %>" style="display: none">
-                      <%= items['item' + i].reqID %>
-                    </p>
-                    <p id="rejectCmt<%= i %>" style="display: none">
-                      <%= items['item' + i].rejectCmt %>
-                    </p>
-                  </tr>
-                  <% } %>
-                    <% } %>
+            <% } else if (items['item' + i].reqType == "CnlByPv") { %>
+              <tr class="table-danger">
+                <td id="whID<%= i %>"><%= items['item' + i].warehouseID %></td>    
+                <td id="name<%= i %>"><%= items['item' + i].warehouseName %></td>          
+                <td id="providerID<%= i %>"><%= items['item' + i].providerID %></td>
+                <td id="reqType<%= i %>">Canceled by Provider</td>   
+                <td class="col-1"></td>
+                <td id="td-btn">
+                  <button type="button" class="btn btn-td btn-info" onclick="adClick(<%= i %>, 2)">View</button>
+                </td>
+                <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>
+                <p id="rejectCmt<%= i %>" style="display: none"><%= items['item' + i].rejectCmt %></p>
+              </tr>
+            <% } %>
+            <% } %>
+            
           </tbody>
         </table>
       </div>

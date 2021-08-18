@@ -12,7 +12,7 @@ exports.receive = function (req, res, db) {
         } else if (results.length === 0) {
             res.send('rfid not exist');
         } else {
-            connection.query('SELECT * FROM provider, iot where provider.warehouseID = iot.warehouseID and iot.rfid=? and provider.memberID=?;', [rfid, id], (error, results, fields) => {
+            connection.query('SELECT * FROM Provider, iot where Provider.warehouseID = iot.warehouseID and iot.rfid=? and Provider.memberID=?;', [rfid, id], (error, results, fields) => {
                 if (error) {
                     console.log("error: rfid 2", error);
                     res.send('error2');

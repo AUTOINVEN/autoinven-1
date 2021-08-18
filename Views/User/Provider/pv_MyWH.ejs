@@ -84,64 +84,59 @@
       </div>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Register List</h2>
-        <% for(var i=0; i < Object.keys(enrollItems).length; i++) { %>
-          <p id="whID0<%= i %>" style="display: none">
-            <%= enrollItems['item' + i].warehouseID %>
-          </p>
-          <p id="reqID0<%= i %>" style="display: none">
-            <%= enrollItems['item' + i].reqID %>
-          </p>
-          <p id="reqType0<%= i %>" style="display: none">
-            <%= enrollItems['item' + i].reqType %>
-          </p>
-          <p id="memberID0<%= i %>" style="display: none">
-            <%= enrollItems['item' + i].providerID %>
-          </p>
-          <% } %>
-            <table class="board-table table ">
-              <thead class="thead-dark">
-                <tr>
-                  <th>Warehouse ID</th>
-                  <th>Warehouse Name</th>
-                  <th>State</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% for(var i=0; i < Object.keys(enrollItems).length; i++) { %>
-                  <% if(enrollItems['item' + i].reqType=="ReqEnrollPV" ){ %>
-                    <tr class="table-warning">
-                      <td>
-                        <%= enrollItems['item' + i].warehouseID %>
-                      </td>
-                      <td>
-                        <%= enrollItems['item' + i].warehouseName %>
-                      </td>
-                      <td>Pending Approval</td>
-                      <td id="td-btn">
-                        <button class="btn btn-td btn-grey" onclick="pvClick(0,<%= i %>, 0)"
-                          type="button">Cancel</button>
-                      </td>
-                    </tr>
-                    <% } %>
-                      <% if(enrollItems['item' + i].reqType=="RejByAdmin" ){ %>
-                        <tr class="table-danger">
-                          <td>
-                            <%= enrollItems['item' + i].warehouseID %>
-                          </td>
-                          <td>
-                            <%= enrollItems['item' + i].warehouseName %>
-                          </td>
-                          <td>Rejected by admin</td>
-                          <td id="td-btn">
-                            <button class="btn btn-td btn-info" onclick="pvClick(0, <%= i %>, 2)"
-                              type="button">View</button>
-                          </td>
-                        </tr>
-                        <% } %>
-                          <% } %>
-              </tbody>
-            </table>
+        <% for(var i = 0; i < Object.keys(enrollItems).length; i++) { %>
+        <p id="whID0<%= i %>" style="display: none"><%= enrollItems['item' + i].warehouseID %></p>
+        <p id="reqID0<%= i %>" style="display: none"><%= enrollItems['item' + i].reqID %></p>
+        <p id="reqType0<%= i %>" style="display: none"><%= enrollItems['item' + i].reqType %></p>
+        <p id="memberID0<%= i %>" style="display: none"><%= enrollItems['item' + i].providerID %></p>
+        <% } %>
+        <table class="board-table table ">
+          <thead class="thead-dark">
+            <tr>
+              <th>Warehouse ID</th>
+              <th>Warehouse Name</th>
+              <th>State</th>
+              <th>Info</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < Object.keys(enrollItems).length; i++) { %>
+            <% if(enrollItems['item' + i].reqType == "ReqEnrollPV"){ %>
+            <tr class="table-warning">
+              <td><%= enrollItems['item' + i].warehouseID %></td>
+              <td><%= enrollItems['item' + i].warehouseName %></td>
+              <td>Pending Approval</td>
+              <td id="td-btn">
+                <form action="/Provider/EnrollWHInfo" method="POST">
+                  <input id="warehouseID" name="warehouseID" type="hidden" value="<%= enrollItems['item' + i].warehouseID %>">
+                  <button class="btn btn-td btn-info">INFO</button>
+                </form>
+              </td>
+              <td id="td-btn">
+                <button class="btn btn-td btn-grey" onclick="pvClick(0,<%= i %>, 0)" type="button">Cancel</button>
+              </td>
+            </tr>
+            <% } %>
+            <% if(enrollItems['item' + i].reqType == "RejByAdmin"){ %>
+            <tr class="table-danger">
+              <td><%= enrollItems['item' + i].warehouseID %></td>
+              <td><%= enrollItems['item' + i].warehouseName %></td>
+              <td>Rejected by admin</td>
+              <td id="td-btn">
+                <form action="/Provider/EnrollWHInfo" method="POST">
+                  <input id="warehouseID" name="warehouseID" type="hidden" value="<%= enrollItems['item' + i].warehouseID %>">
+                  <button class="btn btn-td btn-info">INFO</button>
+                </form>
+              </td>
+              <td id="td-btn">
+                <button class="btn btn-td btn-info" onclick="pvClick(0, <%= i %>, 2)" type="button">View</button>
+              </td>
+            </tr>
+            <% } %>
+            <% } %>
+          </tbody>
+        </table>
       </div>
       <div class="container">
         <h2 class="mt-5 mb-3">Warehouse Buy Request List</h2>
