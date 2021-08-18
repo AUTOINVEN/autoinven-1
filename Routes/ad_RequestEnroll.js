@@ -76,6 +76,8 @@ exports.withAnswer = function (req, res, app, db) {
                         res.send(false);
                         connection.end();
                     } else {
+                        res.send(true);
+                        connection.end();
                     }
                 });
             }

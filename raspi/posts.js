@@ -17,7 +17,7 @@ exports.login = (fdata, callback) => {
 
 exports.sendrfid = (rfid, fdata, callback) => {
     request.post({
-        url: `http://${fdata.ip}/iot/rfid`,
+        url: `http://${fdata.ip}/Iot/RFID`,
         body: {memberID: fdata.id, rfid: rfid},
         json: true,
         jar: fdata.jar

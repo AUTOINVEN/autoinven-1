@@ -1,6 +1,7 @@
 exports.init = function (req, res, db) {
-    if (req.session['type'] === 'admin') res.render('IoT/iot_Monitoring', {'iotServer': req.session['iotServer'], 'session': req.session});
-    else {
+    if (req.headers.referer.includes('Admin/IoTTest')) {
+        res.render('IoT/iot_Monitoring', {'iotServer': req.session['iotServer'], 'session': req.session});
+    } else {
         var wid = req.session['warehouseID'];
         var row = db.query("SELECT iotServer FROM Warehouse WHERE warehouseID = ?;", [wid]);
         if (!row) res.render('Alert/cannotAccess');
