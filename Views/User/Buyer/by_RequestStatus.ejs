@@ -82,21 +82,21 @@
               <input type="hidden" id="rejectCmt<%= i %>" value="<%= items['item' + i].rejectCmt %>">
             </tr>
             <% } %>
-          <% } %>
-        </tbody>
+            <% } %>
+          </tbody>
         </table>
       </div>
       <div class="container">
         <h2 class="mt-5 mb-3">Payment List</h2>
         <table class="board-table table">
           <thead class="thead-dark">
-            <tr>              
+            <tr>
               <th>Check List</th>
               <th>Req ID</th>
               <th>Warehouse ID</th>
               <th>State</th>
               <th>Total Amount ($)</th>
-              <th>Period</th>              
+              <th>Period</th>
               <th>Info</th>
               <th></th>
               <th></th>
@@ -126,8 +126,10 @@
                   <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
-              <td id="td-btn"><button type="button" class="btn btn-td btn-info" onclick="byClick(<%= i %>, 1)">Pay</button></td>
-              <td id="td-btn"><button type="button" class="btn btn-td btn-grey" onclick="byClick(<%= i %>, 0)">Cancel</button></td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-info"
+                  onclick="byClick(<%= i %>, 1)">Pay</button></td>
+              <td id="td-btn"><button type="button" class="btn btn-td btn-grey"
+                  onclick="byClick(<%= i %>, 0)">Cancel</button></td>
             </tr>
             <% } %>
             <% } %>
@@ -145,7 +147,10 @@
   </div>
 </body>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AVTGoMn8H9F9YqVPP8EshG1M6L0BhU9zNHWfQF9u0FdJa6PTakC1b5kwlfk77cUz81s5_QxbLz1SxFc0"></script>
+<script
+  src="https://www.paypal.com/sdk/js?client-id=AVTGoMn8H9F9YqVPP8EshG1M6L0BhU9zNHWfQF9u0FdJa6PTakC1b5kwlfk77cUz81s5_QxbLz1SxFc0">
+</script>
 <script src="/JS/alerts.js"></script>
 <script src="/JS/by_RequestStatus.js"></script>
+
 </html>

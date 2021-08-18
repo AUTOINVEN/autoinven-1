@@ -20,7 +20,8 @@
           <div class="form-group row">
             <label for="memberID" class="col-sm-2 col-form-label">Id</label>
             <div class="col-sm-3">
-              <input type="text" id="memberID" name="memberID" value="<%= session.memberID %>" disabled="disabled" class="form-control">
+              <input type="text" id="memberID" name="memberID" value="<%= session.memberID %>" disabled="disabled"
+                class="form-control">
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
               <% } %>
@@ -30,7 +31,8 @@
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-2">
               <label id="form-control-btn" class="form-control btn-form" for="change_password">Change Password</label>
-              <input type="button" class="upload-btn-hidden" id='change_password' name='change_password' onclick=location.href="/User/Edit/PW"><br>
+              <input type="button" class="upload-btn-hidden" id='change_password' name='change_password'
+                onclick=location.href="/User/Edit/PW"><br>
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
               <% } %>
@@ -49,7 +51,8 @@
           <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-3">
-              <input type="text" id="name" name="name" value="<%= session.username %>" disabled="disabled" class="form-control">
+              <input type="text" id="name" name="name" value="<%= session.username %>" disabled="disabled"
+                class="form-control">
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
               <% } %>
@@ -76,7 +79,8 @@
             </div>
             <div class="col-sm-2">
               <label id="form-control-btn" class="form-control btn-form" for="emailCheckButton">Check Email</label>
-              <input type="button" class="upload-btn-hidden" id='emailCheckButton' name='emailCheckButton' value="email Check"><br>
+              <input type="button" class="upload-btn-hidden" id='emailCheckButton' name='emailCheckButton'
+                value="email Check"><br>
             </div>
           </div>
 
