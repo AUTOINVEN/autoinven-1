@@ -54,7 +54,7 @@
               <td><%= items['item' + i].warehouseID %></td>
               <td><%= items['item' + i].warehouseName %></td>
               <td><%= items['item' + i].memberID %></td>
-              <td>Waiting for Approval</td>
+              <td>Canceled by Provider</td>
               <td id="td-btn">
                 <form action="/Admin/IoTWHInfo" method="POST">
                   <input id="warehouseID" name="warehouseID" type="hidden" value="<%= items['item' + i].warehouseID %>">

@@ -64,9 +64,9 @@
               <td><%= items['item' + i].reqID %></td>
               <td><%= items['item' + i].warehouseID %></td>
               <% if (items['item' + i].reqType.includes('RejByPv')) { %>
-              <td>Rejected By Provider</td>
+              <td>Rejected by Provider</td>
               <% } else { %>
-              <td>Rejected by admin</td>
+              <td>Rejected by dmin</td>
               <% } %>
               <td><%= items['item' + i].amounts %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
