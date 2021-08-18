@@ -11,6 +11,7 @@ module.exports = function (app, db) {
     const WHInfo = require('./WHInfo');
     const EnrollWHInfo = require('./EnrollWHInfo');
     const RequestWHInfo = require('./RequestWHInfo');
+    const IoTWHInfo = require('./IoTWHInfo');
 
     var check = (req, res, next) => {
         var type = req.session['type'];
@@ -46,6 +47,14 @@ module.exports = function (app, db) {
 
     router.post('/RequestIoT', function (req, res, next) {
         ad_ReqIoT.withAnswer(req, res, app, db);
+    });
+
+    router.post('/IoTWHInfo', function (req, res, next) {
+        var WHitems = IoTWHInfo.getWHInfo(req, res, app, db);
+        var PVitems = IoTWHInfo.getPVInfo(req, res, app, db);
+        WHitems = JSON.parse(WHitems);
+        PVitems = JSON.parse(PVitems);
+        res.render('User/IoTWHInfo', {'req': req, 'app': app, 'session': req.session, 'db': db, 'WHitems': WHitems, 'PVitems': PVitems});
     });
 
     router.post('/IoTTest', function (req, res, next) {

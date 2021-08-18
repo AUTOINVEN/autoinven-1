@@ -44,7 +44,7 @@
               </td>
               <% } else if (wList['item' + i].iotStat=="W" ){ %>
               <td>
-                Pending Approval&nbsp;&nbsp;
+                Pending Approval
                 <button class="btn btn-td btn-grey"
                   onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 0)" type="button">Cancel</button>
                 <p id="IoTReqID<%= i %>" style="display: none">
