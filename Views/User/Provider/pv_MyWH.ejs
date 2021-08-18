@@ -44,7 +44,7 @@
               </td>
               <% } else if (wList['item' + i].iotStat=="W" ){ %>
               <td id="td-btn">
-                Pending Approval&nbsp;&nbsp;
+                Pending Approval
                 <button class="btn btn-td btn-grey"
                   onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 0)" type="button">Cancel</button>
                 <p id="IoTReqID<%= i %>" style="display: none">
@@ -65,8 +65,7 @@
               <% } else if (wList['item' + i].iotStat=="N" ){ %>
               <td id="td-btn">
                 <button class="btn btn-td btn-main"
-                  onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 3)" type="button">Request
-                  Service</button>
+                  onclick="reqClick(<%= i %>, <%= wList['item' + i].warehouseID %>, 3)" type="button">Request Service</button>
               </td>
               <% } %>
               <td id="td-btn">
@@ -121,7 +120,7 @@
             <tr class="table-danger">
               <td><%= enrollItems['item' + i].warehouseID %></td>
               <td><%= enrollItems['item' + i].warehouseName %></td>
-              <td>Rejected by admin</td>
+              <td>Rejected by Admin</td>
               <td id="td-btn">
                 <form action="/Provider/EnrollWHInfo" method="POST">
                   <input id="warehouseID" name="warehouseID" type="hidden"
@@ -189,7 +188,6 @@
                 </form>
               </td>
               <td id="td-btn">
-                <button class="btn btn-td btn-danger" onclick="pvClick(1, <%= i %>, 0)" type="button">Reject</button>
               </td>
             </tr>
 
@@ -198,7 +196,7 @@
               <td><%= requestItems['item' + i].reqID %></td>
               <td><%= requestItems['item' + i].warehouseID %></td>
               <td><%= requestItems['item' + i].buyerID %></td>
-              <td>Canceled By Buyer</td>
+              <td>Canceled by Buyer</td>
               <td><%= requestItems['item' + i].startDate %> ~ <%= requestItems['item' + i].endDate %></td>
               <td id="td-btn">
                 <form action="/Provider/RequestWHInfo" method="POST">

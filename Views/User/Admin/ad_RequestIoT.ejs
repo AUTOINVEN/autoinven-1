@@ -18,27 +18,30 @@
         <h2 class="mt-5 mb-3">IoT Service Request List</h2>
         <table class="board-table table ">
           <thead class="thead-dark">
-            <tr class="d-flex">
-              <th class="col-2">Warehouse ID</th>
-              <th class="col-2">State</th>
-              <th class="col-2">User ID</th>
-              <th class="col-2">Warehouse Name</th>
-              <th class="col-3">Warehouse Address</th>
-              <th class="col-1">Nation</th>
-              <th class="col-1">Action</th>
+            <tr>
+              <th>Warehouse ID</th>
+              <th>Warehouse Name</th>
+              <th>Provider ID</th>
+              <th>State</th>              
+              <th>Info</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <% for(var i = 0; i < Object.keys(items).length; i++) { %>
             <% if (items['item' + i].reqType == "ReqIoTPv") { %>
-            <tr class="table-warning d-flex">
-              <td class="col-2"><%= items['item' + i].warehouseID %></td>
-              <td class="col-2">Waiting for Approval</td>
-              <td class="col-2"><%= items['item' + i].memberID %></td>
-              <td class="col-2"><%= items['item' + i].warehouseName %></td>
-              <td class="col-3"><%= items['item' + i].address %></td>
-              <td class="col-1"><%= items['item' + i].national %></td>
-              <td id="td-btn" class="col-1">
+            <tr class="table-warning">
+              <td><%= items['item' + i].warehouseID %></td>
+              <td><%= items['item' + i].warehouseName %></td>
+              <td><%= items['item' + i].memberID %></td>
+              <td>Waiting for Approval</td>
+              <td id="td-btn">
+              <form action="/Admin/IoTWHInfo" method="POST">
+                <input id="warehouseID" name="warehouseID" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                <button class="btn btn-td btn-info">INFO</button>
+              </form>
+            </td>
+              <td id="td-btn">
                 <form action="IoTTest" method="POST">
                   <input type="hidden" name="wid" value="<%= items['item' + i].warehouseID %>">
                   <button class="btn btn-td btn-main">View</button>
@@ -47,13 +50,17 @@
             </tr>
 
             <% } else if (items['item' + i].reqType == "CnlByPv") { %>
-            <tr class="table-danger d-flex">
-              <td class="col-2"><%= items['item' + i].warehouseID %></td>
-              <td class="col-2">Waiting for Approval</td>
-              <td class="col-2"><%= items['item' + i].memberID %></td>
-              <td class="col-2"><%= items['item' + i].warehouseName %></td>
-              <td class="col-3"><%= items['item' + i].address %></td>
-              <td class="col-1"><%= items['item' + i].national %></td>
+            <tr class="table-danger">
+              <td><%= items['item' + i].warehouseID %></td>
+              <td><%= items['item' + i].warehouseName %></td>
+              <td><%= items['item' + i].memberID %></td>
+              <td>Canceled by Provider</td>
+              <td id="td-btn">
+                <form action="/Admin/IoTWHInfo" method="POST">
+                  <input id="warehouseID" name="warehouseID" type="hidden" value="<%= items['item' + i].warehouseID %>">
+                  <button class="btn btn-td btn-info">INFO</button>
+                </form>
+              </td>
               <td id="td-btn" class="col-1">
                 <button class="btn btn-td btn-info" onclick="adClick('Confirm', <%= i %>)">View</button>
               </td>
