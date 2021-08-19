@@ -65,7 +65,7 @@ module.exports = function (app, db) {
     });
 
     router.post('/EditItem', (req, res, next) => {
-        res.render('IoT/iot_EditItem', { 'rfid': req.body.itemEdit, 'session': req.session })
+        res.render('IoT/iot_EditItem', { 'RFID': req.body.RFID, 'name': req.body.name, 'num': req.body.num, 'session': req.session })
     });
 
     router.post('/EditSave', (req, res, next) => {
