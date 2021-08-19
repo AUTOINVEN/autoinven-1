@@ -98,10 +98,17 @@ $(function () {
 
     $('#btn').click(function () {
         let warehouseID = $('#whID').text();
+        let price = $('#whPrice').text();
         let useableArea = parseInt($('#whUseableArea').text());
         let wantArea = parseInt($('#area').val());
         let startDate = $('#startDate').text();
         let endDate = $('#endDate').text();
+
+        //창고 사용 기간 계산
+        var startDateType = new Date(startDate);
+        var endDateType = new Date(endDate);
+        var periodSec = endDateType.getTime() - startDateType.getTime();
+        var periodDay = periodSec / (1000*60*60*24) + 1;
 
         if (!useableArea)
             swalError('Please select the warehouse.');
@@ -122,7 +129,8 @@ $(function () {
                     warehouseID: warehouseID,
                     area: wantArea,
                     startDate: startDate,
-                    endDate: endDate
+                    endDate: endDate,
+                    amount: periodDay * wantArea * price
                 },
                 success: function (data) {
                     if (data === true) {

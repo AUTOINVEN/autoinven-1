@@ -56,7 +56,8 @@ exports.inquireWH = function (req, res, app, db) {
         warehouseID: parseInt(req.body.warehouseID),
         area: parseInt(req.body.area),
         startDate: req.body.startDate,
-        endDate: req.body.endDate
+        endDate: req.body.endDate,
+        amount: req.body.amount
     };
     connection.query('INSERT INTO RequestForBuy SET ?', reqItem, function (error, results, fields) {
         if (error) {

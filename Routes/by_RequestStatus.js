@@ -1,10 +1,9 @@
 exports.RequestForBuy = function (req, res, app, db) {
     var items = {};
-    var sql = `select * from RequestForBuy, Warehouse where Warehouse.warehouseID=RequestForBuy.warehouseID and buyerID='${req.session['memberID']}'`;
+    var sql = `select * from RequestForBuy where buyerID='${req.session['memberID']}'`;
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
-            results[step].price = results[step].price * results[step].area;
             items[`item${step}`] = {
                 reqID: results[step].reqID,
                 reqDate: results[step].reqDate,
@@ -12,10 +11,10 @@ exports.RequestForBuy = function (req, res, app, db) {
                 warehouseID: results[step].warehouseID,
                 buyerID: results[step].buyerID,
                 area: results[step].area,
-                amounts: results[step].price,
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
-                rejectCmt: results[step].rejectCmt
+                rejectCmt: results[step].rejectCmt,
+                amount: results[step].amount
             };
         }
     }
@@ -39,7 +38,7 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                 connection.end();
             } else {
                 var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
-                var cols = 'reqID, reqDate, reqType, warehouseID, buyerID, area, startDate, endDate, rejectCmt';
+                var cols = 'reqID, reqDate, reqType, warehouseID, buyerID, area, startDate, endDate, rejectCmt, amount';
                 connection.query(`INSERT INTO DeletedBuy (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForBuy WHERE reqID=?)`, [now, reqID], function (error, results, fields) {
                     if (error) {
                         console.log(error);
@@ -77,8 +76,7 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                 }
             });
         }
-    } else if (answer === "Accept") {
-        let price = db.query(`SELECT price FROM Warehouse WHERE warehouseID='${req.body.whID}'`);
+    } else if (answer === "Accept") {      
         connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
             if (error) {
                 console.log(error);
@@ -99,12 +97,12 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                     } else {
                         var contract = {
                             reqID: reqID,
-                            buyerID: info['memberID'],
-                            warehouseID: info['warehouseID'],
+                            buyerID: req.session['memberID'],
+                            warehouseID: req.body.whID,
                             startDate: req.body.startDate,
                             endDate: req.body.endDate,
-                            area: info['area'],
-                            amount: price[0].price * info['area']  //추후 변경필요, 현재 8로 고정된 가격만 가능. -2020-12-19- 수정완료
+                            area: req.body.area,
+                            amount: req.body.amount
                         };
                         connection.query(`INSERT INTO Contract SET ?`, contract, function (error, results, fields) {
                             if (error) {

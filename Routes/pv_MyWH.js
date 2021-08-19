@@ -33,7 +33,7 @@ exports.RequestForBuy = function (req, res, app, db) {
                 address: results[step].address,
                 floorArea: results[step].floorArea,
                 useableArea: results[step].useableArea,
-                amounts: results[step].price * results[step].area,
+                amount: results[step].amount,
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
                 buyerID: results[step].buyerID,
@@ -250,7 +250,7 @@ exports.ReqBuyAns = function (req, res, app, db) {
                 connection.end();
             } else {
                 var now = new Date(new Date().getTime() + 32400000).toISOString().replace(/T/, ' ').replace(/\..+/, '');
-                var cols = 'reqID, reqDate, reqType, warehouseID, buyerID, area, startDate, endDate, rejectCmt';
+                var cols = 'reqID, reqDate, reqType, warehouseID, buyerID, area, startDate, endDate, rejectCmt, amount';
                 connection.query(`INSERT INTO DeletedBuy (${cols}, rejectTime) (SELECT ${cols}, ? FROM RequestForBuy WHERE reqID=?)`, [now, reqID], function (error, results, fields) {
                     if (error) {
                         console.log(error);

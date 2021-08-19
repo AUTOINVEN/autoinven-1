@@ -1,6 +1,6 @@
 function byClick(i, flag) {
     switch (flag) {
-        case 0:  // Cancel
+        case 0: // Cancel
             inputAlert('Input the reason for cancellation to submit.', (reason) => {
                 $.ajax({
                     url: '/Buyer/RequestStatus/Buy/Ans',
@@ -23,31 +23,30 @@ function byClick(i, flag) {
                 });
             });
             break;
-        case 1:  // Pay
-            reAlert('Pay test?', () => {
-                $.ajax({
-                    url: '/Buyer/RequestStatus/Buy/Ans',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: {
-                        answer: "Accept",
-                        reqID: document.getElementById('reqID' + i).innerText,
-                        whID: document.getElementById('whID' + i).innerText,
-                        reqType: document.getElementById('reqType' + i).innerText,
-                        buyerID: document.getElementById('buyerID' + i).innerText,
-                        area: document.getElementById('area' + i).innerText,
-                        startDate: document.getElementById('startDate' + i).innerText,
-                        endDate: document.getElementById('endDate' + i).innerText
-                        //other things will be here
-                    },
-                    success: function (success) {
-                        if (success) resultAlert('Success');
-                        else errorAlert();
-                    }
-                });
+        case 1: // Pay
+            $.ajax({
+                url: '/Buyer/RequestStatus/Buy/Ans',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    answer: "Accept",
+                    reqID: document.getElementById('reqID' + i).innerText,
+                    whID: document.getElementById('whID' + i).innerText,
+                    reqType: document.getElementById('reqType' + i).innerText,
+                    buyerID: document.getElementById('buyerID' + i).innerText,
+                    area: document.getElementById('area' + i).innerText,
+                    startDate: document.getElementById('startDate' + i).innerText,
+                    endDate: document.getElementById('endDate' + i).innerText,
+                    amount: document.getElementById('amount' + i).innerText
+                    //other things will be here
+                },
+                success: function (success) {
+                    if (success) resultAlert('Success');
+                    else errorAlert();
+                }
             });
             break;
-        case 2:  // Confirm
+        case 2:
             var rejectCmt = $(`#rejectCmt${i}`).val();
             var rejBy = $(`#reqType${i}`).text();
             var text = rejBy.includes('Pv') ? 'Rejected By Provider' : 'Rejected By Admin';
