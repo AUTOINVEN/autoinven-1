@@ -27,8 +27,7 @@ function inputAlert(text, callback) {
         cancelButtonColor: '#66687A',
         confirmButtonText: 'OK',
         showLoaderOnConfirm: true,
-        preConfirm: callback,
-        allowOutsideClick: () => !Swal.isLoading()
+        preConfirm: callback
     });
 }
 

@@ -16,13 +16,13 @@ function createImage(objImageInfo) {
 
 async function initMap() {
     var daegu = {lat: 35.87222, lng: 128.60250};
-    var items;
-    await $.post('searchWH', data => items = JSON.parse(data));
     map = new google.maps.Map(
         document.getElementById('map'), {
             zoom: 12,
             center: daegu
         });
+    var items;
+    await $.post('searchWH', data => items = JSON.parse(data));
     for (key in items) {
         markers[i] = new google.maps.Marker({
             position: {lat: items[key].latitude, lng: items[key].longitude},
@@ -86,6 +86,10 @@ async function initMap() {
 
 $(function () {
 
+    $('#area').val('');
+    $('#sDate').val('');
+    $('#eDate').val('');
+
     var swalError = (text) => Swal.fire({
         icon: 'error',
         title: 'Fail',
@@ -109,33 +113,34 @@ $(function () {
             swalError('Please enter the start date.');
         else if (!endDate)
             swalError('Please enter the end date.');
-
-        $.ajax({
-            url: '/Buyer/FindWH/Inquire',
-            dataType: 'json',
-            type: 'POST',
-            data: {
-                warehouseID: warehouseID,
-                area: wantArea,
-                startDate: startDate,
-                endDate: endDate
-            },
-            success: function (data) {
-                if (data === true) {
-                    Swal.fire({
-                        title: 'Submitted',
-                        icon: 'success'
-                    }).then(() => location.href = "/Buyer/RequestStatus");
-                } else {
-                    swalError()
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'An error has occurred.',
-                        icon: 'error'
-                    });
+        else {
+            $.ajax({
+                url: '/Buyer/FindWH/Inquire',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    warehouseID: warehouseID,
+                    area: wantArea,
+                    startDate: startDate,
+                    endDate: endDate
+                },
+                success: function (data) {
+                    if (data === true) {
+                        Swal.fire({
+                            title: 'Submitted',
+                            icon: 'success'
+                        }).then(() => location.href = "/Buyer/RequestStatus");
+                    } else {
+                        swalError()
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'An error has occurred.',
+                            icon: 'error'
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     });
     $("#btnInquire").hide();
     $("#btnContact").hide();

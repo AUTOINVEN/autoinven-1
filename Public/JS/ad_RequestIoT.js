@@ -15,7 +15,12 @@ function adClick(val, i) {
                     iotServer: iotServer
                 },
                 success: function (success) {
-                    if (success) resultAlert('Approved');
+                    if (success) {
+                        Swal.fire({
+                            title: 'Approved',
+                            icon: 'success'
+                        }).then(() => location.href = '/Admin/RequestIoT');
+                    }
                     else errorAlert();
                 }
             });
@@ -32,7 +37,12 @@ function adClick(val, i) {
                     reason: reason
                 },
                 success: function (success) {
-                    if (success) resultAlert('Rejected');
+                    if (success) {
+                        Swal.fire({
+                            title: 'Rejected',
+                            icon: 'success'
+                        }).then(() => location.href = '/Admin/RequestIoT');
+                    }
                     else errorAlert();
                 }
             });
@@ -50,7 +60,12 @@ function adClick(val, i) {
                         reqID: parseInt(document.getElementById("reqID" + i).innerText)
                     },
                     success: function (success) {
-                        if (success) resultAlert('Deleted');
+                        if (success) {
+                            Swal.fire({
+                                title: 'Deleted',
+                                icon: 'success'
+                            }).then(() => location.href = '/Admin/RequestIoT');
+                        }
                         else errorAlert();
                     }
                 });

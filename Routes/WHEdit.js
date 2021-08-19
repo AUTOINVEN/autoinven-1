@@ -38,7 +38,6 @@ exports.Save = function (req, res, app, db) {
                 console.log('update error:', error);
                 res.send(error);
             } else {
-                console.log(results);
                 let upLoadFile = req.files;
                 if (upLoadFile) {
                     connection.query('SELECT filename FROM FileInfo WHERE warehouseID=?', wid, function (error, results, fields) {
