@@ -32,7 +32,7 @@
                     if (data == "errortype7")
                         swalError('ID must be filled first', () => EffectivenessPw = false);
                     if (data === "errortype1")
-                        swalError('Password must be at least 8 characters long and must contain all numbers/case letters/special characters.', () => EffectivenessPw = false);
+                        swalError('Password must be at least 8 characters long and must contain at least one number, upper or lower case and special characters(@$!%*#?&-).', () => EffectivenessPw = false);
                     else if (data === "errortype2")
                         swalError('You can not use same letter 4 times', () => EffectivenessPw = false);
                     else if (data === "errortype3")
@@ -129,6 +129,7 @@
             var id = $("#memberID").val();
             var pw = $("#password").val();
             var name = $("#name").val();
+            var textReg = /^[a-zA-Z0-9\s$@$!%*#?&\-,]*$/;
 
             if (!id)
                 swalError('You have to insert your Id');
@@ -142,10 +143,18 @@
                 swalError('You have to check Password Effectiveness');
             else if (!email)
                 swalError('You have to insert your email');
+            else if (!zipcode)
+                swalError('You have to insert your zipcode');
             else if (!address)
                 swalError('You have to insert your address');
             else if (!national)
                 swalError('You have to insert your country');
+            else if (false === textReg.test(name))
+                swalError('Only english, numbers, blank, special character(@$!%*#?&-,) can be entered in name field');
+            else if (false === textReg.test(address))
+                swalError('Only english, numbers, blank, special character(@$!%*#?&-,) can be entered in address field');
+                else if (false === textReg.test(national))
+                swalError('Only english, numbers, blank, special character(@$!%*#?&-,) can be entered in nation field');
             //finish all test
             else {
                 var formData = $("#regForm").serialize();
