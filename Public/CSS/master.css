@@ -657,7 +657,6 @@ h6,
   box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.2);
   font-size: 1rem;
   transition: all 150ms linear;
-  position: relative;
   top: 100%;
   left: 0;
   z-index: 1000;
