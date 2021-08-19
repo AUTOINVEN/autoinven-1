@@ -90,7 +90,16 @@
           processData: false,
           contentType: false,
           success: function (data) {
-            if (data == "success") {
+            if (data == "error1") {
+              Swal.fire({
+                icon: 'error',
+                title: 'Fail',
+                text: `DO NOT CHANGE RFID!!!`,
+              }).then(() => {
+                location.href = "Warehousing";
+              })
+            }
+            else if (data == "success") {
               Swal.fire({
                 icon: 'success',
                 title: 'Success',
