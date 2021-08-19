@@ -64,7 +64,9 @@
                 <td id="td-btn">
                   <form action="/IoT/EditItem" method="POST">
                     <button class="btn btn-td btn-info">Edit</button>
-                    <input type="hidden" id="itemEdit" name="itemEdit" value="<%= itemlist['item' + i].rfid %>">
+                    <input type="hidden" id="RFID" name="RFID" value="<%= itemlist['item' + i].rfid %>">
+                    <input type="hidden" id="name" name="name" value="<%= itemlist['item' + i].name %>">
+                    <input type="hidden" id="num" name="num" value="<%= itemlist['item' + i].num %>">
                   </form>
                 </td>
                 <td id="td-btn">

@@ -1,14 +1,21 @@
 exports.editItem = function (req, res, db) {
-    var rfid = req.body.editItem_rfid;
-    var name = req.body.editItem_name;
-    var num = req.body.editItem_num;
+    var RFID = req.body.RFID;
+    var name = req.body.name;
+    var num = req.body.num;
 
-    var editSQL = `UPDATE iot SET name='${name}',num='${num}' WHERE rfid='${rfid}'`
-    var check = db.query(editSQL);
-    if (!check) {
-        console.log("error ocurred", error);
-        res.redirect('Warehousing');
+    var check = db.query(`Select rfid from iot where rfid='` + RFID + `'`);
+    console.log(check);
+    if (check.length == 0) {
+        console.log("err: editItem no RFID");
+        res.send("error1")
     } else {
-        res.redirect('Warehousing');
+        var editSQL = `UPDATE iot SET name='${name}',num='${num}' WHERE rfid='${RFID}'`
+        var row = db.query(editSQL);
+        if (!row) {
+            console.log("err: editItem");
+            res.send("error")
+        } else {
+            res.send("success")
+        }
     }
 }
