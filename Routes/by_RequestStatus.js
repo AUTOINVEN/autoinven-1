@@ -53,7 +53,7 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
         });
     } else if (answer === "Confirm") {
         var viewState = parseInt(reqType.charAt(reqType.length - 1));
-        viewState -= 2;  // flag_buyer
+        viewState -= 2; // flag_buyer
         if (viewState === 0) {
             connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
                 if (error) {
@@ -76,70 +76,33 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                 }
             });
         }
-    } else if (answer === "Accept") {      
+    } else if (answer === "Accept") {
         connection.query(`DELETE FROM RequestForBuy WHERE reqID=?`, reqID, function (error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send(false);
                 connection.end();
             } else {
-                var info = {
+                var contract = {
                     reqID: reqID,
-                    memberID: req.session['memberID'],
+                    buyerID: req.session['memberID'],
                     warehouseID: req.body.whID,
-                    area: req.body.area
+                    startDate: req.body.startDate,
+                    endDate: req.body.endDate,
+                    area: req.body.area,
+                    amount: req.body.amount
                 };
-                connection.query(`INSERT INTO Buyer SET ?`, info, function (error, results, fields) {
+                connection.query(`INSERT INTO Contract SET ?`, contract, function (error, results, fields) {
                     if (error) {
                         console.log(error);
                         res.send(false);
                         connection.end()
                     } else {
-                        var contract = {
-                            reqID: reqID,
-                            buyerID: req.session['memberID'],
-                            warehouseID: req.body.whID,
-                            startDate: req.body.startDate,
-                            endDate: req.body.endDate,
-                            area: req.body.area,
-                            amount: req.body.amount
-                        };
-                        connection.query(`INSERT INTO Contract SET ?`, contract, function (error, results, fields) {
-                            if (error) {
-                                console.log(error);
-                                res.send(false);
-                                connection.end()
-                            }
-                            /*
-                            else{
-                                    var sock = require('../Module/bcsocket').socket;
-                                    var dic = {
-                                        'MSGTYPE':'RECORD',
-                                        'ID':'WEBSERVER',
-                                        'data':{
-                                            'timestamp':new Date(),
-                                            'transaction':`${contract.buyerID} pay ${contract.amount} for warehouseID(${contract.warehouseID})`
-                                          }
-                                    }
-                                    nodePickle.dumps(dic,function(pickled){
-                                          sock.write(pickled)
-                                    })
-                                    res.send(true);
-                                    connection.end();
-                            }
-                            */
-                            else {
-                                res.send(true);
-                                connection.end();
-                            }
-                        });
+                        res.send(true);
+                        connection.end();
                     }
                 });
             }
         });
     }
 }
-
-
-// exports.GetAmountsForItems = function (req, res, app, db) {
-// }

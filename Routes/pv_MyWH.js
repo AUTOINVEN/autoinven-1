@@ -56,25 +56,10 @@ exports.Mywarehouse = function (req, res, app, db) {
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
-            sql = `select  distinct memberID from Buyer where warehouseID=${results[step].warehouseID}`;
-            let rows = db.query(sql);
-            let idList = [];
-            for (row of rows) idList.push(row.memberID);
             items[`item${step}`] = {
                 warehouseID: results[step].warehouseID,
                 warehouseName: results[step].warehouseName,
-                enrolledDate: results[step].enrolledDate,
-                address: results[step].address,
-                latitude: results[step].latitude,
-                longitude: results[step].longitude,
-                landArea: results[step].landArea,
-                floorArea: results[step].floorArea,
-                useableArea: results[step].useableArea,
-                infoComment: results[step].infoComment,
-                etcComment: results[step].etcComment,
-                iotStat: results[step].iotStat,
-                enroll: results[step].enroll,
-                memberList: idList
+                iotStat: results[step].iotStat
             };
         }
     }
