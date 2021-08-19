@@ -7,7 +7,18 @@ exports.registerItem = function (req, res, db) {
     var id = req.session['memberID'];
     var wid = req.session['warehouseID'];
 
-    var row = db.query(`INSERT INTO iot VALUES('${RFID}', '${id}', '${name}', ${num}, ${received}, '${picture}',${wid});`);
-    if (!row) console.log('err: registerItem');
-    else res.redirect('Warehousing');
+    var check = db.query(`Select rfid from iot where rfid='` + RFID + `'`);
+    console.log(check);
+    if (check.length > 0) {
+        console.log("err: registerItem duplicate RFID");
+        res.send("error1")
+    } else {
+        var row = db.query(`INSERT INTO iot VALUES('${RFID}', '${id}', '${name}', ${num}, ${received}, '${picture}',${wid});`);
+        if (!row) {
+            console.log("err: registerItem");
+            res.send("error")
+        } else {
+            res.send("success")
+        }
+    }
 }
