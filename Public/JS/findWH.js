@@ -16,13 +16,13 @@ function createImage(objImageInfo) {
 
 async function initMap() {
     var daegu = {lat: 35.87222, lng: 128.60250};
-    var items;
-    await $.post('searchWH', data => items = JSON.parse(data));
     map = new google.maps.Map(
         document.getElementById('map'), {
             zoom: 12,
             center: daegu
         });
+    var items;
+    await $.post('searchWH', data => items = JSON.parse(data));
     for (key in items) {
         markers[i] = new google.maps.Marker({
             position: {lat: items[key].latitude, lng: items[key].longitude},
