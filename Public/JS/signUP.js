@@ -32,7 +32,7 @@
                     if (data == "errortype7")
                         swalError('ID must be filled first', () => EffectivenessPw = false);
                     if (data === "errortype1")
-                        swalError('Password must be at least 8 characters long and must contain all numbers/case letters/special characters.', () => EffectivenessPw = false);
+                        swalError('Password must be at least 8 characters long and must contain at least one number, upper or lower case and special characters(@$!%*#?&-).', () => EffectivenessPw = false);
                     else if (data === "errortype2")
                         swalError('You can not use same letter 4 times', () => EffectivenessPw = false);
                     else if (data === "errortype3")
