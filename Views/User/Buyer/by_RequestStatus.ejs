@@ -46,7 +46,7 @@
               <td><%= items['item' + i].reqID %></td>
               <td><%= items['item' + i].warehouseID %></td>
               <td>Pending Approval</td>
-              <td><%= items['item' + i].amounts %></td>
+              <td><%= items['item' + i].amount %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
@@ -68,7 +68,7 @@
               <% } else { %>
               <td>Rejected by dmin</td>
               <% } %>
-              <td><%= items['item' + i].amounts %></td>
+              <td><%= items['item' + i].amount %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
@@ -112,13 +112,13 @@
             <p id="reqType<%= i %>" style="display: none"><%= items['item' + i].reqType %></p>
             <tr class="table-basic">
               <td>
-                <input type="checkbox" name="paymentCheck" value="<%= items['item' + i].amounts %>"
+                <input type="checkbox" name="paymentCheck" value="<%= items['item' + i].amount %>"
                   onclick='getCheckboxValue(event)' />
               </td>
               <td><%= items['item' + i].reqID %></td>
               <td><%= items['item' + i].warehouseID %></td>
               <td>Waiting for Payment</td>
-              <td id="amounts<%= i %>"><%= items['item' + i].amounts %></td>
+              <td id="amount<%= i %>"><%= items['item' + i].amount %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">

@@ -11,7 +11,8 @@ exports.Save = function (req, res, app, db) {
     var fs = require('fs');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
-    var onlyNum = /^[0-9]*$/; // 숫자만 받는 정규식
+    var onlyNum = /^[0-9]*$/;
+    var onlyNumDot = /^[0-9.]*$/; // 숫자와 점만 받는 정규식
     var emailReg = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
     var phoneReg = /^(01(?:0|1|[6-9])|02|0[3-9]\d{1})-(?:\d{3}|\d{4})-\d{4}$/;
     var wid = req.body.warehouseID;
@@ -29,7 +30,7 @@ exports.Save = function (req, res, app, db) {
     if (onlyNum.test(item.landArea) === false) res.send("errortype2");
     else if (onlyNum.test(item.floorArea) === false) res.send("errortype3");
     else if (onlyNum.test(item.useableArea) === false) res.send("errortype11");
-    else if (onlyNum.test(item.price) === false) res.send("errortype4");
+    else if (onlyNumDot.test(item.price) === false) res.send("errortype4");
     else if (emailReg.test(item.warehouseEmail) === false) res.send("errortype9");
     else if (phoneReg.test(item.warehouseTEL) === false) res.send("errortype10");
     else {

@@ -2,7 +2,8 @@ exports.EnrollWH = function (req, res, app, db) {
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
-    var onlyNum = /^[0-9]*$/; // 숫자만 받는 정규식
+    var onlyNumDot = /^[0-9]*$/; // 숫자만 받는 정규식
+    var onlyNumDot = /^[0-9.]*$/; // 숫자와 점만 받는 정규식
     var engishDigit = /^[a-zA-Z0-9]+$/; // 영어 대소문자 및 숫자 받는 정규식
     var emailReg = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
     var phoneReg = /^(01(?:0|1|[6-9])|02|0[3-9]\d{1})-(?:\d{3}|\d{4})-\d{4}$/;
@@ -35,7 +36,7 @@ exports.EnrollWH = function (req, res, app, db) {
     } else if (onlyNum.test(item.useableArea) == false) {
         res.send("errortype11");
         console.log('errortype11');
-    } else if (onlyNum.test(item.price) == false) {
+    } else if (onlyNumDot.test(item.price) == false) {
         res.send("errortype4");
         console.log('errortype4');
     } else if ((engishDigit.test(item.warehouseName) || (engishDigit.test(item.infoComment)) || (engishDigit.test(item.etcComment))) == false) {

@@ -75,7 +75,7 @@
             </tr>
             <tr>
               <th class="thead-dark-vertical">Info Comment</th>
-              <td><%= WHitems.perprice %></td>
+              <td><%= WHitems.infoComment %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">ETC</th>
@@ -129,7 +129,7 @@
               <th>Buyer ID</th>
               <th>Rental Period</th>
               <th>Area</th>
-              <th>Price</th>
+              <th>Total</th>
               <th>Info</th>
             </tr>
           </thead>
@@ -140,7 +140,7 @@
               <td id="buyerID<%= i %>"><%= curItems['item' + i].buyerID %></td>
               <td id="Period<%= i %>"><%= curItems['item' + i].startDate %> ~ <%= curItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= curItems['item' + i].area %></td>
-              <td id="totalPrice<%= i %>"><%= curItems['item' + i].totalPrice %></td>
+              <td id="amount<%= i %>"><%= curItems['item' + i].amount %></td>
               <td id="td-btn">
                 <button id="modal_btn" class="btn btn-td btn-info" onclick="curItemsClick('<%= i %>')">INFO</button>
                 <div class="modal_wrap" id="curItems<%= i %>" style="display:none;">
@@ -191,7 +191,7 @@
               <td id="buyerID<%= i %>"><%= nextItems['item' + i].buyerID %></td>
               <td id="Period<%= i %>"><%= nextItems['item' + i].startDate %> ~ <%= nextItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
-              <td id="totalPrice<%= i %>"><%= nextItems['item' + i].totalPrice %></td>
+              <td id="amount<%= i %>"><%= nextItems['item' + i].amount %></td>
               <td id="td-btn">
                 <button id="modal_btn" class="btn btn-td btn-info" onclick="nextItemsClick('<%= i %>')">INFO</button>
                 <div class="black_bg"></div>
@@ -251,7 +251,7 @@
               <th>Buyer ID</th>
               <th>Rental Period</th>
               <th>Area</th>
-              <th>Price</th>
+              <th>Total</th>
               <th>Info</th>
             </tr>
           </thead>
@@ -262,7 +262,7 @@
               <td id="buyerID<%= i %>"><%= preItems['item' + i].buyerID %></td>
               <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
-              <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
+              <td id="amount<%= i %>"><%= preItems['item' + i].amount %></td>
               <td id="td-btn">
                 <button id="modal_btn" class="btn btn-td btn-info" onclick="preItemsClick('<%= i %>')">INFO</button>
                 <div class="black_bg"></div>

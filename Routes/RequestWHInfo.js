@@ -43,7 +43,7 @@ exports.getReqInfo = function (req, res, app, db) {
             reqDate: results[0].reqDate.substring(0, 10),
             warehouseID: results[0].warehouseID,
             buyerID: results[0].buyerID,
-            amounts: results[0].price * results[0].area,
+            amount: results[0].amount,
             startDate: results[0].startDate.substring(0, 10),
             endDate: results[0].endDate.substring(0, 10),
             area: results[0].area

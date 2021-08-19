@@ -30,7 +30,7 @@ exports.sessionCheck = function (req, res, db) {
         else {
             var WName = result[0].warehouseName;
             req.session['warehouseName'] = WName;
-            var row = db.query(`select count(*) as num from (select memberID, warehouseID from Provider union select memberID, warehouseID from Buyer) as pb where memberID=? and warehouseID=?;`, [id, wid]);
+            var row = db.query(`select count(*) as num from (select memberID, warehouseID from Provider union select buyerID as memberID, warehouseID from Contract) as pb where memberID=? and warehouseID=?;`, [id, wid]);
             if (!row) console.log('err: iot.sessionCheck');
             else if (!row[0].num) res.render('Alert/cannotAccess');  // 창고 provider/buyer가 아님
             else {

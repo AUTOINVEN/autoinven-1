@@ -25,7 +25,7 @@
                 <th class="col-2">Buyer ID</th>
                 <th class="col-3">Rent Period</th>
                 <th class="col-1">Area</th>
-                <th class="col-1">Price</th>
+                <th class="col-1">Total</th>
                 <th class="col-2">IoT</th>
                 <th class="col-1">Info</th>
               </tr>
@@ -39,7 +39,7 @@
                 <td id="Period<%= i %>" class="col-3"><%= items['item' + i].startDate %> ~
                   <%= items['item' + i].endDate %></td>
                 <td id="area<%= i %>" class="col-1"><%= items['item' + i].area %></td>
-                <td id="price<%= i %>" class="col-1"><%= items['item' + i].price %></td>
+                <td id="amount<%= i %>" class="col-1"><%= items['item' + i].amount %></td>
                 <% if (items['item' + i].iotStat == "Y"){ %>
                 <td id="td-btn" class="col-2">
                   <form action="/IoT" method="POST">
