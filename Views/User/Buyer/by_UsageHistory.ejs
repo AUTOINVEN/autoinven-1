@@ -24,7 +24,7 @@
               <th>Warehouse Name</th>
               <th>Rental Period</th>
               <th>Area</th>
-              <th>Price</th>
+              <th>Total</th>
               <th>IoT</th>
               <th>Info</th>
             </tr>
@@ -37,7 +37,7 @@
               <td id="warehouseName<%= i %>"><%= curItems['item' + i].warehouseName %></td>
               <td id="Period<%= i %>"><%= curItems['item' + i].startDate %> ~ <%= curItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= curItems['item' + i].area %></td>
-              <td id="totalPrice<%= i %>"><%= curItems['item' + i].totalPrice %></td>
+              <td id="amount<%= i %>"><%= curItems['item' + i].amount %></td>
               <% if (curItems['item' + i].iotStat == "Y"){ %>
               <td id="td-btn">
                 <form action="/IoT" method="POST">
@@ -65,7 +65,7 @@
               <td id="warehouseName<%= i %>"><%= nextItems['item' + i].warehouseName %></td>
               <td id="Period<%= i %>"><%= nextItems['item' + i].startDate %> ~ <%= nextItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
-              <td id="totalPrice<%= i %>"><%= nextItems['item' + i].totalPrice %></td>
+              <td id="amount<%= i %>"><%= nextItems['item' + i].amount %></td>
               <% if (nextItems['item' + i].iotStat == "Y"){ %>
               <td id="td-btn">
                 <form action="/IoT" method="POST">
@@ -100,7 +100,7 @@
               <th>Warehouse Name</th>
               <th>Rental Period</th>
               <th>Area</th>
-              <th>Price</th>
+              <th>Total</th>
               <th>Info</th>
             </tr>
           </thead>
@@ -112,7 +112,7 @@
               <td id="warehouseName<%= i %>"><%= preItems['item' + i].warehouseName %></td>
               <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
-              <td id="totalPrice<%= i %>"><%= preItems['item' + i].totalPrice %></td>
+              <td id="amount<%= i %>"><%= preItems['item' + i].amount %></td>
               <td id="td-btn">
                 <form action="/Buyer/UsageHistory/INFO" method="POST">
                   <input id="reqID" name="reqID" type="hidden" value="<%= preItems['item' + i].reqID %>">

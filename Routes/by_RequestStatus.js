@@ -104,7 +104,7 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                             startDate: req.body.startDate,
                             endDate: req.body.endDate,
                             area: info['area'],
-                            price: price[0].price * info['area']  //추후 변경필요, 현재 8로 고정된 가격만 가능. -2020-12-19- 수정완료
+                            amount: price[0].price * info['area']  //추후 변경필요, 현재 8로 고정된 가격만 가능. -2020-12-19- 수정완료
                         };
                         connection.query(`INSERT INTO Contract SET ?`, contract, function (error, results, fields) {
                             if (error) {
@@ -120,7 +120,7 @@ exports.ReqBuyWithAnswer = function (req, res, app, db) {
                                         'ID':'WEBSERVER',
                                         'data':{
                                             'timestamp':new Date(),
-                                            'transaction':`${contract.buyerID} pay ${contract.price} for warehouseID(${contract.warehouseID})`
+                                            'transaction':`${contract.buyerID} pay ${contract.amount} for warehouseID(${contract.warehouseID})`
                                           }
                                     }
                                     nodePickle.dumps(dic,function(pickled){

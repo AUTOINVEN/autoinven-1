@@ -1,7 +1,7 @@
 exports.getCurUsage = function (req, res, app, db) {
     var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
-    var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate >= '` + [today] + `' and startDate <= '` + [today] + `';`
+    var sql = `select * from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate >= '` + [today] + `' and startDate <= '` + [today] + `';`
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
@@ -12,7 +12,7 @@ exports.getCurUsage = function (req, res, app, db) {
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
                 area: results[step].area,
-                totalPrice: results[step].totalPrice,
+                amount: results[step].amount,
                 iotStat: results[step].iotStat
             };
         }
@@ -23,7 +23,7 @@ exports.getCurUsage = function (req, res, app, db) {
 exports.getNextUsage = function (req, res, app, db) {
     var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
-    var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and startDate > '` + [today] + `';`
+    var sql = `select * from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and startDate > '` + [today] + `';`
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
@@ -34,7 +34,7 @@ exports.getNextUsage = function (req, res, app, db) {
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
                 area: results[step].area,
-                totalPrice: results[step].totalPrice,
+                amount: results[step].amount,
                 iotStat: results[step].iotStat
             };
         }
@@ -45,7 +45,7 @@ exports.getNextUsage = function (req, res, app, db) {
 exports.getPreUsage = function (req, res, app, db) {
     var today = new Date(new Date().getTime() + 32400000).toISOString().replace(/T.+/, '');
     var items = {};
-    var sql = `select *, Contract.price as totalPrice from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate < '` + [today] + `';`
+    var sql = `select * from Contract, Warehouse where Warehouse.warehouseID=Contract.warehouseID and buyerID='` + req.session['memberID'] + `' and endDate < '` + [today] + `';`
     let results = db.query(sql);
     if (results.length > 0) {
         for (var step = 0; step < results.length; step++) {
@@ -56,7 +56,7 @@ exports.getPreUsage = function (req, res, app, db) {
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
                 area: results[step].area,
-                totalPrice: results[step].totalPrice,
+                amount: results[step].amount,
                 iotStat: results[step].iotStat
             };
         }

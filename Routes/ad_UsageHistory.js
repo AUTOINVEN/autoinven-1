@@ -8,7 +8,7 @@ exports.getUsageHistory = function (req, res, app, db) {
                 reqID: results[step].reqID,
                 buyerID: results[step].buyerID,
                 warehouseID: results[step].warehouseID,
-                price: results[step].price,
+                amount: results[step].amount,
                 startDate: results[step].startDate.substring(0, 10),
                 endDate: results[step].endDate.substring(0, 10),
                 area: results[step].area,
