@@ -44,7 +44,7 @@
               <% } else if (WHList['item' + i].iotStat == "N"){ %>
               <td>Not Currently Used</td>
               <% } %>
-              <td>
+              <td id="td-btn">
                 <form action="/Admin/WHinfo" method="POST">
                   <button class="btn btn-td btn-info">INFO</button>
                   <input id="warehouseID" name="warehouseID" type="hidden" value="<%= WHList['item' + i].warehouseID %>">

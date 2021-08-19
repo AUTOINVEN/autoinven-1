@@ -142,9 +142,8 @@
               <td id="area<%= i %>"><%= curItems['item' + i].area %></td>
               <td id="amount<%= i %>"><%= curItems['item' + i].amount %></td>
               <td id="td-btn">
-                <button id="modal_btn" class="btn btn-td btn-info">INFO</button>
-                <div class="black_bg"></div>
-                <div class="modal_wrap">
+                <button id="modal_btn" class="btn btn-td btn-info" onclick="curItemsClick('<%= i %>')">INFO</button>
+                <div class="modal_wrap" id="curItems<%= i %>" style="display:none;">
                   <div class="modal_body">
                     <h2 class="mt-5 mb-3">Buyer ID Info</h2>
                     <table class="table table-bordered">
@@ -179,7 +178,7 @@
                       </tbody>
                     </table>
                     <div class="modal_close">
-                      <button type="button" class="btn btn-grey">Close</button>
+                      <button type="button" class="btn btn-grey" onclick="curItemsClose('<%= i %>')">Close</button>
                     </div>
                   </div>
                 </div>
@@ -194,9 +193,9 @@
               <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
               <td id="amount<%= i %>"><%= nextItems['item' + i].amount %></td>
               <td id="td-btn">
-                <button id="modal_btn" class="btn btn-td btn-info">INFO</button>
+                <button id="modal_btn" class="btn btn-td btn-info" onclick="nextItemsClick('<%= i %>')">INFO</button>
                 <div class="black_bg"></div>
-                <div class="modal_wrap">
+                <div class="modal_wrap" id="nextItems<%= i %>" style="display:none;">
                   <div class="modal_body">
                     <h2 class="mt-5 mb-3">Buyer ID Info</h2>
                     <table class="table table-bordered">
@@ -231,7 +230,7 @@
                       </tbody>
                     </table>
                     <div class="modal_close">
-                      <button type="button" class="btn btn-grey">Close</button>
+                      <button type="button" class="btn btn-grey" onclick="nextItemsClose('<%= i %>')">Close</button>
                     </div>
                   </div>
                 </div>
@@ -264,10 +263,10 @@
               <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
               <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
               <td id="amount<%= i %>"><%= preItems['item' + i].amount %></td>
-              <td id="btn-td">
-                <button id="modal_btn" class="btn btn-info">INFO</button>
+              <td id="td-btn">
+                <button id="modal_btn" class="btn btn-td btn-info" onclick="preItemsClick('<%= i %>')">INFO</button>
                 <div class="black_bg"></div>
-                <div class="modal_wrap">
+                <div class="modal_wrap" id="preItems<%= i %>" style="display:none;">
                   <div class="modal_body">
                     <h2 class="mt-5 mb-3">Buyer ID Info</h2>
                     <table class="table table-bordered">
@@ -302,7 +301,7 @@
                       </tbody>
                     </table>
                     <div class="modal_close">
-                      <button type="button" class="btn btn-grey">Close</button>
+                      <button type="button" class="btn btn-grey" onclick="preItemsClose('<%= i %>')">Close</button>
                     </div>
                   </div>
                 </div>
@@ -320,7 +319,7 @@
 </body>
 
 <script>
-$(document).ready(function () {
+  $(document).ready(function () {
     $("#t2").hide();
     $("#btnView").click(function () {
       if ($("#btnView").html() == 'View') {
@@ -333,18 +332,29 @@ $(document).ready(function () {
     });
   });
 
-  window.onload = function () {
-    function onClick() {
-      document.querySelector('.modal_wrap').style.display = 'block';
-    }
 
-    function offClick() {
-      document.querySelector('.modal_wrap').style.display = 'none';
-    }
+  function curItemsClick(i) {
+    document.querySelector('#curItems'+i).style.display = 'block';
+  }
+  function curItemsClose(i) {
+    document.querySelector('#curItems'+i).style.display = 'none';
+  }
 
-    document.querySelector('#modal_btn').addEventListener('click', onClick);
-    document.querySelector('.modal_close').addEventListener('click', offClick);
-  };
+  function nextItemsClick(i) {
+    document.querySelector('#nextItems'+i).style.display = 'block';
+  }
+  function nextItemsClose(i) {
+    document.querySelector('#nextItems'+i).style.display = 'none';
+  }
+
+  function preItemsClick(i) {
+    document.querySelector('#preItems'+i).style.display = 'block';
+  }
+  function preItemsClose(i) {
+    document.querySelector('#preItems'+i).style.display = 'none';
+  }
+
+
 
   function btnClick(type, page) {
     var wid = <%= req.body.warehouseID %>;
@@ -353,6 +363,6 @@ $(document).ready(function () {
       else if (page === 'edit') $.redirect('WHInfo/Edit', {'wid': wid});
     }
   }
+
 </script>
 </html>
-
