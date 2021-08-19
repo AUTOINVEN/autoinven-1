@@ -67,11 +67,15 @@ function pvClick(where, i, flag) {
     var text = 'Input the reason for cancellation to submit.';
     var URL = '/Provider/MyWarehouse/Enroll/Ans';
     var resTitle = 'Canceled';
+    var rejTitle = 'Rejected by Admin';
+    var rejectCmt = $(`#enrollRejectCmt${i}`).val();
     var Area = null;
     if (where) {
         text = 'Input the reason for rejection to submit.';
         URL = '/Provider/MyWarehouse/Buy/Ans';
         resTitle = 'Rejected';
+        rejTitle = 'Canceled By Buyer';
+        rejectCmt = $(`#buyRejectCmt${i}`).text();
         Area = document.getElementById('area' + where + i).innerText;
     }
     switch (flag) {
@@ -121,8 +125,7 @@ function pvClick(where, i, flag) {
         });
         break;
     case 2:  // Confirm
-        var rejectCmt = $(`#buyRejectCmt${i}`).text();
-        rejectedAlert('Canceled By Buyer', rejectCmt, () => {
+        rejectedAlert(rejTitle, rejectCmt, () => {
             reAlert('Delete from table?', () => {
                 $.ajax({
                     url: URL,
