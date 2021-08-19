@@ -50,7 +50,7 @@ exports.checkPW = function (req, res, app, db) {
     var id = attr.id;
     var pw = attr.pw;
     var c_p = attr.c_p;
-    var pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&-])[A-Za-z\d$@$!%*#?&-]{8,}$/;
+    var pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&-])[A-Za-z\d$@$!%*#?&\-]{8,}$/;
     var koreancheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
     if (false === pwReg.test(pw)) {
