@@ -33,8 +33,8 @@
               <th>Req ID</th>
               <th>Warehouse ID</th>
               <th>State</th>
-              <th>Total Amount ($)</th>
               <th>Rental Period</th>
+              <th>Price</th>
               <th>Info</th>
               <th></th>
             </tr>
@@ -46,8 +46,8 @@
               <td><%= items['item' + i].reqID %></td>
               <td><%= items['item' + i].warehouseID %></td>
               <td>Pending Approval</td>
-              <td><%= items['item' + i].amount %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+              <td><%= items['item' + i].amount %> $</td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
                   <input name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
@@ -68,8 +68,8 @@
               <% } else { %>
               <td>Rejected by dmin</td>
               <% } %>
-              <td><%= items['item' + i].amount %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+              <td><%= items['item' + i].amount %> $</td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
                   <input type="hidden" value="<%= items['item' + i].reqID %>">
@@ -95,8 +95,8 @@
               <th>Req ID</th>
               <th>Warehouse ID</th>
               <th>State</th>
-              <th>Total Amount ($)</th>
               <th>Period</th>
+              <th>Price</th>
               <th>Info</th>
               <th></th>
               <th></th>
@@ -118,8 +118,8 @@
               <td><%= items['item' + i].reqID %></td>
               <td><%= items['item' + i].warehouseID %></td>
               <td>Waiting for Payment</td>
-              <td id="amount<%= i %>"><%= items['item' + i].amount %></td>
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
+              <td id="amount<%= i %>"><%= items['item' + i].amount %> $</td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
                   <input name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
@@ -137,12 +137,15 @@
         </table>
       </div>
       <!--Paypal-->
-      <div id="smart-button-container" style="width: max-content; margin:4% 40%;">
-        <div id="paypal-button-container" style="text-align: center;"></div>
+      <div class="center-wrap">
+        <div id="smart-button-container" style="width: max-content;">
+          <div id="paypal-button-container" style="text-align: center;"></div>
+        </div>
       </div>
+    </div>
     </section>
     <footer>
-      <%- include('../../footer') %>
+      <%- include('../../footer_forMain') %>
     </footer>
   </div>
 </body>
