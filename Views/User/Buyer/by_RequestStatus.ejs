@@ -50,7 +50,7 @@
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
-                  <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
+                  <input name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
                   <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
@@ -72,7 +72,7 @@
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
-                  <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
+                  <input type="hidden" value="<%= items['item' + i].reqID %>">
                   <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
@@ -122,7 +122,7 @@
               <td><%= items['item' + i].startDate %> ~ <%= items['item' + i].endDate %></td>
               <td id="td-btn">
                 <form action="/Buyer/RequestWHInfo" method="POST">
-                  <input id="reqID" name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
+                  <input name="reqID" type="hidden" value="<%= items['item' + i].reqID %>">
                   <button class="btn btn-td btn-info">INFO</button>
                 </form>
               </td>
