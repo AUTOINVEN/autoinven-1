@@ -86,6 +86,10 @@ async function initMap() {
 
 $(function () {
 
+    $('#area').val('');
+    $('#sDate').val('');
+    $('#eDate').val('');
+
     var swalError = (text) => Swal.fire({
         icon: 'error',
         title: 'Fail',
@@ -109,33 +113,34 @@ $(function () {
             swalError('Please enter the start date.');
         else if (!endDate)
             swalError('Please enter the end date.');
-
-        $.ajax({
-            url: '/Buyer/FindWH/Inquire',
-            dataType: 'json',
-            type: 'POST',
-            data: {
-                warehouseID: warehouseID,
-                area: wantArea,
-                startDate: startDate,
-                endDate: endDate
-            },
-            success: function (data) {
-                if (data === true) {
-                    Swal.fire({
-                        title: 'Submitted',
-                        icon: 'success'
-                    }).then(() => location.href = "/Buyer/RequestStatus");
-                } else {
-                    swalError()
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'An error has occurred.',
-                        icon: 'error'
-                    });
+        else {
+            $.ajax({
+                url: '/Buyer/FindWH/Inquire',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    warehouseID: warehouseID,
+                    area: wantArea,
+                    startDate: startDate,
+                    endDate: endDate
+                },
+                success: function (data) {
+                    if (data === true) {
+                        Swal.fire({
+                            title: 'Submitted',
+                            icon: 'success'
+                        }).then(() => location.href = "/Buyer/RequestStatus");
+                    } else {
+                        swalError()
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'An error has occurred.',
+                            icon: 'error'
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     });
     $("#btnInquire").hide();
     $("#btnContact").hide();
