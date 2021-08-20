@@ -373,6 +373,12 @@ h6,
   text-align: center;
 }
 
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
+}
+
 .table-bg {
   background-color: white;
 }
@@ -457,6 +463,7 @@ h6,
   width:20%;
   color:white;
   background-color:#464660;
+  
 }
 
 #td-btn {

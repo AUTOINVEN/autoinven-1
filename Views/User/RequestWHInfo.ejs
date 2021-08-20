@@ -15,7 +15,7 @@
       </div>
     </header>
     <section>
-      <div class="container">
+      <div class="container-info">
         <h2 class="mt-5 mb-3">Buy Request Info</h2>
         <table class="table table-bordered">
           <tbody>
@@ -32,12 +32,12 @@
               <td><%= ReqItems.warehouseID %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Total Amount</th>
+              <th class="thead-dark-vertical">Price</th>
               <td><%= ReqItems.amount %> $</td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Rental Area</th>
-              <td><%= ReqItems.area %> m²</td>
+              <td><%= ReqItems.area %> m<sup>2</sup></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Rental Period</th>
@@ -46,7 +46,7 @@
           </tbody>
         </table>
       </div>
-      <div class="container">
+      <div class="container-info">
         <h2 class="mt-5 mb-3">Warehouse Info</h2>
         <table class="table table-bordered">
           <tbody>
@@ -59,7 +59,7 @@
               <td><%= WHitems.warehouseName %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Zipcode</th>
+              <th class="thead-dark-vertical">Zip Code</th>
               <td><%= WHitems.zipcode %></td>
             </tr>
             <tr>
@@ -70,15 +70,15 @@
               <td><%= WHitems.addressDetail %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Contact Email</th>
+              <th class="thead-dark-vertical">Email</th>
               <td><%= WHitems.warehouseEmail %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Contact Tel</th>
+              <th class="thead-dark-vertical">Tel</th>
               <td><%= WHitems.warehouseTEL %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Enrolled Date</th>
+              <th class="thead-dark-vertical">Registered Date</th>
               <td><%= WHitems.enrolledDate %></td>
             </tr>
             <tr>
@@ -94,7 +94,7 @@
               <td><%= WHitems.useableArea %> m²</td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Price Per Area</th>
+              <th class="thead-dark-vertical">Price Per m<sup>2</sup></th>
               <td><%= WHitems.perprice %> $</td>
             </tr>
             <tr>
@@ -102,14 +102,14 @@
               <td><%= WHitems.infoComment %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">ETC</th>
+              <th class="thead-dark-vertical">Etc Comment</th>
               <td><%= WHitems.etcComment %></td>
             </tr>
           </tbody>
         </table>
       </div>
       <% if (session.type === 'admin' || session.type === 'buyer') { %>
-      <div class="container">
+      <div class="container-info">
         <h2 class="mt-5 mb-3">Provider Info</h2>
         <table class="table table-bordered">
           <tbody>
@@ -126,10 +126,11 @@
               <td><%= PVitems.national %></td>
             </tr>
             <tr>
-              <th rowspan="2" class="thead-dark-vertical">Address</th>
+              <th class="thead-dark-vertical">Zip Code</th>
               <td><%= PVitems.zipcode %></td>
             </tr>
             <tr>
+              <th class="thead-dark-vertical">Address</th>
               <td><%= PVitems.address %></td>
             </tr>
             <tr>
@@ -137,7 +138,7 @@
               <td><%= PVitems.email %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Contact Number</th>
+              <th class="thead-dark-vertical">Tel</th>
               <td><%= PVitems.contactNumber %></td>
             </tr>
           </tbody>
@@ -145,7 +146,7 @@
       </div>
       <% } %>
       <% if (session.type === 'provider' || session.type === 'admin') { %>
-      <div class="container">
+      <div class="container-info">
         <h2 class="mt-5 mb-3">Buyer Info</h2>
         <table class="table table-bordered">
           <tbody>
@@ -162,18 +163,19 @@
               <td><%= BYitems.national %></td>
             </tr>
             <tr>
-              <th rowspan="2" class="thead-dark-vertical">Address</th>
-              <td><%= BYitems.zipcode %></td>
+              <th class="thead-dark-vertical">Zip Code</th>
+              <td><%= Byitems.zipcode %></td>
             </tr>
             <tr>
-              <td><%= BYitems.address %></td>
+              <th class="thead-dark-vertical">Address</th>
+              <td><%= Byitems.address %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Email</th>
               <td><%= BYitems.email %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Contact Number</th>
+              <th class="thead-dark-vertical">Tel</th>
               <td><%= BYitems.contactNumber %></td>
             </tr>
           </tbody>

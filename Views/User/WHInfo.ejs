@@ -15,7 +15,7 @@
       </div>
     </header>
     <section>
-      <div class="container">
+      <div class="container-info">
         <h2 class="mt-5 mb-3">Warehouse Info
           <% if (WHitems.iotStat === 'Y') { %>
           <button class="btn btn-big btn-main" onclick="btnClick('pv', 'iot')">IoT</button>
@@ -35,7 +35,7 @@
               <td><%= WHitems.warehouseName %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Zipcode</th>
+              <th class="thead-dark-vertical">Zip Code</th>
               <td><%= WHitems.zipcode %></td>
             </tr>
             <tr>
@@ -46,39 +46,39 @@
               <td><%= WHitems.addressDetail %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Contact Email</th>
+              <th class="thead-dark-vertical">Email</th>
               <td><%= WHitems.warehouseEmail %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Contact Tel</th>
+              <th class="thead-dark-vertical">Tel</th>
               <td><%= WHitems.warehouseTEL %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Enrolled Date</th>
+              <th class="thead-dark-vertical">Registered Date</th>
               <td><%= WHitems.enrolledDate %></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Land Area</th>
-              <td><%= WHitems.landArea %></td>
+              <td><%= WHitems.landArea %> m<sup>2</sup></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Floor Area</th>
-              <td><%= WHitems.floorArea %></td>
+              <td><%= WHitems.floorArea %> m<sup>2</sup></td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Usable Area</th>
-              <td><%= WHitems.useableArea %></td>
+              <td><%= WHitems.useableArea %> m<sup>2</sup></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Price Per Area</th>
-              <td><%= WHitems.perprice %></td>
+              <th class="thead-dark-vertical">Price Per m<sup>2</sup></th>
+              <td><%= WHitems.perprice %> $</td>
             </tr>
             <tr>
               <th class="thead-dark-vertical">Info Comment</th>
               <td><%= WHitems.infoComment %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">ETC</th>
+              <th class="thead-dark-vertical">Etc Comment</th>
               <td><%= WHitems.etcComment %></td>
             </tr>
           </tbody>
@@ -102,10 +102,11 @@
               <td><%= PVitems.national %></td>
             </tr>
             <tr>
-              <th rowspan="2" class="thead-dark-vertical">Address</th>
+              <th class="thead-dark-vertical">Zip Code</th>
               <td><%= PVitems.zipcode %></td>
             </tr>
-            <tr>
+            <tr >
+              <th class="thead-dark-vertical">Address</th>
               <td><%= PVitems.address %></td>
             </tr>
             <tr>
@@ -113,7 +114,7 @@
               <td><%= PVitems.email %></td>
             </tr>
             <tr>
-              <th class="thead-dark-vertical">Contact Number</th>
+              <th class="thead-dark-vertical">Tel</th>
               <td><%= PVitems.contactNumber %></td>
             </tr>
           </tbody>
@@ -128,8 +129,8 @@
               <th>Req ID</th>
               <th>Buyer ID</th>
               <th>Rental Period</th>
-              <th>Area</th>
-              <th>Total</th>
+              <th>Rental Area</th>
+              <th>Price</th>
               <th>Info</th>
             </tr>
           </thead>
@@ -139,8 +140,8 @@
               <td id="reqID<%= i %>"><%= curItems['item' + i].reqID %></td>
               <td id="buyerID<%= i %>"><%= curItems['item' + i].buyerID %></td>
               <td id="Period<%= i %>"><%= curItems['item' + i].startDate %> ~ <%= curItems['item' + i].endDate %></td>
-              <td id="area<%= i %>"><%= curItems['item' + i].area %></td>
-              <td id="amount<%= i %>"><%= curItems['item' + i].amount %></td>
+              <td id="area<%= i %>"><%= curItems['item' + i].area %> m<sup>2</sup></td>
+              <td id="amount<%= i %>"><%= curItems['item' + i].amount %> $</td>
               <td id="td-btn">
                 <button id="modal_btn" class="btn btn-td btn-info" onclick="curItemsClick('<%= i %>')">INFO</button>
                 <div class="modal_wrap" id="curItems<%= i %>" style="display:none;">
@@ -161,10 +162,11 @@
                           <td id="modal_border"><%= curItems['item' + i].national %></td>
                         </tr>
                         <tr>
-                          <th rowspan="2" class="thead-dark-vertical" id="modal_border">Address</th>
+                          <th class="thead-dark-vertical" id="modal_border">Zip Code</th>
                           <td id="modal_border"><%= curItems['item' + i].zipcode %></td>
                         </tr>
                         <tr>
+                          <th class="thead-dark-vertical" id="modal_border">Address</th>
                           <td id="modal_border"><%= curItems['item' + i].address %></td>
                         </tr>
                         <tr>
@@ -172,7 +174,7 @@
                           <td id="modal_border"><%= curItems['item' + i].email %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical" id="modal_border">Contact Number</th>
+                          <th class="thead-dark-vertical" id="modal_border">Tel</th>
                           <td id="modal_border"><%= curItems['item' + i].contactNumber %></td>
                         </tr>
                       </tbody>
@@ -190,8 +192,8 @@
               <td id="reqID<%= i %>"><%= nextItems['item' + i].reqID %></td>
               <td id="buyerID<%= i %>"><%= nextItems['item' + i].buyerID %></td>
               <td id="Period<%= i %>"><%= nextItems['item' + i].startDate %> ~ <%= nextItems['item' + i].endDate %></td>
-              <td id="area<%= i %>"><%= nextItems['item' + i].area %></td>
-              <td id="amount<%= i %>"><%= nextItems['item' + i].amount %></td>
+              <td id="area<%= i %>"><%= nextItems['item' + i].area %> m<sup>2</sup></td>
+              <td id="amount<%= i %>"><%= nextItems['item' + i].amount %> $</td>
               <td id="td-btn">
                 <button id="modal_btn" class="btn btn-td btn-info" onclick="nextItemsClick('<%= i %>')">INFO</button>
                 <div class="black_bg"></div>
@@ -213,11 +215,12 @@
                           <td id="modal_border"><%= nextItems['item' + i].national %></td>
                         </tr>
                         <tr>
-                          <th rowspan="2" class="thead-dark-vertical" id="modal_border">Address</th>
+                          <th class="thead-dark-vertical" id="modal_border">Zip Code</th>
                           <td id="modal_border"><%= nextItems['item' + i].zipcode %></td>
                         </tr>
                         <tr>
-                          <td><%= nextItems['item' + i].address %></td>
+                          <th class="thead-dark-vertical" id="modal_border">Address</th>
+                          <td id="modal_border"><%= nextItems['item' + i].address %></td>
                         </tr>
                         <tr>
                           <th class="thead-dark-vertical" id="modal_border">Email</th>
@@ -250,8 +253,8 @@
               <th>Req ID</th>
               <th>Buyer ID</th>
               <th>Rental Period</th>
-              <th>Area</th>
-              <th>Total</th>
+              <th>Rental Area</th>
+              <th>Price</th>
               <th>Info</th>
             </tr>
           </thead>
@@ -261,8 +264,8 @@
               <td id="reqID<%= i %>"><%= preItems['item' + i].reqID %></td>
               <td id="buyerID<%= i %>"><%= preItems['item' + i].buyerID %></td>
               <td id="Period<%= i %>"><%= preItems['item' + i].startDate %> ~ <%= preItems['item' + i].endDate %></td>
-              <td id="area<%= i %>"><%= preItems['item' + i].area %></td>
-              <td id="amount<%= i %>"><%= preItems['item' + i].amount %></td>
+              <td id="area<%= i %>"><%= preItems['item' + i].area %> m<sup>2</sup></td>
+              <td id="amount<%= i %>"><%= preItems['item' + i].amount %> $</td>
               <td id="td-btn">
                 <button id="modal_btn" class="btn btn-td btn-info" onclick="preItemsClick('<%= i %>')">INFO</button>
                 <div class="black_bg"></div>
@@ -284,10 +287,11 @@
                           <td><%= preItems['item' + i].national %></td>
                         </tr>
                         <tr>
-                          <th rowspan="2" class="thead-dark-vertical">Address</th>
+                          <th class="thead-dark-vertical">Zip Code</th>
                           <td><%= preItems['item' + i].zipcode %></td>
                         </tr>
                         <tr>
+                          <th class="thead-dark-vertical">Address</th>
                           <td><%= preItems['item' + i].address %></td>
                         </tr>
                         <tr>
@@ -295,7 +299,7 @@
                           <td><%= preItems['item' + i].email %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical">Contact Number</th>
+                          <th class="thead-dark-vertical">Tel</th>
                           <td><%= preItems['item' + i].contactNumber %></td>
                         </tr>
                       </tbody>
