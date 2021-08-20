@@ -20,11 +20,11 @@
         <div class="help-container">
           <div class="btn-help-left" onclick=setDisplay(1)>
             <div class="eff-left"></div>
-            <a> HELP </a>
+            <a id="thelp"> HELP </a>
           </div>
           <div class="btn-help-right" onclick=setDisplay(0)>
             <div class="eff-right"></div>
-            <a> FAQ </a>
+            <a id="tfaq"> FAQ </a>
           </div>
         </div>
 
@@ -340,10 +340,14 @@
 <script>
   function setDisplay(val) {
     if (val == 1) { //val==1 faq
+      document.getElementById("tfaq").style.textDecoration="none";
+      document.getElementById("thelp").style.textDecoration="underline";
       $('#help').show();
       $('#faq').hide();
     }
     if (val == 0) { //val==0 help
+      document.getElementById("tfaq").style.textDecoration="underline";
+      document.getElementById("thelp").style.textDecoration="none";
       $('#help').hide();
       $('#faq').show();
     }
