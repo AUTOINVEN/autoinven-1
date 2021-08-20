@@ -129,6 +129,10 @@
             var id = $("#memberID").val();
             var pw = $("#password").val();
             var name = $("#name").val();
+            var email = $("#email").val();
+            var zipcode = $("#zipcode").val();
+            var address = $("#address").val();
+            var national = $("#national").val();
             var textReg = /^[a-zA-Z0-9\s$@$!%*#?&\-,]*$/;
 
             if (!id)
@@ -153,7 +157,7 @@
                 swalError('Only english, numbers, blank, special character(@$!%*#?&-,) can be entered in name field');
             else if (false === textReg.test(address))
                 swalError('Only english, numbers, blank, special character(@$!%*#?&-,) can be entered in address field');
-                else if (false === textReg.test(national))
+            else if (false === textReg.test(national))
                 swalError('Only english, numbers, blank, special character(@$!%*#?&-,) can be entered in nation field');
             //finish all test
             else {
