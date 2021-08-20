@@ -97,8 +97,11 @@
 
           <div class="form-group row">
             <label for="address" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="zipcode" name="zipcode" value="<%= session.zipcode %>" placeholder="zipcode">
+            </div>
             <div class="col-sm-8">
-              <input type="text" id="address" name="address" value="<%=session.address%>" class="form-control">
+              <input type="text" class="form-control" id="address" name="address" value="<%=session.address%>" placeholder="address">
               <% if(locals.err){ %>
               <span class="invalid-feedback"><%= locals.err %></span>
               <% } %>
