@@ -13,7 +13,7 @@
   <section>
     <div class="wrap">
       <div class="page-header">
-        <div class="page-header-image" id="mainhead"></div>
+        <div class="page-header-image" id="mainhead" style="background: url(/Image/main_home.jpg) 50% 50% / 150% 150% no-repeat"></div>
         <div class="container">
           <div class="content-center">
             <h1 class="h1-seo">Autoinven</h1>
@@ -91,11 +91,6 @@
   var firstSize_x = 150;
   var firstSize_y = 150;
 
-  window.onload = function () {
-    t_zoom.style.background = 'url(/Image/main_home.jpg) 50% 50% /' + firstSize_x + '% ' + firstSize_y +
-      '% no-repeat';
-  };
-
   var t_zoom = document.getElementById('mainhead');
   window.addEventListener('scroll', zoomImg);
 
@@ -112,7 +107,7 @@
       var size_y = firstSize_y - Math.floor((firstSize_y - 100) / (h_end - h_window) * window.scrollY);
     }
 
-    t_zoom.style.background = 'url(/Image/main_home.jpg) 50% 50% /' + --size_x + '% ' + --size_y + '% no-repeat';
+    t_zoom.style.background = 'url(/Image/main_home.jpg) 50% 50% /' + size_x-- + '% ' + size_y-- + '% no-repeat';
   }
 
   async function initMap() {
