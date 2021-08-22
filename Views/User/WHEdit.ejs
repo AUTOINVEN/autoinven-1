@@ -20,73 +20,73 @@
         <h2 class="mt-5 mb-5">Edit Warehouse</h2>
         <form action="Edit/Save" method="post" enctype="multipart/form-data" id="enrollForm" onsubmit="return false;">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Name</label>
+            <label class="col-sm-3 col-form-label">Warehouse Name (창고 이름)</label>
             <div class="col-sm-4"><input type="text" class="form-control" value="<%= wh.warehouseName %>" readonly>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Address</label>
+            <label class="col-sm-3 col-form-label">Warehouse Address (창고 주소)</label>
             <div class="col-sm-2">
               <input type="text" class="form-control" value="<%= wh.zipcode %>" readonly>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label"></label>
+            <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-8">
               <input type="text" class="form-control" value="<%= wh.address %>" readonly>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label"></label>
+            <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-8">
               <input type="text" class="form-control" value="<%= wh.addressDetail %>" readonly>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Email</label>
+            <label class="col-sm-3 col-form-label">Email (이메일)</label>
             <div class="col-sm-4"><input type="text" class="form-control" id="warehouseEmail" name="warehouseEmail"
                 value="<%= wh.warehouseEmail %>" placeholder="Contact Email"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Tel</label>
+            <label class="col-sm-3 col-form-label">Tel (창고 전화 번호)</label>
             <div class="col-sm-4"><input type="text" class="form-control" id="warehouseTel" name="warehouseTel"
                 value="<%= wh.warehouseTEL %>" placeholder="Telephone Number (ex. 010-0000-0000)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">LandArea</label>
+            <label class="col-sm-2 col-form-label">LandArea (총 면적)</label>
             <div class="col-sm-4"><input type="text" class="form-control" id="landArea" name="landArea"
-                value="<%= wh.landArea %>" placeholder="Numbers Only"></div>
+                value="<%= wh.landArea %>" placeholder="Numbers Only (m²)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">FloorArea</label>
+            <label class="col-sm-2 col-form-label">FloorArea (층 면적)</label>
             <div class="col-sm-4"><input type="text" class="form-control" id="floorArea" name="floorArea"
-                value="<%= wh.floorArea %>" placeholder="Numbers Only"></div>
+                value="<%= wh.floorArea %>" placeholder="Numbers Only (m²)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Useable Area</label>
+            <label class="col-sm-2 col-form-label">Useable Area (사용가능 면적)</label>
             <div class="col-sm-4"><input type="text" class="form-control" id="useableArea" name="useableArea"
-                value="<%= wh.useableArea %>" placeholder="Numbers Only"></div>
+                value="<%= wh.useableArea %>" placeholder="Numbers Only (m²)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Price Per m<sup>2</sup></label>
+            <label class="col-sm-2 col-form-label">Price Per m<sup>2</sup> (m²당 가격)</label>
             <div class="col-sm-4"><input type="text" class="form-control" id="price" name="price"
                 value="<%= wh.perprice %>" placeholder="(ex. 100$)"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Info Comment</label>
+            <label class="col-sm-2 col-form-label">Info Comment (추가 정보)</label>
             <div class="col-sm-10"><input type="text" class="form-control" id="infoComment" name="infoComment"
                 value="<%= wh.infoComment %>" placeholder="Information Comment"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Etc Comment</label>
+            <label class="col-sm-2 col-form-label">Etc Comment (기타 정보)</label>
             <div class="col-sm-10"><input type="text" class="form-control" id="etcComment" name="etcComment"
                 value="<%= wh.etcComment %>" placeholder="Etc Comment"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Warehouse Image</label>
+            <label class="col-sm-2 col-form-label">Warehouse Image (창고 사진)</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="img_name" name="img_name" readonly="readonly"
-                disabled="disabled" placeholder="Warehouse Image">
+                disabled="disabled" placeholder="Warehouse Image(1개만 등록 가능)">
             </div>
             <div class="col-sm-2">
               <label class="form-control btn-primary" for="profile_img" style="text-align:center;">Upload Image</label>

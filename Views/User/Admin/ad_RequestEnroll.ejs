@@ -25,7 +25,6 @@
               <th>State</th>              
               <th>Info</th>
               <th></th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -45,8 +44,6 @@
               </td>         
               <td id="td-btn">
                 <button type="button" class="btn btn-td btn-success" onclick="adClick(<%= i %>, 1)">Approve</button>
-              </td>
-              <td id="td-btn">
                 <button type="button" class="btn btn-td btn-danger" onclick="adClick(<%= i %>, 0)">Reject</button>
               </td>
               <p id="reqID<%= i %>" style="display: none"><%= items['item' + i].reqID %></p>

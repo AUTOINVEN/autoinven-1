@@ -85,7 +85,7 @@
         </table>
       </div>
       <% if (session.type === 'admin') { %>
-      <div class="container">
+      <div class="container-info">
         <h2 class="mt-5 mb-3">Provider Info</h2>
         <table class="table table-bordered">
           <tbody>
@@ -275,32 +275,32 @@
                     <table class="table table-bordered">
                       <tbody>
                         <tr>
-                          <th class="thead-dark-vertical">Buyer ID</th>
-                          <td><%= preItems['item' + i].buyerID %></td>
+                          <th class="thead-dark-vertical" id="modal_border">Buyer ID</th>
+                          <td id="modal_border"><%= preItems['item' + i].buyerID %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical">Buyer Name</th>
-                          <td><%= preItems['item' + i].name %></td>
+                          <th class="thead-dark-vertical" id="modal_border">Buyer Name</th>
+                          <td id="modal_border"><%= preItems['item' + i].name %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical">National</th>
-                          <td><%= preItems['item' + i].national %></td>
+                          <th class="thead-dark-vertical" id="modal_border">National</th>
+                          <td id="modal_border"><%= preItems['item' + i].national %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical">Zip Code</th>
-                          <td><%= preItems['item' + i].zipcode %></td>
+                          <th class="thead-dark-vertical" id="modal_border">Zip Code</th>
+                          <td id="modal_border"><%= preItems['item' + i].zipcode %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical">Address</th>
-                          <td><%= preItems['item' + i].address %></td>
+                          <th class="thead-dark-vertical" id="modal_border">Address</th>
+                          <td id="modal_border"><%= preItems['item' + i].address %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical">Email</th>
-                          <td><%= preItems['item' + i].email %></td>
+                          <th class="thead-dark-vertical" id="modal_border">Email</th>
+                          <td id="modal_border"><%= preItems['item' + i].email %></td>
                         </tr>
                         <tr>
-                          <th class="thead-dark-vertical">Tel</th>
-                          <td><%= preItems['item' + i].contactNumber %></td>
+                          <th class="thead-dark-vertical" id="modal_border">Tel</th>
+                          <td id="modal_border"><%= preItems['item' + i].contactNumber %></td>
                         </tr>
                       </tbody>
                     </table>
