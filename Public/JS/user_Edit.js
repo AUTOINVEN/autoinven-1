@@ -1,5 +1,5 @@
 $(function () {
-    var authedEmails = [$('#email').val()];
+    var authedEmails = ['', $('#email').val()];
     var authCode = null;
     var authFlag = true;
 
