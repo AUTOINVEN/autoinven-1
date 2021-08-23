@@ -2,7 +2,7 @@ exports.EnrollWH = function (req, res, app, db) {
     var mysql = require('mysql');
     var connection = mysql.createConnection(require('../Module/db').info);
     connection.connect();
-    var onlyNumDot = /^[0-9]*$/; // 숫자만 받는 정규식
+    var onlyNum = /^[0-9]*$/; // 숫자만 받는 정규식
     var onlyNumDot = /^[0-9.]*$/; // 숫자와 점만 받는 정규식
     var engishDigit = /^[a-zA-Z0-9]+$/; // 영어 대소문자 및 숫자 받는 정규식
     var emailReg = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
