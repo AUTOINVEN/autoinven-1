@@ -8,13 +8,13 @@ exports.edit = function (req, res, app, db) {
     var check = db.query(SQL, [email, contactNumber, address, zipcode, national]);
     if (!check) {
         console.log("error ocurred", error);
-        res.redirect('/User/Edit');
+        res.send(error);
     } else {
         req.session['email'] = email;
         req.session['contactNumber'] = contactNumber;
         req.session['address'] = address;
         req.session['zipcode'] = zipcode;
         req.session['national'] = national;
-        res.redirect('/');
+        res.send('success');
     }
 }
