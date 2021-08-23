@@ -3,6 +3,7 @@
     $(document).ready(function () {
         var overlapId = false;
         var EffectivenessPw = false;
+        var authedEmails = [''];
         var authCode = null;
         var authFlag = false;
 
@@ -84,8 +85,21 @@
                     text: 'Please insert your Id',
                 })
             }
+        });
 
-        })
+        $('#email').on('input', () => {
+            if (!authedEmails.includes(($('#email').val()))) {
+                authCode = null;
+                authFlag = false;
+                $('#div_auth').show();
+                $('#sendAuthCode').attr('disabled', false);
+            } else {
+                authFlag = true;
+                $('#div_auth').hide();
+                $('#sendAuthCode').attr('disabled', true);
+            }
+        });
+
         $('#sendAuthCode').click(function () {
             var email = $('#email').val();
             if (email != '') {
@@ -105,6 +119,7 @@
                                 text: "Mail was sended",
                             }).then(function () {
                                 authCode = rcvData.authCode;
+                                authedEmails.push($('#email').val());
                             })
                         }
                     }
@@ -120,7 +135,11 @@
                         icon: 'success',
                         title: 'Success',
                         text: 'valid AuthCode!!'
-                    })
+                    }).then(() => {
+                        $('#div_auth').hide();
+                        $('#authCode').val('');
+                        $('#sendAuthCode').attr('disabled', true);
+                    });
                 } else swalError('invalid AuthCode!!');
             }
         });
@@ -147,6 +166,8 @@
                 swalError('You have to check Password Effectiveness');
             else if (!email)
                 swalError('You have to insert your email');
+            else if (!authFlag)
+                swalError('You have to authenticate your email.');
             else if (!zipcode)
                 swalError('You have to insert your zipcode');
             else if (!address)
