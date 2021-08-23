@@ -147,6 +147,8 @@
                 swalError('You have to check Password Effectiveness');
             else if (!email)
                 swalError('You have to insert your email');
+            else if (!authFlag)
+                swalError('You have to authenticate your email.');
             else if (!zipcode)
                 swalError('You have to insert your zipcode');
             else if (!address)
