@@ -98,7 +98,8 @@ $(function () {
 
     $('#btn').click(function () {
         let warehouseID = $('#whID').text();
-        let price = $('#whPrice').text();
+        var strPrice = $('#whPrice').text();
+        let price = parseFloat(strPrice.substr(0, strPrice.length-2));
         let useableArea = parseInt($('#whUseableArea').text());
         let wantArea = parseInt($('#area').val());
         let startDate = $('#startDate').text();
