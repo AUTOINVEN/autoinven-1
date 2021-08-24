@@ -12,7 +12,7 @@ function byClick(i, flag) {
                         whID: document.getElementById('whID' + i).innerText,
                         reqType: document.getElementById('reqType' + i).innerText,
                         buyerID: document.getElementById('buyerID' + i).innerText,
-                        area: document.getElementById('area' + i).innerText,
+                        area: parseInt(document.getElementById('area' + i).innerText),
                         reason: reason
                         //other things will be here
                     },
@@ -34,10 +34,10 @@ function byClick(i, flag) {
                     whID: document.getElementById('whID' + i).innerText,
                     reqType: document.getElementById('reqType' + i).innerText,
                     buyerID: document.getElementById('buyerID' + i).innerText,
-                    area: document.getElementById('area' + i).innerText,
+                    area: parseInt(document.getElementById('area' + i).innerText),
                     startDate: document.getElementById('startDate' + i).innerText,
                     endDate: document.getElementById('endDate' + i).innerText,
-                    amount: document.getElementById('amount' + i).innerText
+                    amount: parseFloat(document.getElementById('amount' + i).innerText)
                     //other things will be here
                 },
                 success: function (success) {
@@ -62,7 +62,7 @@ function byClick(i, flag) {
                             whID: document.getElementById('whID' + i).innerText,
                             reqType: document.getElementById('reqType' + i).innerText,
                             buyerID: document.getElementById('buyerID' + i).innerText,
-                            area: document.getElementById('area' + i).innerText
+                            area: parseInt(document.getElementById('area' + i).innerText)
                             //other things will be here
                         },
                         success: function (success) {
