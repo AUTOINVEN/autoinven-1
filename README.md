@@ -225,7 +225,7 @@ Express framework를 이용하여 이용자가 창고를 등록하고 원하는 
 
 - Search Warehouse → 지도에서 창고 선택 → Inquire → 면적, 대여 기한 입력 → Submit
 
-    ![photo1(search warehouse).PNG](Public/Image/README/photo1(search_warehouse).png)
+    ![SearchWarehouse.PNG](Public/Image/README/SearchWarehouse.PNG)
 
 ### 대여 승인 절차
 
@@ -314,7 +314,7 @@ Express framework를 이용하여 이용자가 창고를 등록하고 원하는 
 
 - 창고는 IoT 서비스를 사용중인 창고와 아닌 창고로 나뉨
 
-    ![IoT_WarehouseList](Public/Image/README/IoT_WarehouseList.png)
+    ![IoT_WarehouseLIst](Public/Image/README/IoT_WarehouseLIst.png)
 
 ### IoT 서비스 사용 신청
 
@@ -352,7 +352,7 @@ Express framework를 이용하여 이용자가 창고를 등록하고 원하는 
 
 - Admin: List → WAREHOUSE → Warehouse List → IoT
 
-  ![IoT_WarehouseList](Public/Image/README/IoT_WarehouseList.png)
+  ![IoT_WarehouseLIst](Public/Image/README/IoT_WarehouseLIst.png)
 
   ### Monitoring
 
@@ -408,7 +408,7 @@ Express framework를 이용하여 이용자가 창고를 등록하고 원하는 
 
 - 로그인 전 - 간단한 서비스 구성도가 보임.
 
-![Inven_Diagram](Public/Image/READM/Inven_Diagram.png)
+![Inven_Diagram](Public/Image/README/Inven_Diagram.png)
 
 - 로그인 후 - 사용자 계정에 따라 다른 내용이 보임. 관리자는 모든 내용을 볼 수 있음
 
