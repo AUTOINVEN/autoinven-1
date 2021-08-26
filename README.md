@@ -432,10 +432,12 @@ Express framework를 이용하여 이용자가 창고를 등록하고 원하는 
 
   ![IoT_Help](Public/Image/README/IoT_Help.png)
 
-# 유튜브 링크
-- IoT의 이전 버전 Demo
+# 참고 링크
+- IoT의 이전 버전 Demo Youtube
     - https://youtu.be/wSYU74OY1p0
-
+- IoT 병합 전 버전의 GitHub Repo
+    - https://github.com/WOOSIEUN/capstone2021-autoinven
+      
 # 개선하면 좋은 부분
 
 - 아두이노의 RFID 리더기가 랜덤으로 인식이 되지 않는 케이스가 있음
